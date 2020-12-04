@@ -4193,4 +4193,22 @@ if __name__ == &#39;__main__&#39;:
     <content><![CDATA[<p>6546546546546<br>dfthfe<br>fdghfye<br>tyh<br>retyher<br>tyh<br>eryh<br>er<br>yh</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>hexo 添加 hexo-admin 插件</title>
+    <url>/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>简介<br>在线编辑和发布 hexo 博客。<br>github 地址：<a href="https://github.com/jaredly/hexo-admin">https://github.com/jaredly/hexo-admin</a></p>
+<p>安装<br>进入 hexo 源文件目录，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
+<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
+<p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
+<pre><code class="bash"> node
+ const bcrypt = require(&#39;bcrypt-nodejs&#39;)
+ bcrypt.hashSync(&#39;your_password&#39;)</code></pre>
+<p>其中的 your_password 为登录密码。</p>
+<p>若部署到远程服务器，就可以使用：<a href="http://ip:4000/admin/">http://ip:4000/admin/</a> 进行访问，在线发布 hexo 博客。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
 </search>

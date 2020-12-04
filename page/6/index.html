@@ -185,6 +185,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">可直接用浏览器打开的无头计算机docker images，包含 Chrome 与 Firefox，支持 VNC、RDP 协议</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-03-09 14:17:14" itemprop="dateCreated datePublished" datetime="2018-03-09T14:17:14+00:00">2018-03-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/centos-xfce-vnc/" itemprop="url" rel="index"><span itemprop="name">centos-xfce-vnc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>可直接用浏览器打开的无头计算机，包含 Chrome 与 Firefox，支持 VNC、RDP 协议[Docker]</p>
+<p>Docker 镜像：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/consol/centos-xfce-vnc/">consol/centos-xfce-vnc</a>，一个带有 Chrome 与 Firefox 浏览器的无头 VNC 服务器，可直接用浏览器打开</p>
+<p>可直接用浏览器打开的无头计算机，包含 Chrome 与 Firefox，支持 VNC、RDP 协议[Docker] 1<br>这是个啥？</p>
+<p>这是一个在 A 电脑的浏览器里打开 B 电脑上的浏览器的工具。</p>
+<p>使用方法<br>原版：<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/consol/centos-xfce-vnc/dockerfile">https://hub.docker.com/r/consol/centos-xfce-vnc/dockerfile</a></p>
+<p>docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc<br>浏览器，直接访问：<a target="_blank" rel="noopener" href="http://ip:6901/">http://ip:6901</a><br>VNC：ip:5901<br>默认密码 vncpassword 即可。</p>
+<p>新版：<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/soff/ubuntu-xfce-vnc">https://hub.docker.com/r/soff/ubuntu-xfce-vnc</a></p>
+<p>docker run -d -p 3389:3389 -p 5901:5901 -p 6901:6901 soff/ubuntu-xfce-vnc<br>浏览器，直接访问：<a href="http://ip:6901，密码">http://ip:6901，密码</a> vncpassword<br>VNC：ip:5901，密码 vncpassword<br>RDP：ip，用户名 user 密码 password<br>新版由 @imsoff 老师发布，精简掉了 Firefox。</p>
+<p>也可以使用ubuntu版本<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/consol/ubuntu-xfce-vnc/">ubuntu-xfce-vnc</a><br><a target="_blank" rel="noopener" href="https://github.com/fcwu/docker-ubuntu-vnc-desktop">docker-ubuntu-vnc-dedktop</a><br>如何安装 Docker<br>青小蛙写过一篇教程，感兴趣的同学可以参考。以及，因为有了浏览器，建议选择配置高一点的机器，推荐 Vultr（👈有返利，感谢使用我们的推荐链接），支持支付宝、微信支付，十分方便。</p>
+<p>如果你还想到其他玩法，欢迎留言告诉我们。</p>
+<p>无头计算机<br>无头系统（headless system）是指已配置为无须显示器（即“头”）、键盘和鼠标操作的计算机系统或设备。无头系统通常通过网络连接控制，但也有部分无头系统的设备需要通过RS-232串行连接进行设备的管理。服务器通常采用无头模式以降低运作成本。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2017/11/02/1956409564654/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -920,107 +1001,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2015/11/08/centos7%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8%E8%87%B3%E6%9C%80%E6%96%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2015/11/08/centos7%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8%E8%87%B3%E6%9C%80%E6%96%B0/" class="post-title-link" itemprop="url">centos7升级内核至最新</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2015-11-08 14:17:17" itemprop="dateCreated datePublished" datetime="2015-11-08T14:17:17+00:00">2015-11-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>centos7升级内核至最新</p>
-<h2 id="应用背景："><a href="#应用背景：" class="headerlink" title="应用背景："></a>应用背景：</h2><p>最近在接触k8s，其对内核版本要求较高，就连目前使用的centos7.x默认内核版本为3.10.0-xxx，也是刚好满足其最低要求，故借此机会记录一下升级内核的操作步骤。</p>
-<p>测试环境：</p>
-<p>系统    当前内核版本    小版本升级<br>CentOS 7.6    3.10.0-957    3.10.0-957.5.1</p>
-<p>系统    当前内核版本    大版本升级<br>CentOS 7.6    3.10.0-957    4.20.12-1(目前最新)</p>
-<p>操作步骤：</p>
-<h2 id="小版本升级"><a href="#小版本升级" class="headerlink" title="小版本升级"></a>小版本升级</h2><ol>
-<li>查看当前和可升级版本<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum list kernel</span></span><br><span class="line">Installed Packages</span><br><span class="line">kernel.x86_64                           <span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.</span>el7                                      @anaconda</span><br><span class="line">Available Packages</span><br><span class="line">kernel.x86_64                           <span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.5</span><span class="number">.1</span>.el7                                  updates  </span><br></pre></td></tr></table></figure></li>
-<li>升级<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum update kernel -y </span></span><br></pre></td></tr></table></figure></li>
-<li>重启并检查<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># reboot 　　</span></span><br><span class="line"></span><br><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># uname -r </span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="大版本升级"><a href="#大版本升级" class="headerlink" title="大版本升级"></a>大版本升级</h2><ol>
-<li>载入公钥<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org</span></span><br></pre></td></tr></table></figure></li>
-<li>升级安装ELRepo<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm</span></span><br></pre></td></tr></table></figure></li>
-<li>载入elrepo-kernel元数据<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum --disablerepo=\* --enablerepo=elrepo-kernel repolist</span></span><br></pre></td></tr></table></figure></li>
-<li>查看可用的rpm包</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum --disablerepo=\* --enablerepo=elrepo-kernel list kernel*</span></span><br><span class="line">Installed Packages</span><br><span class="line">kernel.x86_64                           <span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.</span>el7                           @anaconda    </span><br><span class="line">kernel.x86_64                           <span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.5</span><span class="number">.1</span>.el7                       @updates     </span><br><span class="line">kernel-tools.x86_64                     <span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.</span>el7                           @anaconda    </span><br><span class="line">kernel-tools-libs.x86_64                <span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.</span>el7                           @anaconda    </span><br><span class="line">Available Packages</span><br><span class="line">kernel-lt.x86_64                        <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-lt-devel.x86_64                  <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-lt-doc.noarch                    <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-lt-headers.x86_64                <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-lt-tools.x86_64                  <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-lt-tools-libs.x86_64             <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-lt-tools-libs-devel.x86_64       <span class="number">4.4</span><span class="number">.176</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-ml.x86_64                        <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel　// 安装目标版本</span><br><span class="line">kernel-ml-devel.x86_64                  <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-ml-doc.noarch                    <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-ml-headers.x86_64                <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-ml-tools.x86_64                  <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-ml-tools-libs.x86_64             <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line">kernel-ml-tools-libs-devel.x86_64       <span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo                     elrepo-kernel</span><br><span class="line"></span><br><span class="line">说明：</span><br><span class="line"></span><br><span class="line">lt  ：long term support，长期支持版本；</span><br><span class="line"></span><br><span class="line">ml：mainline，主线版本；</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>安装最新版本的kernel<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum --disablerepo=\* --enablerepo=elrepo-kernel install  kernel-ml.x86_64  -y</span></span><br></pre></td></tr></table></figure></li>
-<li>删除旧版本工具包<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum remove kernel-tools-libs.x86_64 kernel-tools.x86_64  -y</span></span><br></pre></td></tr></table></figure></li>
-<li>安装新版本工具包<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml-tools.x86_64  -y</span></span><br></pre></td></tr></table></figure></li>
-<li>查看内核插入顺序<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># awk -F \&#x27; &#x27;$1==&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&#x27; /etc/grub2.cfg</span></span><br><span class="line"><span class="number">0</span> : CentOS Linux (<span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo.x86_64) <span class="number">7</span> (Core)</span><br><span class="line"><span class="number">1</span> : CentOS Linux (<span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.5</span><span class="number">.1</span>.el7.x86_64) <span class="number">7</span> (Core)</span><br><span class="line"><span class="number">2</span> : CentOS Linux (<span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.</span>el7.x86_64) <span class="number">7</span> (Core)</span><br><span class="line"><span class="number">3</span> : CentOS Linux (<span class="number">0</span>-rescue-ca0f6fb3c5f24478abc0a2e275281d7a) <span class="number">7</span> (Core)</span><br></pre></td></tr></table></figure>
-说明：默认新内核是从头插入，默认启动顺序也是从0开始（当前顺序还未生效），或者使用：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> View Code</span><br><span class="line">其中文件 /etc/grub2.cfg 和 /boot/grub2/grub.cfg 内容一致。</span><br></pre></td></tr></table></figure></li>
-<li>查看当前实际启动顺序<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># grub2-editenv list</span></span><br><span class="line">saved_entry=CentOS Linux (<span class="number">3.10</span><span class="number">.0</span>-<span class="number">957.5</span><span class="number">.1</span>.el7.x86_64) <span class="number">7</span> (Core)</span><br></pre></td></tr></table></figure></li>
-<li>设置默认启动<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># grub2-set-default &#x27;CentOS Linux (4.20.12-1.el7.elrepo.x86_64) 7 (Core)&#x27;</span></span><br><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># grub2-editenv list</span></span><br><span class="line">saved_entry=CentOS Linux (<span class="number">4.20</span><span class="number">.12</span>-<span class="number">1.</span>el7.elrepo.x86_64) <span class="number">7</span> (Core)</span><br></pre></td></tr></table></figure>
-或者直接设置数值<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># grub2-set-default 0　　// 0代表当前第一行，也就是上面的4.20.12版本那一行内容</span></span><br><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># grub2-editenv list</span></span><br><span class="line">saved_entry=<span class="number">0</span></span><br></pre></td></tr></table></figure></li>
-<li>重启并检查<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># reboot </span></span><br><span class="line"></span><br><span class="line">[root@server-<span class="number">1</span> ~]<span class="comment"># uname -r </span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://github.com/gjmzj/kubeasz/blob/master/docs/guide/kernel_upgrade.md">参考</a><br><a target="_blank" rel="noopener" href="https://wiki.centos.org/HowTos/Grub2#head-535f476a61e62f24bc150c73f7e0816f85345f46">link</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1090,7 +1070,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

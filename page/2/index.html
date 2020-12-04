@@ -185,6 +185,103 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/" class="post-title-link" itemprop="url">单机版——docker搭建MongoDB分片集群</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-30 12:02:04" itemprop="dateCreated datePublished" datetime="2020-07-30T12:02:04+00:00">2020-07-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。</p>
+<h2 id="1-搭建config-server"><a href="#1-搭建config-server" class="headerlink" title="1. 搭建config server"></a>1. 搭建config server</h2><p>这里启动了3个config server。docker命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run  --restart: always --name cs0 -itd -v ~/data/db/mongo/cs0:/data/db -p <span class="number">27019</span>:<span class="number">27019</span> mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br><span class="line">docker run  -- restart: always --name cs1 -itd -v ~/data/db/mongo/cs1:/data/db -p <span class="number">27029</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name cs2 -itd -v ~/data/db/mongo/cs2:/data/db -p <span class="number">27039</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br></pre></td></tr></table></figure>
+<p>启动完后可以利用docker ps -a来看config server是否启动成功。我们通过命令docker inspect cs0 | grep IPAddress看下cs0的ip地址，发现地址是172.17.0.9。相同的方法看到cs1和cs2的ip分别为172.17.0.10和172.17.0.11。</p>
+<p>docker exec -it cs0 bash进入cs0容器里，并连接MongoDB配置服，配置服的端口为27019。命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.9</span> --port <span class="number">27019</span></span><br></pre></td></tr></table></figure>
+<p>登录进MongoDB后开始配置config server:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(</span><br><span class="line">  &#123;</span><br><span class="line">    _id: <span class="string">&quot;rs_configsvr&quot;</span>,</span><br><span class="line">    configsvr: true,</span><br><span class="line">    members: [</span><br><span class="line">      &#123; _id : <span class="number">0</span>, host : <span class="string">&quot;172.17.0.9:27019&quot;</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">1</span>, host : <span class="string">&quot;172.17.0.10:27019&quot;</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">2</span>, host : <span class="string">&quot;172.17.0.11:27019&quot;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>返回的ok里的值为1就表示配置成功了。</p>
+<h2 id="2-搭建分片副本集"><a href="#2-搭建分片副本集" class="headerlink" title="2. 搭建分片副本集"></a>2. 搭建分片副本集</h2><p>这里启动了2组分片副本集，命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -- restart: always --name shm00 -itd -v ~/data/db/mongo/db00:/data/db -p <span class="number">27018</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">&quot;rs_shardsvr0&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm01 -itd -v ~/data/db/mongo/db01:/data/db -p <span class="number">27028</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">&quot;rs_shardsvr0&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm02 -itd -v ~/data/db/mongo/db02:/data/db -p <span class="number">27038</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">&quot;rs_shardsvr0&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm10 -itd -v ~/data/db/mongo/db10:/data/db -p <span class="number">27048</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">&quot;rs_shardsvr1&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm11 -itd -v ~/data/db/mongo/db11:/data/db -p <span class="number">27058</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">&quot;rs_shardsvr1&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm12 -itd -v ~/data/db/mongo/db12:/data/db -p <span class="number">27068</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">&quot;rs_shardsvr1&quot;</span>  --bind_ip_all</span><br></pre></td></tr></table></figure>
+<p>查看shm00和shm01的ip：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker inspect shm00 | grep IPAddress</span><br><span class="line">docker inspect shm10 | grep IPAddress</span><br></pre></td></tr></table></figure>
+<p>发现shm00和shm10的ip尾号分别是12和15。</p>
+<p>进入shm00容器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it shm00 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.12</span> --port <span class="number">27018</span></span><br></pre></td></tr></table></figure>
+<p>配置副本集rs_shardsvr0:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(</span><br><span class="line">  &#123;</span><br><span class="line">    _id : <span class="string">&quot;rs_shardsvr0&quot;</span>,</span><br><span class="line">    members: [</span><br><span class="line">      &#123; _id : <span class="number">0</span>, host : <span class="string">&quot;172.17.0.12:27018&quot;</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">1</span>, host : <span class="string">&quot;172.17.0.13:27018&quot;</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">2</span>, host : <span class="string">&quot;172.17.0.14:27018&quot;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>同理配置副本集rs_shardsvr0：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.15</span> --port <span class="number">27018</span></span><br><span class="line"></span><br><span class="line">rs.initiate(</span><br><span class="line">  &#123;</span><br><span class="line">    _id : <span class="string">&quot;rs_shardsvr1&quot;</span>,</span><br><span class="line">    members: [</span><br><span class="line">      &#123; _id : <span class="number">0</span>, host : <span class="string">&quot;172.17.0.15:27018&quot;</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">1</span>, host : <span class="string">&quot;172.17.0.16:27018&quot;</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">2</span>, host : <span class="string">&quot;172.17.0.17:27018&quot;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="3-搭建mongos路由服"><a href="#3-搭建mongos路由服" class="headerlink" title="3. 搭建mongos路由服"></a>3. 搭建mongos路由服</h2><p>docker命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -- restart: always --name mongos0 -itd -p <span class="number">27017</span>:<span class="number">27017</span> --entrypoint <span class="string">&quot;mongos&quot;</span> mongo --configdb rs_configsvr/<span class="number">172.17</span><span class="number">.0</span><span class="number">.9</span>:<span class="number">27019</span>,<span class="number">172.17</span><span class="number">.10</span><span class="number">.3</span>:<span class="number">27019</span>,<span class="number">172.17</span><span class="number">.0</span><span class="number">.11</span>:<span class="number">27019</span> --bind_ip_all</span><br></pre></td></tr></table></figure>
+<p>进入容器并连接MongoDB：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> -it mongos0 bash</span><br><span class="line"></span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.18</span> --port <span class="number">27017</span></span><br></pre></td></tr></table></figure>
+<p>配置分片信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sh.addShard(<span class="string">&quot;rs_shardsvr0/172.17.0.12:27018,172.17.0.13:27018,172.17.0.14:27018&quot;</span>)</span><br><span class="line"></span><br><span class="line">sh.addShard(<span class="string">&quot;rs_shardsvr1/172.17.0.15:27018,172.17.0.16:27018,172.17.0.17:27018&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>至此，我们的MongoDB分片集群就搭建好了。</p>
+<h2 id="创建用户密码-增加认证"><a href="#创建用户密码-增加认证" class="headerlink" title="创建用户密码, 增加认证"></a>创建用户密码, 增加认证</h2><p>mongo4 以后的 解决方案：修改mechanisms加密方式为SCRAM-SHA-1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; </span><br><span class="line">    user: <span class="string">&quot;admin&quot;</span>, </span><br><span class="line">    pwd: <span class="string">&quot;xxx&quot;</span>, </span><br><span class="line">    roles: [ &#123; role: <span class="string">&quot;userAdminAnyDatabase&quot;</span>, db: <span class="string">&quot;admin&quot;</span> &#125; ], </span><br><span class="line">    mechanisms : [<span class="string">&quot;SCRAM-SHA-1&quot;</span>] </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.4以前的版本使用以下</span></span><br><span class="line">db.createUser(&#123; </span><br><span class="line">    user: <span class="string">&quot;admin&quot;</span>, </span><br><span class="line">    pwd: <span class="string">&quot;xxx&quot;</span>, </span><br><span class="line">    roles: [ &#123; role: <span class="string">&quot;userAdminAnyDatabase&quot;</span>, db: <span class="string">&quot;admin&quot;</span> &#125; ] </span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="4-测试我们的集群"><a href="#4-测试我们的集群" class="headerlink" title="4. 测试我们的集群"></a>4. 测试我们的集群</h2><p>首先在mongos配置一个database并启动分片:sh.enableSharding(“mapp”)。</p>
+<p>对order集合设置分片规则：sh.shardCollection(“mapp.order”, {“_id”: “hashed” })</p>
+<p>好了，我们插入1000条数据看下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">use mapp</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">1000</span>; i=i+<span class="number">1</span>)&#123;</span><br><span class="line">    db.order.insert(&#123;<span class="string">&#x27;price&#x27;</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#125;</span><br><span class="line">db.order.find().count()查看数据确实是<span class="number">1000</span>条。我们再到<span class="number">2</span>个分片副本集看下吧：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> -it shm00 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.12</span> --port <span class="number">27018</span></span><br><span class="line"></span><br><span class="line">use mapp</span><br><span class="line">db.order.find().count()</span><br></pre></td></tr></table></figure>
+<p>我这里查看有505条数据。</p>
+<p>另一个分片看下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="built_in">exec</span> -it shm10 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.15</span> --port <span class="number">27018</span></span><br><span class="line"></span><br><span class="line">use mapp</span><br><span class="line">db.order.find().count()</span><br></pre></td></tr></table></figure>
+<p>我这里查看到右495条数据。看起来我们的数据是正常的。</p>
+<p>刚才都是在主分片上看的，我们看下ip尾号为13的副本是怎么的情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it shm01 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.13</span> --port <span class="number">27018</span></span><br><span class="line">rs.slaveOk()</span><br><span class="line">use mapp</span><br><span class="line">db.order.find().count()</span><br></pre></td></tr></table></figure>
+<p>查看到数据是505条。确认ok。<br><a target="_blank" rel="noopener" href="https://www.dazhuanlan.com/2019/08/21/5d5c524f315e1/">link</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/29/%E8%8E%B7%E5%8F%96scrapy-request-%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%8F%8A%E6%8D%95%E6%8D%89%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1069,143 +1166,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/27/%E8%AF%95%E7%94%A8%E4%BA%865%E6%AC%BEBI%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/27/%E8%AF%95%E7%94%A8%E4%BA%865%E6%AC%BEBI%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">试用了5款BI分析工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-27 10:43:17" itemprop="dateCreated datePublished" datetime="2020-07-27T10:43:17+00:00">2020-07-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/BI/" itemprop="url" rel="index"><span itemprop="name">BI</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>前几天，领导甩给我一个任务，考察几个BI工具，下季度立项用。</p>
-<p>潜心做ETL的我，对BI只是略懂。之前上的BO，由于开发模式不适应、人员用不惯，再加上负责这块的同事走的走，一直被搁置。所以这次目标很明确，急需上手简单，维护要少，能快速反应数据结果的BI。</p>
-<p>于是我花了4天时间，全网百度、翻遍各大BI产品官网，也翻遍了知乎和科技网站的口碑推荐，列选了工具测评清单：Tableau、PowerBI、MicroStrategy、Qlikview、FineBI。</p>
-<p>每个工具都亲自下载使用，也悉心问了报价。由于是企业选型，考虑的因素较多，除功能和使用感受，还会注重数据整合能力、数据处理性能以及安全性方面的因素，所以大家看着参考。</p>
-<p>从以下几个角度考量：</p>
-<p>部署安装<br>学习教程<br>使用体验（上手难度）和需求符合度<br>产品功能<br>报价和服务</p>
-<h2 id="Tableau"><a href="#Tableau" class="headerlink" title="Tableau"></a><a target="_blank" rel="noopener" href="http://www.tableau.com/">Tableau</a></h2><p>从网络上找到一个10.4的Desktop破解版，替换一个注册文件即可，或者淘宝上找…（咳咳）。Tableau还有一个Server版，Server版需要请求tableau的服务器进行交互，网上找到一个代理，给发了一点资料后就没理，主要看desktop版。</p>
-<h3 id="1、-下载安装"><a href="#1、-下载安装" class="headerlink" title="1、 下载安装"></a>1、 下载安装</h3><p>百度或者官网上直接下载，类似装office一样，试用版有15天的试用期，过后会提示输入密钥，安装就和一般软件安装一样，解压压缩包，按照提示一步步做。</p>
-<h3 id="2、-学习教程"><a href="#2、-学习教程" class="headerlink" title="2、 学习教程"></a>2、 学习教程</h3><p>官网有教学视频，貌似没翻译完，学到一半发现后面的还都是英文的，脑壳疼。不过视频能基本带你熟悉这个工具并入门。</p>
-<p>官方貌似还出了一本书叫《人人都是数据分析师：Tableau应用实战》，就是软件教程，还提供数据源供练习，学习Tableau的必备工具书吧。</p>
-<p>Tableau有个在线的可视化实例库，都是学员们的作品，这个挺好，可视化作品大家可以互相参考，可以学习人家的分析思路。</p>
-<h3 id="3、-产品使用体验和需求符合度"><a href="#3、-产品使用体验和需求符合度" class="headerlink" title="3、 产品使用体验和需求符合度"></a>3、 产品使用体验和需求符合度</h3><p>Tableau可以连接数据库，或者导入excel文件数据。</p>
-<p>通过拖拽数据的维度和度量到工作区，来形成可视化图表，可以改变颜色，图表类型，以及其他各种细节。很多功能都是可以拖放到工作区，通过鼠标的几下点击和拖放来实现，很简单，基本不需要代码，还会自动推荐合适的图表。</p>
-<p>可视化方面个人认为Tableau还是很强大的，操作也很简单。分析这块，分组、筛选、下钻、新建数据字段需要写公式…这些还是有点难度，一般软件深入的功能都比较难，需要研究一番。</p>
-<h3 id="4、-产品功能"><a href="#4、-产品功能" class="headerlink" title="4、 产品功能"></a>4、 产品功能</h3><p>此次选型重点。</p>
-<p>Tableau是直接连接数据库（相当于ROLAP），以关系数据库为核心，以关系型结构进行多维数据的表示和存储，维表和事实表通过主关键字和外关键字联系在一起，形成”星型模式”。</p>
-<p>好处是小数据量非常快，大数据量影响性能。取数性能依赖于机器，且Tableau在构建多张有数据关联关系的表时，需要将多张数据表拼接成一张大的宽表，复杂统计时容易产生冗余数据，直接造成性能下降。</p>
-<p>数据更新</p>
-<p>BI很重要的一个功能是数据更新，它是报表自动化的基础。Tableau支持增量更新，不支持定时更新。Tableau抽取的数据均保存到制作的仪表板中，增量更新不能精确到某张表，必须是对全部数据的更新，报表多了，就很麻烦。</p>
-<p>银行业十分注重数据安全。感叹Tableau美中不足缺少流程和数据管理功能。</p>
-<p>Tableau Desktop（桌面版） 是用来创建分析，进行数据分析的，是分析工具。tableau 的server 是用来发布分析的，发布给企业有相关权限的人，是服务器。将工作簿发布到 Tableau Server。Tableau Server 会提供基于浏览器的分析。将工作簿发布到 Tableau Server 后，其他拥有帐户的人就可以登录查看发布的工作簿。</p>
-<h3 id="5、-关于选型价格"><a href="#5、-关于选型价格" class="headerlink" title="5、 关于选型价格"></a>5、 关于选型价格</h3><p>官网报价：</p>
-<p>代理商也给了我一个大致的价格：</p>
-<p>光产品，Desktop+Sever，一套一人加税后是11万多，每增加一人多买一个桌面版，就是15000左右，我们公司估计是3、40套，预计得7、80万，不含定制实施和维护服务。</p>
-<h2 id="PowerBI"><a href="#PowerBI" class="headerlink" title="PowerBI"></a><a target="_blank" rel="noopener" href="http://powerbi.microsoft.com/">PowerBI</a></h2><p>Power BI是微软家的。如果大家熟悉Excel，应该会知道微软推出的Power Query、Power Pivot、Power View和Power Map，是Excel上非常强大的四个插件。Power BI则是微软将它们作为集合推出。如果大家熟练掌握以上四个插件，那么在Excel上也能实现部分BI，毕竟Excel是企业中人手一款的工具。</p>
-<h3 id="1、下载安装"><a href="#1、下载安装" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>Power BI的工作流是在Power BI Desktop中创建报表，将其发布到Power BI 服务，然后与其他人进行共享，让他们可以在服务中或在移动应用上查看到。</p>
-<p>Desktop很简单，免费的，官网下载即可，过程同tableau。Power BI报表服务器需要另外安装。需要先安装SQL Server，然后安装报表服务器。报表服务器免费版有180天是试用期，正式版需要购买密钥。</p>
-<h3 id="2、-学习教程-1"><a href="#2、-学习教程-1" class="headerlink" title="2、 学习教程"></a>2、 学习教程</h3><p>官网上只找到了学习文档，没有手把手教授的视频。</p>
-<p>微信上倒是搜到很多Excel牛人组织的学习课程，可惜要钱呐~</p>
-<h3 id="3、产品使用体验和需求符合度"><a href="#3、产品使用体验和需求符合度" class="headerlink" title="3、产品使用体验和需求符合度"></a>3、产品使用体验和需求符合度</h3><p>Power BI的界面很office，上面是操作工具项，左侧栏是导航栏。神似Access，所以寻找功能的时候轻车熟路。侧导航栏对应三个模块：仪表板、报表和数据集。整体流程实用流程就是读取数据集—数据清洗—数据关联—表制作—Dashboard整合仪表板。</p>
-<p>可视化方面，相比Tableau，Power BI给人的感觉像是IT出身，没有特别惊艳的感觉，做出来的图表中规中矩、实用性也不错。其实真正好的数据分析，可视化只需要实用就够了。</p>
-<h3 id="4、-产品功能-1"><a href="#4、-产品功能-1" class="headerlink" title="4、 产品功能"></a>4、 产品功能</h3><p>数据源</p>
-<p>Power BI支持各类数据源（市面上绝大部分BI都支持，只是读取方式略有差异），除了Excel和CSV 文件，它还支持Acess、SQL数据库、Hadoop／HDFS、Spark、第三方API等。</p>
-<p>数据清洗</p>
-<p>Power BI有一个高级功能叫DAX（Data Analysis Expressions），是整个 Power BI 使用的公式语言。DAX近似Excel函数（大多数第三方BI，函数均接近Excel），故它针对新手非常友好。如果大家已经熟悉Excel函数，上手速度会很快，基本上函数名字都一样。</p>
-<p>数据关联</p>
-<p>建立表间联系这个很重要，在Excel中，大家一般用写Vlookup函数实现，Power BI则用拖拽关联数据，确实更加方便。</p>
-<p>数据更新</p>
-<p>BI很重要的一个功能是数据更新，它是报表自动化的基础，它通常和SQL关联。我们使用CSV，只能往里面黏贴数据更新，还是繁琐了些，只属于半自动化。</p>
-<h3 id="5、-关于选型价格-1"><a href="#5、-关于选型价格-1" class="headerlink" title="5、 关于选型价格"></a>5、 关于选型价格</h3><p>官网价格（个人参考）：</p>
-<p>企业部署：</p>
-<p>它是按设计用户和节点卖的，按年/按月收费。估计了一下，假设200个用户的企业，40个设计用户，1年收费是45万左右，也就是每年要付出这么多，还是比较贵的。</p>
-<h2 id="FineBI"><a href="#FineBI" class="headerlink" title="FineBI"></a><a target="_blank" rel="noopener" href="http://www.finebi.com/">FineBI</a></h2><p>国产BI里口碑好的就挑了这么一家，是帆软的。他家还有一个报表工具finereport，貌似做得更成熟更好，毕竟报表BI也不分家。</p>
-<h3 id="1、下载安装-1"><a href="#1、下载安装-1" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>下载和安装很简单，官网上直接下载。启动软件时会加载数据日志，但是所有操作都在web端。最初用的4.1版，后来对方工作人员给我发来了最新的5.0，说这几天会上线。</p>
-<h3 id="2、学习教程"><a href="#2、学习教程" class="headerlink" title="2、学习教程"></a>2、学习教程</h3><p>激活时会发送一个学习资料包，上面有大概10多节功能教学视频。</p>
-<p>还有学习帮助文档，下载激活时大家留心，记得收藏。</p>
-<p>除此之外，还有个学习交流的论坛，水了几天，加了学习交流群，怪怪好多人，提问回答好积极，对像我这样的技术宅来讲是极好的。</p>
-<h3 id="3、产品使用体验和需求符合度-1"><a href="#3、产品使用体验和需求符合度-1" class="headerlink" title="3、产品使用体验和需求符合度"></a>3、产品使用体验和需求符合度</h3><p>使用的过程是先配置数据源，然后建立一个所谓的业务包，应该就是数据表暂存到业务包内管理，可以按照业务分类。后面就是数据清洗、数据表关联，然后可视化分析了。</p>
-<p>界面风格是清爽商务的，比较符合中国人使用门户软件、使用互联网产品的感觉，看了一遍教程基本上就可以上手了。</p>
-<p>分析过程，交互啊操作思路，类似Tableau，都是维度和度量的拖拽，自动推荐合适的图表，可以更改颜色、图表类型，以及其他各种细节。</p>
-<p>数据配置时有个业务包，这个和其他BI工具大不同，暂时不太了解其用处，能把数据分门别类分好。</p>
-<h3 id="4、产品功能"><a href="#4、产品功能" class="headerlink" title="4、产品功能"></a>4、产品功能</h3><p>说其特有的吧。有权限管理有权限管理，有点像OA。tableau、PowerBI这个功能都要装sever版，但貌似功能也局限于分享，没有部门、人员、数据权限的设置。所以相对来讲，finebi更适合企业级使用。</p>
-<p>可视化和分析功能基本同tableau，虽然我没有使用太深入，但是整体的分析操作，拖拽数据字段——生成图表——编辑dashboard，这个过程都是很像的。</p>
-<p>支持进行数据抽取和数据索引建模，可显著提高数据的计算速度，可实现离线查询；支持用户进行所有数据表的数据更新；支持对数据表进行增量增加、增量删除、增量修改更新。</p>
-<p>数据挖掘</p>
-<p>支持对数据进行时序预测、数据聚类、数据分类（神经网络、决策树算法）三类挖掘模型算法。</p>
-<p>最后，还有一个移动端，手机可查看分析。</p>
-<p>###　关于选型价格</p>
-<p>个人使用免费，不限功能，限并发。</p>
-<p>企业部署是按照功能来售卖，一次买断。问了对方销售，报价没说太明白，需要依据功能和项目来定，产品价格在小几十万不等。送一年技术服务，一年内免费升级。</p>
-<p>还有两个工具MicroStrategy和PowerBI，简单试了下，网上内容不多，且篇幅有限，就大致评价一下。</p>
-<h2 id="MicroStrategy"><a href="#MicroStrategy" class="headerlink" title="MicroStrategy"></a><a target="_blank" rel="noopener" href="http://www.microstrategy.cn/cn">MicroStrategy</a></h2><p>网上下的10.11版。也是一个偏向于企业级的BI分析产品。</p>
-<p>国外产品，很多资料都还是英文版，看着很吃力。使用上是先配置数据，然后选择图表，可视化展现，数据字段可以ctrl多选拖拽。</p>
-<p>可视化风格和Tableau差不多，该支持的数据都能支持，就是对国内一些ERP等业务系统的数据连接并不支持。功能的话，性能我没有那么多数据也跑不起来，这块打算到现场POC再说。移动端、平板的适应做的挺好的，看他们也在大肆宣传，应该是优势之一。</p>
-<p>产品拥有行业型及业务模块的方案，不过案例多是国外的，在国外用的不错。</p>
-<p>报价包含产品licence费用以及服务费。产品费用按功能和用户来算，一个设计用户在16W，分析用户3~4W，web报表用户2.3W……总之价格还是蛮高的。</p>
-<h2 id="Qlikview"><a href="#Qlikview" class="headerlink" title="Qlikview"></a><a target="_blank" rel="noopener" href="http://www.qlik.com/zh-cn">Qlikview</a></h2><p>不得不吐槽，国外产品在国内的网站真的是…费了老大劲找到并下载了。</p>
-<p>Qlikview个人是没觉得好用，也没看出优势来，更像是一个可视化工具。像tableau、finebi可以做探索性的数据分析。qlikview比如你想拖一些数据看看结论与猜想是否正确，有时候可能要做20多个仪表盘才能验证自己的猜想，它比较适合一开始就知道怎么分析展现。</p>
-<p>Qlikview也是内存型的BI，同Tableau，通病是数据处理速度很大程度上依赖内存大小，对硬件要求较高，一般企业的配置，数据处理起来较慢。</p>
-<p>关于报价，国内的报价不清楚，官网也没有展示，填了表单，代理商也没有回应。</p>
-<p>最后<br>个人青睐于前三个，上手都比较简单，tableau可视化最佳，powerbi可以和excel结合，finebi最符合选型需求，上手也最简单。具体的还涉及数据读取性能、集群等等，还有乙方项目这块的时间和经济成本。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1275,7 +1235,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
