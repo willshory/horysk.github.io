@@ -28,7 +28,7 @@
 <meta property="og:description" content="一次奇怪的查询经历如何奇怪了？ 对同一张表，用同样的SQL，查询200万条数据耗时100ms，查询二十条数据却耗时30s。数据量少了10万倍，完全不是一个数量级的数据，耗时却多了300倍。明明加了索引为什么还是那么慢？下图是在本地简化模拟出来的查询结果，虽然没有那么夸张但是同样可以复现问题。 95.6万条数据，用时0.08秒 106条数据，用时10秒如上二图，通过相同查询条件以及相同的排序条件，进">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-24T11:04:12.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:modified_time" content="2020-07-24T11:04:12.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="Mongo">
 <meta name="twitter:card" content="summary">
@@ -204,13 +204,6 @@
 
               <time title="Created: 2020-07-24 11:04:12" itemprop="dateCreated datePublished" datetime="2020-07-24T11:04:12+00:00">2020-07-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -314,7 +307,7 @@
 <h3 id="2-减少内存计算"><a href="#2-减少内存计算" class="headerlink" title="2.减少内存计算"></a>2.减少内存计算</h3><p>减少无必要中间结果存储、减少内存计算</p>
 <h3 id="3-减少磁盘IO"><a href="#3-减少磁盘IO" class="headerlink" title="3.减少磁盘IO"></a>3.减少磁盘IO</h3><p>添加合适的索引、关注SQL改写</p>
 <p>前文查询航班按价钱排序的例子，在各种索引下的查询计划</p>
-<p><a href="https://zhuanlan.zhihu.com/p/77971681" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/77971681</a><br><a href="https://juejin.im/post/5ad1d2836fb9a028dd4eaae6" target="_blank" rel="noopener">正确的使用mongo索引</a><br><a href="https://blog.souche.com/mysql-explain/" target="_blank" rel="noopener">Explain分析查询语句</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77971681">https://zhuanlan.zhihu.com/p/77971681</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5ad1d2836fb9a028dd4eaae6">正确的使用mongo索引</a><br><a target="_blank" rel="noopener" href="https://blog.souche.com/mysql-explain/">Explain分析查询语句</a></p>
 
     </div>
 

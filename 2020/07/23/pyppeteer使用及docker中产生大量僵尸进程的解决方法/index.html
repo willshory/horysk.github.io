@@ -28,7 +28,7 @@
 <meta property="og:description" content="pyppeteer简介Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 w">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-23T16:50:35.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:38.000Z">
+<meta property="article:modified_time" content="2020-07-23T16:50:35.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="pyppeteer">
@@ -206,13 +206,6 @@
 
               <time title="Created: 2020-07-23 16:50:35" itemprop="dateCreated datePublished" datetime="2020-07-23T16:50:35+00:00">2020-07-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -239,85 +232,85 @@
 
       
         <h3 id="pyppeteer简介"><a href="#pyppeteer简介" class="headerlink" title="pyppeteer简介"></a>pyppeteer简介</h3><p>Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 web 应用自动化测试的行业标杆。使用 Puppeteer，相当于同时具有 Linux 和 Chrome 双端的操作能力，应用场景可谓非常之多。此仓库的建立，即是尝试各种折腾使用 GoogleChrome Puppeteer；以期在好玩的同时，学到更多有意思的操作。<br>而pyppeteer 是对无头浏览器 puppeteer的 Python 封装，可以让你使用python来操作Chrome。</p>
-<p><a href="https://www.lagou.com/lgeduarticle/github.com/miyakogi/pyppeteer" target="_blank" rel="noopener">Pyppeteer的GIT</a><br><a href="https://miyakogi.github.io/pyppeteer/reference.html" target="_blank" rel="noopener">Pyppeteer官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.lagou.com/lgeduarticle/github.com/miyakogi/pyppeteer">Pyppeteer的GIT</a><br><a target="_blank" rel="noopener" href="https://miyakogi.github.io/pyppeteer/reference.html">Pyppeteer官方文档</a></p>
 <p>使用过程中的问题<br>pyppeteer api提供的close（）命令无法真正的关闭浏览器，会造成很多的僵尸进程<br>websockets 版本太高导致报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close<br>chromium浏览器多开页面卡死问题<br>浏览器窗口很大，内容显示很小的问题<br>pyppeteer使用</p>
 <h3 id="pyppeteer安装"><a href="#pyppeteer安装" class="headerlink" title="pyppeteer安装"></a>pyppeteer安装</h3><pre><code class="bash">python3 -m pip install pyppeteer
 </code></pre>
-<p>在初次使用pyppeteer的时候他会自动下载chromium（看心情，大部分情况下可以用龟速形容），或者直接去官网下载最新版的浏览器然后在代码中指定浏览器的路径。<br><a href="https://download-chromium.appspot.com/" target="_blank" rel="noopener">chromium下载地址</a></p>
+<p>在初次使用pyppeteer的时候他会自动下载chromium（看心情，大部分情况下可以用龟速形容），或者直接去官网下载最新版的浏览器然后在代码中指定浏览器的路径。<br><a target="_blank" rel="noopener" href="https://download-chromium.appspot.com/">chromium下载地址</a></p>
 <p>简单入门</p>
 <pre><code class="bash">import asynciofrom pyppeteer import launch
 
 async def main():
-    <span class="comment"># 创建一个浏览器</span>
-    browser = await launch({
-        <span class="string">'executablePath'</span>: <span class="string">'你下载的Chromium.app/Contents/MacOS/Chromium'</span>,
-    })
-    <span class="comment"># 打开一个页面，同一个browser可以打开多个页面</span>
+    # 创建一个浏览器
+    browser = await launch(&#123;
+        &#39;executablePath&#39;: &#39;你下载的Chromium.app/Contents/MacOS/Chromium&#39;,
+    &#125;)
+    # 打开一个页面，同一个browser可以打开多个页面
     page = await browser.newPage()
-    await page.goto(<span class="string">'https://baidu.com'</span>) <span class="comment"># 访问指定页面</span>
-    await page.screenshot(path=<span class="string">'example.png'</span>)  <span class="comment"># 截图</span>
-    await page.close() <span class="comment"># 关闭页面</span>
-    await browser.close() <span class="comment"># 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）</span>
+    await page.goto(&#39;https://baidu.com&#39;) # 访问指定页面
+    await page.screenshot(path=&#39;example.png&#39;)  # 截图
+    await page.close() # 关闭页面
+    await browser.close() # 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）
 
 asyncio.get_event_loop().run_until_complete(main()）</code></pre>
 <p>运行上面这一段代码会产生一张页面截图，如果在运行中报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close可以通过降低websockets 版本来解决</p>
-<pre><code class="bash">pip uninstall websockets <span class="comment">#卸载websockets</span>
+<pre><code class="bash">pip uninstall websockets #卸载websockets
 pip install websockets==6.0
 或者
-pip install websockets==6.0 --force-reinstall <span class="comment">#指定安装6.0版本</span></code></pre>
+pip install websockets==6.0 --force-reinstall #指定安装6.0版本</code></pre>
 <h3 id="重要参数设置及方法"><a href="#重要参数设置及方法" class="headerlink" title="重要参数设置及方法"></a>重要参数设置及方法</h3><pre><code class="bash">import asynciofrom pyppeteer import launch
 
 
 async def intercept_request(req):
-    <span class="comment"># 不加载css和img等资源</span>
-    <span class="keyword">if</span> req.resourceType <span class="keyword">in</span> [<span class="string">"image"</span>, <span class="string">"media"</span>, <span class="string">"eventsource"</span>, <span class="string">"websocket"</span>, <span class="string">"stylesheet"</span>, <span class="string">"font"</span>]:
-        await req.abort() <span class="comment">#连接请求</span>
-    <span class="keyword">else</span>:
-        res = {
-            <span class="string">"method"</span>: req.method,
-            <span class="string">"url"</span>: req.url,
-            <span class="string">"data"</span>: <span class="string">""</span> <span class="keyword">if</span> req.postData == None <span class="keyword">else</span> req.postData,
-            <span class="string">"res"</span>: <span class="string">""</span> <span class="keyword">if</span> req.response == None <span class="keyword">else</span> req.response
-        }
-        <span class="built_in">print</span>(res) <span class="comment"># 打印请求的内容</span>
-        await  req.continue_() <span class="comment">#继续请求，可以添加参数将请求地址重定向、改变请求的headers</span>
+    # 不加载css和img等资源
+    if req.resourceType in [&quot;image&quot;, &quot;media&quot;, &quot;eventsource&quot;, &quot;websocket&quot;, &quot;stylesheet&quot;, &quot;font&quot;]:
+        await req.abort() #连接请求
+    else:
+        res = &#123;
+            &quot;method&quot;: req.method,
+            &quot;url&quot;: req.url,
+            &quot;data&quot;: &quot;&quot; if req.postData == None else req.postData,
+            &quot;res&quot;: &quot;&quot; if req.response == None else req.response
+        &#125;
+        print(res) # 打印请求的内容
+        await  req.continue_() #继续请求，可以添加参数将请求地址重定向、改变请求的headers
 
 async def intercept_response(res):
     resourceType = res.request.resourceType
-    <span class="comment"># 拦截ajax请求获取数据</span>
-    <span class="keyword">if</span> resourceType <span class="keyword">in</span> [<span class="string">'xhr'</span>]:
+    # 拦截ajax请求获取数据
+    if resourceType in [&#39;xhr&#39;]:
         resp = await res.json()
-        <span class="built_in">print</span>(resp)<span class="comment"># 这里可以操作mysql、redis或者设计一个class来保存数据</span>
+        print(resp)# 这里可以操作mysql、redis或者设计一个class来保存数据
 
 async def main():
-    <span class="comment"># 创建一个浏览器</span>
-    browser = await launch({
-        <span class="string">'executablePath'</span>: <span class="string">'你下载的Chromium.app/Contents/MacOS/Chromium'</span>,
-        <span class="string">'headless'</span>: False, <span class="comment"># 关闭无头模式。主要在测试环境调试使用</span>
-        <span class="string">'devtools'</span>: True, <span class="comment"># 打开 chromium 的 devtools与headless配个使用</span>
-        <span class="string">'args'</span>: [ 
-             <span class="string">'--disable-extensions'</span>,
-             <span class="string">'--hide-scrollbars'</span>,
-             <span class="string">'--disable-bundled-ppapi-flash'</span>,
-             <span class="string">'--mute-audio'</span>,
-             <span class="string">'--no-sandbox'</span>,<span class="comment"># --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错</span>
-             <span class="string">'--disable-setuid-sandbox'</span>,
-             <span class="string">'--disable-gpu'</span>,
+    # 创建一个浏览器
+    browser = await launch(&#123;
+        &#39;executablePath&#39;: &#39;你下载的Chromium.app/Contents/MacOS/Chromium&#39;,
+        &#39;headless&#39;: False, # 关闭无头模式。主要在测试环境调试使用
+        &#39;devtools&#39;: True, # 打开 chromium 的 devtools与headless配个使用
+        &#39;args&#39;: [ 
+             &#39;--disable-extensions&#39;,
+             &#39;--hide-scrollbars&#39;,
+             &#39;--disable-bundled-ppapi-flash&#39;,
+             &#39;--mute-audio&#39;,
+             &#39;--no-sandbox&#39;,# --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错
+             &#39;--disable-setuid-sandbox&#39;,
+             &#39;--disable-gpu&#39;,
           ],
-         <span class="string">'dumpio'</span>: True, <span class="comment">#把无头浏览器进程的 stderr 核 stdout pip 到主程序，也就是设置为 True 的话，chromium console 的输出就会在主程序中被打印出来</span>
-    })
-    <span class="comment"># 打开一个页面，同一个browser可以打开多个页面</span>
+         &#39;dumpio&#39;: True, #把无头浏览器进程的 stderr 核 stdout pip 到主程序，也就是设置为 True 的话，chromium console 的输出就会在主程序中被打印出来
+    &#125;)
+    # 打开一个页面，同一个browser可以打开多个页面
     page = await browser.newPage()
-    <span class="comment"># 是否启用JS，enabled设为False，则无渲染效果，如果页面有ajax请求需要开启此项</span>
+    # 是否启用JS，enabled设为False，则无渲染效果，如果页面有ajax请求需要开启此项
     await page.setJavaScriptEnabled(enabled=True)
-    <span class="comment"># 是否允许拦截请求，如果开启可以注册的两个回调函数，在浏览器发出请求和获取到请求之前指向这两个函数。</span>
+    # 是否允许拦截请求，如果开启可以注册的两个回调函数，在浏览器发出请求和获取到请求之前指向这两个函数。
     await page.setRequestInterception(value=True)
-    page.on(<span class="string">'request'</span>, intercept_request) <span class="comment"># 请求的内容</span>
-    page.on(<span class="string">'response'</span>, intercept_response) <span class="comment"># 响应的内容</span>
-    await page.goto(<span class="string">'https://baidu.com'</span>) <span class="comment"># 访问指定页面</span>
-    await page.screenshot(path=<span class="string">'example.png'</span>)  <span class="comment"># 截图</span>
-    await page.close() <span class="comment"># 关闭页面</span>
-    await browser.close() <span class="comment"># 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）</span>
+    page.on(&#39;request&#39;, intercept_request) # 请求的内容
+    page.on(&#39;response&#39;, intercept_response) # 响应的内容
+    await page.goto(&#39;https://baidu.com&#39;) # 访问指定页面
+    await page.screenshot(path=&#39;example.png&#39;)  # 截图
+    await page.close() # 关闭页面
+    await browser.close() # 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）
 
 asyncio.get_event_loop().run_until_complete(main()）</code></pre>
 <h2 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h2><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>当一个父进程以fork()系统调用建立一个新的子进程后，核心进程就会在进程表中给这个子进程分配一个进入点，然后将相关信息存储在该进入点所对应的进程表内。这些信息中有一项是其父进程的识别码。 而当这个子进程结束的时候（比如调用exit命令结束），其实他并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit的作用是使进程退出，但是也仅仅限于一个正常的进程变成了一个僵尸进程，并不能完全将其销毁）。此时原来进程表中的数据会被该进程的退出码（exit code）、执行时所用的CPU时间等数据所取代，这些数据会一直保留到系统将它传递给它的父进程为止。由此可见，defunct进程的出现时间是在子进程终止后，但是父进程尚未读取这些数据之前。<br>此时，该僵尸子进程已经放弃了几乎所有的内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保留一个位置，记载该进程的退出状态信息供其他进程收集，除此之外，僵尸进程不再占有任何存储空间。他需要他的父进程来为他收尸，如果他的父进程没有安装SIGCHLD信号处理函数调用wait 或 waitpid() 等待子进程结束，也没有显式忽略该信号，那么它就一直保持僵尸状态，如果这时候父进程结束了，那么init进程会自动接手这个子进程，为他收尸，他还是能被清除掉的。 拿Nginx作为例子，默认是作为后台守护进程。它是这么工作的。第一，Nginx创建一个子进程。第二，原始的Nginx进程退出了。第三，Nginx子进程被init进程给接收了。</p>
@@ -325,73 +318,73 @@ asyncio.get_event_loop().run_until_complete(main()）</code></pre>
 <p>如果一个进程终止会发生什么？bash（PID 5）进程终止，它变成了一个所谓的“停止活动的进程”，也称为“僵尸进程”。</p>
 <p>这时PID5要等待sshd2调用wait 或 waitpid() 然后彻底结束，假设sshd2没有调用相应的方法，那么PID5就会一直等待下去，当sshd2结束的时候PID5会被init进程接手然后处理掉。</p>
 <p>但是在docker中init 1往往是你的任务进程，需要不间断的运行不能退出，这就导致了僵尸进程无人清理越来越多，因此不建议在docker中直接运行脚本，而是先启动/bin/bash然后启动脚本</p>
-<pre><code class="bash">CMD [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"set -e &amp;&amp; 你的任务脚本"</span>]</code></pre>
+<pre><code class="bash">CMD [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -e &amp;&amp; 你的任务脚本&quot;]</code></pre>
 <p>但是这种方法也有问题，不能优雅的结束进程。假设你用kill发送SIGTERM信号给bash.Bash终止了，但是没有发送SIGTERM给它的子进程！ 当bash结束了，内核结束整个容器中的所有进程。包扩通过SIGKILL信号没有被干净的终结的进程。SIGKILL不能被捕获，所以进程是没有办法干净的终结。假设你运行的应用程序正忙于写文件；在写的过程中，应用被不干净的终止了这个文件可能会崩溃。不干净的终止是很坏的事情。很像把服务器的电源给拔掉。 但是为什么要关心init进程是否被SIGTERM给终结了呢？那是因为docker stop 发送 SIGTERM信号给init进程了。“docker stop” 应该干净的停止容器，以至于稍后你能够用“docker start”启动它。</p>
 <p>解决办法<br>在linux下找到该defunct僵尸进程的父进程，将该进程的父进程杀掉，然后init进程会自动接手其子进程并为子进程收尸。ps -ef | grep defunct_process_pid<br>docker中在启动真正的工作脚本之前先启动/bin/bash用来给僵尸进程收尸<br>docker环境搭建<br>镜像搭建<br>dockerfile文件</p>
 <pre><code class="bash">FROM centos:7
-RUN <span class="built_in">set</span> -ex \
-    <span class="comment"># 预安装所需组件</span>
+RUN set -ex \
+    # 预安装所需组件
     &amp;&amp; yum install -y wget tar libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make initscripts \
     &amp;&amp; wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz \
     &amp;&amp; tar -zxvf Python-3.6.0.tgz \
-    &amp;&amp; <span class="built_in">cd</span> Python-3.6.0 \
-    &amp;&amp; ./configure prefix=/usr/<span class="built_in">local</span>/python3 \
+    &amp;&amp; cd Python-3.6.0 \
+    &amp;&amp; ./configure prefix=/usr/local/python3 \
     &amp;&amp; make \
     &amp;&amp; make install \
     &amp;&amp; make clean \
     &amp;&amp; rm -rf /Python-3.6.0* \
     &amp;&amp; yum install -y epel-release \
     &amp;&amp; yum install -y python-pip
-<span class="comment"># 设置默认为python3</span>
-RUN <span class="built_in">set</span> -ex \
-    <span class="comment"># 备份旧版本python</span>
+# 设置默认为python3
+RUN set -ex \
+    # 备份旧版本python
     &amp;&amp; mv /usr/bin/python /usr/bin/python27 \
     &amp;&amp; mv /usr/bin/pip /usr/bin/pip-python2.7 \
-    <span class="comment"># 配置默认为python3</span>
-    &amp;&amp; ln -s /usr/<span class="built_in">local</span>/python3/bin/python3.6 /usr/bin/python \
-    &amp;&amp; ln -s /usr/<span class="built_in">local</span>/python3/bin/pip3 /usr/bin/pip
-<span class="comment"># 修复因修改python版本导致yum失效问题</span>
-RUN <span class="built_in">set</span> -ex \
-    &amp;&amp; sed -i <span class="string">"s#/usr/bin/python#/usr/bin/python2.7#"</span> /usr/bin/yum \
-    &amp;&amp; sed -i <span class="string">"s#/usr/bin/python#/usr/bin/python2.7#"</span> /usr/libexec/urlgrabber-ext-down \
+    # 配置默认为python3
+    &amp;&amp; ln -s /usr/local/python3/bin/python3.6 /usr/bin/python \
+    &amp;&amp; ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
+# 修复因修改python版本导致yum失效问题
+RUN set -ex \
+    &amp;&amp; sed -i &quot;s#/usr/bin/python#/usr/bin/python2.7#&quot; /usr/bin/yum \
+    &amp;&amp; sed -i &quot;s#/usr/bin/python#/usr/bin/python2.7#&quot; /usr/libexec/urlgrabber-ext-down \
     &amp;&amp; yum install -y deltarpm
-<span class="comment"># 基础环境配置</span>
-RUN <span class="built_in">set</span> -ex \
-    <span class="comment"># 修改系统时区为东八区</span>
+# 基础环境配置
+RUN set -ex \
+    # 修改系统时区为东八区
     &amp;&amp; rm -rf /etc/localtime \
     &amp;&amp; ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     &amp;&amp; yum install -y vim \
-    <span class="comment"># 安装定时任务组件</span>
+    # 安装定时任务组件
     &amp;&amp; yum -y install cronie
-<span class="comment"># 支持中文</span>
+# 支持中文
 RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
-<span class="comment"># chrome浏览器依赖</span>
+# chrome浏览器依赖
 RUN yum install kde-l10n-Chinese -y
 RUN yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 -y
 RUN yum install ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc -y
-<span class="comment"># 更新pip版本</span>
+# 更新pip版本
 RUN pip install --upgrade pip
 ENV LC_ALL zh_CN.UTF-8
 RUN mkdir -p /usr/src/scrapy
 COPY requirements.txt /usr/src/scrapy
 RUN pip install -i https://pypi.douban.com/simple/ -r /usr/src/scrapy/requirements.txt</code></pre>
 <p>docker-compose文件</p>
-<pre><code class="bash">version: <span class="string">'3.3'</span>
+<pre><code class="bash">version: &#39;3.3&#39;
 services:
   scrapy:
-    privileged: <span class="literal">true</span>
+    privileged: true
     build: scrapy
-    tty: <span class="literal">true</span>
+    tty: true
     volumes:
-      - <span class="built_in">type</span>: <span class="built_in">bind</span>
-        <span class="built_in">source</span>: /爬虫文件路径
+      - type: bind
+        source: /爬虫文件路径
         target: /usr/src/scrapy
     ports:
-      - <span class="string">"9999:9999"</span>
+      - &quot;9999:9999&quot;
     networks:
       scrapynet:
         ipv4_address: 172.19.0.8
-    <span class="built_in">command</span>: [/bin/bash, -c, <span class="built_in">set</span> -e &amp;&amp; python /usr/src/scrapy/job.py]
+    command: [/bin/bash, -c, set -e &amp;&amp; python /usr/src/scrapy/job.py]
 
 networks:
   scrapynet:
@@ -404,28 +397,28 @@ networks:
 <p>/bin/bash 防止产生僵尸进程，-e 指令阻止bash把这个脚本当做简单的命令直接执行exec（）<br>python /usr/src/scrapy/job.py 真正的工作脚本<br>基于pyppeteer的爬虫脚本</p>
 <pre><code class="bash">import asyncio,random,psutil,os,signal,time
 from pyppeteer import launcher
-<span class="comment"># hook  禁用 防止监测webdriver</span>
-launcher.AUTOMATION_ARGS.remove(<span class="string">"--enable-automation"</span>)
+# hook  禁用 防止监测webdriver
+launcher.AUTOMATION_ARGS.remove(&quot;--enable-automation&quot;)
 from pyppeteer import launch
 async def intercept_request(req):
-    <span class="keyword">if</span> req.resourceType <span class="keyword">in</span> [<span class="string">"image"</span>]:
+    if req.resourceType in [&quot;image&quot;]:
         await req.abort()
-    <span class="keyword">else</span>:
-        res = {
-            <span class="string">"method"</span>: req.method,
-            <span class="string">"url"</span>: req.url,
-            <span class="string">"data"</span>: <span class="string">""</span> <span class="keyword">if</span> req.postData == None <span class="keyword">else</span> req.postData,
-            <span class="string">"res"</span>: <span class="string">""</span> <span class="keyword">if</span> req.response == None <span class="keyword">else</span> req.response
-        }
-        <span class="built_in">print</span>(res)
+    else:
+        res = &#123;
+            &quot;method&quot;: req.method,
+            &quot;url&quot;: req.url,
+            &quot;data&quot;: &quot;&quot; if req.postData == None else req.postData,
+            &quot;res&quot;: &quot;&quot; if req.response == None else req.response
+        &#125;
+        print(res)
         await req.continue_()
 
 
 async def intercept_response(res):
     resourceType = res.request.resourceType
-    <span class="keyword">if</span> resourceType <span class="keyword">in</span> [<span class="string">'xhr'</span>]:
+    if resourceType in [&#39;xhr&#39;]:
         resp = await res.json()
-        <span class="built_in">print</span>(resp)
+        print(resp)
 
 class newpage(object):
     width, height = 1920, 1080
@@ -440,22 +433,22 @@ class newpage(object):
         try:
             page = await self.browser.newPage()
             await page.setUserAgent(
-                userAgent=<span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3521.2 Safari/537.36'</span>)
-            await page.setViewport(viewport={<span class="string">'width'</span>: self.width, <span class="string">'height'</span>: self.height})
-            <span class="comment"># 是否启用JS，enabled设为False，则无渲染效果</span>
+                userAgent=&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3521.2 Safari/537.36&#39;)
+            await page.setViewport(viewport=&#123;&#39;width&#39;: self.width, &#39;height&#39;: self.height&#125;)
+            # 是否启用JS，enabled设为False，则无渲染效果
             await page.setJavaScriptEnabled(enabled=True)
             await page.setRequestInterception(value=True)
-            page.on(<span class="string">'request'</span>, intercept_request)
-            page.on(<span class="string">'response'</span>, intercept_response)
-            await page.goto(self.url, options={<span class="string">'timeout'</span>: 30000})
+            page.on(&#39;request&#39;, intercept_request)
+            page.on(&#39;response&#39;, intercept_response)
+            await page.goto(self.url, options=&#123;&#39;timeout&#39;: 30000&#125;)
             await page.waitFor(selectorOrFunctionOrTimeout=1000)
             try:
                 await page.close()
-                <span class="built_in">return</span> self.url
+                return self.url
             except BaseException as err:
-                <span class="built_in">return</span> <span class="string">"close_newpage: {0}"</span>.format(err)
+                return &quot;close_newpage: &#123;0&#125;&quot;.format(err)
         except BaseException as err:
-            <span class="built_in">return</span> <span class="string">"newpage: {0}"</span>.format(err)
+            return &quot;newpage: &#123;0&#125;&quot;.format(err)
 
 class Browser(object):
     width, height = 1920, 1080
@@ -466,90 +459,90 @@ class Browser(object):
     def __init__(self,urls):
         self.url_list = urls
 
-    <span class="comment"># 封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程处理僵尸进程</span>
-    def <span class="built_in">kill</span>(self,name):
-        <span class="comment"># win平台</span>
-        <span class="comment"># subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)</span>
+    # 封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程处理僵尸进程
+    def kill(self,name):
+        # win平台
+        # subprocess.Popen(&quot;taskkill /F /IM chrome.EXE &quot;, shell=True)
 
-        <span class="comment"># linux平台</span>
+        # linux平台
         try:
             pid = self.browser.process.pid
             pgid = os.getpgid(pid)
-            <span class="comment"># 强制结束</span>
+            # 强制结束
             os.kill(pid, signal.SIGKILL)
-            <span class="built_in">print</span>(<span class="string">"结束进程：%d"</span> % pid)
-            <span class="built_in">print</span>(<span class="string">"父进程是：%d"</span> % pgid)
-            <span class="built_in">print</span>(<span class="string">"等待结果：%d"</span> % self.browser.process.wait())
+            print(&quot;结束进程：%d&quot; % pid)
+            print(&quot;父进程是：%d&quot; % pgid)
+            print(&quot;等待结果：%d&quot; % self.browser.process.wait())
         except BaseException as err:
-            <span class="built_in">print</span>(<span class="string">"close: {0}"</span>.format(err))
+            print(&quot;close: &#123;0&#125;&quot;.format(err))
         time.sleep(3)
-        <span class="comment"># 查看是否还有其他进程</span>
-        <span class="keyword">for</span> proc <span class="keyword">in</span> psutil.process_iter():
-            <span class="keyword">if</span> name <span class="keyword">in</span> proc.name():
+        # 查看是否还有其他进程
+        for proc in psutil.process_iter():
+            if name in proc.name():
                 try:
                     os.kill(proc.pid, signal.SIGTERM)
-                    <span class="built_in">print</span>(<span class="string">'已杀死[pid:%s]的进程[pgid：%s][名称：%s]'</span> % (proc.pid,pgid,proc.name()))
+                    print(&#39;已杀死[pid:%s]的进程[pgid：%s][名称：%s]&#39; % (proc.pid,pgid,proc.name()))
                 except BaseException as err:
-                    <span class="built_in">print</span>(<span class="string">"kill: {0}"</span>.format(err))
+                    print(&quot;kill: &#123;0&#125;&quot;.format(err))
 
-    <span class="comment"># 打开浏览器</span>
+    # 打开浏览器
     async def newbrowser(self):
         try:
-            self.browser = await launch({
-                <span class="string">'headless'</span>: self.is_headless,
-                <span class="string">'devtools'</span>: not self.is_headless,
-                <span class="string">'dumpio'</span>: True,
-                <span class="string">'autoClose'</span>: True,
-                <span class="comment"># 'userDataDir': './userdata',</span>
-                <span class="string">'handleSIGTERM'</span>: True,
-                <span class="string">'handleSIGHUP'</span>: True,
-                <span class="comment"># 'executablePath':'C:/Users/zhang/Desktop/chrome-win/chrome.exe',</span>
-                <span class="string">'args'</span>: [
-                    <span class="string">'--no-sandbox'</span>,  <span class="comment"># --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错</span>
-                    <span class="string">'--disable-gpu'</span>,
-                    <span class="string">'--disable-extensions'</span>,
-                    <span class="string">'--hide-scrollbars'</span>,
-                    <span class="string">'--disable-bundled-ppapi-flash'</span>,
-                    <span class="string">'--mute-audio'</span>,
-                    <span class="string">'--disable-setuid-sandbox'</span>,
-                    <span class="string">'--disable-xss-auditor'</span>,
-                    <span class="string">'--window-size=%d,%d'</span> % (self.width, self.height)
+            self.browser = await launch(&#123;
+                &#39;headless&#39;: self.is_headless,
+                &#39;devtools&#39;: not self.is_headless,
+                &#39;dumpio&#39;: True,
+                &#39;autoClose&#39;: True,
+                # &#39;userDataDir&#39;: &#39;./userdata&#39;,
+                &#39;handleSIGTERM&#39;: True,
+                &#39;handleSIGHUP&#39;: True,
+                # &#39;executablePath&#39;:&#39;C:/Users/zhang/Desktop/chrome-win/chrome.exe&#39;,
+                &#39;args&#39;: [
+                    &#39;--no-sandbox&#39;,  # --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错
+                    &#39;--disable-gpu&#39;,
+                    &#39;--disable-extensions&#39;,
+                    &#39;--hide-scrollbars&#39;,
+                    &#39;--disable-bundled-ppapi-flash&#39;,
+                    &#39;--mute-audio&#39;,
+                    &#39;--disable-setuid-sandbox&#39;,
+                    &#39;--disable-xss-auditor&#39;,
+                    &#39;--window-size=%d,%d&#39; % (self.width, self.height)
                 ]
-            })
+            &#125;)
         except BaseException as err:
-            <span class="built_in">print</span>(<span class="string">"launch: {0}"</span>.format(err))
+            print(&quot;launch: &#123;0&#125;&quot;.format(err))
 
-        <span class="built_in">print</span>(<span class="string">'----打开浏览器----'</span>)
+        print(&#39;----打开浏览器----&#39;)
 
     async def open(self):
         await self.newbrowser()
         try:
-            tasks = [asyncio.ensure_future(newpage(url,self.browser).run()) <span class="keyword">for</span> url <span class="keyword">in</span> self.url_list]
-            <span class="keyword">for</span> task <span class="keyword">in</span> asyncio.as_completed(tasks):
+            tasks = [asyncio.ensure_future(newpage(url,self.browser).run()) for url in self.url_list]
+            for task in asyncio.as_completed(tasks):
                 result = await task
-                <span class="built_in">print</span>(<span class="string">'Task ret: {}'</span>.format(result))
+                print(&#39;Task ret: &#123;&#125;&#39;.format(result))
         except BaseException as err:
-            <span class="built_in">print</span>(<span class="string">"open: {0}"</span>.format(err))
-        <span class="comment"># browser.close()方法无法彻底退出chrome进程，这里我们自己封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程</span>
-        <span class="comment"># await self.browser.close()</span>
+            print(&quot;open: &#123;0&#125;&quot;.format(err))
+        # browser.close()方法无法彻底退出chrome进程，这里我们自己封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程
+        # await self.browser.close()
 
     def main(self):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.open())
-        <span class="built_in">print</span>(<span class="string">'----关闭浏览器----'</span>)
-        self.kill(<span class="string">'chrom'</span>)
+        print(&#39;----关闭浏览器----&#39;)
+        self.kill(&#39;chrom&#39;)
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &#39;__main__&#39;:
     url_list=[
-        <span class="string">'https://www.baidu.com/'</span>,
-        <span class="string">'https://www.baidu.com/'</span>,
-        <span class="string">'https://www.baidu.com/'</span>,
-        <span class="string">'https://www.baidu.com/'</span>,
+        &#39;https://www.baidu.com/&#39;,
+        &#39;https://www.baidu.com/&#39;,
+        &#39;https://www.baidu.com/&#39;,
+        &#39;https://www.baidu.com/&#39;,
     ]
-    <span class="keyword">while</span> True:
-        <span class="comment"># 不停的添加任务</span>
+    while True:
+        # 不停的添加任务
         o = Browser(url_list)
-        <span class="built_in">print</span>(o.main())</code></pre>
+        print(o.main())</code></pre>
 
     </div>
 

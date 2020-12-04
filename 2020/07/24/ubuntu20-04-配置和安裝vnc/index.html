@@ -28,7 +28,7 @@
 <meta property="og:description" content="现今，云服务器已经十分普及，申请个云服务器作为个人开发学习或者简单个人服务器使用已经司空见惯。Linux云服务器申请就绪后，一般都是命令行的，不包含桌面环境，也不支持通过远程桌面的方式访问图形化桌面环境。本指南介绍了在Ubuntu 20.04 系统上安装和配置 VNC 服务器所需的步骤，实现通过远程桌面管理和控制Ubuntu云服务器，支持图形界面操作。 先决条件 在继续学习本教程之前，请确保以具有">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-24T16:47:47.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:38.000Z">
+<meta property="article:modified_time" content="2020-07-24T16:47:47.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Vnc">
@@ -205,13 +205,6 @@
 
               <time title="Created: 2020-07-24 16:47:47" itemprop="dateCreated datePublished" datetime="2020-07-24T16:47:47+00:00">2020-07-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -264,8 +257,8 @@ Password:
 Verify:
 Would you like to enter a view-only password (y/n)? n
 /usr/bin/xauth:  file /home/typhoon/.Xauthority does not exist
-New <span class="string">'server2.typhoon.org:1 (typhoon)'</span> desktop at :1 on machine server2.typhoon.org
-Starting applications specified <span class="keyword">in</span> /etc/X11/Xvnc-session
+New &#39;server2.typhoon.org:1 (typhoon)&#39; desktop at :1 on machine server2.typhoon.org
+Starting applications specified in /etc/X11/Xvnc-session
 Log file is /home/typhoon/.vnc/server2.typhoon.org:1.log
 Use xtigervncviewer -SecurityTypes VncAuth -passwd /home/typhoon/.vnc/passwd :1 to connect to the VNC server.
 
@@ -277,7 +270,7 @@ Use xtigervncviewer -SecurityTypes VncAuth -passwd /home/typhoon/.vnc/passwd :1 
 <p>此时只需要将提示的文件删除即可。再次输入 vncserver。</p>
 <p>在继续下一步之前，首先使用带有 -kill 选项和服务器编号作为参数的 vncserver 命令停止 VNC 实例。在我们的例子中，服务器在端口 5901 (:1)中运行，因此我们将使用以下命令停止它：</p>
 <pre><code class="bash">
-vncserver -<span class="built_in">kill</span> :1
+vncserver -kill :1
 </code></pre>
 <p>Killing Xtigervnc process ID 7264… success!<br>配置 VNC 服务器</p>
 <p>现在我们已经在服务器上安装了 Xfce 和 TigerVNC ，我们需要配置 TigerVNC 来使用 Xfce 。为此，请创建以下文件 〜/.vnc/xstartup：</p>
@@ -285,10 +278,10 @@ vncserver -<span class="built_in">kill</span> :1
 nano ~/.vnc/xstartup
 
 
-<span class="meta">#!/bin/sh</span>
-<span class="built_in">unset</span> SESSION_MANAGER
-<span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS
-<span class="built_in">exec</span> startxfce4 
+#!/bin/sh
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+exec startxfce4 
 
 </code></pre>
 <p>保存并关闭文件。无论何时启动或重启 TigerVNC 服务器，都将自动执行上述命令。</p>
@@ -316,9 +309,9 @@ Type=simple
 User=username
 PAMName=login
 PIDFile=/home/%u/.vnc/%H%i.pid
-ExecStartPre=/bin/sh -c <span class="string">'/usr/bin/vncserver -kill :%i &gt; /dev/null 2&gt;&amp;1 || :'</span>
-ExecStart=/usr/bin/vncserver :%i -geometry 1440x900 -alwaysshared -<span class="built_in">fg</span>
-ExecStop=/usr/bin/vncserver -<span class="built_in">kill</span> :%i
+ExecStartPre=/bin/sh -c &#39;/usr/bin/vncserver -kill :%i &gt; /dev/null 2&gt;&amp;1 || :&#39;
+ExecStart=/usr/bin/vncserver :%i -geometry 1440x900 -alwaysshared -fg
+ExecStop=/usr/bin/vncserver -kill :%i
 
 [Install]
 WantedBy=multi-user.target
@@ -330,7 +323,7 @@ WantedBy=multi-user.target
 sudo systemctl daemon-reload
 </code></pre>
 <p>下一步是使用以下命令启用单元文件：</p>
-<pre><code class="bash">sudo systemctl <span class="built_in">enable</span> vncserver@1.service
+<pre><code class="bash">sudo systemctl enable vncserver@1.service
 </code></pre>
 <p>符号 1 后面的数字 @ 定义了运行 VNC 服务的显示端口。这意味着 VNC 服务器将侦听端口 5901 ，正如我们在上一节中讨论的那样。</p>
 <p>执行以下命令启动 VNC 服务：</p>
@@ -343,7 +336,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:vncserver@1.service">vncserver@1.service</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#118;&#110;&#99;&#x73;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#x76;&#105;&#x63;&#x65;">&#118;&#110;&#99;&#x73;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#x76;&#105;&#x63;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -357,7 +350,7 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 <p>记得替换username，并server_ip_address与您的服务器的须藤非root用户名和IP地址。</p>
 <p>如果您使用的是图形化SSH客户端（如PuTTY），请将server_ip_address用作连接IP，并在程序的SSH隧道设置中设置localhost:5901为新的转发端口。</p>
 <p>隧道运行后，使用VNC客户端进行连接localhost:5901。系统将提示您使用在步骤1中设置的密码进行身份验证。</p>
-<p>连接后，您将看到默认的Xfce桌面。它应该看起来像这样：<br><a href="https://xie.infoq.cn/article/cf473dc0dea917b0b2a546ecd" target="_blank" rel="noopener">安装配置vnc</a><br><a href="https://blog.csdn.net/yang_hui1986527/article/details/106311024?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">如何在Ubuntu 20.04 上安装 Xrdp 服务器（远程桌面）</a><br><a href="https://blog.csdn.net/bluewhalerobot/article/details/106770429" target="_blank" rel="noopener">https://blog.csdn.net/bluewhalerobot/article/details/106770429</a></p>
+<p>连接后，您将看到默认的Xfce桌面。它应该看起来像这样：<br><a target="_blank" rel="noopener" href="https://xie.infoq.cn/article/cf473dc0dea917b0b2a546ecd">安装配置vnc</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/yang_hui1986527/article/details/106311024?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">如何在Ubuntu 20.04 上安装 Xrdp 服务器（远程桌面）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/bluewhalerobot/article/details/106770429">https://blog.csdn.net/bluewhalerobot/article/details/106770429</a></p>
 
     </div>
 

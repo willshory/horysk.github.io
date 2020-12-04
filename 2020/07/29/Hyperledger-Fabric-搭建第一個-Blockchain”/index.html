@@ -28,7 +28,7 @@
 <meta property="og:description" content="前言只需单击即可启动功能完善的区块链网络新的 IBM Blockchain Starter Membership Plan 为您提供了一种经济的方式来启动区块链网络。然后，您可以轻松部署区块链应用，比如这里描述的投票应用。 区块链（Blockchain）技术正在迅速发展，各行各业都正以极大的热情拥抱它。作者相信区块链将成为对信息科技领域产生革命性影响的一项新技术。目前，Hyperledger Fa">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-29T14:19:10.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:37.996Z">
+<meta property="article:modified_time" content="2020-07-29T14:19:10.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="block chain">
 <meta name="twitter:card" content="summary">
@@ -204,13 +204,6 @@
 
               <time title="Created: 2020-07-29 14:19:10" itemprop="dateCreated datePublished" datetime="2020-07-29T14:19:10+00:00">2020-07-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -253,7 +246,7 @@
 <h1 id="usermod-aG-sudo-fabric"><a href="#usermod-aG-sudo-fabric" class="headerlink" title="usermod -aG sudo fabric"></a>usermod -aG sudo fabric</h1><p>显示更多<br>切换为 fabric 用户，并进入用户目录</p>
 <h1 id="su-fabric"><a href="#su-fabric" class="headerlink" title="su fabric"></a>su fabric</h1><p>$ cd ~</p>
 <p>显示更多<br>安装 Node.js, npm, Docker, Docker Compose, Python<br>现在需要安装 Node.js, Docker 等软件，Hyperledger 提供了一个脚本，可以用来自动安装。</p>
-<p>下载并执行自动安装脚本<br>$ curl -O <a href="https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh" target="_blank" rel="noopener">https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh</a><br>$ chmod u+x prereqs-ubuntu.sh<br>$ ./prereqs-ubuntu.sh</p>
+<p>下载并执行自动安装脚本<br>$ curl -O <a target="_blank" rel="noopener" href="https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh">https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh</a><br>$ chmod u+x prereqs-ubuntu.sh<br>$ ./prereqs-ubuntu.sh</p>
 <p>显示较少<br>安装成功后，会显示以下内容，包括安装的软件名称及版本号。（后续版本可能会有变化。）</p>
 <p>Installation completed, versions installed are:<br>Node:             v8.11.1<br>npm:              5.8.0<br>Docker:           Docker version 18.03.0-ce, build 0520e24<br>Docker Compose:   docker-compose version 1.13.0, build 1719ceb<br>Python:           Python 2.7.12<br>Please logout then login before continuing.</p>
 <p>显示更多<br>退出并重新登录<br>请 退出 当前用户会话， 关闭客户端工具与 Ubuntu 的连接； 并 重新 以用户 fabric 登录 U b untu ， 以 使系统设置生效。</p>
@@ -273,7 +266,7 @@
 <p>显示更多<br>Yeoman 能根据定义好的 generator 迅速生成我们所需要的项目、应用的框架。</p>
 <p>安装 Hyperledger Fabric Runtime<br>新建一个 Fabric Tools 目录<br>$ cd ~<br>$ mkdir fabric-tools<br>$ cd fabric-tools/</p>
 <p>显示更多<br>fabric-tools 目录是我们以后的工作目录，读者可以按需要改成自己期望的目录名。</p>
-<p>下载 Fabric Dev Server<br>$ curl -O <a href="https://raw.githubusercontent.com/hyperledger/composer-" target="_blank" rel="noopener">https://raw.githubusercontent.com/hyperledger/composer-</a><br>tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz</p>
+<p>下载 Fabric Dev Server<br>$ curl -O <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/hyperledger/composer-">https://raw.githubusercontent.com/hyperledger/composer-</a><br>tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz</p>
 <p>显示更多<br>目前，fabric-dev-servers.zip 包含了 Fabric1.0 与 Fabric1.1 的两套安装脚本，及用于初始化的 Fabric 相关配置。解压后文件位于 fabric-tools/fabric-scripts 目录下。</p>
 <p>解压 Fabric Dev Server<br>$ tar -xvf fabric-dev-servers.tar.gz</p>
 <p>显示更多<br>下载 Fabric Image 文件<br>$ ./downloadFabric.sh</p>
@@ -297,16 +290,16 @@
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:alice@org.example.biznet">alice@org.example.biznet</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#x6c;&#x69;&#x63;&#x65;&#x40;&#x6f;&#114;&#103;&#46;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#x2e;&#98;&#x69;&#122;&#110;&#101;&#116;">&#97;&#x6c;&#x69;&#x63;&#x65;&#x40;&#x6f;&#114;&#103;&#46;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#x2e;&#98;&#x69;&#122;&#110;&#101;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:tutorial-network@0.0.1.bna">tutorial-network@0.0.1.bna</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#x75;&#x74;&#111;&#114;&#x69;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#119;&#111;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#x2e;&#98;&#110;&#97;">&#x74;&#x75;&#x74;&#111;&#114;&#x69;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#119;&#111;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#x2e;&#98;&#110;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:tutorial-network@0.0.1.bna">tutorial-network@0.0.1.bna</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#x61;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#111;&#x72;&#107;&#64;&#48;&#46;&#48;&#x2e;&#49;&#46;&#x62;&#110;&#97;">&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#x61;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#111;&#x72;&#107;&#64;&#48;&#46;&#48;&#x2e;&#49;&#46;&#x62;&#110;&#97;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:tutorial-network@0.0.1.bna">tutorial-network@0.0.1.bna</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#117;&#116;&#111;&#x72;&#105;&#97;&#108;&#45;&#110;&#101;&#x74;&#119;&#x6f;&#x72;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#x61;">&#116;&#117;&#116;&#111;&#x72;&#105;&#97;&#108;&#45;&#110;&#101;&#x74;&#119;&#x6f;&#x72;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#x61;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>
@@ -327,11 +320,11 @@
 <p>显示更多<br>也可以直接带参数运行命令行：</p>
 <p>$ composer-rest-server -c admin@tutorial-network -n never</p>
 <p>显示更多<br>composer-rest-server 会根据部署的业务网络生成一系列 REST API,以方便用户通过浏览器或其他类似 curl 的应用程序访问这个区块链业务网络。如果在本机，我们可以通过这样的地址访问：</p>
-<p><a href="http://localhost:3000/explorer。" target="_blank" rel="noopener">http://localhost:3000/explorer。</a></p>
+<p><a target="_blank" rel="noopener" href="http://localhost:3000/explorer%E3%80%82">http://localhost:3000/explorer。</a></p>
 <p>部署成功<br>到这里，我们就成功地通过 Hyperledger Composer 安装了 Hyperledger Fabric，并部署、启动了第一个区块链业务网络 tutorial-network。</p>
 <p>访问区块链网络<br>现在我们可以开始访问部署成功的第一个 Fabric 区块链业务网络。</p>
 <p>本文主要介绍通过浏览器和 curl 命令访问 REST Service。</p>
-<p>通过浏览器访问 REST Service<br>在浏览器中输入 <a href="http://fabric11dev1:3000/explorer。" target="_blank" rel="noopener">http://fabric11dev1:3000/explorer。</a></p>
+<p>通过浏览器访问 REST Service<br>在浏览器中输入 <a target="_blank" rel="noopener" href="http://fabric11dev1:3000/explorer%E3%80%82">http://fabric11dev1:3000/explorer。</a></p>
 <p>fabric11dev1 是当前部署运行 Composer REST Server 的机器名。如果从本机访问，可以使用 localhost， 或者 直接使用 IP 地址访问。后文不再对此特别说明。</p>
 <p>图 1. 入口界面<br>入口界面</p>
 <p>SampleAsset 是这个区块链业务网络中定义的资产模型 (Asset)。表示一种有形或无形的可改变、转移的商品。</p>
@@ -382,13 +375,13 @@
 <p>其中 SampleTransaction 是我们之前手工提交的 Transaction；而 AddAsset, AddParticipant, StartBusinessNetwork 则是业务网络自己产生的事务操作历史记录。由此我们可以知道，当前 tutorial-network 中的一些操作（如：添加 SampleAsset）其实是通过一系列 Composer 模型语言定义了一个操作，由 Composer 提交到 Fabric Peer Node，最终由业务网络执行完成的，即智能合约（Smart Contract）在 Fabric 中的实现：Chaincode。我们会在后续学习中深入理解这种机制。</p>
 <p>按上述方法，我们们可以浏览这个简单的区块链网络所提供服务的所有 REST API。</p>
 <p>使用 curl 访问 REST Service<br>以上介绍的在浏览器中对 REST Service 及区块链网络的访问，都可以通过 curl 及其他类似应用程序，通过控制台进行。</p>
-<p>使用 curl 程序调用 REST API – GET SampleAsset<br>$ curl -X GET –header ‘Accept: application/json’<br>‘<a href="http://fabric11dev1:3000/api/SampleAsset&#39;" target="_blank" rel="noopener">http://fabric11dev1:3000/api/SampleAsset&#39;</a></p>
+<p>使用 curl 程序调用 REST API – GET SampleAsset<br>$ curl -X GET –header ‘Accept: application/json’<br>‘<a target="_blank" rel="noopener" href="http://fabric11dev1:3000/api/SampleAsset&#39;">http://fabric11dev1:3000/api/SampleAsset&#39;</a></p>
 <p>显示更多<br>为方便起见，这里并没有指定任何用户信息，因为目前没有加入安全验证机制，我们会在以后的学习中专门讨论用户安全、权限控制问题。</p>
 <p>执行成功后，会返回 JSON 格式的文本。</p>
-<p>使用 curl 程序调用 REST API – POST SampleTransaction<br>$ curl -X POST –header ‘Content-Type: application/json’ –header ‘Accept:<br>application/json’ -d ‘{<br>“$class”: “org.example.biznet.SampleTransaction”,<br>“asset”: “org.example.biznet.SampleAsset#SA_1”,<br>“newValue”: “$110”<br>}’ ‘<a href="http://fabric11dev1:3000/api/SampleTransaction&#39;" target="_blank" rel="noopener">http://fabric11dev1:3000/api/SampleTransaction&#39;</a></p>
+<p>使用 curl 程序调用 REST API – POST SampleTransaction<br>$ curl -X POST –header ‘Content-Type: application/json’ –header ‘Accept:<br>application/json’ -d ‘{<br>“$class”: “org.example.biznet.SampleTransaction”,<br>“asset”: “org.example.biznet.SampleAsset#SA_1”,<br>“newValue”: “$110”<br>}’ ‘<a target="_blank" rel="noopener" href="http://fabric11dev1:3000/api/SampleTransaction&#39;">http://fabric11dev1:3000/api/SampleTransaction&#39;</a></p>
 <p>显示更多<br>结语<br>我们一起学习了 Hyperledger Fabric，Composer 的基本概念，并使用 Composer 部署了一个 Fabric 开发环境，安装并运行了第一个区块链业务网络与应用。最后通过 REST Service 访问了这个区块链应用。</p>
 <p>本文对于 Fabric 的的学习内容还是初步的，旨在帮助大家迅速建立对 Fabric 的直观映像，以便为下一步深入研究打好基础。</p>
-<p>参考资源<br>参考 IBM Blockchain Dev Center ，查看 IBM 在区块链领域的最新信息。<br>参考 Hyperledger Projects ，了解开源项目 Hyperledger 的主要内容。<br>参考 Hyperledger Fabric Documentation ，了解开源项目 Fabric 的主要内容。<br>阅读相关 Code Pattern: 使用 Hyperledger Composer 处理事务事件<br><a href="https://developer.ibm.com/zh/tutorials/cl-lo-hyperledger-fabric-study-notes1/" target="_blank" rel="noopener">link</a></p>
+<p>参考资源<br>参考 IBM Blockchain Dev Center ，查看 IBM 在区块链领域的最新信息。<br>参考 Hyperledger Projects ，了解开源项目 Hyperledger 的主要内容。<br>参考 Hyperledger Fabric Documentation ，了解开源项目 Fabric 的主要内容。<br>阅读相关 Code Pattern: 使用 Hyperledger Composer 处理事务事件<br><a target="_blank" rel="noopener" href="https://developer.ibm.com/zh/tutorials/cl-lo-hyperledger-fabric-study-notes1/">link</a></p>
 
     </div>
 

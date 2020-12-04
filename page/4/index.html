@@ -199,13 +199,6 @@
 
               <time title="Created: 2020-07-23 20:05:29" itemprop="dateCreated datePublished" datetime="2020-07-23T20:05:29+00:00">2020-07-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,19 +227,19 @@
 <p>根据上面的路径，找到index.md这个文件，打开后默认内容是这样的：</p>
 <pre><code class="python">---
 title: 文章分类
-date: <span class="number">2017</span><span class="number">-05</span><span class="number">-27</span> <span class="number">13</span>:<span class="number">47</span>:<span class="number">40</span>
+date: 2017-05-27 13:47:40
 ---</code></pre>
 <p>添加type: “categories”到内容中，添加后是这样的：</p>
 <pre><code class="python">---
 title: 文章分类
-date: <span class="number">2017</span><span class="number">-05</span><span class="number">-27</span> <span class="number">13</span>:<span class="number">47</span>:<span class="number">40</span>
-type: <span class="string">"categories"</span>
+date: 2017-05-27 13:47:40
+type: &quot;categories&quot;
 ---</code></pre>
 <p>保存并关闭文件。</p>
 <h3 id="1-2-给文章添加“categories”属性"><a href="#1-2-给文章添加“categories”属性" class="headerlink" title="1.2 给文章添加“categories”属性"></a>1.2 给文章添加“categories”属性</h3><p>打开需要添加分类的文章，为其添加categories属性。下方的categories: web前端表示添加这篇文章到“web前端”这个分类。注意：hexo一篇文章只能属于一个分类，也就是说如果在“- web前端”下方添加“-xxx”，hexo不会产生两个分类，而是把分类嵌套（即该文章属于 “- web前端”下的 “-xxx ”分类）。</p>
 <pre><code class="python">---
 title: jQuery对表单的操作及更多应用
-date: <span class="number">2017</span><span class="number">-05</span><span class="number">-26</span> <span class="number">12</span>:<span class="number">12</span>:<span class="number">57</span>
+date: 2017-05-26 12:12:57
 categories: 
 - web前端
 ---</code></pre>
@@ -258,13 +251,13 @@ categories:
 <p>根据上面的路径，找到index.md这个文件，打开后默认内容是这样的：</p>
 <pre><code class="python">---
 title: 标签
-date: <span class="number">2017</span><span class="number">-05</span><span class="number">-27</span> <span class="number">14</span>:<span class="number">22</span>:<span class="number">08</span>
+date: 2017-05-27 14:22:08
 ---</code></pre>
 <p>添加type: “tags”到内容中，添加后是这样的：</p>
 <pre><code class="python">---
 title: 文章分类
-date: <span class="number">2017</span><span class="number">-05</span><span class="number">-27</span> <span class="number">13</span>:<span class="number">47</span>:<span class="number">40</span>
-type: <span class="string">"tags"</span>
+date: 2017-05-27 13:47:40
+type: &quot;tags&quot;
 ---</code></pre>
 <p>保存并关闭文件。</p>
 <h3 id="2-2-给文章添加“tags”属性"><a href="#2-2-给文章添加“tags”属性" class="headerlink" title="2.2 给文章添加“tags”属性"></a>2.2 给文章添加“tags”属性</h3><p>打开需要添加标签的文章，为其添加tags属性。下方的tags:下方的- jQuery - 表格</p>
@@ -330,13 +323,6 @@ type: <span class="string">"tags"</span>
 
               <time title="Created: 2020-07-23 16:50:35" itemprop="dateCreated datePublished" datetime="2020-07-23T16:50:35+00:00">2020-07-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -363,85 +349,85 @@ type: <span class="string">"tags"</span>
 
       
           <h3 id="pyppeteer简介"><a href="#pyppeteer简介" class="headerlink" title="pyppeteer简介"></a>pyppeteer简介</h3><p>Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 web 应用自动化测试的行业标杆。使用 Puppeteer，相当于同时具有 Linux 和 Chrome 双端的操作能力，应用场景可谓非常之多。此仓库的建立，即是尝试各种折腾使用 GoogleChrome Puppeteer；以期在好玩的同时，学到更多有意思的操作。<br>而pyppeteer 是对无头浏览器 puppeteer的 Python 封装，可以让你使用python来操作Chrome。</p>
-<p><a href="https://www.lagou.com/lgeduarticle/github.com/miyakogi/pyppeteer" target="_blank" rel="noopener">Pyppeteer的GIT</a><br><a href="https://miyakogi.github.io/pyppeteer/reference.html" target="_blank" rel="noopener">Pyppeteer官方文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.lagou.com/lgeduarticle/github.com/miyakogi/pyppeteer">Pyppeteer的GIT</a><br><a target="_blank" rel="noopener" href="https://miyakogi.github.io/pyppeteer/reference.html">Pyppeteer官方文档</a></p>
 <p>使用过程中的问题<br>pyppeteer api提供的close（）命令无法真正的关闭浏览器，会造成很多的僵尸进程<br>websockets 版本太高导致报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close<br>chromium浏览器多开页面卡死问题<br>浏览器窗口很大，内容显示很小的问题<br>pyppeteer使用</p>
 <h3 id="pyppeteer安装"><a href="#pyppeteer安装" class="headerlink" title="pyppeteer安装"></a>pyppeteer安装</h3><pre><code class="bash">python3 -m pip install pyppeteer
 </code></pre>
-<p>在初次使用pyppeteer的时候他会自动下载chromium（看心情，大部分情况下可以用龟速形容），或者直接去官网下载最新版的浏览器然后在代码中指定浏览器的路径。<br><a href="https://download-chromium.appspot.com/" target="_blank" rel="noopener">chromium下载地址</a></p>
+<p>在初次使用pyppeteer的时候他会自动下载chromium（看心情，大部分情况下可以用龟速形容），或者直接去官网下载最新版的浏览器然后在代码中指定浏览器的路径。<br><a target="_blank" rel="noopener" href="https://download-chromium.appspot.com/">chromium下载地址</a></p>
 <p>简单入门</p>
 <pre><code class="bash">import asynciofrom pyppeteer import launch
 
 async def main():
-    <span class="comment"># 创建一个浏览器</span>
-    browser = await launch({
-        <span class="string">'executablePath'</span>: <span class="string">'你下载的Chromium.app/Contents/MacOS/Chromium'</span>,
-    })
-    <span class="comment"># 打开一个页面，同一个browser可以打开多个页面</span>
+    # 创建一个浏览器
+    browser = await launch(&#123;
+        &#39;executablePath&#39;: &#39;你下载的Chromium.app/Contents/MacOS/Chromium&#39;,
+    &#125;)
+    # 打开一个页面，同一个browser可以打开多个页面
     page = await browser.newPage()
-    await page.goto(<span class="string">'https://baidu.com'</span>) <span class="comment"># 访问指定页面</span>
-    await page.screenshot(path=<span class="string">'example.png'</span>)  <span class="comment"># 截图</span>
-    await page.close() <span class="comment"># 关闭页面</span>
-    await browser.close() <span class="comment"># 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）</span>
+    await page.goto(&#39;https://baidu.com&#39;) # 访问指定页面
+    await page.screenshot(path=&#39;example.png&#39;)  # 截图
+    await page.close() # 关闭页面
+    await browser.close() # 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）
 
 asyncio.get_event_loop().run_until_complete(main()）</code></pre>
 <p>运行上面这一段代码会产生一张页面截图，如果在运行中报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close可以通过降低websockets 版本来解决</p>
-<pre><code class="bash">pip uninstall websockets <span class="comment">#卸载websockets</span>
+<pre><code class="bash">pip uninstall websockets #卸载websockets
 pip install websockets==6.0
 或者
-pip install websockets==6.0 --force-reinstall <span class="comment">#指定安装6.0版本</span></code></pre>
+pip install websockets==6.0 --force-reinstall #指定安装6.0版本</code></pre>
 <h3 id="重要参数设置及方法"><a href="#重要参数设置及方法" class="headerlink" title="重要参数设置及方法"></a>重要参数设置及方法</h3><pre><code class="bash">import asynciofrom pyppeteer import launch
 
 
 async def intercept_request(req):
-    <span class="comment"># 不加载css和img等资源</span>
-    <span class="keyword">if</span> req.resourceType <span class="keyword">in</span> [<span class="string">"image"</span>, <span class="string">"media"</span>, <span class="string">"eventsource"</span>, <span class="string">"websocket"</span>, <span class="string">"stylesheet"</span>, <span class="string">"font"</span>]:
-        await req.abort() <span class="comment">#连接请求</span>
-    <span class="keyword">else</span>:
-        res = {
-            <span class="string">"method"</span>: req.method,
-            <span class="string">"url"</span>: req.url,
-            <span class="string">"data"</span>: <span class="string">""</span> <span class="keyword">if</span> req.postData == None <span class="keyword">else</span> req.postData,
-            <span class="string">"res"</span>: <span class="string">""</span> <span class="keyword">if</span> req.response == None <span class="keyword">else</span> req.response
-        }
-        <span class="built_in">print</span>(res) <span class="comment"># 打印请求的内容</span>
-        await  req.continue_() <span class="comment">#继续请求，可以添加参数将请求地址重定向、改变请求的headers</span>
+    # 不加载css和img等资源
+    if req.resourceType in [&quot;image&quot;, &quot;media&quot;, &quot;eventsource&quot;, &quot;websocket&quot;, &quot;stylesheet&quot;, &quot;font&quot;]:
+        await req.abort() #连接请求
+    else:
+        res = &#123;
+            &quot;method&quot;: req.method,
+            &quot;url&quot;: req.url,
+            &quot;data&quot;: &quot;&quot; if req.postData == None else req.postData,
+            &quot;res&quot;: &quot;&quot; if req.response == None else req.response
+        &#125;
+        print(res) # 打印请求的内容
+        await  req.continue_() #继续请求，可以添加参数将请求地址重定向、改变请求的headers
 
 async def intercept_response(res):
     resourceType = res.request.resourceType
-    <span class="comment"># 拦截ajax请求获取数据</span>
-    <span class="keyword">if</span> resourceType <span class="keyword">in</span> [<span class="string">'xhr'</span>]:
+    # 拦截ajax请求获取数据
+    if resourceType in [&#39;xhr&#39;]:
         resp = await res.json()
-        <span class="built_in">print</span>(resp)<span class="comment"># 这里可以操作mysql、redis或者设计一个class来保存数据</span>
+        print(resp)# 这里可以操作mysql、redis或者设计一个class来保存数据
 
 async def main():
-    <span class="comment"># 创建一个浏览器</span>
-    browser = await launch({
-        <span class="string">'executablePath'</span>: <span class="string">'你下载的Chromium.app/Contents/MacOS/Chromium'</span>,
-        <span class="string">'headless'</span>: False, <span class="comment"># 关闭无头模式。主要在测试环境调试使用</span>
-        <span class="string">'devtools'</span>: True, <span class="comment"># 打开 chromium 的 devtools与headless配个使用</span>
-        <span class="string">'args'</span>: [ 
-             <span class="string">'--disable-extensions'</span>,
-             <span class="string">'--hide-scrollbars'</span>,
-             <span class="string">'--disable-bundled-ppapi-flash'</span>,
-             <span class="string">'--mute-audio'</span>,
-             <span class="string">'--no-sandbox'</span>,<span class="comment"># --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错</span>
-             <span class="string">'--disable-setuid-sandbox'</span>,
-             <span class="string">'--disable-gpu'</span>,
+    # 创建一个浏览器
+    browser = await launch(&#123;
+        &#39;executablePath&#39;: &#39;你下载的Chromium.app/Contents/MacOS/Chromium&#39;,
+        &#39;headless&#39;: False, # 关闭无头模式。主要在测试环境调试使用
+        &#39;devtools&#39;: True, # 打开 chromium 的 devtools与headless配个使用
+        &#39;args&#39;: [ 
+             &#39;--disable-extensions&#39;,
+             &#39;--hide-scrollbars&#39;,
+             &#39;--disable-bundled-ppapi-flash&#39;,
+             &#39;--mute-audio&#39;,
+             &#39;--no-sandbox&#39;,# --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错
+             &#39;--disable-setuid-sandbox&#39;,
+             &#39;--disable-gpu&#39;,
           ],
-         <span class="string">'dumpio'</span>: True, <span class="comment">#把无头浏览器进程的 stderr 核 stdout pip 到主程序，也就是设置为 True 的话，chromium console 的输出就会在主程序中被打印出来</span>
-    })
-    <span class="comment"># 打开一个页面，同一个browser可以打开多个页面</span>
+         &#39;dumpio&#39;: True, #把无头浏览器进程的 stderr 核 stdout pip 到主程序，也就是设置为 True 的话，chromium console 的输出就会在主程序中被打印出来
+    &#125;)
+    # 打开一个页面，同一个browser可以打开多个页面
     page = await browser.newPage()
-    <span class="comment"># 是否启用JS，enabled设为False，则无渲染效果，如果页面有ajax请求需要开启此项</span>
+    # 是否启用JS，enabled设为False，则无渲染效果，如果页面有ajax请求需要开启此项
     await page.setJavaScriptEnabled(enabled=True)
-    <span class="comment"># 是否允许拦截请求，如果开启可以注册的两个回调函数，在浏览器发出请求和获取到请求之前指向这两个函数。</span>
+    # 是否允许拦截请求，如果开启可以注册的两个回调函数，在浏览器发出请求和获取到请求之前指向这两个函数。
     await page.setRequestInterception(value=True)
-    page.on(<span class="string">'request'</span>, intercept_request) <span class="comment"># 请求的内容</span>
-    page.on(<span class="string">'response'</span>, intercept_response) <span class="comment"># 响应的内容</span>
-    await page.goto(<span class="string">'https://baidu.com'</span>) <span class="comment"># 访问指定页面</span>
-    await page.screenshot(path=<span class="string">'example.png'</span>)  <span class="comment"># 截图</span>
-    await page.close() <span class="comment"># 关闭页面</span>
-    await browser.close() <span class="comment"># 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）</span>
+    page.on(&#39;request&#39;, intercept_request) # 请求的内容
+    page.on(&#39;response&#39;, intercept_response) # 响应的内容
+    await page.goto(&#39;https://baidu.com&#39;) # 访问指定页面
+    await page.screenshot(path=&#39;example.png&#39;)  # 截图
+    await page.close() # 关闭页面
+    await browser.close() # 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）
 
 asyncio.get_event_loop().run_until_complete(main()）</code></pre>
 <h2 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h2><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>当一个父进程以fork()系统调用建立一个新的子进程后，核心进程就会在进程表中给这个子进程分配一个进入点，然后将相关信息存储在该进入点所对应的进程表内。这些信息中有一项是其父进程的识别码。 而当这个子进程结束的时候（比如调用exit命令结束），其实他并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit的作用是使进程退出，但是也仅仅限于一个正常的进程变成了一个僵尸进程，并不能完全将其销毁）。此时原来进程表中的数据会被该进程的退出码（exit code）、执行时所用的CPU时间等数据所取代，这些数据会一直保留到系统将它传递给它的父进程为止。由此可见，defunct进程的出现时间是在子进程终止后，但是父进程尚未读取这些数据之前。<br>此时，该僵尸子进程已经放弃了几乎所有的内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保留一个位置，记载该进程的退出状态信息供其他进程收集，除此之外，僵尸进程不再占有任何存储空间。他需要他的父进程来为他收尸，如果他的父进程没有安装SIGCHLD信号处理函数调用wait 或 waitpid() 等待子进程结束，也没有显式忽略该信号，那么它就一直保持僵尸状态，如果这时候父进程结束了，那么init进程会自动接手这个子进程，为他收尸，他还是能被清除掉的。 拿Nginx作为例子，默认是作为后台守护进程。它是这么工作的。第一，Nginx创建一个子进程。第二，原始的Nginx进程退出了。第三，Nginx子进程被init进程给接收了。</p>
@@ -449,73 +435,73 @@ asyncio.get_event_loop().run_until_complete(main()）</code></pre>
 <p>如果一个进程终止会发生什么？bash（PID 5）进程终止，它变成了一个所谓的“停止活动的进程”，也称为“僵尸进程”。</p>
 <p>这时PID5要等待sshd2调用wait 或 waitpid() 然后彻底结束，假设sshd2没有调用相应的方法，那么PID5就会一直等待下去，当sshd2结束的时候PID5会被init进程接手然后处理掉。</p>
 <p>但是在docker中init 1往往是你的任务进程，需要不间断的运行不能退出，这就导致了僵尸进程无人清理越来越多，因此不建议在docker中直接运行脚本，而是先启动/bin/bash然后启动脚本</p>
-<pre><code class="bash">CMD [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"set -e &amp;&amp; 你的任务脚本"</span>]</code></pre>
+<pre><code class="bash">CMD [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -e &amp;&amp; 你的任务脚本&quot;]</code></pre>
 <p>但是这种方法也有问题，不能优雅的结束进程。假设你用kill发送SIGTERM信号给bash.Bash终止了，但是没有发送SIGTERM给它的子进程！ 当bash结束了，内核结束整个容器中的所有进程。包扩通过SIGKILL信号没有被干净的终结的进程。SIGKILL不能被捕获，所以进程是没有办法干净的终结。假设你运行的应用程序正忙于写文件；在写的过程中，应用被不干净的终止了这个文件可能会崩溃。不干净的终止是很坏的事情。很像把服务器的电源给拔掉。 但是为什么要关心init进程是否被SIGTERM给终结了呢？那是因为docker stop 发送 SIGTERM信号给init进程了。“docker stop” 应该干净的停止容器，以至于稍后你能够用“docker start”启动它。</p>
 <p>解决办法<br>在linux下找到该defunct僵尸进程的父进程，将该进程的父进程杀掉，然后init进程会自动接手其子进程并为子进程收尸。ps -ef | grep defunct_process_pid<br>docker中在启动真正的工作脚本之前先启动/bin/bash用来给僵尸进程收尸<br>docker环境搭建<br>镜像搭建<br>dockerfile文件</p>
 <pre><code class="bash">FROM centos:7
-RUN <span class="built_in">set</span> -ex \
-    <span class="comment"># 预安装所需组件</span>
+RUN set -ex \
+    # 预安装所需组件
     &amp;&amp; yum install -y wget tar libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make initscripts \
     &amp;&amp; wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz \
     &amp;&amp; tar -zxvf Python-3.6.0.tgz \
-    &amp;&amp; <span class="built_in">cd</span> Python-3.6.0 \
-    &amp;&amp; ./configure prefix=/usr/<span class="built_in">local</span>/python3 \
+    &amp;&amp; cd Python-3.6.0 \
+    &amp;&amp; ./configure prefix=/usr/local/python3 \
     &amp;&amp; make \
     &amp;&amp; make install \
     &amp;&amp; make clean \
     &amp;&amp; rm -rf /Python-3.6.0* \
     &amp;&amp; yum install -y epel-release \
     &amp;&amp; yum install -y python-pip
-<span class="comment"># 设置默认为python3</span>
-RUN <span class="built_in">set</span> -ex \
-    <span class="comment"># 备份旧版本python</span>
+# 设置默认为python3
+RUN set -ex \
+    # 备份旧版本python
     &amp;&amp; mv /usr/bin/python /usr/bin/python27 \
     &amp;&amp; mv /usr/bin/pip /usr/bin/pip-python2.7 \
-    <span class="comment"># 配置默认为python3</span>
-    &amp;&amp; ln -s /usr/<span class="built_in">local</span>/python3/bin/python3.6 /usr/bin/python \
-    &amp;&amp; ln -s /usr/<span class="built_in">local</span>/python3/bin/pip3 /usr/bin/pip
-<span class="comment"># 修复因修改python版本导致yum失效问题</span>
-RUN <span class="built_in">set</span> -ex \
-    &amp;&amp; sed -i <span class="string">"s#/usr/bin/python#/usr/bin/python2.7#"</span> /usr/bin/yum \
-    &amp;&amp; sed -i <span class="string">"s#/usr/bin/python#/usr/bin/python2.7#"</span> /usr/libexec/urlgrabber-ext-down \
+    # 配置默认为python3
+    &amp;&amp; ln -s /usr/local/python3/bin/python3.6 /usr/bin/python \
+    &amp;&amp; ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
+# 修复因修改python版本导致yum失效问题
+RUN set -ex \
+    &amp;&amp; sed -i &quot;s#/usr/bin/python#/usr/bin/python2.7#&quot; /usr/bin/yum \
+    &amp;&amp; sed -i &quot;s#/usr/bin/python#/usr/bin/python2.7#&quot; /usr/libexec/urlgrabber-ext-down \
     &amp;&amp; yum install -y deltarpm
-<span class="comment"># 基础环境配置</span>
-RUN <span class="built_in">set</span> -ex \
-    <span class="comment"># 修改系统时区为东八区</span>
+# 基础环境配置
+RUN set -ex \
+    # 修改系统时区为东八区
     &amp;&amp; rm -rf /etc/localtime \
     &amp;&amp; ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     &amp;&amp; yum install -y vim \
-    <span class="comment"># 安装定时任务组件</span>
+    # 安装定时任务组件
     &amp;&amp; yum -y install cronie
-<span class="comment"># 支持中文</span>
+# 支持中文
 RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
-<span class="comment"># chrome浏览器依赖</span>
+# chrome浏览器依赖
 RUN yum install kde-l10n-Chinese -y
 RUN yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 -y
 RUN yum install ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc -y
-<span class="comment"># 更新pip版本</span>
+# 更新pip版本
 RUN pip install --upgrade pip
 ENV LC_ALL zh_CN.UTF-8
 RUN mkdir -p /usr/src/scrapy
 COPY requirements.txt /usr/src/scrapy
 RUN pip install -i https://pypi.douban.com/simple/ -r /usr/src/scrapy/requirements.txt</code></pre>
 <p>docker-compose文件</p>
-<pre><code class="bash">version: <span class="string">'3.3'</span>
+<pre><code class="bash">version: &#39;3.3&#39;
 services:
   scrapy:
-    privileged: <span class="literal">true</span>
+    privileged: true
     build: scrapy
-    tty: <span class="literal">true</span>
+    tty: true
     volumes:
-      - <span class="built_in">type</span>: <span class="built_in">bind</span>
-        <span class="built_in">source</span>: /爬虫文件路径
+      - type: bind
+        source: /爬虫文件路径
         target: /usr/src/scrapy
     ports:
-      - <span class="string">"9999:9999"</span>
+      - &quot;9999:9999&quot;
     networks:
       scrapynet:
         ipv4_address: 172.19.0.8
-    <span class="built_in">command</span>: [/bin/bash, -c, <span class="built_in">set</span> -e &amp;&amp; python /usr/src/scrapy/job.py]
+    command: [/bin/bash, -c, set -e &amp;&amp; python /usr/src/scrapy/job.py]
 
 networks:
   scrapynet:
@@ -528,28 +514,28 @@ networks:
 <p>/bin/bash 防止产生僵尸进程，-e 指令阻止bash把这个脚本当做简单的命令直接执行exec（）<br>python /usr/src/scrapy/job.py 真正的工作脚本<br>基于pyppeteer的爬虫脚本</p>
 <pre><code class="bash">import asyncio,random,psutil,os,signal,time
 from pyppeteer import launcher
-<span class="comment"># hook  禁用 防止监测webdriver</span>
-launcher.AUTOMATION_ARGS.remove(<span class="string">"--enable-automation"</span>)
+# hook  禁用 防止监测webdriver
+launcher.AUTOMATION_ARGS.remove(&quot;--enable-automation&quot;)
 from pyppeteer import launch
 async def intercept_request(req):
-    <span class="keyword">if</span> req.resourceType <span class="keyword">in</span> [<span class="string">"image"</span>]:
+    if req.resourceType in [&quot;image&quot;]:
         await req.abort()
-    <span class="keyword">else</span>:
-        res = {
-            <span class="string">"method"</span>: req.method,
-            <span class="string">"url"</span>: req.url,
-            <span class="string">"data"</span>: <span class="string">""</span> <span class="keyword">if</span> req.postData == None <span class="keyword">else</span> req.postData,
-            <span class="string">"res"</span>: <span class="string">""</span> <span class="keyword">if</span> req.response == None <span class="keyword">else</span> req.response
-        }
-        <span class="built_in">print</span>(res)
+    else:
+        res = &#123;
+            &quot;method&quot;: req.method,
+            &quot;url&quot;: req.url,
+            &quot;data&quot;: &quot;&quot; if req.postData == None else req.postData,
+            &quot;res&quot;: &quot;&quot; if req.response == None else req.response
+        &#125;
+        print(res)
         await req.continue_()
 
 
 async def intercept_response(res):
     resourceType = res.request.resourceType
-    <span class="keyword">if</span> resourceType <span class="keyword">in</span> [<span class="string">'xhr'</span>]:
+    if resourceType in [&#39;xhr&#39;]:
         resp = await res.json()
-        <span class="built_in">print</span>(resp)
+        print(resp)
 
 class newpage(object):
     width, height = 1920, 1080
@@ -564,22 +550,22 @@ class newpage(object):
         try:
             page = await self.browser.newPage()
             await page.setUserAgent(
-                userAgent=<span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3521.2 Safari/537.36'</span>)
-            await page.setViewport(viewport={<span class="string">'width'</span>: self.width, <span class="string">'height'</span>: self.height})
-            <span class="comment"># 是否启用JS，enabled设为False，则无渲染效果</span>
+                userAgent=&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3521.2 Safari/537.36&#39;)
+            await page.setViewport(viewport=&#123;&#39;width&#39;: self.width, &#39;height&#39;: self.height&#125;)
+            # 是否启用JS，enabled设为False，则无渲染效果
             await page.setJavaScriptEnabled(enabled=True)
             await page.setRequestInterception(value=True)
-            page.on(<span class="string">'request'</span>, intercept_request)
-            page.on(<span class="string">'response'</span>, intercept_response)
-            await page.goto(self.url, options={<span class="string">'timeout'</span>: 30000})
+            page.on(&#39;request&#39;, intercept_request)
+            page.on(&#39;response&#39;, intercept_response)
+            await page.goto(self.url, options=&#123;&#39;timeout&#39;: 30000&#125;)
             await page.waitFor(selectorOrFunctionOrTimeout=1000)
             try:
                 await page.close()
-                <span class="built_in">return</span> self.url
+                return self.url
             except BaseException as err:
-                <span class="built_in">return</span> <span class="string">"close_newpage: {0}"</span>.format(err)
+                return &quot;close_newpage: &#123;0&#125;&quot;.format(err)
         except BaseException as err:
-            <span class="built_in">return</span> <span class="string">"newpage: {0}"</span>.format(err)
+            return &quot;newpage: &#123;0&#125;&quot;.format(err)
 
 class Browser(object):
     width, height = 1920, 1080
@@ -590,90 +576,90 @@ class Browser(object):
     def __init__(self,urls):
         self.url_list = urls
 
-    <span class="comment"># 封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程处理僵尸进程</span>
-    def <span class="built_in">kill</span>(self,name):
-        <span class="comment"># win平台</span>
-        <span class="comment"># subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)</span>
+    # 封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程处理僵尸进程
+    def kill(self,name):
+        # win平台
+        # subprocess.Popen(&quot;taskkill /F /IM chrome.EXE &quot;, shell=True)
 
-        <span class="comment"># linux平台</span>
+        # linux平台
         try:
             pid = self.browser.process.pid
             pgid = os.getpgid(pid)
-            <span class="comment"># 强制结束</span>
+            # 强制结束
             os.kill(pid, signal.SIGKILL)
-            <span class="built_in">print</span>(<span class="string">"结束进程：%d"</span> % pid)
-            <span class="built_in">print</span>(<span class="string">"父进程是：%d"</span> % pgid)
-            <span class="built_in">print</span>(<span class="string">"等待结果：%d"</span> % self.browser.process.wait())
+            print(&quot;结束进程：%d&quot; % pid)
+            print(&quot;父进程是：%d&quot; % pgid)
+            print(&quot;等待结果：%d&quot; % self.browser.process.wait())
         except BaseException as err:
-            <span class="built_in">print</span>(<span class="string">"close: {0}"</span>.format(err))
+            print(&quot;close: &#123;0&#125;&quot;.format(err))
         time.sleep(3)
-        <span class="comment"># 查看是否还有其他进程</span>
-        <span class="keyword">for</span> proc <span class="keyword">in</span> psutil.process_iter():
-            <span class="keyword">if</span> name <span class="keyword">in</span> proc.name():
+        # 查看是否还有其他进程
+        for proc in psutil.process_iter():
+            if name in proc.name():
                 try:
                     os.kill(proc.pid, signal.SIGTERM)
-                    <span class="built_in">print</span>(<span class="string">'已杀死[pid:%s]的进程[pgid：%s][名称：%s]'</span> % (proc.pid,pgid,proc.name()))
+                    print(&#39;已杀死[pid:%s]的进程[pgid：%s][名称：%s]&#39; % (proc.pid,pgid,proc.name()))
                 except BaseException as err:
-                    <span class="built_in">print</span>(<span class="string">"kill: {0}"</span>.format(err))
+                    print(&quot;kill: &#123;0&#125;&quot;.format(err))
 
-    <span class="comment"># 打开浏览器</span>
+    # 打开浏览器
     async def newbrowser(self):
         try:
-            self.browser = await launch({
-                <span class="string">'headless'</span>: self.is_headless,
-                <span class="string">'devtools'</span>: not self.is_headless,
-                <span class="string">'dumpio'</span>: True,
-                <span class="string">'autoClose'</span>: True,
-                <span class="comment"># 'userDataDir': './userdata',</span>
-                <span class="string">'handleSIGTERM'</span>: True,
-                <span class="string">'handleSIGHUP'</span>: True,
-                <span class="comment"># 'executablePath':'C:/Users/zhang/Desktop/chrome-win/chrome.exe',</span>
-                <span class="string">'args'</span>: [
-                    <span class="string">'--no-sandbox'</span>,  <span class="comment"># --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错</span>
-                    <span class="string">'--disable-gpu'</span>,
-                    <span class="string">'--disable-extensions'</span>,
-                    <span class="string">'--hide-scrollbars'</span>,
-                    <span class="string">'--disable-bundled-ppapi-flash'</span>,
-                    <span class="string">'--mute-audio'</span>,
-                    <span class="string">'--disable-setuid-sandbox'</span>,
-                    <span class="string">'--disable-xss-auditor'</span>,
-                    <span class="string">'--window-size=%d,%d'</span> % (self.width, self.height)
+            self.browser = await launch(&#123;
+                &#39;headless&#39;: self.is_headless,
+                &#39;devtools&#39;: not self.is_headless,
+                &#39;dumpio&#39;: True,
+                &#39;autoClose&#39;: True,
+                # &#39;userDataDir&#39;: &#39;./userdata&#39;,
+                &#39;handleSIGTERM&#39;: True,
+                &#39;handleSIGHUP&#39;: True,
+                # &#39;executablePath&#39;:&#39;C:/Users/zhang/Desktop/chrome-win/chrome.exe&#39;,
+                &#39;args&#39;: [
+                    &#39;--no-sandbox&#39;,  # --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错
+                    &#39;--disable-gpu&#39;,
+                    &#39;--disable-extensions&#39;,
+                    &#39;--hide-scrollbars&#39;,
+                    &#39;--disable-bundled-ppapi-flash&#39;,
+                    &#39;--mute-audio&#39;,
+                    &#39;--disable-setuid-sandbox&#39;,
+                    &#39;--disable-xss-auditor&#39;,
+                    &#39;--window-size=%d,%d&#39; % (self.width, self.height)
                 ]
-            })
+            &#125;)
         except BaseException as err:
-            <span class="built_in">print</span>(<span class="string">"launch: {0}"</span>.format(err))
+            print(&quot;launch: &#123;0&#125;&quot;.format(err))
 
-        <span class="built_in">print</span>(<span class="string">'----打开浏览器----'</span>)
+        print(&#39;----打开浏览器----&#39;)
 
     async def open(self):
         await self.newbrowser()
         try:
-            tasks = [asyncio.ensure_future(newpage(url,self.browser).run()) <span class="keyword">for</span> url <span class="keyword">in</span> self.url_list]
-            <span class="keyword">for</span> task <span class="keyword">in</span> asyncio.as_completed(tasks):
+            tasks = [asyncio.ensure_future(newpage(url,self.browser).run()) for url in self.url_list]
+            for task in asyncio.as_completed(tasks):
                 result = await task
-                <span class="built_in">print</span>(<span class="string">'Task ret: {}'</span>.format(result))
+                print(&#39;Task ret: &#123;&#125;&#39;.format(result))
         except BaseException as err:
-            <span class="built_in">print</span>(<span class="string">"open: {0}"</span>.format(err))
-        <span class="comment"># browser.close()方法无法彻底退出chrome进程，这里我们自己封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程</span>
-        <span class="comment"># await self.browser.close()</span>
+            print(&quot;open: &#123;0&#125;&quot;.format(err))
+        # browser.close()方法无法彻底退出chrome进程，这里我们自己封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程
+        # await self.browser.close()
 
     def main(self):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.open())
-        <span class="built_in">print</span>(<span class="string">'----关闭浏览器----'</span>)
-        self.kill(<span class="string">'chrom'</span>)
+        print(&#39;----关闭浏览器----&#39;)
+        self.kill(&#39;chrom&#39;)
 
-<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+if __name__ == &#39;__main__&#39;:
     url_list=[
-        <span class="string">'https://www.baidu.com/'</span>,
-        <span class="string">'https://www.baidu.com/'</span>,
-        <span class="string">'https://www.baidu.com/'</span>,
-        <span class="string">'https://www.baidu.com/'</span>,
+        &#39;https://www.baidu.com/&#39;,
+        &#39;https://www.baidu.com/&#39;,
+        &#39;https://www.baidu.com/&#39;,
+        &#39;https://www.baidu.com/&#39;,
     ]
-    <span class="keyword">while</span> True:
-        <span class="comment"># 不停的添加任务</span>
+    while True:
+        # 不停的添加任务
         o = Browser(url_list)
-        <span class="built_in">print</span>(o.main())</code></pre>
+        print(o.main())</code></pre>
 
       
     </div>
@@ -719,13 +705,6 @@ class Browser(object):
 
               <time title="Created: 2020-07-22 16:42:58" itemprop="dateCreated datePublished" datetime="2020-07-22T16:42:58+00:00">2020-07-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -826,7 +805,7 @@ class Browser(object):
 <p>准备数据集：从贷款申请样本数据表中，选取对训练数据具有分类能力的特征<br>构建树：选择信息增益最大的特征作为分裂特征构建决策树<br>数据可视化：使用Matplotlib对数据进行可视化<br>执行分类：用于实际数据的分类。例如输入测试数据[0,1]，它代表没有房子，但是有工作，分类结果为“房贷”。</p>
 <h2 id="4-总结-1"><a href="#4-总结-1" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>回目录</p>
 <p>希望通过本次介绍，大家能够对机器学习涉及的算法有初步的认识，为以后进行相关人工智能方面的研究所有帮助。机器学习其实没有那么复杂，只是将统计学、概率论等数学知识应用在人工智能领域。借助现有的软件平台，可以轻松的调用已经集成的算法，让工程师不再为复杂的算法理论而烦恼，可以有更多的时间去开发和创新！</p>
-<p>原文:<a href="https://tianchi.aliyun.com/notebook-ai/detail?postId=6239" target="_blank" rel="noopener">天池</a><br>人工智能: <a href="https://tianchi.aliyun.com/forum/postDetail?postId=115954" target="_blank" rel="noopener">人工智能基础视频</a></p>
+<p>原文:<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/notebook-ai/detail?postId=6239">天池</a><br>人工智能: <a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/forum/postDetail?postId=115954">人工智能基础视频</a></p>
 
       
     </div>
@@ -872,13 +851,6 @@ class Browser(object):
 
               <time title="Created: 2020-07-22 11:56:47" itemprop="dateCreated datePublished" datetime="2020-07-22T11:56:47+00:00">2020-07-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -945,13 +917,6 @@ class Browser(object):
 
               <time title="Created: 2020-07-22 11:56:31" itemprop="dateCreated datePublished" datetime="2020-07-22T11:56:31+00:00">2020-07-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -973,107 +938,107 @@ class Browser(object):
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="6-1-读写CSV数据"><a href="#6-1-读写CSV数据" class="headerlink" title="6.1 读写CSV数据"></a>6.1 读写CSV数据</h2><p>More info: <a href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p01_read_write_csv_data.html" target="_blank" rel="noopener">python3-cookbook</a><br>问题<br>你想读写一个CSV格式的文件。</p>
+          <h2 id="6-1-读写CSV数据"><a href="#6-1-读写CSV数据" class="headerlink" title="6.1 读写CSV数据"></a>6.1 读写CSV数据</h2><p>More info: <a target="_blank" rel="noopener" href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p01_read_write_csv_data.html">python3-cookbook</a><br>问题<br>你想读写一个CSV格式的文件。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Symbol,Price,Date,Time,Change,Volume</span><br><span class="line"><span class="string">"AA"</span>,39.48,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.18,181800</span><br><span class="line"><span class="string">"AIG"</span>,71.38,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.15,195500</span><br><span class="line"><span class="string">"AXP"</span>,62.58,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.46,935000</span><br><span class="line"><span class="string">"BA"</span>,98.31,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,+0.12,104800</span><br><span class="line"><span class="string">"C"</span>,53.08,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.25,360900</span><br><span class="line"><span class="string">"CAT"</span>,78.29,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.23,225400</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Symbol,Price,Date,Time,Change,Volume</span><br><span class="line"><span class="string">&quot;AA&quot;</span>,39.48,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.18,181800</span><br><span class="line"><span class="string">&quot;AIG&quot;</span>,71.38,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.15,195500</span><br><span class="line"><span class="string">&quot;AXP&quot;</span>,62.58,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.46,935000</span><br><span class="line"><span class="string">&quot;BA&quot;</span>,98.31,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,+0.12,104800</span><br><span class="line"><span class="string">&quot;C&quot;</span>,53.08,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.25,360900</span><br><span class="line"><span class="string">&quot;CAT&quot;</span>,78.29,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.23,225400</span><br></pre></td></tr></table></figure>
 <p>下面向你展示如何将这些数据读取为一个元组的序列：</p>
 <pre><code class="bash">import csv
-with open(<span class="string">'stocks.csv'</span>) as f:
+with open(&#39;stocks.csv&#39;) as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
-        <span class="comment"># Process row</span>
+    for row in f_csv:
+        # Process row
         ...</code></pre>
 <p>在上面的代码中， row 会是一个列表。因此，为了访问某个字段，你需要使用下标，如 row[0] 访问Symbol， row[4] 访问Change。</p>
 <p>由于这种下标访问通常会引起混淆，你可以考虑使用命名元组。例如：</p>
 <pre><code class="bash">from collections import namedtuple
-with open(<span class="string">'stock.csv'</span>) as f:
+with open(&#39;stock.csv&#39;) as f:
     f_csv = csv.reader(f)
     headings = next(f_csv)
-    Row = namedtuple(<span class="string">'Row'</span>, headings)
-    <span class="keyword">for</span> r <span class="keyword">in</span> f_csv:
+    Row = namedtuple(&#39;Row&#39;, headings)
+    for r in f_csv:
         row = Row(*r)
-        <span class="comment"># Process row</span>
+        # Process row
         ...</code></pre>
 <p>它允许你使用列名如 row.Symbol 和 row.Change 代替下标访问。 需要注意的是这个只有在列名是合法的Python标识符的时候才生效。如果不是的话， 你可能需要修改下原始的列名(如将非标识符字符替换成下划线之类的)。</p>
 <p>另外一个选择就是将数据读取到一个字典序列中去。可以这样做：</p>
 <pre><code class="bash">import csv
-with open(<span class="string">'stocks.csv'</span>) as f:
+with open(&#39;stocks.csv&#39;) as f:
     f_csv = csv.DictReader(f)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
-        <span class="comment"># process row</span>
+    for row in f_csv:
+        # process row
         ...</code></pre>
 <p>在这个版本中，你可以使用列名去访问每一行的数据了。比如，row[‘Symbol’] 或者 row[‘Change’]</p>
 <p>为了写入CSV数据，你仍然可以使用csv模块，不过这时候先创建一个 writer 对象。例如:</p>
-<pre><code class="bash">headers = [<span class="string">'Symbol'</span>,<span class="string">'Price'</span>,<span class="string">'Date'</span>,<span class="string">'Time'</span>,<span class="string">'Change'</span>,<span class="string">'Volume'</span>]
-rows = [(<span class="string">'AA'</span>, 39.48, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.18, 181800),
-         (<span class="string">'AIG'</span>, 71.38, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.15, 195500),
-         (<span class="string">'AXP'</span>, 62.58, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.46, 935000),
+<pre><code class="bash">headers = [&#39;Symbol&#39;,&#39;Price&#39;,&#39;Date&#39;,&#39;Time&#39;,&#39;Change&#39;,&#39;Volume&#39;]
+rows = [(&#39;AA&#39;, 39.48, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.18, 181800),
+         (&#39;AIG&#39;, 71.38, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.15, 195500),
+         (&#39;AXP&#39;, 62.58, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.46, 935000),
        ]
 
-with open(<span class="string">'stocks.csv'</span>,<span class="string">'w'</span>) as f:
+with open(&#39;stocks.csv&#39;,&#39;w&#39;) as f:
     f_csv = csv.writer(f)
     f_csv.writerow(headers)
     f_csv.writerows(rows)</code></pre>
 <p>如果你有一个字典序列的数据，可以像这样做：</p>
-<pre><code class="bash">headers = [<span class="string">'Symbol'</span>, <span class="string">'Price'</span>, <span class="string">'Date'</span>, <span class="string">'Time'</span>, <span class="string">'Change'</span>, <span class="string">'Volume'</span>]
-rows = [{<span class="string">'Symbol'</span>:<span class="string">'AA'</span>, <span class="string">'Price'</span>:39.48, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
-        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.18, <span class="string">'Volume'</span>:181800},
-        {<span class="string">'Symbol'</span>:<span class="string">'AIG'</span>, <span class="string">'Price'</span>: 71.38, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
-        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.15, <span class="string">'Volume'</span>: 195500},
-        {<span class="string">'Symbol'</span>:<span class="string">'AXP'</span>, <span class="string">'Price'</span>: 62.58, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
-        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.46, <span class="string">'Volume'</span>: 935000},
+<pre><code class="bash">headers = [&#39;Symbol&#39;, &#39;Price&#39;, &#39;Date&#39;, &#39;Time&#39;, &#39;Change&#39;, &#39;Volume&#39;]
+rows = [&#123;&#39;Symbol&#39;:&#39;AA&#39;, &#39;Price&#39;:39.48, &#39;Date&#39;:&#39;6/11/2007&#39;,
+        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.18, &#39;Volume&#39;:181800&#125;,
+        &#123;&#39;Symbol&#39;:&#39;AIG&#39;, &#39;Price&#39;: 71.38, &#39;Date&#39;:&#39;6/11/2007&#39;,
+        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.15, &#39;Volume&#39;: 195500&#125;,
+        &#123;&#39;Symbol&#39;:&#39;AXP&#39;, &#39;Price&#39;: 62.58, &#39;Date&#39;:&#39;6/11/2007&#39;,
+        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.46, &#39;Volume&#39;: 935000&#125;,
         ]
 
-with open(<span class="string">'stocks.csv'</span>,<span class="string">'w'</span>) as f:
+with open(&#39;stocks.csv&#39;,&#39;w&#39;) as f:
     f_csv = csv.DictWriter(f, headers)
     f_csv.writeheader()
     f_csv.writerows(rows)</code></pre>
 <p>讨论<br>你应该总是优先选择csv模块分割或解析CSV数据。例如，你可能会像编写类似下面这样的代码：</p>
-<pre><code class="bash">with open(<span class="string">'stocks.csv'</span>) as f:
-<span class="keyword">for</span> line <span class="keyword">in</span> f:
-    row = line.split(<span class="string">','</span>)
-    <span class="comment"># process row</span>
+<pre><code class="bash">with open(&#39;stocks.csv&#39;) as f:
+for line in f:
+    row = line.split(&#39;,&#39;)
+    # process row
     ...</code></pre>
 <p>使用这种方式的一个缺点就是你仍然需要去处理一些棘手的细节问题。 比如，如果某些字段值被引号包围，你不得不去除这些引号。 另外，如果一个被引号包围的字段碰巧含有一个逗号，那么程序就会因为产生一个错误大小的行而出错。</p>
 <p>默认情况下，csv 库可识别Microsoft Excel所使用的CSV编码规则。 这或许也是最常见的形式，并且也会给你带来最好的兼容性。 然而，如果你查看csv的文档，就会发现有很多种方法将它应用到其他编码格式上(如修改分割字符等)。 例如，如果你想读取以tab分割的数据，可以这样做：</p>
-<pre><code class="bash"><span class="comment"># Example of reading tab-separated values</span>
-with open(<span class="string">'stock.tsv'</span>) as f:
-    f_tsv = csv.reader(f, delimiter=<span class="string">'\t'</span>)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_tsv:
-        <span class="comment"># Process row</span>
+<pre><code class="bash"># Example of reading tab-separated values
+with open(&#39;stock.tsv&#39;) as f:
+    f_tsv = csv.reader(f, delimiter=&#39;\t&#39;)
+    for row in f_tsv:
+        # Process row
         ...</code></pre>
 <p>如果你正在读取CSV数据并将它们转换为命名元组，需要注意对列名进行合法性认证。 例如，一个CSV格式文件有一个包含非法标识符的列头行，类似下面这样：</p>
 <p>Street Address,Num-Premises,Latitude,Longitude 5412 N CLARK,10,41.980262,-87.668452<br>这样最终会导致在创建一个命名元组时产生一个 ValueError 异常而失败。 为了解决这问题，你可能不得不先去修正列标题。 例如，可以像下面这样在非法标识符上使用一个正则表达式替换：</p>
 <pre><code class="bash">import re
-with open(<span class="string">'stock.csv'</span>) as f:
+with open(&#39;stock.csv&#39;) as f:
     f_csv = csv.reader(f)
-    headers = [ re.sub(<span class="string">'[^a-zA-Z_]'</span>, <span class="string">'_'</span>, h) <span class="keyword">for</span> h <span class="keyword">in</span> next(f_csv) ]
-    Row = namedtuple(<span class="string">'Row'</span>, headers)
-    <span class="keyword">for</span> r <span class="keyword">in</span> f_csv:
+    headers = [ re.sub(&#39;[^a-zA-Z_]&#39;, &#39;_&#39;, h) for h in next(f_csv) ]
+    Row = namedtuple(&#39;Row&#39;, headers)
+    for r in f_csv:
         row = Row(*r)
-        <span class="comment"># Process row</span>
+        # Process row
         ...</code></pre>
 <p>还有重要的一点需要强调的是，csv产生的数据都是字符串类型的，它不会做任何其他类型的转换。 如果你需要做这样的类型转换，你必须自己手动去实现。 下面是一个在CSV数据上执行其他类型转换的例子：</p>
-<pre><code class="bash">col_types = [str, <span class="built_in">float</span>, str, str, <span class="built_in">float</span>, int]
-with open(<span class="string">'stocks.csv'</span>) as f:
+<pre><code class="bash">col_types = [str, float, str, str, float, int]
+with open(&#39;stocks.csv&#39;) as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
-        <span class="comment"># Apply conversions to the row items</span>
-        row = tuple(convert(value) <span class="keyword">for</span> convert, value <span class="keyword">in</span> zip(col_types, row))
+    for row in f_csv:
+        # Apply conversions to the row items
+        row = tuple(convert(value) for convert, value in zip(col_types, row))
         ...</code></pre>
 <p>另外，下面是一个转换字典中特定字段的例子：</p>
-<pre><code class="bash"><span class="built_in">print</span>(<span class="string">'Reading as dicts with type conversion'</span>)
-field_types = [ (<span class="string">'Price'</span>, <span class="built_in">float</span>),
-                (<span class="string">'Change'</span>, <span class="built_in">float</span>),
-                (<span class="string">'Volume'</span>, int) ]
+<pre><code class="bash">print(&#39;Reading as dicts with type conversion&#39;)
+field_types = [ (&#39;Price&#39;, float),
+                (&#39;Change&#39;, float),
+                (&#39;Volume&#39;, int) ]
 
-with open(<span class="string">'stocks.csv'</span>) as f:
-    <span class="keyword">for</span> row <span class="keyword">in</span> csv.DictReader(f):
+with open(&#39;stocks.csv&#39;) as f:
+    for row in csv.DictReader(f):
         row.update((key, conversion(row[key]))
-                <span class="keyword">for</span> key, conversion <span class="keyword">in</span> field_types)
-        <span class="built_in">print</span>(row)</code></pre>
+                for key, conversion in field_types)
+        print(row)</code></pre>
 <p>通常来讲，你可能并不想过多去考虑这些转换问题。 在实际情况中，CSV文件都或多或少有些缺失的数据，被破坏的数据以及其它一些让转换失败的问题。 因此，除非你的数据确实有保障是准确无误的，否则你必须考虑这些问题(你可能需要增加合适的错误处理机制)。</p>
 <p>最后，如果你读取CSV数据的目的是做数据分析和统计的话， 你可能需要看一看 Pandas 包。Pandas 包含了一个非常方便的函数叫 pandas.read_csv() ， 它可以加载CSV数据到一个 DataFrame 对象中去。 然后利用这个对象你就可以生成各种形式的统计、过滤数据以及执行其他高级操作了。 在6.13小节中会有这样一个例子。</p>
 
@@ -1121,13 +1086,6 @@ with open(<span class="string">'stocks.csv'</span>) as f:
 
               <time title="Created: 2020-07-22 11:20:26" itemprop="dateCreated datePublished" datetime="2020-07-22T11:20:26+00:00">2020-07-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1205,13 +1163,6 @@ with open(<span class="string">'stocks.csv'</span>) as f:
 
               <time title="Created: 2020-07-22 11:14:48" itemprop="dateCreated datePublished" datetime="2020-07-22T11:14:48+00:00">2020-07-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -1282,13 +1233,6 @@ with open(<span class="string">'stocks.csv'</span>) as f:
 
               <time title="Created: 2019-11-12 14:17:11" itemprop="dateCreated datePublished" datetime="2019-11-12T14:17:11+00:00">2019-11-12</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
 
           
 
@@ -1346,13 +1290,6 @@ with open(<span class="string">'stocks.csv'</span>) as f:
 
               <time title="Created: 2019-09-18 14:17:15" itemprop="dateCreated datePublished" datetime="2019-09-18T14:17:15+00:00">2019-09-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
 
           
 
@@ -1410,13 +1347,6 @@ with open(<span class="string">'stocks.csv'</span>) as f:
 
               <time title="Created: 2019-09-18 14:17:15" itemprop="dateCreated datePublished" datetime="2019-09-18T14:17:15+00:00">2019-09-18</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-04 01:24:25" itemprop="dateModified" datetime="2020-12-04T01:24:25+00:00">2020-12-04</time>
-              </span>
 
           
 

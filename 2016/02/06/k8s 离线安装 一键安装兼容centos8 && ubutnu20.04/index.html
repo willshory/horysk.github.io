@@ -28,7 +28,7 @@
 <meta property="og:description" content="K8S 是一个一键安装K8S高可用集群的软件。它可以帮助企业一键搭建完私有云系统，帮助用户在多家云服务商里灵活切换，不再被任何服务商绑架！ 对! 所有的操作只需要一键！ 有问题 咨询wechat: horysk kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.安装很简单， 一键安装，安装一个系统只需要 3 分钟, 安装好以后完整的监控也一并装好，可以直接使用。（不止支持">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2016-02-06T14:17:30.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:37.996Z">
+<meta property="article:modified_time" content="2016-02-06T14:17:30.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="k8s">
@@ -205,13 +205,6 @@
 
               <time title="Created: 2016-02-06 14:17:30" itemprop="dateCreated datePublished" datetime="2016-02-06T14:17:30+00:00">2016-02-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,7 +244,7 @@
 <h1 id="将一个新节点加入这个集群也只需要一个命令"><a href="#将一个新节点加入这个集群也只需要一个命令" class="headerlink" title="将一个新节点加入这个集群也只需要一个命令"></a>将一个新节点加入这个集群也只需要一个命令</h1><p>1条命令即可</p>
 <h1 id="将密钥复制到本地"><a href="#将密钥复制到本地" class="headerlink" title="将密钥复制到本地"></a>将密钥复制到本地</h1><p>cp ../k8skey.pem ./</p>
 <h1 id="将机器加入集群"><a href="#将机器加入集群" class="headerlink" title="将机器加入集群"></a>将机器加入集群</h1><p>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66</p>
-<p><a href="https://github.com/horysk/k8seasy_release_page" target="_blank" rel="noopener">github</a><br><a href="http://dl.k8seasy.com/" target="_blank" rel="noopener">link</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/horysk/k8seasy_release_page">github</a><br><a target="_blank" rel="noopener" href="http://dl.k8seasy.com/">link</a></p>
 <h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory" class="headerlink" title="报错: sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory"></a>报错: sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory</h2><p>执行如下</p>
 <p>lsmod |grep conntrack</p>
 <p>如何返回是空，表示没有加载，那执行如下命令加载即可</p>
@@ -260,7 +253,7 @@
 <p>[root@k8s-node-n2 ~]# lsmod |grep conntrack<br>nf_conntrack_ipv4 20480 0<br>nf_defrag_ipv4 16384 1 nf_conntrack_ipv4<br>nf_conntrack 114688 1 nf_conntrack_ipv4</p>
 <p>再重新手动刷新使文件生效就没有问题了</p>
 <p>sysctl -p /etc/sysctl.d/kubernetes.conf</p>
-<p><a href="https://www.jianshu.com/p/de4ae3812b04" target="_blank" rel="noopener">参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/de4ae3812b04">参考</a></p>
 
     </div>
 

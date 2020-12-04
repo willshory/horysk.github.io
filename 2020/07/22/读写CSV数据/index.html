@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="6.1 读写CSV数据More info: python3-cookbook问题你想读写一个CSV格式的文件。 解决方案对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样： 1234567Symbol,Price,Date,Time,Change,Volume&quot;AA&quot;,39.48,&quot;6&#x2F;11&#x2F;2007&quot;,&quot;9">
+  <meta name="description" content="6.1 读写CSV数据More info: python3-cookbook问题你想读写一个CSV格式的文件。 解决方案对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样： 1234567Symbol,Price,Date,Time,Change,Volume&quot;AA&quot;,39.48,&amp;quo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读写CSV数据">
 <meta property="og:url" content="http://blog.hory-ai.com/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:description" content="6.1 读写CSV数据More info: python3-cookbook问题你想读写一个CSV格式的文件。 解决方案对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样： 1234567Symbol,Price,Date,Time,Change,Volume&quot;AA&quot;,39.48,&quot;6&#x2F;11&#x2F;2007&quot;,&quot;9">
+<meta property="og:description" content="6.1 读写CSV数据More info: python3-cookbook问题你想读写一个CSV格式的文件。 解决方案对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样： 1234567Symbol,Price,Date,Time,Change,Volume&quot;AA&quot;,39.48,&amp;quo">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-22T11:56:31.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:modified_time" content="2020-07-22T11:56:31.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -204,13 +204,6 @@
 
               <time title="Created: 2020-07-22 11:56:31" itemprop="dateCreated datePublished" datetime="2020-07-22T11:56:31+00:00">2020-07-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,107 +225,107 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="6-1-读写CSV数据"><a href="#6-1-读写CSV数据" class="headerlink" title="6.1 读写CSV数据"></a>6.1 读写CSV数据</h2><p>More info: <a href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p01_read_write_csv_data.html" target="_blank" rel="noopener">python3-cookbook</a><br>问题<br>你想读写一个CSV格式的文件。</p>
+        <h2 id="6-1-读写CSV数据"><a href="#6-1-读写CSV数据" class="headerlink" title="6.1 读写CSV数据"></a>6.1 读写CSV数据</h2><p>More info: <a target="_blank" rel="noopener" href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p01_read_write_csv_data.html">python3-cookbook</a><br>问题<br>你想读写一个CSV格式的文件。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Symbol,Price,Date,Time,Change,Volume</span><br><span class="line"><span class="string">"AA"</span>,39.48,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.18,181800</span><br><span class="line"><span class="string">"AIG"</span>,71.38,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.15,195500</span><br><span class="line"><span class="string">"AXP"</span>,62.58,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.46,935000</span><br><span class="line"><span class="string">"BA"</span>,98.31,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,+0.12,104800</span><br><span class="line"><span class="string">"C"</span>,53.08,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.25,360900</span><br><span class="line"><span class="string">"CAT"</span>,78.29,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.23,225400</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Symbol,Price,Date,Time,Change,Volume</span><br><span class="line"><span class="string">&quot;AA&quot;</span>,39.48,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.18,181800</span><br><span class="line"><span class="string">&quot;AIG&quot;</span>,71.38,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.15,195500</span><br><span class="line"><span class="string">&quot;AXP&quot;</span>,62.58,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.46,935000</span><br><span class="line"><span class="string">&quot;BA&quot;</span>,98.31,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,+0.12,104800</span><br><span class="line"><span class="string">&quot;C&quot;</span>,53.08,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.25,360900</span><br><span class="line"><span class="string">&quot;CAT&quot;</span>,78.29,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.23,225400</span><br></pre></td></tr></table></figure>
 <p>下面向你展示如何将这些数据读取为一个元组的序列：</p>
 <pre><code class="bash">import csv
-with open(<span class="string">'stocks.csv'</span>) as f:
+with open(&#39;stocks.csv&#39;) as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
-        <span class="comment"># Process row</span>
+    for row in f_csv:
+        # Process row
         ...</code></pre>
 <p>在上面的代码中， row 会是一个列表。因此，为了访问某个字段，你需要使用下标，如 row[0] 访问Symbol， row[4] 访问Change。</p>
 <p>由于这种下标访问通常会引起混淆，你可以考虑使用命名元组。例如：</p>
 <pre><code class="bash">from collections import namedtuple
-with open(<span class="string">'stock.csv'</span>) as f:
+with open(&#39;stock.csv&#39;) as f:
     f_csv = csv.reader(f)
     headings = next(f_csv)
-    Row = namedtuple(<span class="string">'Row'</span>, headings)
-    <span class="keyword">for</span> r <span class="keyword">in</span> f_csv:
+    Row = namedtuple(&#39;Row&#39;, headings)
+    for r in f_csv:
         row = Row(*r)
-        <span class="comment"># Process row</span>
+        # Process row
         ...</code></pre>
 <p>它允许你使用列名如 row.Symbol 和 row.Change 代替下标访问。 需要注意的是这个只有在列名是合法的Python标识符的时候才生效。如果不是的话， 你可能需要修改下原始的列名(如将非标识符字符替换成下划线之类的)。</p>
 <p>另外一个选择就是将数据读取到一个字典序列中去。可以这样做：</p>
 <pre><code class="bash">import csv
-with open(<span class="string">'stocks.csv'</span>) as f:
+with open(&#39;stocks.csv&#39;) as f:
     f_csv = csv.DictReader(f)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
-        <span class="comment"># process row</span>
+    for row in f_csv:
+        # process row
         ...</code></pre>
 <p>在这个版本中，你可以使用列名去访问每一行的数据了。比如，row[‘Symbol’] 或者 row[‘Change’]</p>
 <p>为了写入CSV数据，你仍然可以使用csv模块，不过这时候先创建一个 writer 对象。例如:</p>
-<pre><code class="bash">headers = [<span class="string">'Symbol'</span>,<span class="string">'Price'</span>,<span class="string">'Date'</span>,<span class="string">'Time'</span>,<span class="string">'Change'</span>,<span class="string">'Volume'</span>]
-rows = [(<span class="string">'AA'</span>, 39.48, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.18, 181800),
-         (<span class="string">'AIG'</span>, 71.38, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.15, 195500),
-         (<span class="string">'AXP'</span>, 62.58, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.46, 935000),
+<pre><code class="bash">headers = [&#39;Symbol&#39;,&#39;Price&#39;,&#39;Date&#39;,&#39;Time&#39;,&#39;Change&#39;,&#39;Volume&#39;]
+rows = [(&#39;AA&#39;, 39.48, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.18, 181800),
+         (&#39;AIG&#39;, 71.38, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.15, 195500),
+         (&#39;AXP&#39;, 62.58, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.46, 935000),
        ]
 
-with open(<span class="string">'stocks.csv'</span>,<span class="string">'w'</span>) as f:
+with open(&#39;stocks.csv&#39;,&#39;w&#39;) as f:
     f_csv = csv.writer(f)
     f_csv.writerow(headers)
     f_csv.writerows(rows)</code></pre>
 <p>如果你有一个字典序列的数据，可以像这样做：</p>
-<pre><code class="bash">headers = [<span class="string">'Symbol'</span>, <span class="string">'Price'</span>, <span class="string">'Date'</span>, <span class="string">'Time'</span>, <span class="string">'Change'</span>, <span class="string">'Volume'</span>]
-rows = [{<span class="string">'Symbol'</span>:<span class="string">'AA'</span>, <span class="string">'Price'</span>:39.48, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
-        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.18, <span class="string">'Volume'</span>:181800},
-        {<span class="string">'Symbol'</span>:<span class="string">'AIG'</span>, <span class="string">'Price'</span>: 71.38, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
-        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.15, <span class="string">'Volume'</span>: 195500},
-        {<span class="string">'Symbol'</span>:<span class="string">'AXP'</span>, <span class="string">'Price'</span>: 62.58, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
-        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.46, <span class="string">'Volume'</span>: 935000},
+<pre><code class="bash">headers = [&#39;Symbol&#39;, &#39;Price&#39;, &#39;Date&#39;, &#39;Time&#39;, &#39;Change&#39;, &#39;Volume&#39;]
+rows = [&#123;&#39;Symbol&#39;:&#39;AA&#39;, &#39;Price&#39;:39.48, &#39;Date&#39;:&#39;6/11/2007&#39;,
+        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.18, &#39;Volume&#39;:181800&#125;,
+        &#123;&#39;Symbol&#39;:&#39;AIG&#39;, &#39;Price&#39;: 71.38, &#39;Date&#39;:&#39;6/11/2007&#39;,
+        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.15, &#39;Volume&#39;: 195500&#125;,
+        &#123;&#39;Symbol&#39;:&#39;AXP&#39;, &#39;Price&#39;: 62.58, &#39;Date&#39;:&#39;6/11/2007&#39;,
+        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.46, &#39;Volume&#39;: 935000&#125;,
         ]
 
-with open(<span class="string">'stocks.csv'</span>,<span class="string">'w'</span>) as f:
+with open(&#39;stocks.csv&#39;,&#39;w&#39;) as f:
     f_csv = csv.DictWriter(f, headers)
     f_csv.writeheader()
     f_csv.writerows(rows)</code></pre>
 <p>讨论<br>你应该总是优先选择csv模块分割或解析CSV数据。例如，你可能会像编写类似下面这样的代码：</p>
-<pre><code class="bash">with open(<span class="string">'stocks.csv'</span>) as f:
-<span class="keyword">for</span> line <span class="keyword">in</span> f:
-    row = line.split(<span class="string">','</span>)
-    <span class="comment"># process row</span>
+<pre><code class="bash">with open(&#39;stocks.csv&#39;) as f:
+for line in f:
+    row = line.split(&#39;,&#39;)
+    # process row
     ...</code></pre>
 <p>使用这种方式的一个缺点就是你仍然需要去处理一些棘手的细节问题。 比如，如果某些字段值被引号包围，你不得不去除这些引号。 另外，如果一个被引号包围的字段碰巧含有一个逗号，那么程序就会因为产生一个错误大小的行而出错。</p>
 <p>默认情况下，csv 库可识别Microsoft Excel所使用的CSV编码规则。 这或许也是最常见的形式，并且也会给你带来最好的兼容性。 然而，如果你查看csv的文档，就会发现有很多种方法将它应用到其他编码格式上(如修改分割字符等)。 例如，如果你想读取以tab分割的数据，可以这样做：</p>
-<pre><code class="bash"><span class="comment"># Example of reading tab-separated values</span>
-with open(<span class="string">'stock.tsv'</span>) as f:
-    f_tsv = csv.reader(f, delimiter=<span class="string">'\t'</span>)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_tsv:
-        <span class="comment"># Process row</span>
+<pre><code class="bash"># Example of reading tab-separated values
+with open(&#39;stock.tsv&#39;) as f:
+    f_tsv = csv.reader(f, delimiter=&#39;\t&#39;)
+    for row in f_tsv:
+        # Process row
         ...</code></pre>
 <p>如果你正在读取CSV数据并将它们转换为命名元组，需要注意对列名进行合法性认证。 例如，一个CSV格式文件有一个包含非法标识符的列头行，类似下面这样：</p>
 <p>Street Address,Num-Premises,Latitude,Longitude 5412 N CLARK,10,41.980262,-87.668452<br>这样最终会导致在创建一个命名元组时产生一个 ValueError 异常而失败。 为了解决这问题，你可能不得不先去修正列标题。 例如，可以像下面这样在非法标识符上使用一个正则表达式替换：</p>
 <pre><code class="bash">import re
-with open(<span class="string">'stock.csv'</span>) as f:
+with open(&#39;stock.csv&#39;) as f:
     f_csv = csv.reader(f)
-    headers = [ re.sub(<span class="string">'[^a-zA-Z_]'</span>, <span class="string">'_'</span>, h) <span class="keyword">for</span> h <span class="keyword">in</span> next(f_csv) ]
-    Row = namedtuple(<span class="string">'Row'</span>, headers)
-    <span class="keyword">for</span> r <span class="keyword">in</span> f_csv:
+    headers = [ re.sub(&#39;[^a-zA-Z_]&#39;, &#39;_&#39;, h) for h in next(f_csv) ]
+    Row = namedtuple(&#39;Row&#39;, headers)
+    for r in f_csv:
         row = Row(*r)
-        <span class="comment"># Process row</span>
+        # Process row
         ...</code></pre>
 <p>还有重要的一点需要强调的是，csv产生的数据都是字符串类型的，它不会做任何其他类型的转换。 如果你需要做这样的类型转换，你必须自己手动去实现。 下面是一个在CSV数据上执行其他类型转换的例子：</p>
-<pre><code class="bash">col_types = [str, <span class="built_in">float</span>, str, str, <span class="built_in">float</span>, int]
-with open(<span class="string">'stocks.csv'</span>) as f:
+<pre><code class="bash">col_types = [str, float, str, str, float, int]
+with open(&#39;stocks.csv&#39;) as f:
     f_csv = csv.reader(f)
     headers = next(f_csv)
-    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
-        <span class="comment"># Apply conversions to the row items</span>
-        row = tuple(convert(value) <span class="keyword">for</span> convert, value <span class="keyword">in</span> zip(col_types, row))
+    for row in f_csv:
+        # Apply conversions to the row items
+        row = tuple(convert(value) for convert, value in zip(col_types, row))
         ...</code></pre>
 <p>另外，下面是一个转换字典中特定字段的例子：</p>
-<pre><code class="bash"><span class="built_in">print</span>(<span class="string">'Reading as dicts with type conversion'</span>)
-field_types = [ (<span class="string">'Price'</span>, <span class="built_in">float</span>),
-                (<span class="string">'Change'</span>, <span class="built_in">float</span>),
-                (<span class="string">'Volume'</span>, int) ]
+<pre><code class="bash">print(&#39;Reading as dicts with type conversion&#39;)
+field_types = [ (&#39;Price&#39;, float),
+                (&#39;Change&#39;, float),
+                (&#39;Volume&#39;, int) ]
 
-with open(<span class="string">'stocks.csv'</span>) as f:
-    <span class="keyword">for</span> row <span class="keyword">in</span> csv.DictReader(f):
+with open(&#39;stocks.csv&#39;) as f:
+    for row in csv.DictReader(f):
         row.update((key, conversion(row[key]))
-                <span class="keyword">for</span> key, conversion <span class="keyword">in</span> field_types)
-        <span class="built_in">print</span>(row)</code></pre>
+                for key, conversion in field_types)
+        print(row)</code></pre>
 <p>通常来讲，你可能并不想过多去考虑这些转换问题。 在实际情况中，CSV文件都或多或少有些缺失的数据，被破坏的数据以及其它一些让转换失败的问题。 因此，除非你的数据确实有保障是准确无误的，否则你必须考虑这些问题(你可能需要增加合适的错误处理机制)。</p>
 <p>最后，如果你读取CSV数据的目的是做数据分析和统计的话， 你可能需要看一看 Pandas 包。Pandas 包含了一个非常方便的函数叫 pandas.read_csv() ， 它可以加载CSV数据到一个 DataFrame 对象中去。 然后利用这个对象你就可以生成各种形式的统计、过滤数据以及执行其他高级操作了。 在6.13小节中会有这样一个例子。</p>
 

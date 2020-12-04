@@ -28,7 +28,7 @@
 <meta property="og:description" content="How to crack hexo simple encrypted blog？事发下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…） 我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。 分析我的blog现在是用额hexo的the next主题加各种自定义">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-29T10:42:32.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:modified_time" content="2020-07-29T10:42:32.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Hack">
@@ -205,13 +205,6 @@
 
               <time title="Created: 2020-07-29 10:42:32" itemprop="dateCreated datePublished" datetime="2020-07-29T10:42:32+00:00">2020-07-29</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -236,7 +229,7 @@
         <h1 id="How-to-crack-hexo-simple-encrypted-blog？"><a href="#How-to-crack-hexo-simple-encrypted-blog？" class="headerlink" title="How to crack hexo simple encrypted blog？"></a>How to crack hexo simple encrypted blog？</h1><h2 id="事发"><a href="#事发" class="headerlink" title="事发"></a>事发</h2><p>下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…）</p>
 <p>我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我的blog现在是用额hexo的the next主题加各种自定义特效，因为搭建时间其实很早，所以当时使用了一种简单的js逻辑来加密blog。下面我们来看下这段有安全问题的代码：<br>代码位置： yourblog/themes/next/layout/custom/head.swig</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</span><br><span class="line">                alert(<span class="string">'密码错误'</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">&#x27;请输入密码&#x27;</span>) !== <span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">                alert(<span class="string">&#x27;密码错误&#x27;</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
 <p>乍看是否觉得除了逻辑简单没什么问题，然而眼尖的小伙伴分析出了第一个隐患：history.back(); ，而我已知静态页面的安全隐患。接下来我们逐个分析。</p>
 <h2 id="istory-back"><a href="#istory-back" class="headerlink" title="istory.back()"></a>istory.back()</h2><p>back() 方法可加载历史列表中的前一个 URL（如果存在）。如果你的前一个URL就是这个文章的URL，那么恭喜，第一种破解方法get。（不理解，看下一条）</p>
 <h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>hexo g 会根据blog相关文件在public目录下生成blog的所有静态文件。既然是已经生成好的静态页面，实际上html中包含了那段js代码的。因为需要获得html了之后才会触发那个页面访问加密的js，而理论上当我们获取到html页面之后，就可以停止当前页的js操作了。<br>That is to say, 你的blog word就是直接写在页面中的，虽然直接url去访问会弹alert，但是用curl直接获取这个页面的html，可以直接搜索到文章的访问密码, 分分钟攻破此种博文加密方式。上面利用history.back()的访问破解方式，归根结底也是这个问题引起的。</p>
@@ -248,7 +241,7 @@
 <p>visit_password</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试新文章加密</span><br><span class="line">date: </span><br><span class="line">category: hexo</span><br><span class="line">keywords: 博客文章密码</span><br><span class="line">password: yourpassword</span><br><span class="line">abstract: hexo密码测试</span><br><span class="line">message:  输入密码，查看文章</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 <h2 id="反省总结"><a href="#反省总结" class="headerlink" title="反省总结"></a>反省总结</h2><p>这个事件，其实属于网络安全中最常见的问题“人的安全意识”，比如这个blog加密方案有访问漏洞，我是知道的，但是拖延症导致我没有足够重视这个问题（因为自己总是想着加密过的东西其实被看到也无妨，毕竟正要保密也不会发出来了balabala），结果一直没去修复（即使实际修复这个问题只需要10分钟），直到被小伙伴测试到bug才动手修复。</p>
-<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html" target="_blank" rel="noopener">link</a></p>
+<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a target="_blank" rel="noopener" href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html">link</a></p>
 
     </div>
 

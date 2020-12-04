@@ -28,7 +28,7 @@
 <meta property="og:description" content="1、Docker导入本地镜像有时候我们自己在本地或者其它小伙伴电脑上拷贝了一份镜像，有了这个镜像之后，我们可以把本地的镜像导入，使用docker import 命令。 例如这里下载了一个 alibaba-rocketmq-3.2.6.tar.gz 镜像文件，使用下列命令导入： 12345678[root@rocketmq-nameserver4 dev]# cat alibaba-rocketmq">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-24T19:39:05.000Z">
-<meta property="article:modified_time" content="2020-12-03T10:33:37.992Z">
+<meta property="article:modified_time" content="2020-07-24T19:39:05.000Z">
 <meta property="article:author" content="Hory Skone">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
@@ -204,13 +204,6 @@
 
               <time title="Created: 2020-07-24 19:39:05" itemprop="dateCreated datePublished" datetime="2020-07-24T19:39:05+00:00">2020-07-24</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-12-03 10:33:37" itemprop="dateModified" datetime="2020-12-03T10:33:37+00:00">2020-12-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -234,16 +227,16 @@
       
         <h1 id="1、Docker导入本地镜像"><a href="#1、Docker导入本地镜像" class="headerlink" title="1、Docker导入本地镜像"></a>1、Docker导入本地镜像</h1><p>有时候我们自己在本地或者其它小伙伴电脑上拷贝了一份镜像，有了这个镜像之后，我们可以把本地的镜像导入，使用docker import 命令。</p>
 <p>例如这里下载了一个 alibaba-rocketmq-3.2.6.tar.gz 镜像文件，使用下列命令导入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># cat alibaba-rocketmq-3.2.6.tar.gz | docker import - rocketmq:3.2.6(镜像名自己定义)</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">rocketmq                     <span class="number">3.2</span><span class="number">.6</span>               <span class="number">53925</span>d1cf9f0        <span class="number">23</span> seconds ago      <span class="number">14</span>MB</span><br><span class="line">my/python                    v1                  <span class="number">36</span>b6e288656c        <span class="number">2</span> days ago          <span class="number">281</span>MB</span><br><span class="line">my/centos_width_python       v1<span class="number">.0</span><span class="number">.1</span>              <span class="number">36</span>b6e288656c        <span class="number">2</span> days ago          <span class="number">281</span>MB</span><br><span class="line">my/sinatra                   v2                  <span class="number">8</span>ba1d6a3ce4e        <span class="number">2</span> days ago          <span class="number">453</span>MB</span><br><span class="line">hello-world                  latest              <span class="number">725</span>dcfab7d63        <span class="number">4</span> months ago        <span class="number">1.84</span>kB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># cat alibaba-rocketmq-3.2.6.tar.gz | docker import - rocketmq:3.2.6(镜像名自己定义)</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">rocketmq                     <span class="number">3.2</span><span class="number">.6</span>               53925d1cf9f0        <span class="number">23</span> seconds ago      14MB</span><br><span class="line">my/python                    v1                  36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/centos_width_python       v1<span class="number">.0</span><span class="number">.1</span>              36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/sinatra                   v2                  8ba1d6a3ce4e        <span class="number">2</span> days ago          453MB</span><br><span class="line">hello-world                  latest              725dcfab7d63        <span class="number">4</span> months ago        <span class="number">1.84</span>kB</span><br></pre></td></tr></table></figure>
 <p>​<br>可以看到导入完成后，docker为我们生成了一个镜像ID，使用docker images也可以看到我们刚刚从本地导入的镜像。</p>
 <p>注意镜像文件必须是tar.gz类型的文件。</p>
 <h1 id="2、保存镜像"><a href="#2、保存镜像" class="headerlink" title="2、保存镜像"></a>2、保存镜像</h1><p>先根据已有的这个容器来提交一个新的镜像，提交时需要用到容器ID。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit –m “rocketmq” –a “zmc” d8990fec2141 rocketmq</span><br></pre></td></tr></table></figure>
 <p>我们的镜像做好之后，我们要保存起来，以供备份使用，该怎么做？使用docker save命令，保存镜像到本地。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker save -o rocketmq.tar rocketmq ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过"docker images"查看</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># ll</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker save -o rocketmq.tar rocketmq ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过&quot;docker images&quot;查看</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># ll </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>rocketmq.tar为刚保存的镜像</p>
 <h1 id="3、载入镜像"><a href="#3、载入镜像" class="headerlink" title="3、载入镜像"></a>3、载入镜像</h1><p>我们有了本地的镜像文件，在需要的时候可以使用docker load将本地保存的镜像再次导入docker中。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load --input rocketmq.tar 或 docker load &lt; rocketmq.tar</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load --<span class="built_in">input</span> rocketmq.tar 或 docker load &lt; rocketmq.tar</span><br></pre></td></tr></table></figure>
 
 
 <h1 id="4、删除镜像"><a href="#4、删除镜像" class="headerlink" title="4、删除镜像"></a>4、删除镜像</h1><p>有些镜像过时了，我们需要删除。使用如下的命令：docker rmi -f image_id ##-f：表示强制删除镜像；image_id：镜像id</p>
