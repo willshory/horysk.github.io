@@ -129,17 +129,17 @@
   </entry>
   <entry>
     <title>186606598926</title>
-    <url>/2018/06/09/186606598926/</url>
+    <url>/2017/07/09/186606598926/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>195640956464</title>
-    <url>/2019/09/18/195640956464/</url>
+    <url>/2017/09/18/195640956464/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>1956409564654</title>
-    <url>/2019/11/12/1956409564654/</url>
+    <url>/2017/11/02/1956409564654/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -2799,7 +2799,7 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
   <entry>
     <title>个人资料-horysk</title>
     <url>/2015/09/10/%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90/</url>
-    <content><![CDATA[<p><a href="http://www.hory-ai.com/">horysk</a><br><a href="http://blog.csdn.net/sirobot">hory-csdn</a><br><a href="https://www.zhihu.com/people/AI_HH">hory-zhihu</a><br><a href="https://www.kaggle.com/skhory">kaggle</a><br><a href="https://www.kingname.info/about/">高级数据挖掘工程师-谢乾坤</a><br><a href="http://www.scutmath.com/ubuntu_vnc.html">清风的技术小屋</a><br><a href="https://blog.fullstackpentest.com/">python CTF</a><br><a href="https://www.cnblogs.com/llongst/p/9482038.html">HyperLedger Fabric 1.4 基础环境搭建</a><br><a href="https://www.dazhuanlan.com/2019/08/21/5d5c524f315e1/">大专栏</a><br><a href="https://yuehuaxw.com/2019/03/07/Gitlab%E5%AE%9E%E7%8E%B0CI-CD/">广华</a><br><a href="https://blog.stanley.wang/">k8s</a><br><a href="https://www.mls-tech.info/docker/k8s-installation-on-ubuntu1804/">utuntu k8s 梅老师</a><br><a href="https://jimmysong.io/kubernetes-handbook/practice/install-kubernetes-on-ubuntu-server-16.04-with-kubeadm.html">云原生 k8s</a><br><a href="https://blog.piaoruiqing.com/2019/09/17/kubernetes-1-installation/">centos  k8s</a><br><a href="https://github.com/KubeOperator">KubeOperator </a><br><a href="https://kuboard.cn/install/sealos/#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%E7%89%B9%E6%80%A7">kuboard  离线</a></p>
+    <content><![CDATA[<p><a href="http://www.hory-ai.com/">horysk</a><br><a href="http://blog.csdn.net/sirobot">hory-csdn</a><br><a href="https://www.zhihu.com/people/AI_HH">hory-zhihu</a><br><a href="https://www.kaggle.com/skhory">kaggle</a><br><a href="https://www.kingname.info/about/">高级数据挖掘工程师-谢乾坤</a><br><a href="http://www.scutmath.com/ubuntu_vnc.html">清风的技术小屋</a><br><a href="https://blog.fullstackpentest.com/">python CTF</a><br><a href="https://www.cnblogs.com/llongst/p/9482038.html">HyperLedger Fabric 1.4 基础环境搭建</a><br><a href="https://www.dazhuanlan.com/2019/08/21/5d5c524f315e1/">大专栏</a><br><a href="https://yuehuaxw.com/2019/03/07/Gitlab%E5%AE%9E%E7%8E%B0CI-CD/">广华</a><br><a href="https://blog.stanley.wang/">k8s</a><br><a href="https://www.mls-tech.info/docker/k8s-installation-on-ubuntu1804/">utuntu k8s 梅老师</a><br><a href="https://jimmysong.io/kubernetes-handbook/practice/install-kubernetes-on-ubuntu-server-16.04-with-kubeadm.html">云原生 k8s</a><br><a href="https://blog.piaoruiqing.com/2019/09/17/kubernetes-1-installation/">centos  k8s</a><br><a href="https://github.com/KubeOperator">KubeOperator </a><br><a href="https://kuboard.cn/install/sealos/#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%E7%89%B9%E6%80%A7">kuboard  离线</a><br><a href="https://yeasy.gitbook.io/docker_practice/setup/kubeadm">docker k8s  从入门到实战</a></p>
 <h1 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h1><p><a href="https://danieljyc.github.io/page/2/">ML</a><br><a href="https://morvanzhou.github.io/">莫烦python</a><br><a href="https://support.minitab.com/zh-cn/minitab/18/getting-started/graphing-data/">Minitab </a><br><a href="http://dblab.xmu.edu.cn/blog/1709-2/">python spark</a><br><a href="https://zhuanlan.zhihu.com/p/64413000">power BI</a><br><a href="https://www.quantinfo.com/Source">宽客在线</a></p>
 <h1 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h1><p><a href="https://www.fanqiangzhe.com/post/free-vpn-guide/">fanqiangzhe</a><br><a href="https://hide.me/en/promotion/vpnmentor/?free=1&friend=vpnMentor&banner=3622e812&chan=orgfr&data1=eyJwaWQiOiJLRzY3M1RaUUJFVDkwIiwiY2lkIjoiS0c2NzNVMVcyT0NZQiJ9_cor147230774&data2=D202010120213_o">hide.me</a><br><a href="https://protonvpn.com/?url_id=0&utm_campaign=ww-all-2a-vpn-gro_aff-tune&utm_medium=link&utm_source=aid-1005&utm_content=6">protonvpn</a><br><a href="https://www.opera.com/features/free-vpn">opera</a><br><a href="https://www.tunnelbear.com/account/signup">tunnelbear</a><br><a href="https://www.hotspotshield.com/free-vpn/">hotspotshield</a><br><a href="https://www.expressvpn.com/?oid=0">expressvpn</a><br><a href="https://windscribe.com/upgrade">windscribe</a><br><a href="https://free-vpn.en.softonic.com/">free-vpn</a><br><a href="https://protonvpn.com/download">protovpn</a><br><a href="https://akawa.ink/2019/01/11/docker-pptp-vpn-l2tp-ipsec-vpn">Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN</a><br><a href="http://www.yangfan.cc/stock/1570.html">程序化交易量化资源资源</a><br><a href="https://zhuanlan.zhihu.com/p/102154074">vnpy源码解析</a><br><a href="http://www.snailtoday.com/archives/15501">vnpy源码阅读</a></p>
 <h1 id="PDF"><a href="#PDF" class="headerlink" title="PDF"></a>PDF</h1><p><a href="http://so.tushugu.com/">pdf 搜书</a><br><a href="http://www.xwood.net/_site_domain_/_root/5870/5930/5932/t_c265768.html">集体智慧编程</a><br><a href="https://wizardforcel.gitbooks.io/python-quant-uqer/content/16.html">python 量化分析师手册</a><br><a href="https://www.guhai.com.cn/search.html">股海网</a><br><a href="http://www.7help.net/826.html">金融pdf</a></p>
@@ -4168,5 +4168,23 @@ if __name__ == &#39;__main__&#39;:
         <tag>quant</tag>
         <tag>ML</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/12/04/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
