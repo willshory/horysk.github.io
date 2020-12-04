@@ -185,6 +185,130 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/" class="post-title-link" itemprop="url">zip压缩工具、tar打包、打包并压缩</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-24 10:29:49" itemprop="dateCreated datePublished" datetime="2020-07-24T10:29:49+00:00">2020-07-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>#　一、zip压缩工具</p>
+<p>在Windows和Linux中都常用。可以压缩目录和文件，压缩目录时，需要指定目录下的文件。压缩后源文件不删除。示例：</p>
+<h2 id="zip-1-txt-zip-1-txt-（压缩文件，先目标文件名，再源文件名）"><a href="#zip-1-txt-zip-1-txt-（压缩文件，先目标文件名，再源文件名）" class="headerlink" title="zip 1.txt.zip 1.txt （压缩文件，先目标文件名，再源文件名）"></a>zip 1.txt.zip 1.txt （压缩文件，先目标文件名，再源文件名）</h2><p> adding: 1.txt (deflated 64%)</p>
+<p>压缩目录时需要加上-r选项，如下：</p>
+<h2 id="zip-r-1-txt-zip-1"><a href="#zip-r-1-txt-zip-1" class="headerlink" title="zip -r 1.txt.zip 1/"></a>zip -r 1.txt.zip 1/</h2><p> adding: 1/ (stored 0%)</p>
+<p> adding: 1/11/ (stored 0%)</p>
+<p> adding: 1/11/111/ (stored 0%)</p>
+<p> adding: 1/1.txt (stored 0%)</p>
+<p>unzip命令：解压.zip格式的文件。</p>
+<p>若没有该命令，用yum工具安装。</p>
+<p>示例：</p>
+<h2 id="unzip-3-txt-zip"><a href="#unzip-3-txt-zip" class="headerlink" title="unzip 3.txt.zip"></a>unzip 3.txt.zip</h2><p>Archive:  3.txt.zip</p>
+<p>replace 1/1.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: y  (因为原来的文件还在，询问是否覆盖）</p>
+<p>extracting: 1/1.txt</p>
+<p>-d：解压时指定路径。不可指定文件名，加了文件名的话会生成一个以设定的文件名为名字的目录，再将解压的文件放在该目录下。</p>
+<h2 id="unzip-1-txt-zip-d-md2"><a href="#unzip-1-txt-zip-d-md2" class="headerlink" title="unzip 1.txt.zip -d md2/"></a>unzip 1.txt.zip -d md2/</h2><p>Archive:  1.txt.zip</p>
+<p> inflating: md2/1.txt              </p>
+<p>  creating: md2/1/</p>
+<p>extracting: md2/1/1.txt</p>
+<p>zip工具没有zcat那类的cat工具，唯一能用unzip -l+压缩文件名，查看压缩包内的文件列表。</p>
+<h1 id="二、tar打包"><a href="#二、tar打包" class="headerlink" title="二、tar打包"></a>二、tar打包</h1><p>tar本身就是一个打包工具，可以把目录打包成文件，把所有文件整合成一个大文件，方便复制或移动。打包后原文件不删除。</p>
+<p>格式：tar [-zjxcvfpP] filename tar</p>
+<p>-z：同时用gzip压缩。</p>
+<p>-j：同时用bzip2压缩。</p>
+<p>-J：同时用xz压缩。</p>
+<p>-x：解包或解压缩。</p>
+<p>-t：查看tar包里的文件。</p>
+<p>-c：建立一个tar包或者压缩文件包。</p>
+<p>-v：显示操作过程。</p>
+<p>-f：后跟文件名，表示压缩后的文件名为filename，或者解压文件filename。</p>
+<p>多个参数组合的情况下，把-f写到最后面。</p>
+<p>-p：使用原文件的属性。不常用。</p>
+<p>-P：可使用绝对路径。不常用。</p>
+<p>–exclude filename：在打包或压缩时，不要将filename文件包括在内。排除文件或目录，不常用。</p>
+<p>-f参数后先跟目标文件名，再跟需打包的文件或目录。</p>
+<p>示例：</p>
+<h2 id="tar-cf-test-tar-test（建立tar包，文件名，再建立一个同样的会覆盖之前的）"><a href="#tar-cf-test-tar-test（建立tar包，文件名，再建立一个同样的会覆盖之前的）" class="headerlink" title="tar -cf test.tar test（建立tar包，文件名，再建立一个同样的会覆盖之前的）"></a>tar -cf test.tar test（建立tar包，文件名，再建立一个同样的会覆盖之前的）</h2><h2 id="tar-xvf-test-tar-test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）"><a href="#tar-xvf-test-tar-test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）" class="headerlink" title="tar -xvf   test.tar test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）"></a>tar -xvf   test.tar test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）</h2><p>test/</p>
+<p>test/abc/</p>
+<p>test/abc/AC/</p>
+<p>test/12.txt</p>
+<h2 id="tar-tf-test-tar-（查看tar包内的文件）"><a href="#tar-tf-test-tar-（查看tar包内的文件）" class="headerlink" title="tar -tf test.tar （查看tar包内的文件）"></a>tar -tf test.tar （查看tar包内的文件）</h2><p>test/</p>
+<p>test/abc/</p>
+<p>test/abc/AC/</p>
+<p>test/12.txt</p>
+<p>–exclude用法：可使用“*.txt”等。</p>
+<h2 id="mkdir-test111-test222"><a href="#mkdir-test111-test222" class="headerlink" title="mkdir test111/test222"></a>mkdir test111/test222</h2><h2 id="tar-cvf-test111-tar-–exclude-test222-test111"><a href="#tar-cvf-test111-tar-–exclude-test222-test111" class="headerlink" title="tar -cvf test111.tar –exclude test222 test111"></a>tar -cvf test111.tar –exclude test222 test111</h2><p>test111/</p>
+<p>test111/1.txt</p>
+<p>这样就不会将test222目录打包进来。</p>
+<p>三、打包并压缩</p>
+<p>tar可在打包时直接压缩，支持gzip压缩、bzip2压缩和xz压缩。</p>
+<p>使用-z选项可压缩成gzip格式的文件，示例：</p>
+<h2 id="tar-czvf-test123-tar-gz-test"><a href="#tar-czvf-test123-tar-gz-test" class="headerlink" title="tar -czvf test123.tar.gz test"></a>tar -czvf test123.tar.gz test</h2><p>test/</p>
+<p>test/abc/</p>
+<p>test/abc/AC/</p>
+<p>test/12.txt</p>
+<p>test/test123.tar.gz</p>
+<p>test/test12.tar.gz</p>
+<h2 id="tar-xvzf-test123-tar-gz-（可用-zx选项，解压-tar-gz格式的压缩包）"><a href="#tar-xvzf-test123-tar-gz-（可用-zx选项，解压-tar-gz格式的压缩包）" class="headerlink" title="tar -xvzf test123.tar.gz （可用-zx选项，解压.tar.gz格式的压缩包）"></a>tar -xvzf test123.tar.gz （可用-zx选项，解压.tar.gz格式的压缩包）</h2><p>-j和-J是同样的用法。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1372,74 +1496,6 @@ with open(&#39;stocks.csv&#39;) as f:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">股票作手回忆录--杰西·利弗莫尔尔操盘术 笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-18 14:17:10" itemprop="dateCreated datePublished" datetime="2019-06-18T14:17:10+00:00">2019-06-18</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>作者的建议，几乎就是投机交易要旨的全部，剩下的，唯有执行二字而已。</p>
-<h2 id="1-【Chapter-5】不要失去你的头寸"><a href="#1-【Chapter-5】不要失去你的头寸" class="headerlink" title="1. 【Chapter 5】不要失去你的头寸"></a>1. 【Chapter 5】不要失去你的头寸</h2><p>行情总是沿着阻力最小的方向运动，不会永涨不跌，也不可能永跌不涨；<br>大多数时间内，多空力量在一个区间中不停地强弱变换，走出震荡行情；<br>当一段时间内多空双方中某一方力量明显强势时，会走出一波趋势行情；<br>行情处于趋势状态时，相较于震荡状态，方向更明确，更容易获取利润；<br>几乎所有人都能够轻易看出来，行情目前是处于趋势状态还是震荡状态；<br>但没人能够永远精确知晓多空双方力量何时会达到平衡并开始发生转换；<br>因此，在趋势行情中，比起努力做到高抛低吸回转交易获取额外利润，持仓直至趋势结束不失为一种好选择；<br>在行情中不应过分担忧趋势是否会立即反转，预测最高点的难度与抛在最高点并反向开空的难度一样高；</p>
-<h2 id="2-【Chapter-8】在多头市场看多，在空头市场看空"><a href="#2-【Chapter-8】在多头市场看多，在空头市场看空" class="headerlink" title="2. 【Chapter 8】在多头市场看多，在空头市场看空"></a>2. 【Chapter 8】在多头市场看多，在空头市场看空</h2><p>当判断趋势即将出现时，比起在判断多空反转时进入，不如等待趋势确定启动后进入，虽然此时入场会错失多空反转后的一波运动，但也避免判断错误而可能造成的损失，总体而言，成功率更好，获利也更为客观；<br>同样的，当判断趋势即将结束时，比起在判断多空即将反转时离场，不如等行情盘整并开始反转后离场，虽然这样会错过一部分利润，但相比起错失之后可能的行情延续，这些代价是值得的；</p>
-<h2 id="3-【Chapter-10】总有一个错误在你前边"><a href="#3-【Chapter-10】总有一个错误在你前边" class="headerlink" title="3. 【Chapter 10】总有一个错误在你前边"></a>3. 【Chapter 10】总有一个错误在你前边</h2><p>与其抄底，不如等待行情启动后再买入，虽然相对价格较高，但因确定性更强，因此风险更低；<br>即便如此，对行情启动与否的判断，依然有误判的可能，此时应坚决止损，并视之为使用该策略的正常成本，不必太过在意，因这些成本当行情出现时即可轻松挽回；<br>不应贪图行情启动前的局部波段，做确定性较小的交易，造成额外亏损；</p>
-<h2 id="4-【Chapter-12】股市不会为你的皮大衣付钱"><a href="#4-【Chapter-12】股市不会为你的皮大衣付钱" class="headerlink" title="4. 【Chapter 12】股市不会为你的皮大衣付钱"></a>4. 【Chapter 12】股市不会为你的皮大衣付钱</h2><p>任何时候做交易都应当保持独立决策，完全为自己的交易负责，可以听取他人的意见及建议作为参考，但最终应当依据自己的交易系统而非依赖他人的指点或判断；</p>
-<h2 id="5-【Chapter-13】身为投机客，我的事业是始终支持自己的判断"><a href="#5-【Chapter-13】身为投机客，我的事业是始终支持自己的判断" class="headerlink" title="5. 【Chapter 13】身为投机客，我的事业是始终支持自己的判断"></a>5. 【Chapter 13】身为投机客，我的事业是始终支持自己的判断</h2><p>交易的技术和技巧可以被交流和探讨，但在交易过程中，应始终坚持自己的操作，不可由他人代为操作，也不可仅凭他人指令进行操作；</p>
-<h2 id="6-【Chapter-14】抓住空头回补的理想时机"><a href="#6-【Chapter-14】抓住空头回补的理想时机" class="headerlink" title="6. 【Chapter 14】抓住空头回补的理想时机"></a>6. 【Chapter 14】抓住空头回补的理想时机</h2><p>l 获取盈利不仅仅依靠个人的交易能力，更取决于行情的波动；<br>当市场没有行情时，即使连利弗莫尔也无法赚到钱，此时所能做的只有耐心等待机遇的出现，盲目交易只会导致更多的亏损；<br>当只剩下一次交易机会且必须盈利时（如：面临总额止损/最大回撤止损时），应当极其谨慎，避免绝大多数胜率不够高的交易，努力研究并耐心等待机遇的出现，当时机到来时牢牢把握住；<br>不应将自己的交易建立在对未来未知事件的猜测或其它方式的判断之上，这类交易与赌博无异；<br>相反地，依据未来事件发生的结果顺势进行交易，成功率更高，收益也会很不错；</p>
-<h2 id="7-【Chapter-18】投机客的勇气就是有信心根据自己的决定行动"><a href="#7-【Chapter-18】投机客的勇气就是有信心根据自己的决定行动" class="headerlink" title="7. 【Chapter 18】投机客的勇气就是有信心根据自己的决定行动"></a>7. 【Chapter 18】投机客的勇气就是有信心根据自己的决定行动</h2><p>当发现自己判断发生错误时，应当果断平仓，乃至顺势反向开仓；<br>不可因为自己当前仓位方向而预期乃至于期待行情走势，而应以行情走势检验自己仓位的正确与否，一旦错误即应立即择机平仓；</p>
-<h2 id="8-【Chapter-21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润"><a href="#8-【Chapter-21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润" class="headerlink" title="8. 【Chapter 21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润"></a>8. 【Chapter 21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润</h2><p>永远不要责备行情走势不同于自己预期，更不应为此抱怨或懊恼，而应当认识到自己判断错误，承认问题，吸取经验；</p>
-<h2 id="9-【Chapter-24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润"><a href="#9-【Chapter-24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润" class="headerlink" title="9. 【Chapter 24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润"></a>9. 【Chapter 24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润</h2><p>市场永远领先于实际状况，在交易时，不必过于追究行情波动的原因与理由，而应及时作出相应应对；</p>
-<h2 id="10-【其它】"><a href="#10-【其它】" class="headerlink" title="10.【其它】"></a>10.【其它】</h2><p>利弗莫尔的交易能力强于绝大多数人，也曾在交易中赚取极多的利润，但最终依然破产，一贫如洗；<br>在交易世界里，生存比盈利更重要，只有将良好的资金管理与风险控制永远放在第一位，才能避免类似利弗莫尔的结局；<br>永远不要让自己破产，更不可让自己因交易而负债；<br>如果因为资金不够而无法获得更多的利润，那只能说明这些可能获得的额外利润并不是目前所应当得到的，不可因过分贪婪而急于冒进，承担额外的风险；</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1509,7 +1565,7 @@ with open(&#39;stocks.csv&#39;) as f:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
