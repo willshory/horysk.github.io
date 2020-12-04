@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="pyppeteer简介Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyppeteer使用及docker中产生大量僵尸进程的解决方法">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="pyppeteer简介Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 w">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-23T16:50:35.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.000Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="pyppeteer">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>pyppeteer使用及docker中产生大量僵尸进程的解决方法 | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pyppeteer使用及docker中产生大量僵尸进程的解决方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-23 16:50:35" itemprop="dateCreated datePublished" datetime="2020-07-23T16:50:35+00:00">2020-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/pyppeteer/" itemprop="url" rel="index"><span itemprop="name">pyppeteer</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="pyppeteer简介"><a href="#pyppeteer简介" class="headerlink" title="pyppeteer简介"></a>pyppeteer简介</h3><p>Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 web 应用自动化测试的行业标杆。使用 Puppeteer，相当于同时具有 Linux 和 Chrome 双端的操作能力，应用场景可谓非常之多。此仓库的建立，即是尝试各种折腾使用 GoogleChrome Puppeteer；以期在好玩的同时，学到更多有意思的操作。<br>而pyppeteer 是对无头浏览器 puppeteer的 Python 封装，可以让你使用python来操作Chrome。</p>
+<p><a href="https://www.lagou.com/lgeduarticle/github.com/miyakogi/pyppeteer" target="_blank" rel="noopener">Pyppeteer的GIT</a><br><a href="https://miyakogi.github.io/pyppeteer/reference.html" target="_blank" rel="noopener">Pyppeteer官方文档</a></p>
+<p>使用过程中的问题<br>pyppeteer api提供的close（）命令无法真正的关闭浏览器，会造成很多的僵尸进程<br>websockets 版本太高导致报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close<br>chromium浏览器多开页面卡死问题<br>浏览器窗口很大，内容显示很小的问题<br>pyppeteer使用</p>
+<h3 id="pyppeteer安装"><a href="#pyppeteer安装" class="headerlink" title="pyppeteer安装"></a>pyppeteer安装</h3><pre><code class="bash">python3 -m pip install pyppeteer
+</code></pre>
+<p>在初次使用pyppeteer的时候他会自动下载chromium（看心情，大部分情况下可以用龟速形容），或者直接去官网下载最新版的浏览器然后在代码中指定浏览器的路径。<br><a href="https://download-chromium.appspot.com/" target="_blank" rel="noopener">chromium下载地址</a></p>
+<p>简单入门</p>
+<pre><code class="bash">import asynciofrom pyppeteer import launch
+
+async def main():
+    <span class="comment"># 创建一个浏览器</span>
+    browser = await launch({
+        <span class="string">'executablePath'</span>: <span class="string">'你下载的Chromium.app/Contents/MacOS/Chromium'</span>,
+    })
+    <span class="comment"># 打开一个页面，同一个browser可以打开多个页面</span>
+    page = await browser.newPage()
+    await page.goto(<span class="string">'https://baidu.com'</span>) <span class="comment"># 访问指定页面</span>
+    await page.screenshot(path=<span class="string">'example.png'</span>)  <span class="comment"># 截图</span>
+    await page.close() <span class="comment"># 关闭页面</span>
+    await browser.close() <span class="comment"># 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）</span>
+
+asyncio.get_event_loop().run_until_complete(main()）</code></pre>
+<p>运行上面这一段代码会产生一张页面截图，如果在运行中报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close可以通过降低websockets 版本来解决</p>
+<pre><code class="bash">pip uninstall websockets <span class="comment">#卸载websockets</span>
+pip install websockets==6.0
+或者
+pip install websockets==6.0 --force-reinstall <span class="comment">#指定安装6.0版本</span></code></pre>
+<h3 id="重要参数设置及方法"><a href="#重要参数设置及方法" class="headerlink" title="重要参数设置及方法"></a>重要参数设置及方法</h3><pre><code class="bash">import asynciofrom pyppeteer import launch
+
+
+async def intercept_request(req):
+    <span class="comment"># 不加载css和img等资源</span>
+    <span class="keyword">if</span> req.resourceType <span class="keyword">in</span> [<span class="string">"image"</span>, <span class="string">"media"</span>, <span class="string">"eventsource"</span>, <span class="string">"websocket"</span>, <span class="string">"stylesheet"</span>, <span class="string">"font"</span>]:
+        await req.abort() <span class="comment">#连接请求</span>
+    <span class="keyword">else</span>:
+        res = {
+            <span class="string">"method"</span>: req.method,
+            <span class="string">"url"</span>: req.url,
+            <span class="string">"data"</span>: <span class="string">""</span> <span class="keyword">if</span> req.postData == None <span class="keyword">else</span> req.postData,
+            <span class="string">"res"</span>: <span class="string">""</span> <span class="keyword">if</span> req.response == None <span class="keyword">else</span> req.response
+        }
+        <span class="built_in">print</span>(res) <span class="comment"># 打印请求的内容</span>
+        await  req.continue_() <span class="comment">#继续请求，可以添加参数将请求地址重定向、改变请求的headers</span>
+
+async def intercept_response(res):
+    resourceType = res.request.resourceType
+    <span class="comment"># 拦截ajax请求获取数据</span>
+    <span class="keyword">if</span> resourceType <span class="keyword">in</span> [<span class="string">'xhr'</span>]:
+        resp = await res.json()
+        <span class="built_in">print</span>(resp)<span class="comment"># 这里可以操作mysql、redis或者设计一个class来保存数据</span>
+
+async def main():
+    <span class="comment"># 创建一个浏览器</span>
+    browser = await launch({
+        <span class="string">'executablePath'</span>: <span class="string">'你下载的Chromium.app/Contents/MacOS/Chromium'</span>,
+        <span class="string">'headless'</span>: False, <span class="comment"># 关闭无头模式。主要在测试环境调试使用</span>
+        <span class="string">'devtools'</span>: True, <span class="comment"># 打开 chromium 的 devtools与headless配个使用</span>
+        <span class="string">'args'</span>: [ 
+             <span class="string">'--disable-extensions'</span>,
+             <span class="string">'--hide-scrollbars'</span>,
+             <span class="string">'--disable-bundled-ppapi-flash'</span>,
+             <span class="string">'--mute-audio'</span>,
+             <span class="string">'--no-sandbox'</span>,<span class="comment"># --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错</span>
+             <span class="string">'--disable-setuid-sandbox'</span>,
+             <span class="string">'--disable-gpu'</span>,
+          ],
+         <span class="string">'dumpio'</span>: True, <span class="comment">#把无头浏览器进程的 stderr 核 stdout pip 到主程序，也就是设置为 True 的话，chromium console 的输出就会在主程序中被打印出来</span>
+    })
+    <span class="comment"># 打开一个页面，同一个browser可以打开多个页面</span>
+    page = await browser.newPage()
+    <span class="comment"># 是否启用JS，enabled设为False，则无渲染效果，如果页面有ajax请求需要开启此项</span>
+    await page.setJavaScriptEnabled(enabled=True)
+    <span class="comment"># 是否允许拦截请求，如果开启可以注册的两个回调函数，在浏览器发出请求和获取到请求之前指向这两个函数。</span>
+    await page.setRequestInterception(value=True)
+    page.on(<span class="string">'request'</span>, intercept_request) <span class="comment"># 请求的内容</span>
+    page.on(<span class="string">'response'</span>, intercept_response) <span class="comment"># 响应的内容</span>
+    await page.goto(<span class="string">'https://baidu.com'</span>) <span class="comment"># 访问指定页面</span>
+    await page.screenshot(path=<span class="string">'example.png'</span>)  <span class="comment"># 截图</span>
+    await page.close() <span class="comment"># 关闭页面</span>
+    await browser.close() <span class="comment"># 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）</span>
+
+asyncio.get_event_loop().run_until_complete(main()）</code></pre>
+<h2 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h2><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>当一个父进程以fork()系统调用建立一个新的子进程后，核心进程就会在进程表中给这个子进程分配一个进入点，然后将相关信息存储在该进入点所对应的进程表内。这些信息中有一项是其父进程的识别码。 而当这个子进程结束的时候（比如调用exit命令结束），其实他并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit的作用是使进程退出，但是也仅仅限于一个正常的进程变成了一个僵尸进程，并不能完全将其销毁）。此时原来进程表中的数据会被该进程的退出码（exit code）、执行时所用的CPU时间等数据所取代，这些数据会一直保留到系统将它传递给它的父进程为止。由此可见，defunct进程的出现时间是在子进程终止后，但是父进程尚未读取这些数据之前。<br>此时，该僵尸子进程已经放弃了几乎所有的内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保留一个位置，记载该进程的退出状态信息供其他进程收集，除此之外，僵尸进程不再占有任何存储空间。他需要他的父进程来为他收尸，如果他的父进程没有安装SIGCHLD信号处理函数调用wait 或 waitpid() 等待子进程结束，也没有显式忽略该信号，那么它就一直保持僵尸状态，如果这时候父进程结束了，那么init进程会自动接手这个子进程，为他收尸，他还是能被清除掉的。 拿Nginx作为例子，默认是作为后台守护进程。它是这么工作的。第一，Nginx创建一个子进程。第二，原始的Nginx进程退出了。第三，Nginx子进程被init进程给接收了。</p>
+<p>但是如果父进程是一个循环，不会结束，那么子进程就会一直保持僵尸状态，这就是系统中为什么有时候会有很多的僵尸进程。<br>一个子进程终止了，但一直被等待就变成了”僵尸“。<br>defunct状态下的僵尸进程是不能直接使用kill -9命令杀掉的，否则就不叫僵尸进程了。<br>Unix的进程是一个有序的树。每个进程可以派生子进程，每个进程具有一个除了最顶层以外的父进程，这个最顶层的进程是init进程。它是当你启动系统时由内核启动。这个init进程负责启动系统的其余部分，如启动SSH服务，从启动Docker守护进程，启动Apache / Nginx的，启动你的GUI桌面环境，等等。他们每个进程都可能会反过来派生出更多的子进程。</p>
+<p>如果一个进程终止会发生什么？bash（PID 5）进程终止，它变成了一个所谓的“停止活动的进程”，也称为“僵尸进程”。</p>
+<p>这时PID5要等待sshd2调用wait 或 waitpid() 然后彻底结束，假设sshd2没有调用相应的方法，那么PID5就会一直等待下去，当sshd2结束的时候PID5会被init进程接手然后处理掉。</p>
+<p>但是在docker中init 1往往是你的任务进程，需要不间断的运行不能退出，这就导致了僵尸进程无人清理越来越多，因此不建议在docker中直接运行脚本，而是先启动/bin/bash然后启动脚本</p>
+<pre><code class="bash">CMD [<span class="string">"/bin/bash"</span>, <span class="string">"-c"</span>, <span class="string">"set -e &amp;&amp; 你的任务脚本"</span>]</code></pre>
+<p>但是这种方法也有问题，不能优雅的结束进程。假设你用kill发送SIGTERM信号给bash.Bash终止了，但是没有发送SIGTERM给它的子进程！ 当bash结束了，内核结束整个容器中的所有进程。包扩通过SIGKILL信号没有被干净的终结的进程。SIGKILL不能被捕获，所以进程是没有办法干净的终结。假设你运行的应用程序正忙于写文件；在写的过程中，应用被不干净的终止了这个文件可能会崩溃。不干净的终止是很坏的事情。很像把服务器的电源给拔掉。 但是为什么要关心init进程是否被SIGTERM给终结了呢？那是因为docker stop 发送 SIGTERM信号给init进程了。“docker stop” 应该干净的停止容器，以至于稍后你能够用“docker start”启动它。</p>
+<p>解决办法<br>在linux下找到该defunct僵尸进程的父进程，将该进程的父进程杀掉，然后init进程会自动接手其子进程并为子进程收尸。ps -ef | grep defunct_process_pid<br>docker中在启动真正的工作脚本之前先启动/bin/bash用来给僵尸进程收尸<br>docker环境搭建<br>镜像搭建<br>dockerfile文件</p>
+<pre><code class="bash">FROM centos:7
+RUN <span class="built_in">set</span> -ex \
+    <span class="comment"># 预安装所需组件</span>
+    &amp;&amp; yum install -y wget tar libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make initscripts \
+    &amp;&amp; wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz \
+    &amp;&amp; tar -zxvf Python-3.6.0.tgz \
+    &amp;&amp; <span class="built_in">cd</span> Python-3.6.0 \
+    &amp;&amp; ./configure prefix=/usr/<span class="built_in">local</span>/python3 \
+    &amp;&amp; make \
+    &amp;&amp; make install \
+    &amp;&amp; make clean \
+    &amp;&amp; rm -rf /Python-3.6.0* \
+    &amp;&amp; yum install -y epel-release \
+    &amp;&amp; yum install -y python-pip
+<span class="comment"># 设置默认为python3</span>
+RUN <span class="built_in">set</span> -ex \
+    <span class="comment"># 备份旧版本python</span>
+    &amp;&amp; mv /usr/bin/python /usr/bin/python27 \
+    &amp;&amp; mv /usr/bin/pip /usr/bin/pip-python2.7 \
+    <span class="comment"># 配置默认为python3</span>
+    &amp;&amp; ln -s /usr/<span class="built_in">local</span>/python3/bin/python3.6 /usr/bin/python \
+    &amp;&amp; ln -s /usr/<span class="built_in">local</span>/python3/bin/pip3 /usr/bin/pip
+<span class="comment"># 修复因修改python版本导致yum失效问题</span>
+RUN <span class="built_in">set</span> -ex \
+    &amp;&amp; sed -i <span class="string">"s#/usr/bin/python#/usr/bin/python2.7#"</span> /usr/bin/yum \
+    &amp;&amp; sed -i <span class="string">"s#/usr/bin/python#/usr/bin/python2.7#"</span> /usr/libexec/urlgrabber-ext-down \
+    &amp;&amp; yum install -y deltarpm
+<span class="comment"># 基础环境配置</span>
+RUN <span class="built_in">set</span> -ex \
+    <span class="comment"># 修改系统时区为东八区</span>
+    &amp;&amp; rm -rf /etc/localtime \
+    &amp;&amp; ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    &amp;&amp; yum install -y vim \
+    <span class="comment"># 安装定时任务组件</span>
+    &amp;&amp; yum -y install cronie
+<span class="comment"># 支持中文</span>
+RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
+<span class="comment"># chrome浏览器依赖</span>
+RUN yum install kde-l10n-Chinese -y
+RUN yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 -y
+RUN yum install ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc -y
+<span class="comment"># 更新pip版本</span>
+RUN pip install --upgrade pip
+ENV LC_ALL zh_CN.UTF-8
+RUN mkdir -p /usr/src/scrapy
+COPY requirements.txt /usr/src/scrapy
+RUN pip install -i https://pypi.douban.com/simple/ -r /usr/src/scrapy/requirements.txt</code></pre>
+<p>docker-compose文件</p>
+<pre><code class="bash">version: <span class="string">'3.3'</span>
+services:
+  scrapy:
+    privileged: <span class="literal">true</span>
+    build: scrapy
+    tty: <span class="literal">true</span>
+    volumes:
+      - <span class="built_in">type</span>: <span class="built_in">bind</span>
+        <span class="built_in">source</span>: /爬虫文件路径
+        target: /usr/src/scrapy
+    ports:
+      - <span class="string">"9999:9999"</span>
+    networks:
+      scrapynet:
+        ipv4_address: 172.19.0.8
+    <span class="built_in">command</span>: [/bin/bash, -c, <span class="built_in">set</span> -e &amp;&amp; python /usr/src/scrapy/job.py]
+
+networks:
+  scrapynet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/24</code></pre>
+<p>command: [/bin/bash, -c, set -e &amp;&amp; python /usr/src/scrapy/job.py]命令解释</p>
+<p>/bin/bash 防止产生僵尸进程，-e 指令阻止bash把这个脚本当做简单的命令直接执行exec（）<br>python /usr/src/scrapy/job.py 真正的工作脚本<br>基于pyppeteer的爬虫脚本</p>
+<pre><code class="bash">import asyncio,random,psutil,os,signal,time
+from pyppeteer import launcher
+<span class="comment"># hook  禁用 防止监测webdriver</span>
+launcher.AUTOMATION_ARGS.remove(<span class="string">"--enable-automation"</span>)
+from pyppeteer import launch
+async def intercept_request(req):
+    <span class="keyword">if</span> req.resourceType <span class="keyword">in</span> [<span class="string">"image"</span>]:
+        await req.abort()
+    <span class="keyword">else</span>:
+        res = {
+            <span class="string">"method"</span>: req.method,
+            <span class="string">"url"</span>: req.url,
+            <span class="string">"data"</span>: <span class="string">""</span> <span class="keyword">if</span> req.postData == None <span class="keyword">else</span> req.postData,
+            <span class="string">"res"</span>: <span class="string">""</span> <span class="keyword">if</span> req.response == None <span class="keyword">else</span> req.response
+        }
+        <span class="built_in">print</span>(res)
+        await req.continue_()
+
+
+async def intercept_response(res):
+    resourceType = res.request.resourceType
+    <span class="keyword">if</span> resourceType <span class="keyword">in</span> [<span class="string">'xhr'</span>]:
+        resp = await res.json()
+        <span class="built_in">print</span>(resp)
+
+class newpage(object):
+    width, height = 1920, 1080
+    def __init__(self, page_url,chrome_browser):
+        self.url = page_url
+        self.browser = chrome_browser
+
+    async def run(self):
+        t = random.randint(1, 4)
+        tt = random.randint(t, 10)
+        await asyncio.sleep(tt)
+        try:
+            page = await self.browser.newPage()
+            await page.setUserAgent(
+                userAgent=<span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3521.2 Safari/537.36'</span>)
+            await page.setViewport(viewport={<span class="string">'width'</span>: self.width, <span class="string">'height'</span>: self.height})
+            <span class="comment"># 是否启用JS，enabled设为False，则无渲染效果</span>
+            await page.setJavaScriptEnabled(enabled=True)
+            await page.setRequestInterception(value=True)
+            page.on(<span class="string">'request'</span>, intercept_request)
+            page.on(<span class="string">'response'</span>, intercept_response)
+            await page.goto(self.url, options={<span class="string">'timeout'</span>: 30000})
+            await page.waitFor(selectorOrFunctionOrTimeout=1000)
+            try:
+                await page.close()
+                <span class="built_in">return</span> self.url
+            except BaseException as err:
+                <span class="built_in">return</span> <span class="string">"close_newpage: {0}"</span>.format(err)
+        except BaseException as err:
+            <span class="built_in">return</span> <span class="string">"newpage: {0}"</span>.format(err)
+
+class Browser(object):
+    width, height = 1920, 1080
+    browser = None
+    is_headless = True
+    url_list = []
+
+    def __init__(self,urls):
+        self.url_list = urls
+
+    <span class="comment"># 封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程处理僵尸进程</span>
+    def <span class="built_in">kill</span>(self,name):
+        <span class="comment"># win平台</span>
+        <span class="comment"># subprocess.Popen("taskkill /F /IM chrome.EXE ", shell=True)</span>
+
+        <span class="comment"># linux平台</span>
+        try:
+            pid = self.browser.process.pid
+            pgid = os.getpgid(pid)
+            <span class="comment"># 强制结束</span>
+            os.kill(pid, signal.SIGKILL)
+            <span class="built_in">print</span>(<span class="string">"结束进程：%d"</span> % pid)
+            <span class="built_in">print</span>(<span class="string">"父进程是：%d"</span> % pgid)
+            <span class="built_in">print</span>(<span class="string">"等待结果：%d"</span> % self.browser.process.wait())
+        except BaseException as err:
+            <span class="built_in">print</span>(<span class="string">"close: {0}"</span>.format(err))
+        time.sleep(3)
+        <span class="comment"># 查看是否还有其他进程</span>
+        <span class="keyword">for</span> proc <span class="keyword">in</span> psutil.process_iter():
+            <span class="keyword">if</span> name <span class="keyword">in</span> proc.name():
+                try:
+                    os.kill(proc.pid, signal.SIGTERM)
+                    <span class="built_in">print</span>(<span class="string">'已杀死[pid:%s]的进程[pgid：%s][名称：%s]'</span> % (proc.pid,pgid,proc.name()))
+                except BaseException as err:
+                    <span class="built_in">print</span>(<span class="string">"kill: {0}"</span>.format(err))
+
+    <span class="comment"># 打开浏览器</span>
+    async def newbrowser(self):
+        try:
+            self.browser = await launch({
+                <span class="string">'headless'</span>: self.is_headless,
+                <span class="string">'devtools'</span>: not self.is_headless,
+                <span class="string">'dumpio'</span>: True,
+                <span class="string">'autoClose'</span>: True,
+                <span class="comment"># 'userDataDir': './userdata',</span>
+                <span class="string">'handleSIGTERM'</span>: True,
+                <span class="string">'handleSIGHUP'</span>: True,
+                <span class="comment"># 'executablePath':'C:/Users/zhang/Desktop/chrome-win/chrome.exe',</span>
+                <span class="string">'args'</span>: [
+                    <span class="string">'--no-sandbox'</span>,  <span class="comment"># --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错</span>
+                    <span class="string">'--disable-gpu'</span>,
+                    <span class="string">'--disable-extensions'</span>,
+                    <span class="string">'--hide-scrollbars'</span>,
+                    <span class="string">'--disable-bundled-ppapi-flash'</span>,
+                    <span class="string">'--mute-audio'</span>,
+                    <span class="string">'--disable-setuid-sandbox'</span>,
+                    <span class="string">'--disable-xss-auditor'</span>,
+                    <span class="string">'--window-size=%d,%d'</span> % (self.width, self.height)
+                ]
+            })
+        except BaseException as err:
+            <span class="built_in">print</span>(<span class="string">"launch: {0}"</span>.format(err))
+
+        <span class="built_in">print</span>(<span class="string">'----打开浏览器----'</span>)
+
+    async def open(self):
+        await self.newbrowser()
+        try:
+            tasks = [asyncio.ensure_future(newpage(url,self.browser).run()) <span class="keyword">for</span> url <span class="keyword">in</span> self.url_list]
+            <span class="keyword">for</span> task <span class="keyword">in</span> asyncio.as_completed(tasks):
+                result = await task
+                <span class="built_in">print</span>(<span class="string">'Task ret: {}'</span>.format(result))
+        except BaseException as err:
+            <span class="built_in">print</span>(<span class="string">"open: {0}"</span>.format(err))
+        <span class="comment"># browser.close()方法无法彻底退出chrome进程，这里我们自己封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程</span>
+        <span class="comment"># await self.browser.close()</span>
+
+    def main(self):
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.open())
+        <span class="built_in">print</span>(<span class="string">'----关闭浏览器----'</span>)
+        self.kill(<span class="string">'chrom'</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    url_list=[
+        <span class="string">'https://www.baidu.com/'</span>,
+        <span class="string">'https://www.baidu.com/'</span>,
+        <span class="string">'https://www.baidu.com/'</span>,
+        <span class="string">'https://www.baidu.com/'</span>,
+    ]
+    <span class="keyword">while</span> True:
+        <span class="comment"># 不停的添加任务</span>
+        o = Browser(url_list)
+        <span class="built_in">print</span>(o.main())</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/pyppeteer/" rel="tag"># pyppeteer</a>
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/" rel="prev" title="拥抱人工智能，从机器学习开始">
+      <i class="fa fa-chevron-left"></i> 拥抱人工智能，从机器学习开始
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/" rel="next" title="Hexo使用攻略-添加分类及标签">
+      Hexo使用攻略-添加分类及标签 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pyppeteer%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">pyppeteer简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pyppeteer%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">pyppeteer安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E5%8F%8A%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">重要参数设置及方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B"><span class="nav-number"></span> <span class="nav-text">僵尸进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="nav-number"></span> <span class="nav-text">原因分析</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

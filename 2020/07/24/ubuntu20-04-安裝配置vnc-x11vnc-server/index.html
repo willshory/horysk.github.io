@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Ubuntu 20.04 VNC 安装与设置 VNC是一个远程桌面协议。按照本文的说明进行操作可以实现用VNC对Ubuntu 20.04进行远程控制。一般的VNC安装方式在主机没有插显示器的时候是无法使用的。下面的操作可以在主机有显示器和没有显示器时都能够正常工作。 首先安装x11vnc sudo apt-get install x11vnc -y  设置vnc密码 sudo x11vnc -st">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu20.04 安裝配置vnc  x11vnc server">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/24/ubuntu20-04-%E5%AE%89%E8%A3%9D%E9%85%8D%E7%BD%AEvnc-x11vnc-server/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="Ubuntu 20.04 VNC 安装与设置 VNC是一个远程桌面协议。按照本文的说明进行操作可以实现用VNC对Ubuntu 20.04进行远程控制。一般的VNC安装方式在主机没有插显示器的时候是无法使用的。下面的操作可以在主机有显示器和没有显示器时都能够正常工作。 首先安装x11vnc sudo apt-get install x11vnc -y  设置vnc密码 sudo x11vnc -st">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-24T18:16:03.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.000Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/24/ubuntu20-04-%E5%AE%89%E8%A3%9D%E9%85%8D%E7%BD%AEvnc-x11vnc-server/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>ubuntu20.04 安裝配置vnc  x11vnc server | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/ubuntu20-04-%E5%AE%89%E8%A3%9D%E9%85%8D%E7%BD%AEvnc-x11vnc-server/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu20.04 安裝配置vnc  x11vnc server
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-24 18:16:03" itemprop="dateCreated datePublished" datetime="2020-07-24T18:16:03+00:00">2020-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Ubuntu 20.04 VNC 安装与设置</p>
+<p>VNC是一个远程桌面协议。按照本文的说明进行操作可以实现用VNC对Ubuntu 20.04进行远程控制。一般的VNC安装方式在主机没有插显示器的时候是无法使用的。下面的操作可以在主机有显示器和没有显示器时都能够正常工作。</p>
+<p>首先安装x11vnc</p>
+<pre><code class="bash">sudo apt-get install x11vnc -y
+</code></pre>
+<p>设置vnc密码</p>
+<pre><code class="bash">sudo x11vnc -storepasswd /etc/x11vnc.pass 
+</code></pre>
+<p>创建x11vnc自启动服务</p>
+<p>创建 /etc/systemd/system/x11vnc.service，并写入以下内容</p>
+<pre><code class="bash">[Unit]
+Description=Start x11vnc at startup.
+After=multi-user.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/x11vnc -auth /run/user/1000/gdm/Xauthority -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>启动x11vnc服务</p>
+<pre><code class="bash">sudo systemctl <span class="built_in">enable</span> x11vnc
+sudo service x11vnc start
+</code></pre>
+<p>此时如果远程的主机上接了显示器，那么就可以在局域网通过VNC进行访问了。</p>
+<p>为了能够保证远程主机无论是否有显示器，我们都能通过VNC进行远程访问，我们还要做下面的修改</p>
+<p>创建默认的xorg.conf文件</p>
+<pre><code class="bash">sudo Xorg :1 -configure
+</code></pre>
+<p>此时程序会生成 /root/xorg.conf.new文件<br>我的默认文件内容如下</p>
+<pre><code class="bash">Section <span class="string">"ServerLayout"</span>
+    Identifier     <span class="string">"X.org Configured"</span>
+    Screen      0  <span class="string">"Screen0"</span> 0 0
+    InputDevice    <span class="string">"Mouse0"</span> <span class="string">"CorePointer"</span>
+    InputDevice    <span class="string">"Keyboard0"</span> <span class="string">"CoreKeyboard"</span>
+EndSection
+
+Section <span class="string">"Files"</span>
+    ModulePath   <span class="string">"/usr/lib/xorg/modules"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/misc"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/cyrillic"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/100dpi/:unscaled"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/75dpi/:unscaled"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/Type1"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/100dpi"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/75dpi"</span>
+    FontPath     <span class="string">"built-ins"</span>
+EndSection
+
+Section <span class="string">"Module"</span>
+    Load  <span class="string">"glx"</span>
+EndSection
+
+Section <span class="string">"InputDevice"</span>
+    Identifier  <span class="string">"Keyboard0"</span>
+    Driver      <span class="string">"kbd"</span>
+EndSection
+
+Section <span class="string">"InputDevice"</span>
+    Identifier  <span class="string">"Mouse0"</span>
+    Driver      <span class="string">"mouse"</span>
+    Option        <span class="string">"Protocol"</span> <span class="string">"auto"</span>
+    Option        <span class="string">"Device"</span> <span class="string">"/dev/input/mice"</span>
+    Option        <span class="string">"ZAxisMapping"</span> <span class="string">"4 5 6 7"</span>
+EndSection
+
+Section <span class="string">"Monitor"</span>
+    Identifier   <span class="string">"Monitor0"</span>
+    VendorName   <span class="string">"Monitor Vendor"</span>
+    ModelName    <span class="string">"Monitor Model"</span>
+EndSection
+
+Section <span class="string">"Device"</span>
+        <span class="comment">### Available Driver options are:-</span>
+        <span class="comment">### Values: &lt;i&gt;: integer, &lt;f&gt;: float, &lt;bool&gt;: "True"/"False",</span>
+        <span class="comment">### &lt;string&gt;: "String", &lt;freq&gt;: "&lt;f&gt; Hz/kHz/MHz",</span>
+        <span class="comment">### &lt;percent&gt;: "&lt;f&gt;%"</span>
+        <span class="comment">### [arg]: arg optional</span>
+        <span class="comment">#Option     "Accel"                  # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "AccelMethod"            # &lt;str&gt;</span>
+        <span class="comment">#Option     "Backlight"              # &lt;str&gt;</span>
+        <span class="comment">#Option     "CustomEDID"             # &lt;str&gt;</span>
+        <span class="comment">#Option     "DRI"                    # &lt;str&gt;</span>
+        <span class="comment">#Option     "Present"                # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "ColorKey"               # &lt;i&gt;</span>
+        <span class="comment">#Option     "VideoKey"               # &lt;i&gt;</span>
+        <span class="comment">#Option     "Tiling"                 # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "LinearFramebuffer"      # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "HWRotation"             # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "VSync"                  # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "PageFlip"               # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "SwapbuffersWait"        # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "TripleBuffer"           # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "XvPreferOverlay"        # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "HotPlug"                # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "ReprobeOutputs"         # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "XvMC"                   # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "ZaphodHeads"            # &lt;str&gt;</span>
+        <span class="comment">#Option     "VirtualHeads"           # &lt;i&gt;</span>
+        <span class="comment">#Option     "TearFree"               # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "PerCrtcPixmaps"         # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "FallbackDebug"          # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "DebugFlushBatches"      # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "DebugFlushCaches"       # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "DebugWait"              # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "BufferCache"            # [&lt;bool&gt;]</span>
+    Identifier  <span class="string">"Card0"</span>
+    Driver      <span class="string">"intel"</span>
+    BusID       <span class="string">"PCI:0:2:0"</span>
+EndSection
+
+Section <span class="string">"Screen"</span>
+    Identifier <span class="string">"Screen0"</span>
+    Device     <span class="string">"Card0"</span>
+    Monitor    <span class="string">"Monitor0"</span>
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     1
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     4
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     8
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     15
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     16
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     24
+    EndSubSection
+EndSection
+</code></pre>
+<p>将此文件复制至 /usr/share/X11/xorg.conf.d/xorg.conf</p>
+<p>这个文件保证在主机上插有显示器的时候，系统界面能在显示器上正常显示。下面我们再给系统添加一个虚拟显示器，当主机没有显示器的时候系统就使用这个虚拟显示器。</p>
+<p>安装虚拟显卡驱动</p>
+<pre><code class="bash">sudo apt install xserver-xorg-video-dummy
+</code></pre>
+<p>在这个文件的最后添加下面的内容</p>
+<pre><code class="bash">Section <span class="string">"Monitor"</span>
+  Identifier <span class="string">"Monitor1"</span>
+  HorizSync   1.0 - 2000.0
+  VertRefresh 1.0 - 200.0
+  <span class="comment"># Add 16:9 modes, others are automatically detected.</span>
+  Modeline <span class="string">"1280x720"</span> 74.48 1280 1336 1472 1664 720 721 724 746
+  Modeline <span class="string">"1920x1080"</span> 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+EndSection
+
+
+Section <span class="string">"Device"</span>
+  Identifier <span class="string">"Card1"</span>
+  Driver <span class="string">"dummy"</span>
+  VideoRam 256000
+EndSection
+
+Section <span class="string">"Screen"</span>
+  DefaultDepth 24
+  Identifier <span class="string">"Screen1"</span>
+  Device <span class="string">"Card1"</span>
+  Monitor <span class="string">"Monitor1"</span>
+  SubSection <span class="string">"Display"</span>
+    Depth 24
+    Modes <span class="string">"1920x1080"</span>
+  EndSubSection
+EndSection
+</code></pre>
+<p>这样我们就创建了一个使用虚拟显卡的虚拟显示器。为了让虚拟的显示器和真实显示器都能工作，我们需要把最上面的 ServerLayout 进行更改</p>
+<pre><code class="bash">Section <span class="string">"ServerLayout"</span>
+        Identifier     <span class="string">"X.org Configured"</span>
+        Screen      0  <span class="string">"Screen0"</span> 0 0
+    Screen      1  <span class="string">"Screen1"</span> 0 0
+EndSection
+</code></pre>
+<p>完整的/usr/share/X11/xorg.conf.d/xorg.conf</p>
+<pre><code class="bash">Section <span class="string">"ServerLayout"</span>
+    Identifier     <span class="string">"X.org Configured"</span>
+    Screen      0  <span class="string">"Screen0"</span> 0 0
+    Screen      1  <span class="string">"Screen1"</span> 0 0
+<span class="comment">#    InputDevice    "Mouse0" "CorePointer"</span>
+<span class="comment">#    InputDevice    "Keyboard0" "CoreKeyboard"</span>
+EndSection
+
+Section <span class="string">"Files"</span>
+    ModulePath   <span class="string">"/usr/lib/xorg/modules"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/misc"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/cyrillic"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/100dpi/:unscaled"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/75dpi/:unscaled"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/Type1"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/100dpi"</span>
+    FontPath     <span class="string">"/usr/share/fonts/X11/75dpi"</span>
+    FontPath     <span class="string">"built-ins"</span>
+EndSection
+
+Section <span class="string">"Module"</span>
+    Load  <span class="string">"glx"</span>
+EndSection
+
+Section <span class="string">"InputDevice"</span>
+    Identifier  <span class="string">"Keyboard0"</span>
+    Driver      <span class="string">"kbd"</span>
+EndSection
+
+Section <span class="string">"InputDevice"</span>
+    Identifier  <span class="string">"Mouse0"</span>
+    Driver      <span class="string">"mouse"</span>
+    Option        <span class="string">"Protocol"</span> <span class="string">"auto"</span>
+    Option        <span class="string">"Device"</span> <span class="string">"/dev/input/mice"</span>
+    Option        <span class="string">"ZAxisMapping"</span> <span class="string">"4 5 6 7"</span>
+EndSection
+
+Section <span class="string">"Monitor"</span>
+    Identifier   <span class="string">"Monitor0"</span>
+    VendorName   <span class="string">"Monitor Vendor"</span>
+    ModelName    <span class="string">"Monitor Model"</span>
+EndSection
+
+Section <span class="string">"Device"</span>
+        <span class="comment">### Available Driver options are:-</span>
+        <span class="comment">### Values: &lt;i&gt;: integer, &lt;f&gt;: float, &lt;bool&gt;: "True"/"False",</span>
+        <span class="comment">### &lt;string&gt;: "String", &lt;freq&gt;: "&lt;f&gt; Hz/kHz/MHz",</span>
+        <span class="comment">### &lt;percent&gt;: "&lt;f&gt;%"</span>
+        <span class="comment">### [arg]: arg optional</span>
+        <span class="comment">#Option     "Accel"                  # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "AccelMethod"            # &lt;str&gt;</span>
+        <span class="comment">#Option     "Backlight"              # &lt;str&gt;</span>
+        <span class="comment">#Option     "CustomEDID"             # &lt;str&gt;</span>
+        <span class="comment">#Option     "DRI"                    # &lt;str&gt;</span>
+        <span class="comment">#Option     "Present"                # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "ColorKey"               # &lt;i&gt;</span>
+        <span class="comment">#Option     "VideoKey"               # &lt;i&gt;</span>
+        <span class="comment">#Option     "Tiling"                 # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "LinearFramebuffer"      # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "HWRotation"             # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "VSync"                  # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "PageFlip"               # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "SwapbuffersWait"        # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "TripleBuffer"           # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "XvPreferOverlay"        # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "HotPlug"                # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "ReprobeOutputs"         # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "XvMC"                   # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "ZaphodHeads"            # &lt;str&gt;</span>
+        <span class="comment">#Option     "VirtualHeads"           # &lt;i&gt;</span>
+        <span class="comment">#Option     "TearFree"               # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "PerCrtcPixmaps"         # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "FallbackDebug"          # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "DebugFlushBatches"      # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "DebugFlushCaches"       # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "DebugWait"              # [&lt;bool&gt;]</span>
+        <span class="comment">#Option     "BufferCache"            # [&lt;bool&gt;]</span>
+    Identifier  <span class="string">"Card0"</span>
+    Driver      <span class="string">"intel"</span>
+    BusID       <span class="string">"PCI:0:2:0"</span>
+EndSection
+
+Section <span class="string">"Screen"</span>
+    Identifier <span class="string">"Screen0"</span>
+    Device     <span class="string">"Card0"</span>
+    Monitor    <span class="string">"Monitor0"</span>
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     1
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     4
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     8
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     15
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     16
+    EndSubSection
+    SubSection <span class="string">"Display"</span>
+        Viewport   0 0
+        Depth     24
+    EndSubSection
+EndSection
+
+
+
+Section <span class="string">"Monitor"</span>
+
+  Identifier <span class="string">"Monitor1"</span>
+
+  HorizSync   1.0 - 2000.0
+
+  VertRefresh 1.0 - 200.0
+
+  <span class="comment"># Add 16:9 modes, others are automatically detected.</span>
+
+  Modeline <span class="string">"1280x720"</span> 74.48 1280 1336 1472 1664 720 721 724 746
+
+  Modeline <span class="string">"1920x1080"</span> 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+
+EndSection
+
+
+
+
+
+Section <span class="string">"Device"</span>
+
+  Identifier <span class="string">"Card1"</span>
+
+  Driver <span class="string">"dummy"</span>
+
+  VideoRam 256000
+
+EndSection
+
+
+
+Section <span class="string">"Screen"</span>
+
+  DefaultDepth 24
+
+  Identifier <span class="string">"Screen1"</span>
+
+  Device <span class="string">"Card1"</span>
+
+  Monitor <span class="string">"Monitor1"</span>
+
+  SubSection <span class="string">"Display"</span>
+
+    Depth 24
+
+    Modes <span class="string">"1920x1080"</span>
+
+  EndSubSection
+
+EndSection
+</code></pre>
+<p><a href="https://blog.csdn.net/frozennet/article/details/105211375?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param" target="_blank" rel="noopener">设置X11VNC后就可以使用了</a><br>现在重新启动远程电脑，就可以在没有显示器的情况下远程了。</p>
+<p>以上的方法还有一个问题。就是在用户没有登录的其情况下是没办法远程的。所以需要把用户设置成自动登录。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/24/tar-%E5%91%BD%E4%BB%A4/" rel="prev" title="tar 命令">
+      <i class="fa fa-chevron-left"></i> tar 命令
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/24/Docker-%E6%9C%AC%E5%9C%B0%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F-%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F-%E8%BD%BD%E5%85%A5%E9%95%9C%E5%83%8F-%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F/" rel="next" title="Docker 本地导入镜像/保存镜像/载入镜像/删除镜像">
+      Docker 本地导入镜像/保存镜像/载入镜像/删除镜像 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

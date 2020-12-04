@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="现今，云服务器已经十分普及，申请个云服务器作为个人开发学习或者简单个人服务器使用已经司空见惯。Linux云服务器申请就绪后，一般都是命令行的，不包含桌面环境，也不支持通过远程桌面的方式访问图形化桌面环境。本指南介绍了在Ubuntu 20.04 系统上安装和配置 VNC 服务器所需的步骤，实现通过远程桌面管理和控制Ubuntu云服务器，支持图形界面操作。 先决条件 在继续学习本教程之前，请确保以具有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu20.04 配置和安裝vnc">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/24/ubuntu20-04-%E9%85%8D%E7%BD%AE%E5%92%8C%E5%AE%89%E8%A3%9Dvnc/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="现今，云服务器已经十分普及，申请个云服务器作为个人开发学习或者简单个人服务器使用已经司空见惯。Linux云服务器申请就绪后，一般都是命令行的，不包含桌面环境，也不支持通过远程桌面的方式访问图形化桌面环境。本指南介绍了在Ubuntu 20.04 系统上安装和配置 VNC 服务器所需的步骤，实现通过远程桌面管理和控制Ubuntu云服务器，支持图形界面操作。 先决条件 在继续学习本教程之前，请确保以具有">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-24T16:47:47.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.000Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Vnc">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/24/ubuntu20-04-%E9%85%8D%E7%BD%AE%E5%92%8C%E5%AE%89%E8%A3%9Dvnc/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>ubuntu20.04 配置和安裝vnc | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/ubuntu20-04-%E9%85%8D%E7%BD%AE%E5%92%8C%E5%AE%89%E8%A3%9Dvnc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ubuntu20.04 配置和安裝vnc
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-24 16:47:47" itemprop="dateCreated datePublished" datetime="2020-07-24T16:47:47+00:00">2020-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>现今，云服务器已经十分普及，申请个云服务器作为个人开发学习或者简单个人服务器使用已经司空见惯。Linux云服务器申请就绪后，一般都是命令行的，不包含桌面环境，也不支持通过远程桌面的方式访问图形化桌面环境。本指南介绍了在Ubuntu 20.04 系统上安装和配置 VNC 服务器所需的步骤，实现通过远程桌面管理和控制Ubuntu云服务器，支持图形界面操作。</p>
+<p>先决条件</p>
+<p>在继续学习本教程之前，请确保以具有 sudo 权限的用户身份登录。建议使用具有sudo权限的普通用户进行处理，而不是直接使用root用户。创建用户并加入sudoers可自行百度。</p>
+<p>安装桌面环境</p>
+<p>大多数服务器没有安装桌面环境，因此我们首先要安装轻量级桌面环境。</p>
+<p>Ubuntu 存储库中有几个桌面环境，远程桌面管理建议选择安装 Xfce 。它是快速，稳定和轻量级的桌面环境，非常适合在远程服务器上使用。</p>
+<p>首先使用以下命令更新系统</p>
+<pre><code class="bash">
+sudo apt update
+sudo apt upgrade
+</code></pre>
+<p>然后，键入以下命令以在服务器上安装 Xfce ：</p>
+<pre><code class="bash">sudo apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils
+</code></pre>
+<p>根据您的系统，下载和安装 Xfce 软件包可能需要一些时间。</p>
+<p>安装 VNC 服务器</p>
+<p>Ubuntu 存储库中还有几种不同的 VNC 服务器，如 TightVNC ， TigerVNC 和 x11vnc 。每个 VNC 服务器在速度和安全性方面都有不同的优点和缺点。</p>
+<p>我们将安装 TigerVNC ，它是高性能 VNC 服务器，并被积积极维护。</p>
+<p>键入以下命令以在 Ubuntu 服务器上安装 TigerVNC ：</p>
+<pre><code class="bash">sudo apt install tigervnc-standalone-server tigervnc-common
+</code></pre>
+<p>现在安装了 VNC 服务器，下一步是运行 vncserver 命令，该命令将创建初始配置并设置密码。运行以下命令时不要使用 sudo ：</p>
+<pre><code class="bash">
+vncserver
+</code></pre>
+<p>系统将提示您输入并确认密码，以及是否将其设置为仅查看密码。如果您选择设置仅查看密码，则用户将无法使用鼠标和键盘与 VNC 实例进行交互。</p>
+<pre><code class="bash">You will require a password to access your desktops.
+Password:
+Verify:
+Would you like to enter a view-only password (y/n)? n
+/usr/bin/xauth:  file /home/typhoon/.Xauthority does not exist
+New <span class="string">'server2.typhoon.org:1 (typhoon)'</span> desktop at :1 on machine server2.typhoon.org
+Starting applications specified <span class="keyword">in</span> /etc/X11/Xvnc-session
+Log file is /home/typhoon/.vnc/server2.typhoon.org:1.log
+Use xtigervncviewer -SecurityTypes VncAuth -passwd /home/typhoon/.vnc/passwd :1 to connect to the VNC server.
+
+</code></pre>
+<p>第一次 vncserver 运行命令时，它将创建密码文件并将其存储在 ~/.vnc 目录中，如果不存在，将创建该目录。</p>
+<p>注意上面输出中主机名之后的 :1 。这表示运行 vnc 服务器的显示端口号。在我们的例子中，服务器在 TCP 端口 5901 (5900 + 1)上运行。如果您创建第二个实例， vncserver 它将在下一个空闲端口上运行，即 :2 这意味着服务器正在端口 5902 (5900 + 2)上运行。</p>
+<p>重要的是要记住，当使用 VNC 服务器时， :X 是一个引用的显示端口 5900+X 。</p>
+<p>注：如果启动时出现vnc启动异常： is taken because of /tmp/.X11-unix/X1</p>
+<p>此时只需要将提示的文件删除即可。再次输入 vncserver。</p>
+<p>在继续下一步之前，首先使用带有 -kill 选项和服务器编号作为参数的 vncserver 命令停止 VNC 实例。在我们的例子中，服务器在端口 5901 (:1)中运行，因此我们将使用以下命令停止它：</p>
+<pre><code class="bash">
+vncserver -<span class="built_in">kill</span> :1
+</code></pre>
+<p>Killing Xtigervnc process ID 7264… success!<br>配置 VNC 服务器</p>
+<p>现在我们已经在服务器上安装了 Xfce 和 TigerVNC ，我们需要配置 TigerVNC 来使用 Xfce 。为此，请创建以下文件 〜/.vnc/xstartup：</p>
+<pre><code class="bash">
+nano ~/.vnc/xstartup
+
+
+<span class="meta">#!/bin/sh</span>
+<span class="built_in">unset</span> SESSION_MANAGER
+<span class="built_in">unset</span> DBUS_SESSION_BUS_ADDRESS
+<span class="built_in">exec</span> startxfce4 
+
+</code></pre>
+<p>保存并关闭文件。无论何时启动或重启 TigerVNC 服务器，都将自动执行上述命令。</p>
+<p>~/.vnc/xstartup 文件还需要具有执行权限。运行以下命令以确保权限正确：</p>
+<pre><code class="bash">
+chmod u+x ~/.vnc/xstartup
+</code></pre>
+<p>如果需要将附加选项传递给 VNC 服务器，则可以创建一个名为 config 的文件，并为每行添加一个选项。这是一个例子：</p>
+<p>文件 ~/.vnc/config</p>
+<p>geometry=1920x1084<br>dpi=96</p>
+<p>创建 Systemd 单元文件</p>
+<p>我们将创建一个 systemd 单元文件，使我们能够根据需要轻松启动，停止和重新启动 VNC 服务，与任何其他 systemd 服务相同。</p>
+<p>打开文本编辑器，将以下配置复制并粘贴到其中。</p>
+<pre><code class="bash">
+
+sudo nano /etc/systemd/system/vncserver@.service
+</code></pre>
+<p>请务必更改第 7 行中的用户名以匹配您的用户名。</p>
+<pre><code class="bash">[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=username
+PAMName=login
+PIDFile=/home/%u/.vnc/%H%i.pid
+ExecStartPre=/bin/sh -c <span class="string">'/usr/bin/vncserver -kill :%i &gt; /dev/null 2&gt;&amp;1 || :'</span>
+ExecStart=/usr/bin/vncserver :%i -geometry 1440x900 -alwaysshared -<span class="built_in">fg</span>
+ExecStop=/usr/bin/vncserver -<span class="built_in">kill</span> :%i
+
+[Install]
+WantedBy=multi-user.target
+
+</code></pre>
+<p>保存并关闭文件。</p>
+<p>通知 systemd 我们创建了一个新的单元文件：</p>
+<pre><code class="bash">
+sudo systemctl daemon-reload
+</code></pre>
+<p>下一步是使用以下命令启用单元文件：</p>
+<pre><code class="bash">sudo systemctl <span class="built_in">enable</span> vncserver@1.service
+</code></pre>
+<p>符号 1 后面的数字 @ 定义了运行 VNC 服务的显示端口。这意味着 VNC 服务器将侦听端口 5901 ，正如我们在上一节中讨论的那样。</p>
+<p>执行以下命令启动 VNC 服务：</p>
+<pre><code class="bash">
+sudo systemctl start vncserver@1.service
+
+</code></pre>
+<p>验证服务是否已成功启动：</p>
+<pre><code class="bash">
+sudo systemctl status vncserver@1.service
+
+</code></pre>
+<p>● <a href="mailto:vncserver@1.service">vncserver@1.service</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>连接到 VNC 服务器</p>
+<p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
+<p>在 Linux 和 macOS 上设置 SSH 隧道</p>
+<p>如果在计算机上运行 Linux ， macOS 或任何其他基于 Unix 的操作系统，则可以使用以下命令轻松创建 SSH 隧道：</p>
+<pre><code class="bash">
+ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
+
+</code></pre>
+<p>系统将提示您输入用户密码。</p>
+<p>该-L开关指定的端口绑定。在这种情况下，我们将5901远程连接的端口5901绑定到本地计算机上的端口。该-C开关启用压缩，而-N开关告诉ssh我们不希望执行远程命令。该-l开关指定远程登录名。</p>
+<p>记得替换username，并server_ip_address与您的服务器的须藤非root用户名和IP地址。</p>
+<p>如果您使用的是图形化SSH客户端（如PuTTY），请将server_ip_address用作连接IP，并在程序的SSH隧道设置中设置localhost:5901为新的转发端口。</p>
+<p>隧道运行后，使用VNC客户端进行连接localhost:5901。系统将提示您使用在步骤1中设置的密码进行身份验证。</p>
+<p>连接后，您将看到默认的Xfce桌面。它应该看起来像这样：<br><a href="https://xie.infoq.cn/article/cf473dc0dea917b0b2a546ecd" target="_blank" rel="noopener">安装配置vnc</a><br><a href="https://blog.csdn.net/yang_hui1986527/article/details/106311024?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param" target="_blank" rel="noopener">如何在Ubuntu 20.04 上安装 Xrdp 服务器（远程桌面）</a><br><a href="https://blog.csdn.net/bluewhalerobot/article/details/106770429" target="_blank" rel="noopener">https://blog.csdn.net/bluewhalerobot/article/details/106770429</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Vnc/" rel="tag"># Vnc</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/24/Mongodb%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/" rel="prev" title="Mongodb性能压测">
+      <i class="fa fa-chevron-left"></i> Mongodb性能压测
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/24/tar-%E5%91%BD%E4%BB%A4/" rel="next" title="tar 命令">
+      tar 命令 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

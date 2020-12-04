@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="所谓高频交易，简单说就是指利用计算机技术在短时间内快速进行多次买入卖出的交易行为，一般指利用微妙（1秒等于1百万微秒）为时间单位制定策略，高频交易公司利用强大的电脑程序进行快速交易，交易时间经常不到十毫秒。 与技术上相对落后的投资者相比，此类公司利用靠技术优势获得的时间优势先行下单。高频交易的速度如此之快，以至于有些交易机构将自己的“服务器群组”（server farms）安置到了离交易所的计算机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高频交易四大派系大揭秘">
+<meta property="og:url" content="http://blog.hory-ai.com/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="所谓高频交易，简单说就是指利用计算机技术在短时间内快速进行多次买入卖出的交易行为，一般指利用微妙（1秒等于1百万微秒）为时间单位制定策略，高频交易公司利用强大的电脑程序进行快速交易，交易时间经常不到十毫秒。 与技术上相对落后的投资者相比，此类公司利用靠技术优势获得的时间优势先行下单。高频交易的速度如此之快，以至于有些交易机构将自己的“服务器群组”（server farms）安置到了离交易所的计算机">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-03-08T14:17:28.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.008Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="quant">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>高频交易四大派系大揭秘 | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高频交易四大派系大揭秘
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-08 14:17:28" itemprop="dateCreated datePublished" datetime="2019-03-08T14:17:28+00:00">2019-03-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>所谓高频交易，简单说就是指利用计算机技术在短时间内快速进行多次买入卖出的交易行为，一般指利用微妙（1秒等于1百万微秒）为时间单位制定策略，高频交易公司利用强大的电脑程序进行快速交易，交易时间经常不到十毫秒。</p>
+<p>与技术上相对落后的投资者相比，此类公司利用靠技术优势获得的时间优势先行下单。高频交易的速度如此之快，以至于有些交易机构将自己的“服务器群组”（server farms）安置到了离交易所的计算机很近的地方，以缩短交易指令通过光缆以光速旅行的距离。</p>
+<p>高频交易虽具有“高频”的共同特征，但是其交易机制则千差万别，由此导致其对市场的影响也会不同。根据现有策略，高频交易大体可以分为以下四类。</p>
+<h2 id="订单拆分策略"><a href="#订单拆分策略" class="headerlink" title="订单拆分策略"></a>订单拆分策略</h2><p>在美国机构投资者的大笔交易往往造成价格急剧变化，从而增加交易成本。订单拆分策略为了解决这个问题，使用多种算法把大订单分割成若干个小订单，从而减小大订单对市场的影响并降低执行成本。</p>
+<p>这类算法可以分为三代。第一代主要考虑如何减小对市场的影响，以TWAP(time weighted average price)、VWAP(volume weightedaverage price)和POV(percent of volume)为代表。其中，TWAP将大订单在规定的时间内按照一定的交易频率分割成小订单，VWAP按照交易量的历史分布分割订单，POV则将小订单以固定比例混入订单流以降低对市场的影响。但是，这种有规律的订单分割方式容易被其他交易者发觉并跟风，从而提高交易成本。</p>
+<p>第二代拆分策略则加入了一些反侦测的技术手段。例如冰山策略(iceberg)采取了随机分割的方法，最低影响(minimal impact)策略则是利用备选交易系统2作为主要的交易通道，而只把小部分交易放在公开的交易系统中完成，以避免交易意图的泄露。</p>
+<p>第三代拆分策略认为，如果片面地强调订单分割和避免被侦测，就存在无法按时完成交易计划的风险，这样反而会导致交易成本的上升，因此强调利用交易量较大的交易时间完成仓位计划。而且，为了使执行差额策略可以适应快速变化的市场条件，Kissell,Freyre-Sanders and Carrie提出了适应性差额策略(adaptiveshortfall)，以根据当前价格的变动情况决定如何执行仓位计划。</p>
+<p>此外，由于收盘价对于投资结算等具有重要影响，还有经纪商提出了MC(market close)策略，在全天交易时间的后半部分完成交易指令。目前国内对此类策略的研究和应用都还很少。但是随着做市商制度的引进和机构投资者的发展壮大，大笔买入卖出的需求也会随之变大，可以预见对大笔交易的订单拆分需求也会越来越大。</p>
+<h2 id="做市交易策略"><a href="#做市交易策略" class="headerlink" title="做市交易策略"></a>做市交易策略</h2><p>国际金融市场普遍实行做市商制度。与竞价交易制度不同，做市商制度是借助做市商(由大的银行机构来担任)的中介作用实现买卖双方的交易，做市商从证券的买卖差价中获取收益，并为市场提供流动性。</p>
+<p>近年来，一种被称为“被动做市策略”的高频交易模式逐渐发展起来。这种策略产生于美国特殊的交易机制。在美国，所有的证券交易所都为那些创造流动性的券商提供一定的交易费用回扣以争取更多的交易订单。当这些交易者使用双向挂单等待成交时，便为市场提供了流动性，使得其他有交易需求的交易者以更低的成本交易，相应的也提高了交易所的竞争力。</p>
+<p>因此各电子化交易所对这类流动性提供者提供返还回扣，鼓励其通过报单参与交易。在这种情况下，很多小机构甚至个人投资者也可以为市场提供流动性，并在众多电子化交易所中担当起了实质性的做市商的责任。</p>
+<p>做市商在交易过程中也会面临各种风险，一方面，资产价格的波动会造成了存货风险；另一方面，买卖指令的泊松分布又造成了交易风险。这种风险对传统的做市商影响更大，因为它们普遍具有巨大的资金量和交易量，也对市场有着更大的影响。</p>
+<p>它们主要采用两种方法来规避这种风险。一种方法是通过完善定价机制，将风险融入资产价格从而转移风险。学术界发展了一系列模型解决这一定价问题，例如存货模型和信息模型等等。</p>
+<p>另一方法是风险对冲。以Delta中性策略最为典型。Delta被定义为该衍生证券的价格变化对其标的资产价格变化的比率，Delta为零的状态被称为Delta中性。如果进行高频对冲，Delta中性策略就成为一种高频交易模式。它必须在标的资产价格刚开始下降时将其出售，在其刚开始上涨时将其购入，因此它在本质上是一种趋势交易方法。从国外经验看，做市交易是高频交易策略的主流。我国目前已经在国债、利率掉期等若干市场引入做市商制度，如果在更多市场实施该制度，高频交易还会有进一步发展。</p>
+<h2 id="定量化交易策略"><a href="#定量化交易策略" class="headerlink" title="定量化交易策略"></a>定量化交易策略</h2><p>订单拆分策略与做市交易策略更多是作为一种金融服务存在，而定量化交易策略强调使用定量分析进行投资决策。定量化交易策略种类非常繁多，有的针对单一资产，有的则针对投资组合。针对单一资产的分析方法包括事件套利(event arbitrage)、盘口交易(ticker tape trading)和技术分析(technicaltrading)等。</p>
+<p>事件套利是指针对某特定事件的发生(如重组、拆分、兼并、收购等等)预先判定其对市场影响，进而利用市场的短期新闻效应进行交易。盘口交易是指根据订单流、交易量等信息进行交易的策略。</p>
+<p>有研究认为，价格序列和交易量中包含了尚未公布的信息，通过对其进行分析，就可以根据这些信息进行交易。技术分析利用历史价格的走势和图形预测价格波动。Park and Irwin发现新兴股票市场、期货以及外汇市场是最适合技术分析的市场。Lukac,Brorsen and Irwin认为所有技术分析手段中趋势追随型交易策略最为有效Murphy指出，实现趋势追随的主要方法是移动均线法和通道突破法。针对投资组合的交易策略包括套利交易(arbitrage)和配对交易(pairtrading)等。</p>
+<p>套利交易通过捕捉标的物完全相同的两种金融资产的差价获取利润。美国市场金融产品品种较多，针对同一标的物可能同时有期权期货等多种金融产品；同时，每种资产又可以同时在几个交易所挂牌交易。这样的市场生态为套利交易提供了较大的生存空间。</p>
+<p>配对交易也称收敛交易(convergence trading)，它假设相关联的标的物的价格具有相关性，因此在一种资产价格上涨而另一种下跌时，就可以做多下跌的资产，而卖空上涨的资产。由配对交易发展而来的统计套利(statistical arbitrage)与配对交易的不同之处在于，统计套利判断资产的相关性并不依据基本面或其市场特征，而且它所关注的往往是包括上百个资产的资产组合之间统计上的相关性。</p>
+<h2 id="其他策略"><a href="#其他策略" class="headerlink" title="其他策略"></a>其他策略</h2><p>除了上述正常的交易策略，还有一些高频交易策略可以使交易者获取信息优势而损害交易的公平性，甚至操纵价格走势，主要包括结构性(structural)策略和方向性(directional)策略。</p>
+<p>结构性策略是指交易者利用不公平的交易制度获利。例如，某些交易者可能利用托管服务(co-location)先于其他交易者获取价格和订单数据，并据此下单而获利。</p>
+<p>方向性策略主要包括指令占先(order anticipation)策略和趋势引发(momentum ignition)策略。指令占先策略在某些文献中又被称为“掠夺性算法交易”，它是指通过技术手段识别潜在大买(卖)方并抢先发出指令，待其大笔交易引发价格上升(下降)后平仓获利。</p>
+<p>趋势引发策略是指事先建立头寸，然后诱骗其他交易者进行交易引发价格快速变动，进而从中牟利。其具体操作方法主要包括：通过大量挂单诱导其他交易者跟风；通过大笔成交触发市场中存在的止损指令；等等。在进行交易操纵的同时，还可能伴随着发布虚假信息等行为。</p>
+<h2 id="高频交易“托拉斯”诞生"><a href="#高频交易“托拉斯”诞生" class="headerlink" title="高频交易“托拉斯”诞生"></a>高频交易“托拉斯”诞生</h2><p>在不少投资者眼中，高频交易是“市场里的嗜血鬼”，利用程序频繁挂单撤单严重影响市场。也有人说，高频交易不仅平抑了市场波动，还给市场提供流动性，因此程序化交易作为一种交易方式具有存在的价值和意义。但其对市场的影响，则要看是什么人，怎么来使用。可以说，程序化交易是把“双刃剑”。</p>
+<p>在高度曝光下，高频交易商战无不胜的神话开始褪色。踏进2017年后，有关高频交易商的不利报道陆续涌现。</p>
+<p>其中令人触目的三宗包括︰全球最大高频交易公司Virtu 14亿美元收购竞争对手KCG；量化交易公司Quantlabsa和专于高频交易的Teza进行合并；及Interactive Broker退出期权市场。</p>
+<p>Virtu收购KCG</p>
+<p>Virtu Financial 4月20日宣布：已达成最终收购协议，并获得骑士资本（KCG）董事会一致通过。Virtu以每股20.00美元的价格，总计约14亿美元，现金收购竞争对手骑士资本（KCG）</p>
+<p>该笔交易为Virtu开辟了新的收入来源。Virtu可以将技术和服务拓展到KCG的众多机构客户。Virtu将整合Virtu和KCG的优秀算法和分析工具，向客户提供更优质的服务。</p>
+<p>更大的规模和成本效益将使Virtu更有效地应对复杂的市场和同业竞争。Virtu预计在合并后两年可以节省大约2.08亿美元的成本节省，并通过协同效应增加4亿美元的收入。</p>
+<p>该交易将通过向私募股权公司北岛和淡马锡发行价值7.5亿美元的股票进行融资，并从摩根大通证券有限责任公司借款16.5亿美元。</p>
+<p>Virtu在收购KCG后也成为全球高频交易公司中的巨头。</p>
+<p>Virtu Financial</p>
+<p>Virtu曾是闷声发大财的代表，在1485个交易日中仅有一天出现亏损。但自2016年，Virtu的利润开始出现了下滑。</p>
+<p>Virtu是全球最大的高频做市商之一。关注私募工场ID：simugongchang，加私募工场老板娘微信guo5_guoguo交易领域横跨股市、商品、外汇、期权和债市等固定收益市场，为全球34个国家的225余家交易所提供流动性。业务总部坐落在纽约，在北美、欧洲、亚洲均设有交易中心以专注于各洲市场。</p>
+<p>Virtu于2014年提交招股说明书，并于2015年成功进行IPO。</p>
+<p>在招股说明书中显示，Virtu的盈利能力令人难以置信。从2009年到2014年的1485个交易日中，Virtu平均每天执行530万次交易，其中49%的操作是盈利的，然而仅仅一天出现亏损。</p>
+<p>2014年， Virtu每天都有盈利，共录得收入7.231亿美元和利润1.901亿美元。</p>
+<p>Virtu避免可能带来巨额亏损的大交易，而是专注于赚取一笔笔微薄的利润——比如10美元——每天上百万次。</p>
+<p>5月的那个周五，公司在黄金交易所和期货市场做市。在芝加哥和纽约的23笔交易中，总共获得了36美元的利润。</p>
+<p>Virtu作为电子做市商，虽用高频交易的技术手段，但与高频趋势行情推手不同，而是流动性提供者，是各市场所依赖的”合作伙伴”，高频做市商Virtu是的策略是”市场中性”的。在Virtu的招股说明书中，Virtu戏称他的策略遵循”三板斧”。1”single instrument market making strategy” 场内寻找对手盘 2 “one to one market making strategy” 在双边市场寻找对手盘3 “one to many market making strategy” 在一揽子市场组合寻找对手盘。</p>
+<p>与卖家和买家同时做对手盘，而不是自己持仓，并且要么在最后把风险对冲掉，要么不承担任何风险。Virtu的做市交易总共涉及1.2万种金融资产。最能体现该公司严苛高效的是：它从事交易的市场（全世界34个国家的225个交易所）比员工的人数还多（截至2015年有148人）。</p>
+<p>骑士资本</p>
+<p>成立于1995年的骑士资本是华尔街上名声显赫的重量级证券公司。</p>
+<p>被行业称之为市场的支柱公司之一，并以其稳健的行业风格和专业的服务领域而著名。不但规模庞大，吸引了许多重量级的客户，而且业务范围遍及美国、欧洲和亚洲。</p>
+<p>其市场的交易份额占到纽交所交易总量的17.3%，纳斯达克证券市场的16.9%，自2011年到2012年间的日交易总量达到全美金融证券市场的10%。</p>
+<p>服务的客户对象既包括了买方客户，也包括了卖方客户，同时还有大量的零售客户。涉及的金融产品涵盖了全球金融市场的股票、固定收益产品、外汇，期货和期权等。</p>
+<p>除了为客户提供全方位的经纪业务服务之外，还通过公司的交易平台为客户提供高频交易服务。骑士资本主要的业务涉及三大块，即做市商业务、电子交易执行服务业务、以及机构销售和交易业务。</p>
+<p>但这家华尔街著名的做市商却在2012年遭受了灭顶之灾。不到45分钟的时间亏损高达4.6亿美元。</p>
+<p>2012年8月1日，本应该是一个非常普通的交易日。</p>
+<p>刚刚开市，市场中就出现了大量异常订单，数量不但巨大，而且涉及的股票也很广。开市20分钟后异常的订单如同发怒的海潮涌向纽交所，直接触发了市场熔断，并暂停了多只股票的交易。</p>
+<p>直到9:50分时纽交所才确定这些非正常的交易订单来自于骑士资本公司。</p>
+<p>而此时骑士资本公司也陷入了混乱。当得知交易系统向纽交所发出了大量异常订单之后，公司的高层管理人员立即赶到公司的交易厅。</p>
+<p>直到10:00点钟，在骑士资本和纽交所的共同努力之下，才停止了骑士资本的交易系统向纽交所发送交易订单。</p>
+<p>当天收市后纽交所宣布，在查验140只非正常交易的股票后，决定取消6只股票的交易。这意味着这6只股票当天的所有成交撮合全部无效。</p>
+<p>骑士资本在交易事件之后向美国证监会提出申述，要求取消更多的错误交易，最终没能获得成功。</p>
+<p>根据事后的报道，骑士资本集团交易系统的错误是由一个新安装的软件模块所引发，这是一个已经被废弃不用了的软件模块，但始终存在于交易系统之中。通常，这样的废弃模块被称为“死”模块。</p>
+<p>但骑士资本的技术人员在为系统升级时，没有更换“死”模块。8月1日早上交易系统开始运行时，在某一特定条件下触发计算机执行了这个 “死”模块，导致了事件的发生。</p>
+<p>很显然，这是一起由计算机引发的差错，但是根源却在于编写软件和维护计算机系统的人，是一起人为的严重交易事故。</p>
+<p>根据美国证监会公布的调查表明，骑士资本的系统共收到212笔交易订单，交易系统应该执行这212笔交易订单的撮合。</p>
+<p>然而，骑士资本的交易系统却在不到45分钟的时间里发送了几百万笔交易订单，致使纽交所在这段时间里成交了超过400万笔交易订单，平均每秒钟的成交超过了1500笔。</p>
+<p>短短45分钟时间，骑士资本系统的总交易量就达到了66.5亿美元。骑士资本最终的损失高达$4.6亿美元。</p>
+<p>最终美国高频交易商getco以14亿美元的价格收购了骑士资本。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/quant/" rel="tag"># quant</a>
+              <a href="/tags/ML/" rel="tag"># ML</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/11/%E8%82%A1%E5%B8%82%E7%A5%9E%E5%A5%87%E7%9A%84%E2%80%9C%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E2%80%9D/" rel="prev" title="股市神奇的“五个数字”">
+      <i class="fa fa-chevron-left"></i> 股市神奇的“五个数字”
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/04/08/tushare%E5%92%8Cbaostock%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" rel="next" title="tushare和baostock有什么区别？">
+      tushare和baostock有什么区别？ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A2%E5%8D%95%E6%8B%86%E5%88%86%E7%AD%96%E7%95%A5"><span class="nav-number">1.</span> <span class="nav-text">订单拆分策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%9A%E5%B8%82%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5"><span class="nav-number">2.</span> <span class="nav-text">做市交易策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5"><span class="nav-number">3.</span> <span class="nav-text">定量化交易策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%AD%96%E7%95%A5"><span class="nav-number">4.</span> <span class="nav-text">其他策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E2%80%9C%E6%89%98%E6%8B%89%E6%96%AF%E2%80%9D%E8%AF%9E%E7%94%9F"><span class="nav-number">5.</span> <span class="nav-text">高频交易“托拉斯”诞生</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

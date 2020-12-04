@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。 1. 搭建config server这里启动了3个config server。docker命令如下： 123docker run  --restart: always --name cs0 -itd -v ~&#x2F;data&#x2F;db&#x2F;mongo&#x2F;cs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单机版——docker搭建MongoDB分片集群">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。 1. 搭建config server这里启动了3个config server。docker命令如下： 123docker run  --restart: always --name cs0 -itd -v ~&#x2F;data&#x2F;db&#x2F;mongo&#x2F;cs">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-30T12:02:04.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:author" content="Hory Skone">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>单机版——docker搭建MongoDB分片集群 | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          单机版——docker搭建MongoDB分片集群
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-30 12:02:04" itemprop="dateCreated datePublished" datetime="2020-07-30T12:02:04+00:00">2020-07-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。</p>
+<h2 id="1-搭建config-server"><a href="#1-搭建config-server" class="headerlink" title="1. 搭建config server"></a>1. 搭建config server</h2><p>这里启动了3个config server。docker命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run  --restart: always --name cs0 -itd -v ~/data/db/mongo/cs0:/data/db -p <span class="number">27019</span>:<span class="number">27019</span> mongo --configsvr --replSet <span class="string">"rs_configsvr"</span>  --bind_ip_all</span><br><span class="line">docker run  -- restart: always --name cs1 -itd -v ~/data/db/mongo/cs1:/data/db -p <span class="number">27029</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">"rs_configsvr"</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name cs2 -itd -v ~/data/db/mongo/cs2:/data/db -p <span class="number">27039</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">"rs_configsvr"</span>  --bind_ip_all</span><br></pre></td></tr></table></figure>
+<p>启动完后可以利用docker ps -a来看config server是否启动成功。我们通过命令docker inspect cs0 | grep IPAddress看下cs0的ip地址，发现地址是172.17.0.9。相同的方法看到cs1和cs2的ip分别为172.17.0.10和172.17.0.11。</p>
+<p>docker exec -it cs0 bash进入cs0容器里，并连接MongoDB配置服，配置服的端口为27019。命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.9</span> --port <span class="number">27019</span></span><br></pre></td></tr></table></figure>
+<p>登录进MongoDB后开始配置config server:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(</span><br><span class="line">  &#123;</span><br><span class="line">    _id: <span class="string">"rs_configsvr"</span>,</span><br><span class="line">    configsvr: true,</span><br><span class="line">    members: [</span><br><span class="line">      &#123; _id : <span class="number">0</span>, host : <span class="string">"172.17.0.9:27019"</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">1</span>, host : <span class="string">"172.17.0.10:27019"</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">2</span>, host : <span class="string">"172.17.0.11:27019"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>返回的ok里的值为1就表示配置成功了。</p>
+<h2 id="2-搭建分片副本集"><a href="#2-搭建分片副本集" class="headerlink" title="2. 搭建分片副本集"></a>2. 搭建分片副本集</h2><p>这里启动了2组分片副本集，命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -- restart: always --name shm00 -itd -v ~/data/db/mongo/db00:/data/db -p <span class="number">27018</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">"rs_shardsvr0"</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm01 -itd -v ~/data/db/mongo/db01:/data/db -p <span class="number">27028</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">"rs_shardsvr0"</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm02 -itd -v ~/data/db/mongo/db02:/data/db -p <span class="number">27038</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">"rs_shardsvr0"</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm10 -itd -v ~/data/db/mongo/db10:/data/db -p <span class="number">27048</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">"rs_shardsvr1"</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm11 -itd -v ~/data/db/mongo/db11:/data/db -p <span class="number">27058</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">"rs_shardsvr1"</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name shm12 -itd -v ~/data/db/mongo/db12:/data/db -p <span class="number">27068</span>:<span class="number">27018</span> mongo --shardsvr --replSet <span class="string">"rs_shardsvr1"</span>  --bind_ip_all</span><br></pre></td></tr></table></figure>
+<p>查看shm00和shm01的ip：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker inspect shm00 | grep IPAddress</span><br><span class="line">docker inspect shm10 | grep IPAddress</span><br></pre></td></tr></table></figure>
+<p>发现shm00和shm10的ip尾号分别是12和15。</p>
+<p>进入shm00容器：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">exec</span> -it shm00 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.12</span> --port <span class="number">27018</span></span><br></pre></td></tr></table></figure>
+<p>配置副本集rs_shardsvr0:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rs.initiate(</span><br><span class="line">  &#123;</span><br><span class="line">    _id : <span class="string">"rs_shardsvr0"</span>,</span><br><span class="line">    members: [</span><br><span class="line">      &#123; _id : <span class="number">0</span>, host : <span class="string">"172.17.0.12:27018"</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">1</span>, host : <span class="string">"172.17.0.13:27018"</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">2</span>, host : <span class="string">"172.17.0.14:27018"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>同理配置副本集rs_shardsvr0：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.15</span> --port <span class="number">27018</span></span><br><span class="line"></span><br><span class="line">rs.initiate(</span><br><span class="line">  &#123;</span><br><span class="line">    _id : <span class="string">"rs_shardsvr1"</span>,</span><br><span class="line">    members: [</span><br><span class="line">      &#123; _id : <span class="number">0</span>, host : <span class="string">"172.17.0.15:27018"</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">1</span>, host : <span class="string">"172.17.0.16:27018"</span> &#125;,</span><br><span class="line">      &#123; _id : <span class="number">2</span>, host : <span class="string">"172.17.0.17:27018"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="3-搭建mongos路由服"><a href="#3-搭建mongos路由服" class="headerlink" title="3. 搭建mongos路由服"></a>3. 搭建mongos路由服</h2><p>docker命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -- restart: always --name mongos0 -itd -p <span class="number">27017</span>:<span class="number">27017</span> --entrypoint <span class="string">"mongos"</span> mongo --configdb rs_configsvr/<span class="number">172.17</span><span class="number">.0</span><span class="number">.9</span>:<span class="number">27019</span>,<span class="number">172.17</span><span class="number">.10</span><span class="number">.3</span>:<span class="number">27019</span>,<span class="number">172.17</span><span class="number">.0</span><span class="number">.11</span>:<span class="number">27019</span> --bind_ip_all</span><br></pre></td></tr></table></figure>
+<p>进入容器并连接MongoDB：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="keyword">exec</span> -it mongos0 bash</span><br><span class="line"></span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.18</span> --port <span class="number">27017</span></span><br></pre></td></tr></table></figure>
+<p>配置分片信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sh.addShard(<span class="string">"rs_shardsvr0/172.17.0.12:27018,172.17.0.13:27018,172.17.0.14:27018"</span>)</span><br><span class="line"></span><br><span class="line">sh.addShard(<span class="string">"rs_shardsvr1/172.17.0.15:27018,172.17.0.16:27018,172.17.0.17:27018"</span>)</span><br></pre></td></tr></table></figure>
+<p>至此，我们的MongoDB分片集群就搭建好了。</p>
+<h2 id="创建用户密码-增加认证"><a href="#创建用户密码-增加认证" class="headerlink" title="创建用户密码, 增加认证"></a>创建用户密码, 增加认证</h2><p>mongo4 以后的 解决方案：修改mechanisms加密方式为SCRAM-SHA-1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; </span><br><span class="line">    user: <span class="string">"admin"</span>, </span><br><span class="line">    pwd: <span class="string">"xxx"</span>, </span><br><span class="line">    roles: [ &#123; role: <span class="string">"userAdminAnyDatabase"</span>, db: <span class="string">"admin"</span> &#125; ], </span><br><span class="line">    mechanisms : [<span class="string">"SCRAM-SHA-1"</span>] </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.4以前的版本使用以下</span></span><br><span class="line">db.createUser(&#123; </span><br><span class="line">    user: <span class="string">"admin"</span>, </span><br><span class="line">    pwd: <span class="string">"xxx"</span>, </span><br><span class="line">    roles: [ &#123; role: <span class="string">"userAdminAnyDatabase"</span>, db: <span class="string">"admin"</span> &#125; ] </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="4-测试我们的集群"><a href="#4-测试我们的集群" class="headerlink" title="4. 测试我们的集群"></a>4. 测试我们的集群</h2><p>首先在mongos配置一个database并启动分片:sh.enableSharding(“mapp”)。</p>
+<p>对order集合设置分片规则：sh.shardCollection(“mapp.order”, {“_id”: “hashed” })</p>
+<p>好了，我们插入1000条数据看下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">use mapp</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= <span class="number">1000</span>; i=i+<span class="number">1</span>)&#123;</span><br><span class="line">    db.order.insert(&#123;<span class="string">'price'</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#125;</span><br><span class="line">db.order.find().count()查看数据确实是<span class="number">1000</span>条。我们再到<span class="number">2</span>个分片副本集看下吧：</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker <span class="keyword">exec</span> -it shm00 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.12</span> --port <span class="number">27018</span></span><br><span class="line"></span><br><span class="line">use mapp</span><br><span class="line">db.order.find().count()</span><br></pre></td></tr></table></figure>
+<p>我这里查看有505条数据。</p>
+<p>另一个分片看下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker <span class="keyword">exec</span> -it shm10 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.15</span> --port <span class="number">27018</span></span><br><span class="line"></span><br><span class="line">use mapp</span><br><span class="line">db.order.find().count()</span><br></pre></td></tr></table></figure>
+<p>我这里查看到右495条数据。看起来我们的数据是正常的。</p>
+<p>刚才都是在主分片上看的，我们看下ip尾号为13的副本是怎么的情况：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="keyword">exec</span> -it shm01 bash</span><br><span class="line">mongo --host <span class="number">172.17</span><span class="number">.0</span><span class="number">.13</span> --port <span class="number">27018</span></span><br><span class="line">rs.slaveOk()</span><br><span class="line">use mapp</span><br><span class="line">db.order.find().count()</span><br></pre></td></tr></table></figure>
+<p>查看到数据是505条。确认ok。<br><a href="https://www.dazhuanlan.com/2019/08/21/5d5c524f315e1/" target="_blank" rel="noopener">link</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/29/%E8%8E%B7%E5%8F%96scrapy-request-%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%8F%8A%E6%8D%95%E6%8D%89%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/" rel="prev" title="获取scrapy request 头部信息及捕捉异常信息">
+      <i class="fa fa-chevron-left"></i> 获取scrapy request 头部信息及捕捉异常信息
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" rel="next" title="多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤">
+      多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%90%AD%E5%BB%BAconfig-server"><span class="nav-number">1.</span> <span class="nav-text">1. 搭建config server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%90%AD%E5%BB%BA%E5%88%86%E7%89%87%E5%89%AF%E6%9C%AC%E9%9B%86"><span class="nav-number">2.</span> <span class="nav-text">2. 搭建分片副本集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%90%AD%E5%BB%BAmongos%E8%B7%AF%E7%94%B1%E6%9C%8D"><span class="nav-number">3.</span> <span class="nav-text">3. 搭建mongos路由服</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81-%E5%A2%9E%E5%8A%A0%E8%AE%A4%E8%AF%81"><span class="nav-number">4.</span> <span class="nav-text">创建用户密码, 增加认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%B5%8B%E8%AF%95%E6%88%91%E4%BB%AC%E7%9A%84%E9%9B%86%E7%BE%A4"><span class="nav-number">5.</span> <span class="nav-text">4. 测试我们的集群</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

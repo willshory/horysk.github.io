@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="分国外和国内两部分（可以各取所需）：国外的9个优秀DNS服务器：1.谷歌的公共DNS服务器主DNS：8.8.8.8辅DNS：8.8.4.4谷歌的免费DNS服务器通常被列为最好的，它们易于记忆，并且每个人都可以使用。它甚至可以提供令人印象深刻的速度。 谷歌DNS的主要优势来自他们作为一家公司的声誉。谷歌每年收入极多，有能力提供最稳定和更有弹性的DNS服务器。 这个DNS服务器的唯一问题是它们存储有关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="盘点国内外优秀公共DNS">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="分国外和国内两部分（可以各取所需）：国外的9个优秀DNS服务器：1.谷歌的公共DNS服务器主DNS：8.8.8.8辅DNS：8.8.4.4谷歌的免费DNS服务器通常被列为最好的，它们易于记忆，并且每个人都可以使用。它甚至可以提供令人印象深刻的速度。 谷歌DNS的主要优势来自他们作为一家公司的声誉。谷歌每年收入极多，有能力提供最稳定和更有弹性的DNS服务器。 这个DNS服务器的唯一问题是它们存储有关">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-24T10:03:57.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="DNS">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>盘点国内外优秀公共DNS | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          盘点国内外优秀公共DNS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-24 10:03:57" itemprop="dateCreated datePublished" datetime="2020-07-24T10:03:57+00:00">2020-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DNS/" itemprop="url" rel="index"><span itemprop="name">DNS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="分国外和国内两部分（可以各取所需）："><a href="#分国外和国内两部分（可以各取所需）：" class="headerlink" title="分国外和国内两部分（可以各取所需）："></a>分国外和国内两部分（可以各取所需）：</h2><h3 id="国外的9个优秀DNS服务器："><a href="#国外的9个优秀DNS服务器：" class="headerlink" title="国外的9个优秀DNS服务器："></a>国外的9个优秀DNS服务器：</h3><h2 id="1-谷歌的公共DNS服务器"><a href="#1-谷歌的公共DNS服务器" class="headerlink" title="1.谷歌的公共DNS服务器"></a>1.谷歌的公共DNS服务器</h2><p>主DNS：8.8.8.8<br>辅DNS：8.8.4.4<br>谷歌的免费DNS服务器通常被列为最好的，它们易于记忆，并且每个人都可以使用。它甚至可以提供令人印象深刻的速度。</p>
+<p>谷歌DNS的主要优势来自他们作为一家公司的声誉。谷歌每年收入极多，有能力提供最稳定和更有弹性的DNS服务器。</p>
+<p>这个DNS服务器的唯一问题是它们存储有关您的运营的信息，如果美国政府决定需要这些信息，它们可以与第三方共享。但是，对于不担心此问题的用户，Google通常被认为是最好的DNS服务器。</p>
+<h2 id="2-Norton-ConnectSafe"><a href="#2-Norton-ConnectSafe" class="headerlink" title="2. Norton ConnectSafe"></a>2. Norton ConnectSafe</h2><p>主DNS： 199.85.126.10<br>辅DNS： 199.85.127.10<br>诺顿以其出色的防病毒，互联网安全服务和产品而闻名。但是，人们不知道他们的DNS服务器也不会令人失望。</p>
+<p>该DNS地址可防止恶意软件和诈骗。这是他们可用的三个级别的互联网防护DNS中的第一个。</p>
+<p>第2个是199.85.126.20和199.85.127.20，还限制了带有色情内容的网站，第3个是199.85.126.30和199.85.126.30，增加了阻止诺顿认为非家庭友好的内容，如果你很感兴趣，您可以在Norton ConnectSafe - DNS常见问题中找到非家庭友好内容列表。</p>
+<p>这些选项使Norton ConnectSafe成为父母的父母可以轻松选择的，这些孩子希望保护他们免受在线不需要的资料的侵害。</p>
+<p>##　3. OpenDNS<br>主DNS： 208.67.222.222<br>辅DNS： 208.67.220.220<br>OpenDNS是今天仍然存在的另一个老竞争对手，是搜索发现的几个最好的DNS服务器列表中另一个常见的候选者。它的质量与Google的DNS效率相当。</p>
+<p>同样，对于关心孩子互联网安全的用户，OpenDNS提供了一项名为OpenDNS FamilyShield的服务，可以阻止成人内容（可在服务器208.67.222.123和208.67.220.123获得）。</p>
+<h2 id="4-DNS-Watch"><a href="#4-DNS-Watch" class="headerlink" title="4. DNS Watch"></a>4. DNS Watch</h2><p>主DNS： 84.200.69.80<br>辅DNS： 84.200.70.40<br>DNS Watch专注于透明度和自由选择，提供最好的DNS服务器，不受任何形式的审查。他们还保证不会在他们的服务器上存储任何信息，并且他们的解析器不会设置为记录您的任何数据。</p>
+<p>他们的形象是无私的服务和团队。他们唯一的目的是为每个人提供高效的互联网。他们还声称，他们不是一家大公司，这有助于避免政府监管。所以对于那里的自由爱好者来说，这是一个很好的选择。</p>
+<p>此外，为了跟上他们的透明态度，他们甚至还提供免费DNS服务器的实时统计数据。这种透明性使它们成为最佳DNS服务器的良好候选者，至少在可信度和匿名DNS服务器方面。</p>
+<h2 id="5-Comodo安全DNS"><a href="#5-Comodo安全DNS" class="headerlink" title="5. Comodo安全DNS"></a>5. Comodo安全DNS</h2><p>主DNS： 8.26.56.26<br>辅DNS： 8.20.247.20<br>另一个易于设置的服务器。</p>
+<p>其中一个有利的一面的科摩多安全DNS是它跨越全球15个节点的事实。在每个大陆上，每个节点包含几个服务器，准备为本地用户提供服务。这使得Comodo Secure DNS成为用户的绝佳选择。</p>
+<p>关于DNS服务器速度的许多问题之一是您与其服务器的距离。</p>
+<p>无论您身在何处，Comodo的全球报道都能让它快速发展。众所周知，Comodo Secure DNS是最好的DNS服务器之一，因为它还可以让您远离恶意软件和骗局网站。他们会定期更新阻止列表。</p>
+<p>以合理的速度进行全球覆盖，再加上它自动检测“未使用”或“重影”页面的事实，使其成为最佳DNS服务器标题的引人注目的选择。特别推荐那些渴望可公开访问且安全的DNS服务器的用户。</p>
+<h2 id="6-威瑞信"><a href="#6-威瑞信" class="headerlink" title="6.威瑞信"></a>6.威瑞信</h2><p>主DNS： 64.6.64.6<br>辅DNS： 64.6.65.6<br>Verisign的服务基于两个主题：作为匿名DNS服务器，并提供恶意软件和恶意网站的保护。</p>
+<p>他们特别指出，让客户知道他们不会向第三方出售他们的信息，也不会向用户提供任何广告。</p>
+<h2 id="7-OpenNIC"><a href="#7-OpenNIC" class="headerlink" title="7. OpenNIC"></a>7. OpenNIC</h2><p>主DNS： 192.95.54.3<br>辅DNS： 192.95.54.1<br>OpenNIC是那些不想弄清楚最接近其位置的服务器的用户的绝佳选择。</p>
+<p>此处列出的DNS服务器只是它们可用的大量服务器的一部分。如果您访问他们的网站，您不仅可以查找最接近您所在位置的DNS，还可以让该网站自动为您执行此操作。这样你就可以省去寻找最佳DNS的麻烦。</p>
+<h2 id="8-GreenTeamDNS"><a href="#8-GreenTeamDNS" class="headerlink" title="8. GreenTeamDNS"></a>8. GreenTeamDNS</h2><p>主DNS： 81.218.119.11<br>辅DNS： 209.88.198.133<br>有关家庭友好型互联网的最佳DNS服务器的另一名亚军，它不仅会阻止带有色情内容的网站，还会阻止包含恶意软件，僵尸程序以及与暴力和毒品相关的网站。</p>
+<p>如前所述，对于父母来说，这尤其有用。</p>
+<h2 id="9-Cloudflare-DNS"><a href="#9-Cloudflare-DNS" class="headerlink" title="9. Cloudflare DNS"></a>9. Cloudflare DNS</h2><p>DNS： 1.1.1.1</p>
+<p>由职业的网站安全加速服务提供商cloudflare提供，新发布不久，主打安全、隐私、迅速。自用过cloudflare家的cdn服务，感觉还不错</p>
+<h1 id="国内优秀公共DNS服务："><a href="#国内优秀公共DNS服务：" class="headerlink" title="国内优秀公共DNS服务："></a>国内优秀公共DNS服务：</h1><h2 id="1、114DNS-（http-www-114dns-com-）"><a href="#1、114DNS-（http-www-114dns-com-）" class="headerlink" title="1、114DNS （http://www.114dns.com/）"></a>1、114DNS （<a href="http://www.114dns.com/）" target="_blank" rel="noopener">http://www.114dns.com/）</a></h2><p>114.114.114.114<br>114.114.115.115</p>
+<h2 id="2、腾讯-（https-www-dnspod-cn-Products-Public-DNS）"><a href="#2、腾讯-（https-www-dnspod-cn-Products-Public-DNS）" class="headerlink" title="2、腾讯 （https://www.dnspod.cn/Products/Public.DNS）"></a>2、腾讯 （<a href="https://www.dnspod.cn/Products/Public.DNS）" target="_blank" rel="noopener">https://www.dnspod.cn/Products/Public.DNS）</a></h2><p>119.29.29.29<br>182.254.118.118</p>
+<h2 id="3、阿里-（http-alidns-com-）"><a href="#3、阿里-（http-alidns-com-）" class="headerlink" title="3、阿里 （http://alidns.com/）"></a>3、阿里 （<a href="http://alidns.com/）" target="_blank" rel="noopener">http://alidns.com/）</a></h2><p>223.5.5.5<br>223.6.6.6</p>
+<h2 id="4、百度-（http-dudns-baidu-com-intro-publicdns-）"><a href="#4、百度-（http-dudns-baidu-com-intro-publicdns-）" class="headerlink" title="4、百度 （http://dudns.baidu.com/intro/publicdns/）"></a>4、百度 （<a href="http://dudns.baidu.com/intro/publicdns/）" target="_blank" rel="noopener">http://dudns.baidu.com/intro/publicdns/）</a></h2><p>180.76.76.76</p>
+<h2 id="5、CNNIC-（http-www-sdns-cn-）"><a href="#5、CNNIC-（http-www-sdns-cn-）" class="headerlink" title="5、CNNIC （http://www.sdns.cn/）"></a>5、CNNIC （<a href="http://www.sdns.cn/）" target="_blank" rel="noopener">http://www.sdns.cn/）</a></h2><p>1.2.4.8<br>210.2.4.8</p>
+<p><a href="www.simongong.net">西蒙宫博客</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DNS/" rel="tag"># DNS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/" rel="prev" title="Hexo使用攻略-添加分类及标签">
+      <i class="fa fa-chevron-left"></i> Hexo使用攻略-添加分类及标签
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/" rel="next" title="zip压缩工具、tar打包、打包并压缩">
+      zip压缩工具、tar打包、打包并压缩 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%9B%BD%E5%A4%96%E5%92%8C%E5%9B%BD%E5%86%85%E4%B8%A4%E9%83%A8%E5%88%86%EF%BC%88%E5%8F%AF%E4%BB%A5%E5%90%84%E5%8F%96%E6%89%80%E9%9C%80%EF%BC%89%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">分国外和国内两部分（可以各取所需）：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BD%E5%A4%96%E7%9A%849%E4%B8%AA%E4%BC%98%E7%A7%80DNS%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">国外的9个优秀DNS服务器：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%B0%B7%E6%AD%8C%E7%9A%84%E5%85%AC%E5%85%B1DNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">1.谷歌的公共DNS服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Norton-ConnectSafe"><span class="nav-number">3.</span> <span class="nav-text">2. Norton ConnectSafe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-DNS-Watch"><span class="nav-number">4.</span> <span class="nav-text">4. DNS Watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Comodo%E5%AE%89%E5%85%A8DNS"><span class="nav-number">5.</span> <span class="nav-text">5. Comodo安全DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%A8%81%E7%91%9E%E4%BF%A1"><span class="nav-number">6.</span> <span class="nav-text">6.威瑞信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-OpenNIC"><span class="nav-number">7.</span> <span class="nav-text">7. OpenNIC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-GreenTeamDNS"><span class="nav-number">8.</span> <span class="nav-text">8. GreenTeamDNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-Cloudflare-DNS"><span class="nav-number">9.</span> <span class="nav-text">9. Cloudflare DNS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BD%E5%86%85%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="nav-number"></span> <span class="nav-text">国内优秀公共DNS服务：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81114DNS-%EF%BC%88http-www-114dns-com-%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">1、114DNS （http:&#x2F;&#x2F;www.114dns.com&#x2F;）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%85%BE%E8%AE%AF-%EF%BC%88https-www-dnspod-cn-Products-Public-DNS%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">2、腾讯 （https:&#x2F;&#x2F;www.dnspod.cn&#x2F;Products&#x2F;Public.DNS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E9%98%BF%E9%87%8C-%EF%BC%88http-alidns-com-%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3、阿里 （http:&#x2F;&#x2F;alidns.com&#x2F;）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E7%99%BE%E5%BA%A6-%EF%BC%88http-dudns-baidu-com-intro-publicdns-%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4、百度 （http:&#x2F;&#x2F;dudns.baidu.com&#x2F;intro&#x2F;publicdns&#x2F;）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81CNNIC-%EF%BC%88http-www-sdns-cn-%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">5、CNNIC （http:&#x2F;&#x2F;www.sdns.cn&#x2F;）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="6.1 读写CSV数据More info: python3-cookbook问题你想读写一个CSV格式的文件。 解决方案对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样： 1234567Symbol,Price,Date,Time,Change,Volume&quot;AA&quot;,39.48,&quot;6&#x2F;11&#x2F;2007&quot;,&quot;9">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读写CSV数据">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="6.1 读写CSV数据More info: python3-cookbook问题你想读写一个CSV格式的文件。 解决方案对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样： 1234567Symbol,Price,Date,Time,Change,Volume&quot;AA&quot;,39.48,&quot;6&#x2F;11&#x2F;2007&quot;,&quot;9">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-22T11:56:31.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>读写CSV数据 | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          读写CSV数据
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-22 11:56:31" itemprop="dateCreated datePublished" datetime="2020-07-22T11:56:31+00:00">2020-07-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="6-1-读写CSV数据"><a href="#6-1-读写CSV数据" class="headerlink" title="6.1 读写CSV数据"></a>6.1 读写CSV数据</h2><p>More info: <a href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p01_read_write_csv_data.html" target="_blank" rel="noopener">python3-cookbook</a><br>问题<br>你想读写一个CSV格式的文件。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Symbol,Price,Date,Time,Change,Volume</span><br><span class="line"><span class="string">"AA"</span>,39.48,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.18,181800</span><br><span class="line"><span class="string">"AIG"</span>,71.38,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.15,195500</span><br><span class="line"><span class="string">"AXP"</span>,62.58,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.46,935000</span><br><span class="line"><span class="string">"BA"</span>,98.31,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,+0.12,104800</span><br><span class="line"><span class="string">"C"</span>,53.08,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.25,360900</span><br><span class="line"><span class="string">"CAT"</span>,78.29,<span class="string">"6/11/2007"</span>,<span class="string">"9:36am"</span>,-0.23,225400</span><br></pre></td></tr></table></figure>
+<p>下面向你展示如何将这些数据读取为一个元组的序列：</p>
+<pre><code class="bash">import csv
+with open(<span class="string">'stocks.csv'</span>) as f:
+    f_csv = csv.reader(f)
+    headers = next(f_csv)
+    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
+        <span class="comment"># Process row</span>
+        ...</code></pre>
+<p>在上面的代码中， row 会是一个列表。因此，为了访问某个字段，你需要使用下标，如 row[0] 访问Symbol， row[4] 访问Change。</p>
+<p>由于这种下标访问通常会引起混淆，你可以考虑使用命名元组。例如：</p>
+<pre><code class="bash">from collections import namedtuple
+with open(<span class="string">'stock.csv'</span>) as f:
+    f_csv = csv.reader(f)
+    headings = next(f_csv)
+    Row = namedtuple(<span class="string">'Row'</span>, headings)
+    <span class="keyword">for</span> r <span class="keyword">in</span> f_csv:
+        row = Row(*r)
+        <span class="comment"># Process row</span>
+        ...</code></pre>
+<p>它允许你使用列名如 row.Symbol 和 row.Change 代替下标访问。 需要注意的是这个只有在列名是合法的Python标识符的时候才生效。如果不是的话， 你可能需要修改下原始的列名(如将非标识符字符替换成下划线之类的)。</p>
+<p>另外一个选择就是将数据读取到一个字典序列中去。可以这样做：</p>
+<pre><code class="bash">import csv
+with open(<span class="string">'stocks.csv'</span>) as f:
+    f_csv = csv.DictReader(f)
+    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
+        <span class="comment"># process row</span>
+        ...</code></pre>
+<p>在这个版本中，你可以使用列名去访问每一行的数据了。比如，row[‘Symbol’] 或者 row[‘Change’]</p>
+<p>为了写入CSV数据，你仍然可以使用csv模块，不过这时候先创建一个 writer 对象。例如:</p>
+<pre><code class="bash">headers = [<span class="string">'Symbol'</span>,<span class="string">'Price'</span>,<span class="string">'Date'</span>,<span class="string">'Time'</span>,<span class="string">'Change'</span>,<span class="string">'Volume'</span>]
+rows = [(<span class="string">'AA'</span>, 39.48, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.18, 181800),
+         (<span class="string">'AIG'</span>, 71.38, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.15, 195500),
+         (<span class="string">'AXP'</span>, 62.58, <span class="string">'6/11/2007'</span>, <span class="string">'9:36am'</span>, -0.46, 935000),
+       ]
+
+with open(<span class="string">'stocks.csv'</span>,<span class="string">'w'</span>) as f:
+    f_csv = csv.writer(f)
+    f_csv.writerow(headers)
+    f_csv.writerows(rows)</code></pre>
+<p>如果你有一个字典序列的数据，可以像这样做：</p>
+<pre><code class="bash">headers = [<span class="string">'Symbol'</span>, <span class="string">'Price'</span>, <span class="string">'Date'</span>, <span class="string">'Time'</span>, <span class="string">'Change'</span>, <span class="string">'Volume'</span>]
+rows = [{<span class="string">'Symbol'</span>:<span class="string">'AA'</span>, <span class="string">'Price'</span>:39.48, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
+        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.18, <span class="string">'Volume'</span>:181800},
+        {<span class="string">'Symbol'</span>:<span class="string">'AIG'</span>, <span class="string">'Price'</span>: 71.38, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
+        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.15, <span class="string">'Volume'</span>: 195500},
+        {<span class="string">'Symbol'</span>:<span class="string">'AXP'</span>, <span class="string">'Price'</span>: 62.58, <span class="string">'Date'</span>:<span class="string">'6/11/2007'</span>,
+        <span class="string">'Time'</span>:<span class="string">'9:36am'</span>, <span class="string">'Change'</span>:-0.46, <span class="string">'Volume'</span>: 935000},
+        ]
+
+with open(<span class="string">'stocks.csv'</span>,<span class="string">'w'</span>) as f:
+    f_csv = csv.DictWriter(f, headers)
+    f_csv.writeheader()
+    f_csv.writerows(rows)</code></pre>
+<p>讨论<br>你应该总是优先选择csv模块分割或解析CSV数据。例如，你可能会像编写类似下面这样的代码：</p>
+<pre><code class="bash">with open(<span class="string">'stocks.csv'</span>) as f:
+<span class="keyword">for</span> line <span class="keyword">in</span> f:
+    row = line.split(<span class="string">','</span>)
+    <span class="comment"># process row</span>
+    ...</code></pre>
+<p>使用这种方式的一个缺点就是你仍然需要去处理一些棘手的细节问题。 比如，如果某些字段值被引号包围，你不得不去除这些引号。 另外，如果一个被引号包围的字段碰巧含有一个逗号，那么程序就会因为产生一个错误大小的行而出错。</p>
+<p>默认情况下，csv 库可识别Microsoft Excel所使用的CSV编码规则。 这或许也是最常见的形式，并且也会给你带来最好的兼容性。 然而，如果你查看csv的文档，就会发现有很多种方法将它应用到其他编码格式上(如修改分割字符等)。 例如，如果你想读取以tab分割的数据，可以这样做：</p>
+<pre><code class="bash"><span class="comment"># Example of reading tab-separated values</span>
+with open(<span class="string">'stock.tsv'</span>) as f:
+    f_tsv = csv.reader(f, delimiter=<span class="string">'\t'</span>)
+    <span class="keyword">for</span> row <span class="keyword">in</span> f_tsv:
+        <span class="comment"># Process row</span>
+        ...</code></pre>
+<p>如果你正在读取CSV数据并将它们转换为命名元组，需要注意对列名进行合法性认证。 例如，一个CSV格式文件有一个包含非法标识符的列头行，类似下面这样：</p>
+<p>Street Address,Num-Premises,Latitude,Longitude 5412 N CLARK,10,41.980262,-87.668452<br>这样最终会导致在创建一个命名元组时产生一个 ValueError 异常而失败。 为了解决这问题，你可能不得不先去修正列标题。 例如，可以像下面这样在非法标识符上使用一个正则表达式替换：</p>
+<pre><code class="bash">import re
+with open(<span class="string">'stock.csv'</span>) as f:
+    f_csv = csv.reader(f)
+    headers = [ re.sub(<span class="string">'[^a-zA-Z_]'</span>, <span class="string">'_'</span>, h) <span class="keyword">for</span> h <span class="keyword">in</span> next(f_csv) ]
+    Row = namedtuple(<span class="string">'Row'</span>, headers)
+    <span class="keyword">for</span> r <span class="keyword">in</span> f_csv:
+        row = Row(*r)
+        <span class="comment"># Process row</span>
+        ...</code></pre>
+<p>还有重要的一点需要强调的是，csv产生的数据都是字符串类型的，它不会做任何其他类型的转换。 如果你需要做这样的类型转换，你必须自己手动去实现。 下面是一个在CSV数据上执行其他类型转换的例子：</p>
+<pre><code class="bash">col_types = [str, <span class="built_in">float</span>, str, str, <span class="built_in">float</span>, int]
+with open(<span class="string">'stocks.csv'</span>) as f:
+    f_csv = csv.reader(f)
+    headers = next(f_csv)
+    <span class="keyword">for</span> row <span class="keyword">in</span> f_csv:
+        <span class="comment"># Apply conversions to the row items</span>
+        row = tuple(convert(value) <span class="keyword">for</span> convert, value <span class="keyword">in</span> zip(col_types, row))
+        ...</code></pre>
+<p>另外，下面是一个转换字典中特定字段的例子：</p>
+<pre><code class="bash"><span class="built_in">print</span>(<span class="string">'Reading as dicts with type conversion'</span>)
+field_types = [ (<span class="string">'Price'</span>, <span class="built_in">float</span>),
+                (<span class="string">'Change'</span>, <span class="built_in">float</span>),
+                (<span class="string">'Volume'</span>, int) ]
+
+with open(<span class="string">'stocks.csv'</span>) as f:
+    <span class="keyword">for</span> row <span class="keyword">in</span> csv.DictReader(f):
+        row.update((key, conversion(row[key]))
+                <span class="keyword">for</span> key, conversion <span class="keyword">in</span> field_types)
+        <span class="built_in">print</span>(row)</code></pre>
+<p>通常来讲，你可能并不想过多去考虑这些转换问题。 在实际情况中，CSV文件都或多或少有些缺失的数据，被破坏的数据以及其它一些让转换失败的问题。 因此，除非你的数据确实有保障是准确无误的，否则你必须考虑这些问题(你可能需要增加合适的错误处理机制)。</p>
+<p>最后，如果你读取CSV数据的目的是做数据分析和统计的话， 你可能需要看一看 Pandas 包。Pandas 包含了一个非常方便的函数叫 pandas.read_csv() ， 它可以加载CSV数据到一个 DataFrame 对象中去。 然后利用这个对象你就可以生成各种形式的统计、过滤数据以及执行其他高级操作了。 在6.13小节中会有这样一个例子。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" rel="prev" title="Ubuntu系统CPU、内存、网络、进程监控工具">
+      <i class="fa fa-chevron-left"></i> Ubuntu系统CPU、内存、网络、进程监控工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/22/about-me/" rel="next" title="about me">
+      about me <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">6.1 读写CSV数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

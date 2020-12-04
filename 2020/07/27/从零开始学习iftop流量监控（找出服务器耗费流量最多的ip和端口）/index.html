@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一、iftop是什么iftop是类似于top的实时流量监控工具。 作用：监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等 官网：http:&#x2F;&#x2F;www.ex-parrot.com&#x2F;~pdw&#x2F;iftop&#x2F; 二、界面说明&#x3D;&gt;代表发送数据，&lt;&#x3D; 代表接收数据TX：发送流量RX：接收流量TOTAL：总流量Cumm：运行iftop到目前时间的总流量peak：流量峰值rates：分别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口）">
+<meta property="og:url" content="http://blog.hory-ai.com/2020/07/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0iftop%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7%EF%BC%88%E6%89%BE%E5%87%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%80%97%E8%B4%B9%E6%B5%81%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%EF%BC%89/index.html">
+<meta property="og:site_name" content="Horysk 宏睿时空">
+<meta property="og:description" content="一、iftop是什么iftop是类似于top的实时流量监控工具。 作用：监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等 官网：http:&#x2F;&#x2F;www.ex-parrot.com&#x2F;~pdw&#x2F;iftop&#x2F; 二、界面说明&#x3D;&gt;代表发送数据，&lt;&#x3D; 代表接收数据TX：发送流量RX：接收流量TOTAL：总流量Cumm：运行iftop到目前时间的总流量peak：流量峰值rates：分别">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-07-27T15:28:24.000Z">
+<meta property="article:modified_time" content="2020-12-03T10:33:38.004Z">
+<meta property="article:author" content="Hory Skone">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Iftop">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.hory-ai.com/2020/07/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0iftop%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7%EF%BC%88%E6%89%BE%E5%87%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%80%97%E8%B4%B9%E6%B5%81%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口） | Horysk 宏睿时空</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Horysk 宏睿时空</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0iftop%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7%EF%BC%88%E6%89%BE%E5%87%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%80%97%E8%B4%B9%E6%B5%81%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-27 15:28:24" itemprop="dateCreated datePublished" datetime="2020-07-27T15:28:24+00:00">2020-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-03 10:33:38" itemprop="dateModified" datetime="2020-12-03T10:33:38+00:00">2020-12-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、iftop是什么"><a href="#一、iftop是什么" class="headerlink" title="一、iftop是什么"></a>一、iftop是什么</h2><p>iftop是类似于top的实时流量监控工具。</p>
+<p>作用：监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等</p>
+<p>官网：<a href="http://www.ex-parrot.com/~pdw/iftop/" target="_blank" rel="noopener">http://www.ex-parrot.com/~pdw/iftop/</a></p>
+<h2 id="二、界面说明"><a href="#二、界面说明" class="headerlink" title="二、界面说明"></a>二、界面说明</h2><p>=&gt;代表发送数据，&lt;= 代表接收数据<br>TX：发送流量<br>RX：接收流量<br>TOTAL：总流量<br>Cumm：运行iftop到目前时间的总流量<br>peak：流量峰值<br>rates：分别表示过去 2s 10s 40s 的平均流量<br>##　三、常用参数<br>-i 指定需要检测的网卡， 如果有多个网络接口，则需要注意网络接口的选择，如：# iftop -i eth1<br>-B 将输出以byte为单位显示网卡流量，默认是bit<br>-n 将输出的主机信息都通过IP显示，不进行DNS解析<br>-N 只显示连接端口号，不显示端口对应的服务名称<br>-F 显示特定网段的网卡进出流量  如iftop -F 192.168.85.0/24<br>-h 帮助，显示参数信息<br>-p 以混杂模式运行iftop，此时iftop可以用作网络嗅探器 ;<br>-P 显示主机以及端口信息<br>-m 设置输出界面中最上面的流量刻度最大值，流量刻度分5个大段显示  如：# iftop -m 100M<br>-f 使用筛选码选择数据包来计数  如iftop -f filter code<br>-b 不显示流量图形条<br>-c 指定可选的配置文件   如iftop  -c config file<br>-t 使用不带ncurses的文本界面，<br>    以下两个是只和-t一起用的：<br>    -s num num秒后打印一次文本输出然后退出，-t -s 60组合使用，表示取60秒网络流量输出到终端<br>    -L num 打印的行数<br>-f 参数支持tcpdump的语法，可以使用各种过滤条件。</p>
+<h2 id="四、进入界面后的操作"><a href="#四、进入界面后的操作" class="headerlink" title="四、进入界面后的操作"></a>四、进入界面后的操作</h2><p>一般参数<br>P      切换暂停/继续显示<br>h      在交互界面/状态输出界面之间切换<br>b      切换是否显示平均流量图形条<br>B      切换显示2s 10s和40s内的平均流量<br>T      切换是否显示每个连接的总流量<br>j/k    向上或向下滚动屏幕显示当前的连接信息<br>f      编辑筛选码<br>l      打开iftop输出过滤功能 ，如输入要显示的IP按回车键后屏幕就只显示与这个IP相关的流量信息<br>L      切换显示流量刻度范围，刻度不同，流量图形条也会不同<br>q      退出iftop<br>主机参数<br>n      使iftop输出结果以IP或主机名的方式显示<br>s      切换是否显示源主机信息<br>d      切换是否显示远端目标主机信息<br>t      切换输出模式,一行或多行<br>端口显示参数<br>N      切换显示端口号/端口号对应服务名称<br>S      切换是否显示本地源主机的端口信息<br>D      切换是否显示远端目标主机的端口信息<br>p      切换是否显示端口信息<br>输出排序参数<br>1/2/3  通过第一列/第二列/第三列排序<br>&lt;      根据左边的本地主机名或IP地址进行排序</p>
+<blockquote>
+<pre><code>根据远端目标主机的主机名或IP地址进行排序</code></pre><p>o      切换是否固定显示当前的连接</p>
+</blockquote>
+<h2 id="五、使用示例"><a href="#五、使用示例" class="headerlink" title="五、使用示例"></a>五、使用示例</h2><p>1.显示网卡eth0的信息，主机通过ip显示<br>iftop -i eth0 -n<br>2.显示端口号（添加-P参数，进入界面可通过p参数关闭）<br>iftop -i eth0 -n -P<br>3.显示将输出以byte为单位显示网卡流量,默认是bit<br>iftop -i eth0 -n -B<br>4.显示流量进度条<br>iftop -i eth0 -n(进入界面后按下L)<br>5.显示每个连接的总流量<br>iftop -i eth0 -n(进入界面后按下T)<br>6.显示指定ip 172.17.1.158的流量<br>iftop -i eth0 -n(进入界面后按下l,输入172.17.1.158回车)</p>
+<h2 id="六、实战-找出最费流量的ip和端口号"><a href="#六、实战-找出最费流量的ip和端口号" class="headerlink" title="六、实战-找出最费流量的ip和端口号"></a>六、实战-找出最费流量的ip和端口号</h2><p>网上找了一圈，全是粘贴复制的iftop命令使用，没说到点上</p>
+<p>接下，请欣赏真正的表演</p>
+<p>1.进入界面<br>iftop -i eth0 -nNB -m 10M<br>-i 指定网卡，<br>-n 代表主机通过ip显示不走DNS<br>-N 只显示连接端口号，不显示端口对应的服务名称(不加会显示如ssh这样的服务名称，不便于排查)<br>-B 指定显示单位为Kb，默认是bit，太小！<br>-m 设置输出界面中最上面的流量刻度最大值，流量刻度分5个大段显示<br>进入后界面如下</p>
+<p>2.按下L显示流量刻度<br>L参数直接显示进度条，方便人类阅读，别说你能直接通过数字感知，小心被砍死</p>
+<p>3.按下T显示总量<br>总得有个总数统计，看着方便！</p>
+<p>4.按下3，根据最近40s统计排序<br>用平均值来统计最权威点</p>
+<p>5.按下t，发送和接受合成一行<br>显示两行没什么意思，一行就够了！</p>
+<p>6.多按几次B，查看最近2s、10s、40s的统计</p>
+<p>没错，图中的172.17.1.158就是我们找到的流量用得最多的IP</p>
+<p>7.筛选指定IP 172.17.1.158<br>按下l, 输入172.17.1.158，出现如下</p>
+<p>回车，生效</p>
+<p>这下就只看到这个ip的流量监控了</p>
+<p>8.找到这个ip哪个端口流量用得最多<br>按下p,根据端口号显示</p>
+<p>到这里，我们就学会了如何找出流量用得最多的ip和端口号，这么好干货你不high起来对不起哥这么用心的截图！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Iftop/" rel="tag"># Iftop</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/27/%E8%AF%95%E7%94%A8%E4%BA%865%E6%AC%BEBI%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" rel="prev" title="试用了5款BI分析工具">
+      <i class="fa fa-chevron-left"></i> 试用了5款BI分析工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/27/Pyppeteer%E5%BA%93%E4%B9%8B%E4%BA%8C%EF%BC%9APyppeteer%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1/" rel="next" title="Pyppeteer库之二：Pyppeteer的浏览器对象">
+      Pyppeteer库之二：Pyppeteer的浏览器对象 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81iftop%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">一、iftop是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%95%8C%E9%9D%A2%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">二、界面说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%BF%9B%E5%85%A5%E7%95%8C%E9%9D%A2%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">四、进入界面后的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">五、使用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E6%88%98-%E6%89%BE%E5%87%BA%E6%9C%80%E8%B4%B9%E6%B5%81%E9%87%8F%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-number">5.</span> <span class="nav-text">六、实战-找出最费流量的ip和端口号</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hory Skone</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
