@@ -232,6 +232,27 @@
             </span>
 
           
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.6k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -252,8 +273,8 @@
 <p>下面说一下如何使用 Docker 快速部署</p>
 <p>安装 Docker<br>使用官方简化命令安装:</p>
 <h2 id="适用于-Linux"><a href="#适用于-Linux" class="headerlink" title="适用于 Linux"></a>适用于 Linux</h2><p>$ curl -fsSL get.docker.com -o get-docker.sh<br>$ sudo sh get-docker.sh –mirror Aliyun //使用阿里云镜像源加速</p>
-<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </p>
-<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</h2><p>$ docker logs mtproto-proxy</p>
+<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </port></p>
+<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</port></h2><p>$ docker logs mtproto-proxy</p>
 <h2 id="查看你的链接信息"><a href="#查看你的链接信息" class="headerlink" title="查看你的链接信息"></a>查看你的链接信息</h2><h2 id="会输出如下信息"><a href="#会输出如下信息" class="headerlink" title="会输出如下信息"></a>会输出如下信息</h2><p>####</p>
 <h4 id="Telegram-Proxy"><a href="#Telegram-Proxy" class="headerlink" title="Telegram Proxy"></a>Telegram Proxy</h4><p>####</p>
 <p>[+] Using the secret in /data/secret: ‘xxxxxxxxxxxxxxxxxxxxxxxx’.<br>[<em>] Final configuration:<br>[</em>]   Secret 1: xxxxxxxxxxxxxxxxxxxxxxxx<br>[<em>]   tg:// link for secret 1 auto configuration: tg://proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx<br>[</em>]   t.me link for secret 1: <a target="_blank" rel="noopener" href="https://t.me/proxy?server=%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%806&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx">https://t.me/proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx</a><br>[<em>]   Tag: no tag<br>[</em>]   External IP: 你的服务器地址<br>[*]   Make sure to fix the links in case you run the proxy on a different port.<br>PS:<br>使用 docker logs mtproto-proxy 查询到的链接<br>其中的端口是默认的请根据你使用的端口酌情修改</p>
@@ -446,6 +467,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
 
 <div class="copyright">
   
@@ -455,9 +478,39 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">268k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">4:04</span>
 </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

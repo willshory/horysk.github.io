@@ -232,6 +232,27 @@
             </span>
 
           
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -252,7 +273,7 @@
 <p>你需要下载pack.xxx.xxx.bin 文件和installer 文件。</p>
 <p>此外 你还需选择一个kubernetes 的官方发行包。你可以在这里找到官方发行包</p>
 <h1 id="安装主机-后添加-方案二"><a href="#安装主机-后添加-方案二" class="headerlink" title="安装主机  后添加  方案二:"></a>安装主机  后添加  方案二:</h1><h2 id="2条命令即可"><a href="#2条命令即可" class="headerlink" title="2条命令即可"></a>2条命令即可</h2><p>#创建密钥<br>sudo ./installer –genkey -hostlist=172.20.2.66</p>
-<h2 id="提示kernel-不够请升级centos-kernel-参考"><a href="#提示kernel-不够请升级centos-kernel-参考" class="headerlink" title="提示kernel 不够请升级centos kernel  参考"></a>提示kernel 不够请升级centos kernel  参考<a href=""></a></h2><h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案" class="headerlink" title="报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案"></a>报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案</h2><p>#创建集群<br>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66<br>image</p>
+<h2 id="提示kernel-不够请升级centos-kernel-参考"><a href="#提示kernel-不够请升级centos-kernel-参考" class="headerlink" title="提示kernel 不够请升级centos kernel  参考"></a>提示kernel 不够请升级centos kernel  参考<a href></a></h2><h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案" class="headerlink" title="报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案"></a>报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案</h2><p>#创建集群<br>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66<br>image</p>
 <h1 id="将一个新节点加入这个集群也只需要一个命令"><a href="#将一个新节点加入这个集群也只需要一个命令" class="headerlink" title="将一个新节点加入这个集群也只需要一个命令"></a>将一个新节点加入这个集群也只需要一个命令</h1><p>1条命令即可</p>
 <h1 id="将密钥复制到本地"><a href="#将密钥复制到本地" class="headerlink" title="将密钥复制到本地"></a>将密钥复制到本地</h1><p>cp ../k8skey.pem ./</p>
 <h1 id="将机器加入集群"><a href="#将机器加入集群" class="headerlink" title="将机器加入集群"></a>将机器加入集群</h1><p>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66</p>
@@ -453,6 +474,8 @@
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
 
 <div class="copyright">
   
@@ -462,9 +485,39 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">268k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">4:04</span>
 </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

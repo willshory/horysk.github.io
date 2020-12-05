@@ -228,6 +228,27 @@
             </span>
 
           
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>4.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>4 mins.</span>
+            </span>
 
         </div>
       </header>
@@ -348,7 +369,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:&#118;&#110;&#99;&#x73;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#x76;&#105;&#x63;&#x65;">&#118;&#110;&#99;&#x73;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#x76;&#105;&#x63;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#118;&#x6e;&#x63;&#115;&#x65;&#x72;&#118;&#101;&#114;&#64;&#49;&#46;&#x73;&#101;&#114;&#118;&#x69;&#99;&#101;">&#118;&#x6e;&#x63;&#115;&#x65;&#x72;&#118;&#101;&#114;&#64;&#49;&#46;&#x73;&#101;&#114;&#118;&#x69;&#99;&#101;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -549,6 +570,8 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
         
 
         
+  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
 
 <div class="copyright">
   
@@ -558,9 +581,39 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Hory Skone</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="Symbols count total">268k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">4:04</span>
 </div>
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 

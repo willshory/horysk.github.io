@@ -163,6 +163,12 @@
       </tags>
   </entry>
   <entry>
+    <title>6546465465</title>
+    <url>/2020/12/04/6546465465/</url>
+    <content><![CDATA[<p>6546546546546<br>dfthfe<br>fdghfye<br>tyh<br>retyher<br>tyh<br>eryh<br>er<br>yh</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Docker 本地导入镜像/保存镜像/载入镜像/删除镜像</title>
     <url>/2020/07/24/Docker-%E6%9C%AC%E5%9C%B0%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F-%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F-%E8%BD%BD%E5%85%A5%E9%95%9C%E5%83%8F-%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F/</url>
     <content><![CDATA[<h1 id="1、Docker导入本地镜像"><a href="#1、Docker导入本地镜像" class="headerlink" title="1、Docker导入本地镜像"></a>1、Docker导入本地镜像</h1><p>有时候我们自己在本地或者其它小伙伴电脑上拷贝了一份镜像，有了这个镜像之后，我们可以把本地的镜像导入，使用docker import 命令。</p>
@@ -1321,6 +1327,42 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/12/05/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hexo 添加 hexo-admin 插件</title>
+    <url>/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>简介<br>在线编辑和发布 hexo 博客。<br>github 地址：<a href="https://github.com/jaredly/hexo-admin">https://github.com/jaredly/hexo-admin</a></p>
+<p>安装<br>进入 hexo 源文件目录，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
+<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
+<p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
+<pre><code class="bash"> node
+ const bcrypt = require(&#39;bcrypt-nodejs&#39;)
+ bcrypt.hashSync(&#39;your_password&#39;)</code></pre>
+<p>其中的 your_password 为登录密码。</p>
+<p>若部署到远程服务器，就可以使用：<a href="http://ip:4000/admin/">http://ip:4000/admin/</a> 进行访问，在线发布 hexo 博客。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo修改默认端口</title>
     <url>/2019/09/18/hexo%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/</url>
     <content><![CDATA[<p>默认使用4000端口，用hexo s -p 80 ，可以暂时修改启动端口。</p>
@@ -1341,7 +1383,7 @@ this.$store.state.contractInstance().methods.getMemberInfo()
 <p>你需要下载pack.xxx.xxx.bin 文件和installer 文件。</p>
 <p>此外 你还需选择一个kubernetes 的官方发行包。你可以在这里找到官方发行包</p>
 <h1 id="安装主机-后添加-方案二"><a href="#安装主机-后添加-方案二" class="headerlink" title="安装主机  后添加  方案二:"></a>安装主机  后添加  方案二:</h1><h2 id="2条命令即可"><a href="#2条命令即可" class="headerlink" title="2条命令即可"></a>2条命令即可</h2><p>#创建密钥<br>sudo ./installer –genkey -hostlist=172.20.2.66</p>
-<h2 id="提示kernel-不够请升级centos-kernel-参考"><a href="#提示kernel-不够请升级centos-kernel-参考" class="headerlink" title="提示kernel 不够请升级centos kernel  参考"></a>提示kernel 不够请升级centos kernel  参考<a href=""></a></h2><h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案" class="headerlink" title="报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案"></a>报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案</h2><p>#创建集群<br>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66<br>image</p>
+<h2 id="提示kernel-不够请升级centos-kernel-参考"><a href="#提示kernel-不够请升级centos-kernel-参考" class="headerlink" title="提示kernel 不够请升级centos kernel  参考"></a>提示kernel 不够请升级centos kernel  参考<a href></a></h2><h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案" class="headerlink" title="报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案"></a>报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案</h2><p>#创建集群<br>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66<br>image</p>
 <h1 id="将一个新节点加入这个集群也只需要一个命令"><a href="#将一个新节点加入这个集群也只需要一个命令" class="headerlink" title="将一个新节点加入这个集群也只需要一个命令"></a>将一个新节点加入这个集群也只需要一个命令</h1><p>1条命令即可</p>
 <h1 id="将密钥复制到本地"><a href="#将密钥复制到本地" class="headerlink" title="将密钥复制到本地"></a>将密钥复制到本地</h1><p>cp ../k8skey.pem ./</p>
 <h1 id="将机器加入集群"><a href="#将机器加入集群" class="headerlink" title="将机器加入集群"></a>将机器加入集群</h1><p>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66</p>
@@ -2048,7 +2090,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:&#118;&#110;&#99;&#x73;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#x76;&#105;&#x63;&#x65;">&#118;&#110;&#99;&#x73;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#x76;&#105;&#x63;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#118;&#x6e;&#x63;&#115;&#x65;&#x72;&#118;&#101;&#114;&#64;&#49;&#46;&#x73;&#101;&#114;&#118;&#x69;&#99;&#101;">&#118;&#x6e;&#x63;&#115;&#x65;&#x72;&#118;&#101;&#114;&#64;&#49;&#46;&#x73;&#101;&#114;&#118;&#x69;&#99;&#101;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -2374,8 +2416,8 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 <p>下面说一下如何使用 Docker 快速部署</p>
 <p>安装 Docker<br>使用官方简化命令安装:</p>
 <h2 id="适用于-Linux"><a href="#适用于-Linux" class="headerlink" title="适用于 Linux"></a>适用于 Linux</h2><p>$ curl -fsSL get.docker.com -o get-docker.sh<br>$ sudo sh get-docker.sh –mirror Aliyun //使用阿里云镜像源加速</p>
-<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </p>
-<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</h2><p>$ docker logs mtproto-proxy</p>
+<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </port></p>
+<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</port></h2><p>$ docker logs mtproto-proxy</p>
 <h2 id="查看你的链接信息"><a href="#查看你的链接信息" class="headerlink" title="查看你的链接信息"></a>查看你的链接信息</h2><h2 id="会输出如下信息"><a href="#会输出如下信息" class="headerlink" title="会输出如下信息"></a>会输出如下信息</h2><p>####</p>
 <h4 id="Telegram-Proxy"><a href="#Telegram-Proxy" class="headerlink" title="Telegram Proxy"></a>Telegram Proxy</h4><p>####</p>
 <p>[+] Using the secret in /data/secret: ‘xxxxxxxxxxxxxxxxxxxxxxxx’.<br>[<em>] Final configuration:<br>[</em>]   Secret 1: xxxxxxxxxxxxxxxxxxxxxxxx<br>[<em>]   tg:// link for secret 1 auto configuration: tg://proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx<br>[</em>]   t.me link for secret 1: <a href="https://t.me/proxy?server=%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%806&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx">https://t.me/proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx</a><br>[<em>]   Tag: no tag<br>[</em>]   External IP: 你的服务器地址<br>[*]   Make sure to fix the links in case you run the proxy on a different port.<br>PS:<br>使用 docker logs mtproto-proxy 查询到的链接<br>其中的端口是默认的请根据你使用的端口酌情修改</p>
@@ -3246,16 +3288,16 @@ with open(&#39;stocks.csv&#39;) as f:
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#x6c;&#x69;&#x63;&#x65;&#x40;&#x6f;&#114;&#103;&#46;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#x2e;&#98;&#x69;&#122;&#110;&#101;&#116;">&#97;&#x6c;&#x69;&#x63;&#x65;&#x40;&#x6f;&#114;&#103;&#46;&#x65;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#x2e;&#98;&#x69;&#122;&#110;&#101;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#108;&#x69;&#99;&#101;&#64;&#111;&#x72;&#x67;&#x2e;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#46;&#x62;&#105;&#x7a;&#x6e;&#x65;&#x74;">&#97;&#108;&#x69;&#99;&#101;&#64;&#111;&#x72;&#x67;&#x2e;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#46;&#x62;&#105;&#x7a;&#x6e;&#x65;&#x74;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#x75;&#x74;&#111;&#114;&#x69;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#119;&#111;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#x2e;&#98;&#110;&#97;">&#x74;&#x75;&#x74;&#111;&#114;&#x69;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#119;&#111;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#x2e;&#98;&#110;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#117;&#116;&#x6f;&#114;&#x69;&#97;&#108;&#45;&#x6e;&#101;&#116;&#119;&#111;&#x72;&#x6b;&#64;&#x30;&#46;&#x30;&#46;&#49;&#46;&#x62;&#110;&#x61;">&#x74;&#117;&#116;&#x6f;&#114;&#x69;&#97;&#108;&#45;&#x6e;&#101;&#116;&#119;&#111;&#x72;&#x6b;&#64;&#x30;&#46;&#x30;&#46;&#49;&#46;&#x62;&#110;&#x61;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#x61;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#111;&#x72;&#107;&#64;&#48;&#46;&#48;&#x2e;&#49;&#46;&#x62;&#110;&#97;">&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#x61;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#111;&#x72;&#107;&#64;&#48;&#46;&#48;&#x2e;&#49;&#46;&#x62;&#110;&#97;</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#x75;&#116;&#111;&#114;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#116;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#x2e;&#x30;&#46;&#49;&#x2e;&#98;&#x6e;&#x61;">&#116;&#x75;&#116;&#111;&#114;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#116;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#x2e;&#x30;&#46;&#49;&#x2e;&#98;&#x6e;&#x61;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#117;&#116;&#111;&#x72;&#105;&#97;&#108;&#45;&#110;&#101;&#x74;&#119;&#x6f;&#x72;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#x61;">&#116;&#117;&#116;&#111;&#x72;&#105;&#97;&#108;&#45;&#110;&#101;&#x74;&#119;&#x6f;&#x72;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#x61;</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#x75;&#x74;&#111;&#114;&#105;&#x61;&#x6c;&#x2d;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#x6b;&#64;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#110;&#97;">&#116;&#x75;&#x74;&#111;&#114;&#105;&#x61;&#x6c;&#x2d;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#x6b;&#64;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#110;&#97;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>
@@ -4167,48 +4209,6 @@ if __name__ == &#39;__main__&#39;:
       <tags>
         <tag>quant</tag>
         <tag>ML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/12/04/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>6546465465</title>
-    <url>/2020/12/04/6546465465/</url>
-    <content><![CDATA[<p>6546546546546<br>dfthfe<br>fdghfye<br>tyh<br>retyher<br>tyh<br>eryh<br>er<br>yh</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hexo 添加 hexo-admin 插件</title>
-    <url>/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>简介<br>在线编辑和发布 hexo 博客。<br>github 地址：<a href="https://github.com/jaredly/hexo-admin">https://github.com/jaredly/hexo-admin</a></p>
-<p>安装<br>进入 hexo 源文件目录，执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
-<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
-<p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
-<pre><code class="bash"> node
- const bcrypt = require(&#39;bcrypt-nodejs&#39;)
- bcrypt.hashSync(&#39;your_password&#39;)</code></pre>
-<p>其中的 your_password 为登录密码。</p>
-<p>若部署到远程服务器，就可以使用：<a href="http://ip:4000/admin/">http://ip:4000/admin/</a> 进行访问，在线发布 hexo 博客。</p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
