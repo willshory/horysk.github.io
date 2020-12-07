@@ -128,11 +128,6 @@
       </tags>
   </entry>
   <entry>
-    <title>186606598926</title>
-    <url>/2017/07/09/186606598926/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>195640956464</title>
     <url>/2017/09/18/195640956464/</url>
     <content><![CDATA[]]></content>
@@ -2097,7 +2092,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:&#118;&#110;&#99;&#115;&#101;&#114;&#x76;&#x65;&#114;&#64;&#49;&#46;&#115;&#x65;&#x72;&#118;&#105;&#99;&#x65;">&#118;&#110;&#99;&#115;&#101;&#114;&#x76;&#x65;&#114;&#64;&#49;&#46;&#115;&#x65;&#x72;&#118;&#105;&#99;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#x76;&#110;&#x63;&#115;&#x65;&#114;&#118;&#101;&#114;&#x40;&#x31;&#46;&#x73;&#x65;&#114;&#118;&#x69;&#99;&#x65;">&#x76;&#110;&#x63;&#115;&#x65;&#114;&#118;&#101;&#114;&#x40;&#x31;&#46;&#x73;&#x65;&#114;&#118;&#x69;&#99;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -2553,34 +2548,6 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 ]]></content>
   </entry>
   <entry>
-    <title>如何破解并访问Hexo Blog已加密的文章</title>
-    <url>/2020/07/29/%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%B9%B6%E8%AE%BF%E9%97%AEHexo-Blog%E5%B7%B2%E5%8A%A0%E5%AF%86%E7%9A%84%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="How-to-crack-hexo-simple-encrypted-blog？"><a href="#How-to-crack-hexo-simple-encrypted-blog？" class="headerlink" title="How to crack hexo simple encrypted blog？"></a>How to crack hexo simple encrypted blog？</h1><h2 id="事发"><a href="#事发" class="headerlink" title="事发"></a>事发</h2><p>下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…）</p>
-<p>我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我的blog现在是用额hexo的the next主题加各种自定义特效，因为搭建时间其实很早，所以当时使用了一种简单的js逻辑来加密blog。下面我们来看下这段有安全问题的代码：<br>代码位置： yourblog/themes/next/layout/custom/head.swig</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">&#x27;请输入密码&#x27;</span>) !== <span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">                alert(<span class="string">&#x27;密码错误&#x27;</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>乍看是否觉得除了逻辑简单没什么问题，然而眼尖的小伙伴分析出了第一个隐患：history.back(); ，而我已知静态页面的安全隐患。接下来我们逐个分析。</p>
-<h2 id="istory-back"><a href="#istory-back" class="headerlink" title="istory.back()"></a>istory.back()</h2><p>back() 方法可加载历史列表中的前一个 URL（如果存在）。如果你的前一个URL就是这个文章的URL，那么恭喜，第一种破解方法get。（不理解，看下一条）</p>
-<h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>hexo g 会根据blog相关文件在public目录下生成blog的所有静态文件。既然是已经生成好的静态页面，实际上html中包含了那段js代码的。因为需要获得html了之后才会触发那个页面访问加密的js，而理论上当我们获取到html页面之后，就可以停止当前页的js操作了。<br>That is to say, 你的blog word就是直接写在页面中的，虽然直接url去访问会弹alert，但是用curl直接获取这个页面的html，可以直接搜索到文章的访问密码, 分分钟攻破此种博文加密方式。上面利用history.back()的访问破解方式，归根结底也是这个问题引起的。</p>
-<p>另外补充一点：因为用hexo的blog的人大多喜欢直接部署到github上利用github.io来展示，这样就要求使用Github的公开仓库，所以代码基本没有保密性可言。坊间流传直接看md文件我持疑，因为hexo d只会把public目录里生成的静态文件上传到github的仓库，除非是直接上传了blog项目的所有代码到github的仓库中。</p>
-<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2><p>其实修复问题很好解决，既然简单的js加密不够安全，那我们就换一个安全的加密方式。<br>不知道怎么写？不慌，早已有大佬开发了插件hexo-blog-encrypt</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">安装hexo-blog-encrypt(安装方式<span class="number">2</span>选<span class="number">1</span>)</span><br><span class="line"><span class="number">1.</span>npm维护安装包</span><br><span class="line"></span><br><span class="line">npm install --save hexo-blog-encrypt (需要安装 npm)</span><br><span class="line"><span class="number">2.</span>yarn维护</span><br><span class="line"></span><br><span class="line">yarn add hexo-blog-encrypt (需要安装 Yarn)</span><br><span class="line">站点设置修改</span><br><span class="line">在 站点配置文件 _config.yml 中启用该插件</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># encrypt plugin</span></span><br><span class="line">encrypt:</span><br><span class="line">  enable: true</span><br><span class="line">  default_abstract: 这是一篇加密文章，内容可能是个人日常吐槽或者特殊技术分享。如果你确实想看，请与我联系。非亲友团勿扰。</span><br><span class="line">  default_message: 输入密码，查看文章。</span><br></pre></td></tr></table></figure>
-<h2 id="使用hexo-blog-encrypt加密blog"><a href="#使用hexo-blog-encrypt加密blog" class="headerlink" title="使用hexo-blog-encrypt加密blog"></a>使用hexo-blog-encrypt加密blog</h2><h3 id="使用-hexo-new-“yourblog”-后在页面添加password字段即可"><a href="#使用-hexo-new-“yourblog”-后在页面添加password字段即可" class="headerlink" title="使用 hexo new  “yourblog”  后在页面添加password字段即可"></a>使用 hexo new  “yourblog”  后在页面添加password字段即可</h3><p>在你的博文头部添加上相应字段，如 password, abstract, message。因为 abstract, message 在站点配置中设置了默认值，如果这里不想自定义 abstract, message，不用专门设置。<br>password: 代表blog的访问密码<br>abstract: 这篇博文的摘要，会显示在博客的列表页<br>message: 当查看加密博文时，密码输入框上面的提示性文字。建议使用中文，英文提示默认字体不好看，可以看我下面的截图。</p>
-<p>visit_password</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试新文章加密</span><br><span class="line">date: </span><br><span class="line">category: hexo</span><br><span class="line">keywords: 博客文章密码</span><br><span class="line">password: yourpassword</span><br><span class="line">abstract: hexo密码测试</span><br><span class="line">message:  输入密码，查看文章</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h2 id="反省总结"><a href="#反省总结" class="headerlink" title="反省总结"></a>反省总结</h2><p>这个事件，其实属于网络安全中最常见的问题“人的安全意识”，比如这个blog加密方案有访问漏洞，我是知道的，但是拖延症导致我没有足够重视这个问题（因为自己总是想着加密过的东西其实被看到也无妨，毕竟正要保密也不会发出来了balabala），结果一直没去修复（即使实际修复这个问题只需要10分钟），直到被小伙伴测试到bug才动手修复。</p>
-<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html">link</a></p>
-]]></content>
-      <categories>
-        <category>Hack</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hack</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤</title>
     <url>/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<h2 id="服务器三台-按顺序执行"><a href="#服务器三台-按顺序执行" class="headerlink" title="服务器三台  按顺序执行"></a>服务器三台  按顺序执行</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.125</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.126</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.127</span></span><br></pre></td></tr></table></figure>
@@ -2644,6 +2611,34 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
       <tags>
         <tag>docker</tag>
         <tag>mongo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何破解并访问Hexo Blog已加密的文章</title>
+    <url>/2020/07/29/%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%B9%B6%E8%AE%BF%E9%97%AEHexo-Blog%E5%B7%B2%E5%8A%A0%E5%AF%86%E7%9A%84%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="How-to-crack-hexo-simple-encrypted-blog？"><a href="#How-to-crack-hexo-simple-encrypted-blog？" class="headerlink" title="How to crack hexo simple encrypted blog？"></a>How to crack hexo simple encrypted blog？</h1><h2 id="事发"><a href="#事发" class="headerlink" title="事发"></a>事发</h2><p>下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…）</p>
+<p>我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我的blog现在是用额hexo的the next主题加各种自定义特效，因为搭建时间其实很早，所以当时使用了一种简单的js逻辑来加密blog。下面我们来看下这段有安全问题的代码：<br>代码位置： yourblog/themes/next/layout/custom/head.swig</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">&#x27;请输入密码&#x27;</span>) !== <span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">                alert(<span class="string">&#x27;密码错误&#x27;</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>乍看是否觉得除了逻辑简单没什么问题，然而眼尖的小伙伴分析出了第一个隐患：history.back(); ，而我已知静态页面的安全隐患。接下来我们逐个分析。</p>
+<h2 id="istory-back"><a href="#istory-back" class="headerlink" title="istory.back()"></a>istory.back()</h2><p>back() 方法可加载历史列表中的前一个 URL（如果存在）。如果你的前一个URL就是这个文章的URL，那么恭喜，第一种破解方法get。（不理解，看下一条）</p>
+<h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>hexo g 会根据blog相关文件在public目录下生成blog的所有静态文件。既然是已经生成好的静态页面，实际上html中包含了那段js代码的。因为需要获得html了之后才会触发那个页面访问加密的js，而理论上当我们获取到html页面之后，就可以停止当前页的js操作了。<br>That is to say, 你的blog word就是直接写在页面中的，虽然直接url去访问会弹alert，但是用curl直接获取这个页面的html，可以直接搜索到文章的访问密码, 分分钟攻破此种博文加密方式。上面利用history.back()的访问破解方式，归根结底也是这个问题引起的。</p>
+<p>另外补充一点：因为用hexo的blog的人大多喜欢直接部署到github上利用github.io来展示，这样就要求使用Github的公开仓库，所以代码基本没有保密性可言。坊间流传直接看md文件我持疑，因为hexo d只会把public目录里生成的静态文件上传到github的仓库，除非是直接上传了blog项目的所有代码到github的仓库中。</p>
+<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2><p>其实修复问题很好解决，既然简单的js加密不够安全，那我们就换一个安全的加密方式。<br>不知道怎么写？不慌，早已有大佬开发了插件hexo-blog-encrypt</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">安装hexo-blog-encrypt(安装方式<span class="number">2</span>选<span class="number">1</span>)</span><br><span class="line"><span class="number">1.</span>npm维护安装包</span><br><span class="line"></span><br><span class="line">npm install --save hexo-blog-encrypt (需要安装 npm)</span><br><span class="line"><span class="number">2.</span>yarn维护</span><br><span class="line"></span><br><span class="line">yarn add hexo-blog-encrypt (需要安装 Yarn)</span><br><span class="line">站点设置修改</span><br><span class="line">在 站点配置文件 _config.yml 中启用该插件</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># encrypt plugin</span></span><br><span class="line">encrypt:</span><br><span class="line">  enable: true</span><br><span class="line">  default_abstract: 这是一篇加密文章，内容可能是个人日常吐槽或者特殊技术分享。如果你确实想看，请与我联系。非亲友团勿扰。</span><br><span class="line">  default_message: 输入密码，查看文章。</span><br></pre></td></tr></table></figure>
+<h2 id="使用hexo-blog-encrypt加密blog"><a href="#使用hexo-blog-encrypt加密blog" class="headerlink" title="使用hexo-blog-encrypt加密blog"></a>使用hexo-blog-encrypt加密blog</h2><h3 id="使用-hexo-new-“yourblog”-后在页面添加password字段即可"><a href="#使用-hexo-new-“yourblog”-后在页面添加password字段即可" class="headerlink" title="使用 hexo new  “yourblog”  后在页面添加password字段即可"></a>使用 hexo new  “yourblog”  后在页面添加password字段即可</h3><p>在你的博文头部添加上相应字段，如 password, abstract, message。因为 abstract, message 在站点配置中设置了默认值，如果这里不想自定义 abstract, message，不用专门设置。<br>password: 代表blog的访问密码<br>abstract: 这篇博文的摘要，会显示在博客的列表页<br>message: 当查看加密博文时，密码输入框上面的提示性文字。建议使用中文，英文提示默认字体不好看，可以看我下面的截图。</p>
+<p>visit_password</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试新文章加密</span><br><span class="line">date: </span><br><span class="line">category: hexo</span><br><span class="line">keywords: 博客文章密码</span><br><span class="line">password: yourpassword</span><br><span class="line">abstract: hexo密码测试</span><br><span class="line">message:  输入密码，查看文章</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h2 id="反省总结"><a href="#反省总结" class="headerlink" title="反省总结"></a>反省总结</h2><p>这个事件，其实属于网络安全中最常见的问题“人的安全意识”，比如这个blog加密方案有访问漏洞，我是知道的，但是拖延症导致我没有足够重视这个问题（因为自己总是想着加密过的东西其实被看到也无妨，毕竟正要保密也不会发出来了balabala），结果一直没去修复（即使实际修复这个问题只需要10分钟），直到被小伙伴测试到bug才动手修复。</p>
+<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html">link</a></p>
+]]></content>
+      <categories>
+        <category>Hack</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hack</tag>
       </tags>
   </entry>
   <entry>
@@ -3097,6 +3092,11 @@ with open(&#39;stocks.csv&#39;) as f:
       </tags>
   </entry>
   <entry>
+    <title>186606598926</title>
+    <url>/2017/07/09/186606598926/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>量化交易领域最重要的10本参考书推荐！</title>
     <url>/2018/08/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E9%A2%86%E5%9F%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8410%E6%9C%AC%E5%8F%82%E8%80%83%E4%B9%A6%E6%8E%A8%E8%8D%90%EF%BC%81/</url>
     <content><![CDATA[<ol start="0">
@@ -3298,16 +3298,16 @@ with open(&#39;stocks.csv&#39;) as f:
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#x6c;&#105;&#x63;&#101;&#64;&#x6f;&#x72;&#103;&#x2e;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#46;&#x62;&#105;&#122;&#110;&#101;&#x74;">&#97;&#x6c;&#105;&#x63;&#101;&#64;&#x6f;&#x72;&#103;&#x2e;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#46;&#x62;&#105;&#122;&#110;&#101;&#x74;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#x61;&#108;&#x69;&#99;&#x65;&#x40;&#111;&#x72;&#103;&#46;&#101;&#120;&#x61;&#109;&#x70;&#108;&#101;&#46;&#98;&#x69;&#x7a;&#x6e;&#101;&#116;">&#x61;&#108;&#x69;&#99;&#x65;&#x40;&#111;&#x72;&#103;&#46;&#101;&#120;&#x61;&#109;&#x70;&#108;&#101;&#46;&#98;&#x69;&#x7a;&#x6e;&#101;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#116;&#117;&#116;&#x6f;&#114;&#x69;&#97;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#46;&#48;&#x2e;&#49;&#x2e;&#98;&#110;&#x61;">&#116;&#117;&#116;&#x6f;&#114;&#x69;&#97;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#46;&#48;&#x2e;&#49;&#x2e;&#98;&#110;&#x61;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#117;&#116;&#x6f;&#x72;&#x69;&#x61;&#x6c;&#45;&#x6e;&#101;&#x74;&#119;&#x6f;&#x72;&#x6b;&#x40;&#x30;&#46;&#48;&#x2e;&#49;&#46;&#x62;&#x6e;&#x61;">&#x74;&#117;&#116;&#x6f;&#x72;&#x69;&#x61;&#x6c;&#45;&#x6e;&#101;&#x74;&#119;&#x6f;&#x72;&#x6b;&#x40;&#x30;&#46;&#48;&#x2e;&#49;&#46;&#x62;&#x6e;&#x61;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#x74;&#x75;&#x74;&#111;&#x72;&#105;&#x61;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#x2e;&#48;&#46;&#x31;&#46;&#98;&#110;&#x61;">&#x74;&#x75;&#x74;&#111;&#x72;&#105;&#x61;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#x2e;&#48;&#46;&#x31;&#46;&#98;&#110;&#x61;</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#x74;&#117;&#116;&#x6f;&#114;&#105;&#97;&#108;&#45;&#x6e;&#101;&#116;&#119;&#111;&#114;&#107;&#64;&#48;&#46;&#x30;&#x2e;&#49;&#x2e;&#x62;&#110;&#97;">&#x74;&#117;&#116;&#x6f;&#114;&#105;&#97;&#108;&#45;&#x6e;&#101;&#116;&#119;&#111;&#114;&#107;&#64;&#48;&#46;&#x30;&#x2e;&#49;&#x2e;&#x62;&#110;&#97;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#x75;&#116;&#x6f;&#x72;&#x69;&#97;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#114;&#x6b;&#x40;&#48;&#46;&#x30;&#46;&#49;&#x2e;&#98;&#x6e;&#97;">&#116;&#x75;&#116;&#x6f;&#x72;&#x69;&#97;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#114;&#x6b;&#x40;&#48;&#46;&#x30;&#46;&#49;&#x2e;&#98;&#x6e;&#97;</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#117;&#x74;&#111;&#x72;&#x69;&#97;&#x6c;&#45;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#64;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#x62;&#x6e;&#97;">&#116;&#117;&#x74;&#111;&#x72;&#x69;&#97;&#x6c;&#45;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#64;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#x62;&#x6e;&#97;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>
