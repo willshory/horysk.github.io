@@ -260,7 +260,7 @@ span.exturl {
 a:hover,
 span.exturl:hover {
   border-bottom-color: var(--link-hover-color);
-  color: var(--link-hover-color);
+  color: #fff;
 }
 iframe,
 img,
@@ -1334,7 +1334,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #7f14ff;
+  background: #87aa9a;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2604,6 +2604,10 @@ ul.breadcrumb li + li:last-child {
   text-align: left;
   transition-property: background-color;
 }
+.menu .menu-item a:hover,
+.menu .menu-item span.exturl:hover {
+  color: #fff;
+}
 @media (max-width: 991px) {
   .menu .menu-item.menu-item-search {
     display: none;
@@ -2647,7 +2651,7 @@ ul.breadcrumb li + li:last-child {
 .sub-menu .menu-item a:hover,
 .sub-menu .menu-item span.exturl:hover {
   background: transparent;
-  color: #fc6423;
+  color: #fff;
 }
 .sub-menu .menu-item-active a {
   border-bottom-color: #fc6423;
@@ -2748,6 +2752,7 @@ ul.breadcrumb li + li:last-child {
 .links-of-author-item span.exturl:hover {
   background: var(--body-bg-color);
   border-radius: 4px;
+  color: #fff;
 }
 .links-of-author-item .fa,
 .links-of-author-item .fab,

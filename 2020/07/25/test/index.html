@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="this is a  test page of password">
+  <meta name="description" content="流程将以下代码放到主题源文件目录下，如 &#x2F;themes&#x2F;yilia&#x2F;source&#x2F;js&#x2F; 下新建文件 click-word.js，代码见下文。下载jquery文件（目前最新版本），放到同一目录下（个人喜好）。修改布局文件，&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_layout.ejs，在末尾body中添加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
+<meta property="og:title" content="Hexo主题增加鼠标点击效果">
 <meta property="og:url" content="http://blog.hory-ai.com/2020/07/25/test/index.html">
 <meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:description" content="this is a  test page of password">
+<meta property="og:description" content="流程将以下代码放到主题源文件目录下，如 &#x2F;themes&#x2F;yilia&#x2F;source&#x2F;js&#x2F; 下新建文件 click-word.js，代码见下文。下载jquery文件（目前最新版本），放到同一目录下（个人喜好）。修改布局文件，&#x2F;themes&#x2F;next&#x2F;layout&#x2F;_layout.ejs，在末尾body中添加">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-25T12:04:47.000Z">
 <meta property="article:modified_time" content="2020-07-25T12:04:47.000Z">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>test | Horysk 宏睿时空</title>
+  <title>Hexo主题增加鼠标点击效果 | Horysk 宏睿时空</title>
   
 
 
@@ -207,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          test
+          Hexo主题增加鼠标点击效果
         </h1>
 
         <div class="post-meta">
@@ -233,7 +233,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>25</span>
+              <span>1.2k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -252,7 +252,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>this is a  test page of password </p>
+        <p>流程<br>将以下代码放到主题源文件目录下，如 /themes/yilia/source/js/ 下新建文件 click-word.js，代码见下文。<br>下载jquery文件<a target="_blank" rel="noopener" href="https://code.jquery.com/jquery-3.3.1.min.js">（目前最新版本）</a>，放到同一目录下（个人喜好）。<br>修改布局文件，/themes/next/layout/_layout.ejs，在末尾body中添加</p>
+<a id="more"></a>
+<pre><code class="bash">&lt;!-- 页面点击特效 --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/click-word.js&quot;&gt;&lt;/script&gt;</code></pre>
+<p>保存后重新生成即可</p>
+<p>js代码</p>
+<pre><code class="bash">var a_idx = 0;
+jQuery(document).ready(function($) &#123;
+    $(&quot;body&quot;).click(function(e) &#123;
+        var a = new Array(&quot;富强&quot;, &quot;民主&quot;, &quot;文明&quot;, &quot;和谐&quot;, &quot;自由&quot;, &quot;平等&quot;, &quot;公正&quot; ,&quot;法治&quot;, &quot;爱国&quot;, &quot;敬业&quot;, &quot;诚信&quot;, &quot;友善&quot;);
+        var $i = $(&quot;&lt;span /&gt;&quot;).text(a[a_idx]);
+        a_idx = (a_idx + 1) % a.length;
+        var x = e.pageX,
+        y = e.pageY;
+        $i.css(&#123;
+            &quot;z-index&quot;: 999999999999999999999999999999999999999999999999999999999999999999999,
+            &quot;top&quot;: y - 20,
+            &quot;left&quot;: x,
+            &quot;position&quot;: &quot;absolute&quot;,
+            &quot;font-weight&quot;: &quot;bold&quot;,
+            &quot;color&quot;: &quot;#ff6651&quot;
+        &#125;);
+        $(&quot;body&quot;).append($i);
+        $i.animate(&#123;
+            &quot;top&quot;: y - 180,
+            &quot;opacity&quot;: 0
+        &#125;,
+        1500,
+        function() &#123;
+            $i.remove();
+        &#125;);
+    &#125;);
+&#125;);</code></pre>
 
     </div>
 
@@ -283,7 +316,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://blog.hory-ai.com/2020/07/25/test/" title="test">http://blog.hory-ai.com/2020/07/25/test/</a>
+    <a href="http://blog.hory-ai.com/2020/07/25/test/" title="Hexo主题增加鼠标点击效果">http://blog.hory-ai.com/2020/07/25/test/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -467,12 +500,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">270k</span>
+    <span title="Symbols count total">272k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:05</span>
+    <span title="Reading time total">4:07</span>
 </div>
 
         
