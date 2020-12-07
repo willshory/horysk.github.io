@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.hory-ai.com/2020/12/05/hello-world/</loc>
+    <loc>http://blog.hory-ai.com/2020/12/07/hello-world/</loc>
     
-    <lastmod>2020-12-05</lastmod>
+    <lastmod>2020-12-07</lastmod>
     
   </url>
   
@@ -860,6 +860,13 @@
   </url>
   
   <url>
+    <loc>http://blog.hory-ai.com/categories/quant/tushare/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hory-ai.com/categories/docker/proxy/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -902,7 +909,7 @@
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/categories/quant/tushare/</loc>
+    <loc>http://blog.hory-ai.com/categories/mongo/docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -917,13 +924,6 @@
   
   <url>
     <loc>http://blog.hory-ai.com/categories/BI/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hory-ai.com/categories/mongo/docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

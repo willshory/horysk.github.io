@@ -1296,6 +1296,43 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2020/12/07/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hexo 添加 hexo-admin 插件</title>
+    <url>/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<p>简介<br>在线编辑和发布 hexo 博客。<br>github 地址：<a href="https://github.com/jaredly/hexo-admin">https://github.com/jaredly/hexo-admin</a></p>
+<p>安装<br>进入 hexo 源文件目录，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
+<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
+<a id="more"></a>
+<p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
+<pre><code class="bash"> node
+ const bcrypt = require(&#39;bcrypt-nodejs&#39;)
+ bcrypt.hashSync(&#39;your_password&#39;)</code></pre>
+<p>其中的 your_password 为登录密码。</p>
+<p>若部署到远程服务器，就可以使用：<a href="http://ip:4000/admin/">http://ip:4000/admin/</a> 进行访问，在线发布 hexo 博客。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hello world</title>
     <url>/2015/07/01/hello%20world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1326,42 +1363,6 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       </categories>
       <tags>
         <tag>horysk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2020/12/05/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hexo 添加 hexo-admin 插件</title>
-    <url>/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/</url>
-    <content><![CDATA[<p>简介<br>在线编辑和发布 hexo 博客。<br>github 地址：<a href="https://github.com/jaredly/hexo-admin">https://github.com/jaredly/hexo-admin</a></p>
-<p>安装<br>进入 hexo 源文件目录，执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
-<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
-<p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
-<pre><code class="bash"> node
- const bcrypt = require(&#39;bcrypt-nodejs&#39;)
- bcrypt.hashSync(&#39;your_password&#39;)</code></pre>
-<p>其中的 your_password 为登录密码。</p>
-<p>若部署到远程服务器，就可以使用：<a href="http://ip:4000/admin/">http://ip:4000/admin/</a> 进行访问，在线发布 hexo 博客。</p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2092,7 +2093,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:&#x76;&#110;&#x63;&#115;&#x65;&#x72;&#118;&#x65;&#114;&#x40;&#x31;&#x2e;&#x73;&#x65;&#114;&#x76;&#x69;&#99;&#101;">&#x76;&#110;&#x63;&#115;&#x65;&#x72;&#118;&#x65;&#114;&#x40;&#x31;&#x2e;&#x73;&#x65;&#114;&#x76;&#x69;&#99;&#101;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#118;&#x6e;&#99;&#115;&#x65;&#114;&#x76;&#101;&#114;&#x40;&#49;&#x2e;&#x73;&#101;&#x72;&#118;&#x69;&#99;&#x65;">&#118;&#x6e;&#99;&#115;&#x65;&#114;&#x76;&#101;&#114;&#x40;&#49;&#x2e;&#x73;&#101;&#x72;&#118;&#x69;&#99;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -2505,47 +2506,6 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
       </tags>
   </entry>
   <entry>
-    <title>唯有经历过交易四阶段，你才能彻底开悟</title>
-    <url>/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/</url>
-    <content><![CDATA[<p>交易之道，交易之术，有道无术术尚可求，有术无道止于术，何为道，何为术？</p>
-<p>所谓大道至简的交易哲学，是需要经过很多年的实战才能领悟的。能够走向稳定成熟的股票交易者，往往需要3到5年经验的磨砺，这期间会经历多次爆仓和失败。</p>
-<p>但是，如果在这个过程中能吸取来自其他优秀交易员的一些核心的交易理念，会加快你迈向稳定成熟的步伐。今天重点和大家谈一些你知道但不一定真的明白的朴素而且有效的交易理念，同时也指出多数交易者可能会经历的一些普遍阶段和感受。</p>
-<h2 id="第一阶段：初遇，都会有一个好时光，股票也不例外"><a href="#第一阶段：初遇，都会有一个好时光，股票也不例外" class="headerlink" title="第一阶段：初遇，都会有一个好时光，股票也不例外"></a>第一阶段：初遇，都会有一个好时光，股票也不例外</h2><p>如同初恋一般，你初接触了股票，爱上它，开始变得如痴如醉。上班的时候，天天想着螺纹铁矿橡胶白糖；看新闻的时候，世界和平不再和你没关系；下班后，迫不及待地打开文华财经，开始交易起来。过了凌晨一点，才依依不舍强行平仓。</p>
-<p>刚爱上一个事物的时候，是一个人的美好时光。你会主动去读很多关于交易的书籍，泡很多论坛，加很多群，可能还会拜几个资深交易的老师。</p>
-<p>这个时候的你，对知识如饥似渴，疯狂的学习。随之而来的是你的知识面大增，国内局势、国际形势、政经环境、美联储、等等，都开始进入到你的日常生活。你觉得很high，比你身边的人多了更多的知识，时不时会在朋友圈发个行情分析显摆显摆。</p>
-<p>这个时候的你，如同早上六七点钟的太阳，朝气蓬勃，势不可挡，不乏冷静和理性。你会不断的告诫自己，交易是有纪律的，进场是绝对要跟随趋势的，单子是必须要设置止损的。</p>
-<p>这个时候的你，多少人是会主动去看股票作手回忆录，研究波浪和江恩。你会思考左侧和右侧交易的好与坏，结合理论每天复盘研究如何做的更好，还会去操基本面的心。</p>
-<p>交易人生的美好，其实莫过如此。你会发现，你虽然有时候会小亏，但是赚的时候也不少。满打满算，可能还有不少的赚头。你的资金曲线，总体上是震荡向上。偶尔有点小挫折，但不影响大局。重要的是，你的账户不会发生重大的单笔亏损，因为你懂得及时止损退场。不会有精疲力尽的感觉，你同样懂得休息，不熬通宵。</p>
-<p>于是你越来越投入其中，甚至觉得股票这片天，就是为你而造。这个幸福时光，可能会持续两年。</p>
-<p>可是，人生好景不常有。就像爱情的新鲜度，不会超过18个月一样。度过了最初的两三年交易生涯，基本摸清了这个市场的来龙去脉，积累了一些交易经验，你开始进入交易高原期。这会是一段漫长而寂寞的时光。</p>
-<h2 id="第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候"><a href="#第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候" class="headerlink" title="第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候"></a>第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候</h2><p>用多年的时间，才可能摸清这个市场的脉搏，积累交易技术、理念、资金管理，以及大量的实盘经验。这个阶段，你会发现你的交易进入了高原反应期，再也很难有突破，业绩时好时坏，有时候会经历一些单子的闪崩。你会让自己不断反省，有时候也会因为抓住一个大波浪而高兴。</p>
-<p>这些漫长的时光里，你多次会以为自己经验已经相当丰富，交易系统成熟完善。你给自己制定的交易盈利目标里，收益率从最初的月收益20%降低到10%。你会告诉自己，一定可以每个月轻松赚到至少10%。（其实你的目标是半年至少翻一倍。）</p>
-<p>这个阶段，你不会排斥用中型和重型仓位来做。你知道这不是最好的资金管理办法，但是你会安慰自己，你已经经历过三年或者六年的市场洗礼，什么大风大浪没经历过。你会觉得50%的仓位不会有什么大问题，而且，你时不时会经常越过这个界线。</p>
-<p>你算不上成功，但也不算失败。一切都还在坚持，你把这定义为：苦难的长征。交易者，总是要有苦行僧的灵魂感召的！</p>
-<h2 id="第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。"><a href="#第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。" class="headerlink" title="第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。"></a>第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。</h2><p>坚持了很多年，你以为自己要开始飞了。</p>
-<p>看起来万事俱备只欠东风。经验，技术，知识，阅历，前面那么多年的修炼，让你觉得大干一场的时候终于到了！于是，你开始调集大批量的资金，借贷，抵押，筹集能弄到的钱，跑步入市。</p>
-<p>春风吹，战鼓擂，百万资金进场急。</p>
-<p>人生在此一战！你觉得在股票中赚回千万身家不多，亿万不少，荣华富贵、交易圣杯不再是梦。</p>
-<p>交易的诱惑和人性的贪婪，不是以线性倍数在放大，而是以指数级别在放大！你第一次经历这样高逼格操盘的人生，你人性深处的劣势被指数级别打开。哪怕此前六年八年的漫长交易，都无法抹去这些弱点。</p>
-<p>大资金的闪失，往往只出现在3%的概率里。我知道你会很小心去操作，告诫自己纪律和仓位都要严格控制。可是，一次致命的贪婪，就让你前面所有的努力付之东流。</p>
-<p>没有领略人生极致的苦，你没有能力去控制你深处的欲念。</p>
-<p>接下来的时光，会是你一生中最痛苦的回忆。失眠、抑郁、甚至想过要自杀。万念俱灰，对一切都提不起兴趣，后悔进入股票市场，后悔接触金融。大批量资金的压力，是你作为一个小散户此前从未经历过的。哪怕你无数次推演过同样的资金管理模式。</p>
-<p>你倒下了。闪崩，是无数资深交易者都无法逃脱的宿命。</p>
-<p>这个时候，你会无比怀念当年初遇股票时候的美好。你面临两个最重大的抉择，是继续坚持，还是退出市场。</p>
-<p>很多人选择再坚持一年半载后，迫于各种压力，不可能突破自身固有的弱点，慢慢放手，退出外市股票，隐退江湖。</p>
-<p>最终，只有极少数人始终继续坚持。这里面，少数幸运者等到了彻底开悟的那一天。</p>
-<p>彻底开悟了，也就再次焕发交易青春。</p>
-<h2 id="第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。"><a href="#第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。" class="headerlink" title="第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。"></a>第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。</h2><p>人生三重境界，看山是山，看山不是山，看山还是山。做完十年交易，历经无数市场磨难，最终你开始重回轻松赚钱的轨道，无外乎这么几点：轻仓，顺势，学会休息。山还是那年你刚入股票市场的山，人却是顿悟后的人，方法还是那些最淳朴的方法。</p>
-<p>你不把股票交易太当回事，这就对了。你的欲望已经在无欲中提升到一个新的高度，精神的升华推动了你的自律，灵魂的洗礼涤荡了你的欲望。</p>
-<p>成功的交易，我是领悟了，顺势交易乃第一要素，做好资金管理乃核心。最后，轻易不要出手，耐心等待真正的高胜率机会出现。减少交易机会，增加成功概率！</p>
-<p>从上面这些人的结局中，我们自然容易悟出几个道理：</p>
-<h2 id="第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。"><a href="#第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。" class="headerlink" title="第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。"></a>第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。</h2><h2 id="第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。"><a href="#第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。" class="headerlink" title="第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。"></a>第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。</h2><h2 id="第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10-，就基本上爆仓了，而上下10-是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。"><a href="#第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10-，就基本上爆仓了，而上下10-是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。" class="headerlink" title="第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10%，就基本上爆仓了，而上下10%是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。"></a>第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10%，就基本上爆仓了，而上下10%是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。</h2><h2 id="第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。"><a href="#第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。" class="headerlink" title="第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。"></a>第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。</h2><p>最后我要说：之所以能在期货中生存了十多年，当然除了努力之外，还有，就是一直保持着一颗敬畏之心，时刻如履薄冰，战战兢兢，无论是打了大胜仗，赚了多大的钱，心理面一直保持着敬畏。</p>
-<p>当你有了这颗心态之后，你就会发现，你所遇到的许多交易问题，比如重仓、频繁交易、不止损，还有不努力、赌博，等等，都会自然消失。</p>
-<p>道理，就是这些道理。看起来每个人都知道，但是从结果就能看得出谁是”混子“。</p>
-<p>仅处于知道的地步，还远远不够。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤</title>
     <url>/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<h2 id="服务器三台-按顺序执行"><a href="#服务器三台-按顺序执行" class="headerlink" title="服务器三台  按顺序执行"></a>服务器三台  按顺序执行</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.125</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.126</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.127</span></span><br></pre></td></tr></table></figure>
@@ -2773,6 +2733,47 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
         <tag>quant</tag>
         <tag>ML</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>唯有经历过交易四阶段，你才能彻底开悟</title>
+    <url>/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/</url>
+    <content><![CDATA[<p>交易之道，交易之术，有道无术术尚可求，有术无道止于术，何为道，何为术？</p>
+<p>所谓大道至简的交易哲学，是需要经过很多年的实战才能领悟的。能够走向稳定成熟的股票交易者，往往需要3到5年经验的磨砺，这期间会经历多次爆仓和失败。</p>
+<p>但是，如果在这个过程中能吸取来自其他优秀交易员的一些核心的交易理念，会加快你迈向稳定成熟的步伐。今天重点和大家谈一些你知道但不一定真的明白的朴素而且有效的交易理念，同时也指出多数交易者可能会经历的一些普遍阶段和感受。</p>
+<h2 id="第一阶段：初遇，都会有一个好时光，股票也不例外"><a href="#第一阶段：初遇，都会有一个好时光，股票也不例外" class="headerlink" title="第一阶段：初遇，都会有一个好时光，股票也不例外"></a>第一阶段：初遇，都会有一个好时光，股票也不例外</h2><p>如同初恋一般，你初接触了股票，爱上它，开始变得如痴如醉。上班的时候，天天想着螺纹铁矿橡胶白糖；看新闻的时候，世界和平不再和你没关系；下班后，迫不及待地打开文华财经，开始交易起来。过了凌晨一点，才依依不舍强行平仓。</p>
+<p>刚爱上一个事物的时候，是一个人的美好时光。你会主动去读很多关于交易的书籍，泡很多论坛，加很多群，可能还会拜几个资深交易的老师。</p>
+<p>这个时候的你，对知识如饥似渴，疯狂的学习。随之而来的是你的知识面大增，国内局势、国际形势、政经环境、美联储、等等，都开始进入到你的日常生活。你觉得很high，比你身边的人多了更多的知识，时不时会在朋友圈发个行情分析显摆显摆。</p>
+<p>这个时候的你，如同早上六七点钟的太阳，朝气蓬勃，势不可挡，不乏冷静和理性。你会不断的告诫自己，交易是有纪律的，进场是绝对要跟随趋势的，单子是必须要设置止损的。</p>
+<p>这个时候的你，多少人是会主动去看股票作手回忆录，研究波浪和江恩。你会思考左侧和右侧交易的好与坏，结合理论每天复盘研究如何做的更好，还会去操基本面的心。</p>
+<p>交易人生的美好，其实莫过如此。你会发现，你虽然有时候会小亏，但是赚的时候也不少。满打满算，可能还有不少的赚头。你的资金曲线，总体上是震荡向上。偶尔有点小挫折，但不影响大局。重要的是，你的账户不会发生重大的单笔亏损，因为你懂得及时止损退场。不会有精疲力尽的感觉，你同样懂得休息，不熬通宵。</p>
+<p>于是你越来越投入其中，甚至觉得股票这片天，就是为你而造。这个幸福时光，可能会持续两年。</p>
+<p>可是，人生好景不常有。就像爱情的新鲜度，不会超过18个月一样。度过了最初的两三年交易生涯，基本摸清了这个市场的来龙去脉，积累了一些交易经验，你开始进入交易高原期。这会是一段漫长而寂寞的时光。</p>
+<h2 id="第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候"><a href="#第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候" class="headerlink" title="第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候"></a>第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候</h2><p>用多年的时间，才可能摸清这个市场的脉搏，积累交易技术、理念、资金管理，以及大量的实盘经验。这个阶段，你会发现你的交易进入了高原反应期，再也很难有突破，业绩时好时坏，有时候会经历一些单子的闪崩。你会让自己不断反省，有时候也会因为抓住一个大波浪而高兴。</p>
+<p>这些漫长的时光里，你多次会以为自己经验已经相当丰富，交易系统成熟完善。你给自己制定的交易盈利目标里，收益率从最初的月收益20%降低到10%。你会告诉自己，一定可以每个月轻松赚到至少10%。（其实你的目标是半年至少翻一倍。）</p>
+<p>这个阶段，你不会排斥用中型和重型仓位来做。你知道这不是最好的资金管理办法，但是你会安慰自己，你已经经历过三年或者六年的市场洗礼，什么大风大浪没经历过。你会觉得50%的仓位不会有什么大问题，而且，你时不时会经常越过这个界线。</p>
+<p>你算不上成功，但也不算失败。一切都还在坚持，你把这定义为：苦难的长征。交易者，总是要有苦行僧的灵魂感召的！</p>
+<h2 id="第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。"><a href="#第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。" class="headerlink" title="第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。"></a>第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。</h2><p>坚持了很多年，你以为自己要开始飞了。</p>
+<p>看起来万事俱备只欠东风。经验，技术，知识，阅历，前面那么多年的修炼，让你觉得大干一场的时候终于到了！于是，你开始调集大批量的资金，借贷，抵押，筹集能弄到的钱，跑步入市。</p>
+<p>春风吹，战鼓擂，百万资金进场急。</p>
+<p>人生在此一战！你觉得在股票中赚回千万身家不多，亿万不少，荣华富贵、交易圣杯不再是梦。</p>
+<p>交易的诱惑和人性的贪婪，不是以线性倍数在放大，而是以指数级别在放大！你第一次经历这样高逼格操盘的人生，你人性深处的劣势被指数级别打开。哪怕此前六年八年的漫长交易，都无法抹去这些弱点。</p>
+<p>大资金的闪失，往往只出现在3%的概率里。我知道你会很小心去操作，告诫自己纪律和仓位都要严格控制。可是，一次致命的贪婪，就让你前面所有的努力付之东流。</p>
+<p>没有领略人生极致的苦，你没有能力去控制你深处的欲念。</p>
+<p>接下来的时光，会是你一生中最痛苦的回忆。失眠、抑郁、甚至想过要自杀。万念俱灰，对一切都提不起兴趣，后悔进入股票市场，后悔接触金融。大批量资金的压力，是你作为一个小散户此前从未经历过的。哪怕你无数次推演过同样的资金管理模式。</p>
+<p>你倒下了。闪崩，是无数资深交易者都无法逃脱的宿命。</p>
+<p>这个时候，你会无比怀念当年初遇股票时候的美好。你面临两个最重大的抉择，是继续坚持，还是退出市场。</p>
+<p>很多人选择再坚持一年半载后，迫于各种压力，不可能突破自身固有的弱点，慢慢放手，退出外市股票，隐退江湖。</p>
+<p>最终，只有极少数人始终继续坚持。这里面，少数幸运者等到了彻底开悟的那一天。</p>
+<p>彻底开悟了，也就再次焕发交易青春。</p>
+<h2 id="第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。"><a href="#第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。" class="headerlink" title="第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。"></a>第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。</h2><p>人生三重境界，看山是山，看山不是山，看山还是山。做完十年交易，历经无数市场磨难，最终你开始重回轻松赚钱的轨道，无外乎这么几点：轻仓，顺势，学会休息。山还是那年你刚入股票市场的山，人却是顿悟后的人，方法还是那些最淳朴的方法。</p>
+<p>你不把股票交易太当回事，这就对了。你的欲望已经在无欲中提升到一个新的高度，精神的升华推动了你的自律，灵魂的洗礼涤荡了你的欲望。</p>
+<p>成功的交易，我是领悟了，顺势交易乃第一要素，做好资金管理乃核心。最后，轻易不要出手，耐心等待真正的高胜率机会出现。减少交易机会，增加成功概率！</p>
+<p>从上面这些人的结局中，我们自然容易悟出几个道理：</p>
+<h2 id="第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。"><a href="#第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。" class="headerlink" title="第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。"></a>第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。</h2><h2 id="第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。"><a href="#第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。" class="headerlink" title="第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。"></a>第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。</h2><h2 id="第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10-，就基本上爆仓了，而上下10-是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。"><a href="#第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10-，就基本上爆仓了，而上下10-是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。" class="headerlink" title="第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10%，就基本上爆仓了，而上下10%是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。"></a>第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10%，就基本上爆仓了，而上下10%是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。</h2><h2 id="第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。"><a href="#第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。" class="headerlink" title="第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。"></a>第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。</h2><p>最后我要说：之所以能在期货中生存了十多年，当然除了努力之外，还有，就是一直保持着一颗敬畏之心，时刻如履薄冰，战战兢兢，无论是打了大胜仗，赚了多大的钱，心理面一直保持着敬畏。</p>
+<p>当你有了这颗心态之后，你就会发现，你所遇到的许多交易问题，比如重仓、频繁交易、不止损，还有不努力、赌博，等等，都会自然消失。</p>
+<p>道理，就是这些道理。看起来每个人都知道，但是从结果就能看得出谁是”混子“。</p>
+<p>仅处于知道的地步，还远远不够。</p>
+]]></content>
   </entry>
   <entry>
     <title>用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN</title>
@@ -3290,16 +3291,16 @@ with open(&#39;stocks.csv&#39;) as f:
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#x61;&#x6c;&#x69;&#99;&#101;&#64;&#111;&#114;&#x67;&#46;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#98;&#105;&#x7a;&#x6e;&#x65;&#116;">&#x61;&#x6c;&#x69;&#99;&#101;&#64;&#111;&#114;&#x67;&#46;&#x65;&#x78;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#98;&#105;&#x7a;&#x6e;&#x65;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#x61;&#x6c;&#x69;&#99;&#x65;&#64;&#111;&#114;&#103;&#46;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#98;&#x69;&#x7a;&#x6e;&#101;&#x74;">&#x61;&#x6c;&#x69;&#99;&#x65;&#64;&#111;&#114;&#103;&#46;&#101;&#120;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#98;&#x69;&#x7a;&#x6e;&#101;&#x74;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#116;&#117;&#116;&#111;&#x72;&#105;&#x61;&#108;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#46;&#x62;&#110;&#97;">&#116;&#117;&#116;&#111;&#x72;&#105;&#x61;&#108;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#46;&#x62;&#110;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#117;&#x74;&#x6f;&#x72;&#x69;&#x61;&#108;&#x2d;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#107;&#64;&#48;&#46;&#x30;&#x2e;&#49;&#46;&#98;&#x6e;&#97;">&#x74;&#117;&#x74;&#x6f;&#x72;&#x69;&#x61;&#108;&#x2d;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#107;&#64;&#48;&#46;&#x30;&#x2e;&#49;&#46;&#98;&#x6e;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#x74;&#x75;&#116;&#111;&#x72;&#x69;&#97;&#108;&#x2d;&#110;&#101;&#x74;&#119;&#111;&#114;&#x6b;&#64;&#x30;&#x2e;&#x30;&#x2e;&#49;&#x2e;&#98;&#110;&#97;">&#x74;&#x75;&#116;&#111;&#x72;&#x69;&#97;&#108;&#x2d;&#110;&#101;&#x74;&#119;&#111;&#114;&#x6b;&#64;&#x30;&#x2e;&#x30;&#x2e;&#49;&#x2e;&#98;&#110;&#97;</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#x74;&#x75;&#x74;&#x6f;&#x72;&#105;&#97;&#108;&#x2d;&#110;&#101;&#116;&#119;&#x6f;&#114;&#107;&#64;&#48;&#x2e;&#48;&#x2e;&#49;&#x2e;&#x62;&#110;&#x61;">&#x74;&#x75;&#x74;&#x6f;&#x72;&#105;&#97;&#108;&#x2d;&#110;&#101;&#116;&#119;&#x6f;&#114;&#107;&#64;&#48;&#x2e;&#48;&#x2e;&#49;&#x2e;&#x62;&#110;&#x61;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#x74;&#x75;&#x74;&#x6f;&#x72;&#x69;&#97;&#x6c;&#x2d;&#x6e;&#101;&#x74;&#x77;&#111;&#x72;&#107;&#x40;&#48;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#x6e;&#97;">&#x74;&#x75;&#x74;&#x6f;&#x72;&#x69;&#97;&#x6c;&#x2d;&#x6e;&#101;&#x74;&#x77;&#111;&#x72;&#107;&#x40;&#48;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#x6e;&#97;</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#x74;&#x75;&#x74;&#111;&#x72;&#x69;&#x61;&#x6c;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#x30;&#46;&#48;&#x2e;&#49;&#x2e;&#x62;&#x6e;&#97;">&#x74;&#x75;&#x74;&#111;&#x72;&#x69;&#x61;&#x6c;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#x30;&#46;&#48;&#x2e;&#49;&#x2e;&#x62;&#x6e;&#97;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>

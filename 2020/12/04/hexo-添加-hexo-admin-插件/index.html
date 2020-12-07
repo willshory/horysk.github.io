@@ -257,6 +257,7 @@
 <p>安装<br>进入 hexo 源文件目录，执行命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
 <p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
+<a id="more"></a>
 <p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
 <pre><code class="bash"> node
  const bcrypt = require(&#39;bcrypt-nodejs&#39;)
@@ -317,7 +318,7 @@
       <i class="fa fa-chevron-left"></i> 解决 gitee page 无法自动更新
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/12/05/hello-world/" rel="next" title="Hello World">
+    <a href="/2020/12/07/hello-world/" rel="next" title="Hello World">
       Hello World <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
