@@ -501,6 +501,13 @@
   </url>
   
   <url>
+    <loc>http://blog.hory-ai.com/tags/Docker/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hory-ai.com/tags/docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -509,13 +516,6 @@
   
   <url>
     <loc>http://blog.hory-ai.com/tags/Hexo/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hory-ai.com/tags/Docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -676,14 +676,14 @@
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/tags/mongo/</loc>
+    <loc>http://blog.hory-ai.com/tags/Hack/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/tags/Hack/</loc>
+    <loc>http://blog.hory-ai.com/tags/mongo/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -748,6 +748,13 @@
   </url>
   
   <url>
+    <loc>http://blog.hory-ai.com/categories/Docker/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hory-ai.com/categories/docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -756,13 +763,6 @@
   
   <url>
     <loc>http://blog.hory-ai.com/categories/Hexo/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hory-ai.com/categories/Docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -797,6 +797,13 @@
   </url>
   
   <url>
+    <loc>http://blog.hory-ai.com/categories/k8s/docker/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hory-ai.com/categories/Pyppeteer/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -812,13 +819,6 @@
   
   <url>
     <loc>http://blog.hory-ai.com/categories/horysk/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://blog.hory-ai.com/categories/k8s/docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -860,6 +860,13 @@
   </url>
   
   <url>
+    <loc>http://blog.hory-ai.com/categories/quant/tushare/</loc>
+    <lastmod>2020-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://blog.hory-ai.com/categories/docker/proxy/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -874,14 +881,14 @@
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/categories/mongo/</loc>
+    <loc>http://blog.hory-ai.com/categories/Hack/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/categories/Hack/</loc>
+    <loc>http://blog.hory-ai.com/categories/mongo/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -902,13 +909,6 @@
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/categories/quant/tushare/</loc>
-    <lastmod>2020-12-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://blog.hory-ai.com/categories/stock/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
@@ -916,14 +916,14 @@
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/categories/BI/</loc>
+    <loc>http://blog.hory-ai.com/categories/mongo/docker/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://blog.hory-ai.com/categories/mongo/docker/</loc>
+    <loc>http://blog.hory-ai.com/categories/BI/</loc>
     <lastmod>2020-12-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

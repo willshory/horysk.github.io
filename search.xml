@@ -138,6 +138,11 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
+    <title>1956409564654</title>
+    <url>/2017/11/02/1956409564654/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>5款超级简单的IP流量监控工具</title>
     <url>/2020/07/27/5%E6%AC%BE%E8%B6%85%E7%BA%A7%E7%AE%80%E5%8D%95%E7%9A%84IP%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<p>对于系统管理员来说，最重要的任务之一就是密切关注网络。当有糟糕的事情发生时，起因可能就是某个卑鄙的人。有可能是黑客，被攻破的系统，或者是出故障的硬件，关键是要找出问题所在。</p>
@@ -158,11 +163,6 @@
       </tags>
   </entry>
   <entry>
-    <title>1956409564654</title>
-    <url>/2017/11/02/1956409564654/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>解决 gitee page 无法自动更新</title>
     <url>/2020/12/04/6546465465/</url>
     <content><![CDATA[<p>众所周知，国内 GitHub 的加载速度不太理想，而大多数开发者会使用 Github 的 Github Page 功能搭建博客，因此博客的访问速度也会受到影响。为了解决访问速度的问题，我们将博客转移到了 gitee 中（ OSChina 旗下 git 平台）</p>
@@ -172,11 +172,38 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 此处安装版本为 1.8.0</span><br><span class="line">const puppeteer = require(<span class="string">&#x27;puppeteer&#x27;</span>); </span><br><span class="line"></span><br><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">giteeUpdate</span></span>() &#123;</span><br><span class="line">    const browser = await puppeteer.launch(&#123;</span><br><span class="line">        // 此处可以使用 <span class="literal">false</span> 有头模式进行调试, 调试完注释即可</span><br><span class="line">          headless: <span class="literal">false</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    const page = await browser.newPage();</span><br><span class="line">    await page.goto(<span class="string">&#x27;https://gitee.com/login&#x27;</span>);</span><br><span class="line">    // 1. 选中账号控件</span><br><span class="line">    <span class="built_in">let</span> accountElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_login&quot;]&#x27;</span>) // 此处使用 xpath 寻找控件，下同</span><br><span class="line">    // 2. 填入账号</span><br><span class="line">    await accountElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 账户&#x27;</span>)</span><br><span class="line">    // 3. 选中密码控件</span><br><span class="line">    <span class="built_in">let</span> pwdElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_password&quot;]&#x27;</span>)</span><br><span class="line">    // 4. 填入密码</span><br><span class="line">    await pwdElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 密码&#x27;</span>)</span><br><span class="line">    // 5. 点击登录</span><br><span class="line">    <span class="built_in">let</span> loginButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;new_user&quot;]/div[2]/div/div/div[4]/input&#x27;</span>)</span><br><span class="line">    await loginButtons[0].click()</span><br><span class="line">    // 6. 等待登录成功</span><br><span class="line">    await page.waitFor(1000)</span><br><span class="line">    await page.goto(<span class="string">&#x27;你的 gitee page 更新按钮页面&#x27;</span>); // 比如： https://gitee.com/yang0033/hexo-blog/pages</span><br><span class="line">    // 7.1. 监听步骤 7 中触发的确认弹框，并点击确认</span><br><span class="line">    await page.on(<span class="string">&#x27;dialog&#x27;</span>, async dialog =&gt; &#123;</span><br><span class="line">        console.log(<span class="string">&#x27;确认更新&#x27;</span>)</span><br><span class="line">        dialog.accept();</span><br><span class="line">    &#125;)</span><br><span class="line">    // 7. 点击更新按钮，并弹出确认弹窗</span><br><span class="line">    <span class="built_in">let</span> updateButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages-branch&quot;]/div[7]&#x27;</span>)</span><br><span class="line">    await updateButtons[0].click()</span><br><span class="line">    // 8. 轮询并确认是否更新完毕</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        await page.waitFor(2000)</span><br><span class="line">        try &#123;</span><br><span class="line">            // 8.1 获取更新状态标签</span><br><span class="line">            deploying = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages_deploying&quot;]&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> (deploying.length &gt; 0) &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新中...&#x27;</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新完毕&#x27;</span>)</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (error) &#123;</span><br><span class="line">            <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    await page.waitFor(500);</span><br><span class="line">    // 10.更新完毕，关闭浏览器</span><br><span class="line">    browser.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">giteeUpdate();</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
+    <title>Docker 本地导入镜像/保存镜像/载入镜像/删除镜像</title>
+    <url>/2020/07/24/Docker-%E6%9C%AC%E5%9C%B0%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F-%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F-%E8%BD%BD%E5%85%A5%E9%95%9C%E5%83%8F-%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<h1 id="1、Docker导入本地镜像"><a href="#1、Docker导入本地镜像" class="headerlink" title="1、Docker导入本地镜像"></a>1、Docker导入本地镜像</h1><p>有时候我们自己在本地或者其它小伙伴电脑上拷贝了一份镜像，有了这个镜像之后，我们可以把本地的镜像导入，使用docker import 命令。</p>
+<p>例如这里下载了一个 alibaba-rocketmq-3.2.6.tar.gz 镜像文件，使用下列命令导入：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># cat alibaba-rocketmq-3.2.6.tar.gz | docker import - rocketmq:3.2.6(镜像名自己定义)</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">rocketmq                     <span class="number">3.2</span><span class="number">.6</span>               53925d1cf9f0        <span class="number">23</span> seconds ago      14MB</span><br><span class="line">my/python                    v1                  36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/centos_width_python       v1<span class="number">.0</span><span class="number">.1</span>              36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/sinatra                   v2                  8ba1d6a3ce4e        <span class="number">2</span> days ago          453MB</span><br><span class="line">hello-world                  latest              725dcfab7d63        <span class="number">4</span> months ago        <span class="number">1.84</span>kB</span><br></pre></td></tr></table></figure>
+<p>​<br>可以看到导入完成后，docker为我们生成了一个镜像ID，使用docker images也可以看到我们刚刚从本地导入的镜像。</p>
+<p>注意镜像文件必须是tar.gz类型的文件。</p>
+<h1 id="2、保存镜像"><a href="#2、保存镜像" class="headerlink" title="2、保存镜像"></a>2、保存镜像</h1><p>先根据已有的这个容器来提交一个新的镜像，提交时需要用到容器ID。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">docker commit –m “rocketmq” –a “zmc” d8990fec2141 rocketmq</span><br></pre></td></tr></table></figure>
+<p>我们的镜像做好之后，我们要保存起来，以供备份使用，该怎么做？使用docker save命令，保存镜像到本地。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker save -o rocketmq.tar rocketmq ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过&quot;docker images&quot;查看</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># ll </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>rocketmq.tar为刚保存的镜像</p>
+<h1 id="3、载入镜像"><a href="#3、载入镜像" class="headerlink" title="3、载入镜像"></a>3、载入镜像</h1><p>我们有了本地的镜像文件，在需要的时候可以使用docker load将本地保存的镜像再次导入docker中。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">docker load --<span class="built_in">input</span> rocketmq.tar 或 docker load &lt; rocketmq.tar</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="4、删除镜像"><a href="#4、删除镜像" class="headerlink" title="4、删除镜像"></a>4、删除镜像</h1><p>有些镜像过时了，我们需要删除。使用如下的命令：docker rmi -f image_id ##-f：表示强制删除镜像；image_id：镜像id</p>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker容器命令整理</title>
     <url>/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/</url>
     <content><![CDATA[<p>Docker重启所有命令以及构建是如何设置开机重启</p>
 <h2 id="设置开机重启"><a href="#设置开机重启" class="headerlink" title="设置开机重启"></a>设置开机重启</h2><p>–restart=always</p>
 <h2 id="启动所有容器"><a href="#启动所有容器" class="headerlink" title="启动所有容器"></a>启动所有容器</h2><p>docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
+<a id="more"></a>
 <h2 id="关闭所有容器"><a href="#关闭所有容器" class="headerlink" title="关闭所有容器"></a>关闭所有容器</h2><p>docker stop $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
 <h2 id="删除所有容器"><a href="#删除所有容器" class="headerlink" title="删除所有容器"></a>删除所有容器</h2><p>docker rm $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
 <h2 id="删除所有镜像"><a href="#删除所有镜像" class="headerlink" title="删除所有镜像"></a>删除所有镜像</h2><p>docker rmi $(docker p_w_picpaths | awk ‘{print $3}’ |tail -n +2)</p>
@@ -257,32 +284,6 @@ type: &quot;tags&quot;
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker 本地导入镜像/保存镜像/载入镜像/删除镜像</title>
-    <url>/2020/07/24/Docker-%E6%9C%AC%E5%9C%B0%E5%AF%BC%E5%85%A5%E9%95%9C%E5%83%8F-%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F-%E8%BD%BD%E5%85%A5%E9%95%9C%E5%83%8F-%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F/</url>
-    <content><![CDATA[<h1 id="1、Docker导入本地镜像"><a href="#1、Docker导入本地镜像" class="headerlink" title="1、Docker导入本地镜像"></a>1、Docker导入本地镜像</h1><p>有时候我们自己在本地或者其它小伙伴电脑上拷贝了一份镜像，有了这个镜像之后，我们可以把本地的镜像导入，使用docker import 命令。</p>
-<p>例如这里下载了一个 alibaba-rocketmq-3.2.6.tar.gz 镜像文件，使用下列命令导入：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># cat alibaba-rocketmq-3.2.6.tar.gz | docker import - rocketmq:3.2.6(镜像名自己定义)</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">rocketmq                     <span class="number">3.2</span><span class="number">.6</span>               53925d1cf9f0        <span class="number">23</span> seconds ago      14MB</span><br><span class="line">my/python                    v1                  36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/centos_width_python       v1<span class="number">.0</span><span class="number">.1</span>              36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/sinatra                   v2                  8ba1d6a3ce4e        <span class="number">2</span> days ago          453MB</span><br><span class="line">hello-world                  latest              725dcfab7d63        <span class="number">4</span> months ago        <span class="number">1.84</span>kB</span><br></pre></td></tr></table></figure>
-<p>​<br>可以看到导入完成后，docker为我们生成了一个镜像ID，使用docker images也可以看到我们刚刚从本地导入的镜像。</p>
-<p>注意镜像文件必须是tar.gz类型的文件。</p>
-<h1 id="2、保存镜像"><a href="#2、保存镜像" class="headerlink" title="2、保存镜像"></a>2、保存镜像</h1><p>先根据已有的这个容器来提交一个新的镜像，提交时需要用到容器ID。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">docker commit –m “rocketmq” –a “zmc” d8990fec2141 rocketmq</span><br></pre></td></tr></table></figure>
-<p>我们的镜像做好之后，我们要保存起来，以供备份使用，该怎么做？使用docker save命令，保存镜像到本地。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker save -o rocketmq.tar rocketmq ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过&quot;docker images&quot;查看</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># ll </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>rocketmq.tar为刚保存的镜像</p>
-<h1 id="3、载入镜像"><a href="#3、载入镜像" class="headerlink" title="3、载入镜像"></a>3、载入镜像</h1><p>我们有了本地的镜像文件，在需要的时候可以使用docker load将本地保存的镜像再次导入docker中。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">docker load --<span class="built_in">input</span> rocketmq.tar 或 docker load &lt; rocketmq.tar</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="4、删除镜像"><a href="#4、删除镜像" class="headerlink" title="4、删除镜像"></a>4、删除镜像</h1><p>有些镜像过时了，我们需要删除。使用如下的命令：docker rmi -f image_id ##-f：表示强制删除镜像；image_id：镜像id</p>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -369,9 +370,9 @@ type: &quot;tags&quot;
     <content><![CDATA[<h1 id="强烈建议kubernetes-离线二进制安装更kubeOperator"><a href="#强烈建议kubernetes-离线二进制安装更kubeOperator" class="headerlink" title="强烈建议kubernetes 离线二进制安装更kubeOperator"></a>强烈建议kubernetes 离线二进制安装更<a href="https://github.com/KubeOperator/k8s-package">kubeOperator</a></h1><p>文章地址: <a href="https://blog.piaoruiqing.com/2019/09/17/kubernetes-1-installation/">https://blog.piaoruiqing.com/2019/09/17/kubernetes-1-installation/</a></p>
 <p>前言<br>本文将带领读者一起, 参照着Kubernetes官方文档, 对其安装部署进行讲解. Kubernetes更新迭代很快, 书上、网上等教程可能并不能适用于新版本, 但官方文档能.</p>
 <p>阅读这篇文章你能收获到:</p>
+<a id="more"></a>
 <p>如何阅读Kubernetes官方安装指南并搭建一个Kubernetes环境.<br>Kubernetes安装过程中的注意事项.<br>避过常见的坑.<br>阅读本文你需要:</p>
 <p>熟悉Linux命令.<br>知道Kubernetes是用来干什么的 (不然装它干啥(ಥ_ಥ)).<br>知道Docker<br>器材准备<br>文档链接: Before you begin</p>
-<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">序号	名称	数量	备注</span><br><span class="line"><span class="number">1</span>	服务器	<span class="number">2</span>	操作系统: Linux(centos7, 其它操作系统也可, 安装过程类似, 可参考官方文档)</span><br><span class="line">机器配置: CPU &gt;= <span class="number">2</span>, 内存 &gt;= 2G</span><br><span class="line">从官网找到kubeadm安装文档入口, 文档很详细. 英文阅读没有障碍的读者推荐直接查看英文文档, 中文文档不全且更新不及时安装时可能存在问题.</span><br></pre></td></tr></table></figure>
 <!--more-->
 
@@ -1354,9 +1355,9 @@ this.$store.state.contractInstance().methods.getMemberInfo()
     <url>/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/</url>
     <content><![CDATA[<p>简介<br>在线编辑和发布 hexo 博客。<br>github 地址：<a href="https://github.com/jaredly/hexo-admin">https://github.com/jaredly/hexo-admin</a></p>
 <p>安装<br>进入 hexo 源文件目录，执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
-<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
 <a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">配置</span><br><span class="line">编辑根目录下：_config.yml 文件，添加：</span><br><span class="line">``` bash</span><br><span class="line">admin:</span><br><span class="line">  username: myfavoritename</span><br><span class="line">  password_hash: be121740bf988b2225a313fa1f107ca1</span><br><span class="line">  secret: a secret something</span><br></pre></td></tr></table></figure>
+<p>其中：<br>username 为登录的用户名，password_hash 为密码的 bcrypt 哈希值，secret 用于使 cookie 安全，可以尽可能复杂。</p>
 <p>password_hash 的生成<br>首先需安装模块：sudo npm install bcrypt-nodejs<br>执行：</p>
 <pre><code class="bash"> node
  const bcrypt = require(&#39;bcrypt-nodejs&#39;)
@@ -1545,6 +1546,12 @@ this.$store.state.contractInstance().methods.getMemberInfo()
     <content><![CDATA[]]></content>
   </entry>
   <entry>
+    <title>test</title>
+    <url>/2020/07/25/test/</url>
+    <content><![CDATA[<p>this is a  test page of password </p>
+]]></content>
+  </entry>
+  <entry>
     <title>hello world</title>
     <url>/2015/08/01/text/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1576,12 +1583,6 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       <tags>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2020/07/25/test/</url>
-    <content><![CDATA[<p>this is a  test page of password </p>
-]]></content>
   </entry>
   <entry>
     <title>tushare和baostock有什么区别？</title>
@@ -2096,7 +2097,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:&#118;&#x6e;&#x63;&#115;&#101;&#114;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#118;&#x69;&#x63;&#x65;">&#118;&#x6e;&#x63;&#115;&#101;&#114;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#x73;&#101;&#114;&#118;&#x69;&#x63;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#118;&#110;&#99;&#115;&#101;&#114;&#x76;&#x65;&#114;&#64;&#49;&#46;&#115;&#x65;&#x72;&#118;&#105;&#99;&#x65;">&#118;&#110;&#99;&#115;&#101;&#114;&#x76;&#x65;&#114;&#64;&#49;&#46;&#115;&#x65;&#x72;&#118;&#105;&#99;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -2193,11 +2194,10 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
     <title>《统计学习方法第2版》pdf及机器学习书籍推荐</title>
     <url>/2020/08/03/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC2%E7%89%88%E3%80%8Bpdf%E5%8F%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D%E6%8E%A8%E8%8D%90/</url>
     <content><![CDATA[<p>我虽然很喜欢模式识别和机器学习，但我暂时并不希望在这上面做深入的研究，只想把别人研究好的成熟的理论用在计算机视觉任务上。比如SVM，Adaboost，EM，朴素贝叶斯，K近邻，决策树等等。能够知道每种算法的原理，而并不想深究其实现过程以及理论证明。比如SVM，我想知道的是这种算法如何实现分类，有哪几种类型，每种适合什么样的分类任务，对应的参数的意义是什么。这样我在使用SVM-Light或者libsvm的时候就知道该怎么选用参数，怎么使用学习到的系数。从这个角度看这本书很适合我。当然也适合那些在想在机器学习方面做深入研究的人作为入门教材，我想对原理了解一二之后，阅读大部头或者原著肯定会轻松很多。</p>
+<a id="more"></a>
 <p>建议统计学习方法路线，ng课程入门，知道有哪些算法，大致怎么做，然后去kaggle打个入门赛，别做特征工程，把会的算法全用上。然后放下比赛，开始读《统计学习方法第2版》，同时看机器学习基石或其他比较数学化的进阶课程，这一步不需要你敲代码，你要会的是滚瓜烂熟的推导，做到这一步，再去kaggle参加奖金赛，阅读kernel，学习state of the art 模型，学习特征工程，再在学习过程中阅读最新的论文或者经典的论文，不断迭代这个过程，别淹死在什么机器学习实战上，有现成的轮子不用，非得费那个劲，除非你科班毕业，代码能力扎实，不然你能不能从头实现一遍决策树对你找不找到工作没有任何一毛钱关系。笔试不会考你如何实现hmm，只会考数据结构与算法，面试只会让你推导。</p>
 <p> 《统计学习方法第2版》PDF，484页，带书签，文字可复制；配套部分源代码；配套部分课件。</p>
 <p>下载: <a href="https://pan.baidu.com/s/1Xyo5AwCSKB9FaUxLIm69Cg">https://pan.baidu.com/s/1Xyo5AwCSKB9FaUxLIm69Cg</a><br>提取码: qpf1</p>
-<a id="more"></a>
-
 <p>统计学习方法即机器学习方法，是计算机及其应用领域的一门重要学科。《统计学习方法第2版》分为监督学 习和无监督学习两篇，全面系统地介绍了统计学习的主要方法。包括感知机、k 近邻法、朴素贝叶斯法、决策树、逻辑斯谛回归与最大熵模型、支持向量机、提升方法、EM 算法、隐马尔可夫模型和条件随机场，以及聚类方法、奇异值分解、主成分分析、潜在语义分析、概率潜在语义分析、马尔可夫链蒙特卡罗法、潜在狄利克雷分配和 PageRank 算法等。</p>
 <p>除有关统计学习、监督学习和无监督学习的概论和总结的四章外，每章介绍一种方法。</p>
 <p>叙述力求从具体问题或实例入手， 由浅入深，阐明思路，给出必要的数学推导，便于掌握统计学习方法的实质，学会运用。</p>
@@ -2446,6 +2446,7 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
     <url>/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/</url>
     <content><![CDATA[<p>记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。</p>
 <h2 id="1-搭建config-server"><a href="#1-搭建config-server" class="headerlink" title="1. 搭建config server"></a>1. 搭建config server</h2><p>这里启动了3个config server。docker命令如下：</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">docker run  --restart: always --name cs0 -itd -v ~/data/db/mongo/cs0:/data/db -p <span class="number">27019</span>:<span class="number">27019</span> mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br><span class="line">docker run  -- restart: always --name cs1 -itd -v ~/data/db/mongo/cs1:/data/db -p <span class="number">27029</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name cs2 -itd -v ~/data/db/mongo/cs2:/data/db -p <span class="number">27039</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br></pre></td></tr></table></figure>
 <p>启动完后可以利用docker ps -a来看config server是否启动成功。我们通过命令docker inspect cs0 | grep IPAddress看下cs0的ip地址，发现地址是172.17.0.9。相同的方法看到cs1和cs2的ip分别为172.17.0.10和172.17.0.11。</p>
 <p>docker exec -it cs0 bash进入cs0容器里，并连接MongoDB配置服，配置服的端口为27019。命令如下：</p>
@@ -2552,10 +2553,39 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 ]]></content>
   </entry>
   <entry>
+    <title>如何破解并访问Hexo Blog已加密的文章</title>
+    <url>/2020/07/29/%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%B9%B6%E8%AE%BF%E9%97%AEHexo-Blog%E5%B7%B2%E5%8A%A0%E5%AF%86%E7%9A%84%E6%96%87%E7%AB%A0/</url>
+    <content><![CDATA[<h1 id="How-to-crack-hexo-simple-encrypted-blog？"><a href="#How-to-crack-hexo-simple-encrypted-blog？" class="headerlink" title="How to crack hexo simple encrypted blog？"></a>How to crack hexo simple encrypted blog？</h1><h2 id="事发"><a href="#事发" class="headerlink" title="事发"></a>事发</h2><p>下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…）</p>
+<p>我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我的blog现在是用额hexo的the next主题加各种自定义特效，因为搭建时间其实很早，所以当时使用了一种简单的js逻辑来加密blog。下面我们来看下这段有安全问题的代码：<br>代码位置： yourblog/themes/next/layout/custom/head.swig</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">&#x27;请输入密码&#x27;</span>) !== <span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">                alert(<span class="string">&#x27;密码错误&#x27;</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>乍看是否觉得除了逻辑简单没什么问题，然而眼尖的小伙伴分析出了第一个隐患：history.back(); ，而我已知静态页面的安全隐患。接下来我们逐个分析。</p>
+<h2 id="istory-back"><a href="#istory-back" class="headerlink" title="istory.back()"></a>istory.back()</h2><p>back() 方法可加载历史列表中的前一个 URL（如果存在）。如果你的前一个URL就是这个文章的URL，那么恭喜，第一种破解方法get。（不理解，看下一条）</p>
+<h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>hexo g 会根据blog相关文件在public目录下生成blog的所有静态文件。既然是已经生成好的静态页面，实际上html中包含了那段js代码的。因为需要获得html了之后才会触发那个页面访问加密的js，而理论上当我们获取到html页面之后，就可以停止当前页的js操作了。<br>That is to say, 你的blog word就是直接写在页面中的，虽然直接url去访问会弹alert，但是用curl直接获取这个页面的html，可以直接搜索到文章的访问密码, 分分钟攻破此种博文加密方式。上面利用history.back()的访问破解方式，归根结底也是这个问题引起的。</p>
+<p>另外补充一点：因为用hexo的blog的人大多喜欢直接部署到github上利用github.io来展示，这样就要求使用Github的公开仓库，所以代码基本没有保密性可言。坊间流传直接看md文件我持疑，因为hexo d只会把public目录里生成的静态文件上传到github的仓库，除非是直接上传了blog项目的所有代码到github的仓库中。</p>
+<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2><p>其实修复问题很好解决，既然简单的js加密不够安全，那我们就换一个安全的加密方式。<br>不知道怎么写？不慌，早已有大佬开发了插件hexo-blog-encrypt</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">安装hexo-blog-encrypt(安装方式<span class="number">2</span>选<span class="number">1</span>)</span><br><span class="line"><span class="number">1.</span>npm维护安装包</span><br><span class="line"></span><br><span class="line">npm install --save hexo-blog-encrypt (需要安装 npm)</span><br><span class="line"><span class="number">2.</span>yarn维护</span><br><span class="line"></span><br><span class="line">yarn add hexo-blog-encrypt (需要安装 Yarn)</span><br><span class="line">站点设置修改</span><br><span class="line">在 站点配置文件 _config.yml 中启用该插件</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># encrypt plugin</span></span><br><span class="line">encrypt:</span><br><span class="line">  enable: true</span><br><span class="line">  default_abstract: 这是一篇加密文章，内容可能是个人日常吐槽或者特殊技术分享。如果你确实想看，请与我联系。非亲友团勿扰。</span><br><span class="line">  default_message: 输入密码，查看文章。</span><br></pre></td></tr></table></figure>
+<h2 id="使用hexo-blog-encrypt加密blog"><a href="#使用hexo-blog-encrypt加密blog" class="headerlink" title="使用hexo-blog-encrypt加密blog"></a>使用hexo-blog-encrypt加密blog</h2><h3 id="使用-hexo-new-“yourblog”-后在页面添加password字段即可"><a href="#使用-hexo-new-“yourblog”-后在页面添加password字段即可" class="headerlink" title="使用 hexo new  “yourblog”  后在页面添加password字段即可"></a>使用 hexo new  “yourblog”  后在页面添加password字段即可</h3><p>在你的博文头部添加上相应字段，如 password, abstract, message。因为 abstract, message 在站点配置中设置了默认值，如果这里不想自定义 abstract, message，不用专门设置。<br>password: 代表blog的访问密码<br>abstract: 这篇博文的摘要，会显示在博客的列表页<br>message: 当查看加密博文时，密码输入框上面的提示性文字。建议使用中文，英文提示默认字体不好看，可以看我下面的截图。</p>
+<p>visit_password</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试新文章加密</span><br><span class="line">date: </span><br><span class="line">category: hexo</span><br><span class="line">keywords: 博客文章密码</span><br><span class="line">password: yourpassword</span><br><span class="line">abstract: hexo密码测试</span><br><span class="line">message:  输入密码，查看文章</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h2 id="反省总结"><a href="#反省总结" class="headerlink" title="反省总结"></a>反省总结</h2><p>这个事件，其实属于网络安全中最常见的问题“人的安全意识”，比如这个blog加密方案有访问漏洞，我是知道的，但是拖延症导致我没有足够重视这个问题（因为自己总是想着加密过的东西其实被看到也无妨，毕竟正要保密也不会发出来了balabala），结果一直没去修复（即使实际修复这个问题只需要10分钟），直到被小伙伴测试到bug才动手修复。</p>
+<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html">link</a></p>
+]]></content>
+      <categories>
+        <category>Hack</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤</title>
     <url>/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<h2 id="服务器三台-按顺序执行"><a href="#服务器三台-按顺序执行" class="headerlink" title="服务器三台  按顺序执行"></a>服务器三台  按顺序执行</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.125</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.126</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.127</span></span><br></pre></td></tr></table></figure>
 <h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><p>在每台机器上操作此步骤</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cd /home/seeyii</span><br><span class="line">mkdir mongoCluster</span><br><span class="line">cd mongoCluster</span><br></pre></td></tr></table></figure>
 <h3 id="vi-mongod-conf"><a href="#vi-mongod-conf" class="headerlink" title="vi mongod.conf"></a>vi mongod.conf</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">storage:</span><br><span class="line">  dbPath: /data/db</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  logAppend: true</span><br><span class="line">  path: /var/log/mongodb/mongod.log</span><br><span class="line"></span><br><span class="line">net:</span><br><span class="line">  maxIncomingConnections: <span class="number">10000</span></span><br><span class="line">replication:</span><br><span class="line">  oplogSizeMB: <span class="number">10240</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># security:</span></span><br><span class="line">  <span class="comment"># keyFile: /data/mongodb/key.file</span></span><br><span class="line">  <span class="comment"># authorization: enabled</span></span><br></pre></td></tr></table></figure>
 <h3 id="vi-mongos-conf"><a href="#vi-mongos-conf" class="headerlink" title="vi mongos.conf"></a>vi mongos.conf</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">storage:</span><br><span class="line">  dbPath: /data/db</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  logAppend: true</span><br><span class="line">  path: /var/log/mongodb/mongos.log</span><br><span class="line"></span><br><span class="line">net:</span><br><span class="line">  maxIncomingConnections: <span class="number">10000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># security:</span></span><br><span class="line">  <span class="comment"># keyFile: /data/mongodb/key.file</span></span><br></pre></td></tr></table></figure>
@@ -2614,34 +2644,6 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
       <tags>
         <tag>docker</tag>
         <tag>mongo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何破解并访问Hexo Blog已加密的文章</title>
-    <url>/2020/07/29/%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%B9%B6%E8%AE%BF%E9%97%AEHexo-Blog%E5%B7%B2%E5%8A%A0%E5%AF%86%E7%9A%84%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="How-to-crack-hexo-simple-encrypted-blog？"><a href="#How-to-crack-hexo-simple-encrypted-blog？" class="headerlink" title="How to crack hexo simple encrypted blog？"></a>How to crack hexo simple encrypted blog？</h1><h2 id="事发"><a href="#事发" class="headerlink" title="事发"></a>事发</h2><p>下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…）</p>
-<p>我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我的blog现在是用额hexo的the next主题加各种自定义特效，因为搭建时间其实很早，所以当时使用了一种简单的js逻辑来加密blog。下面我们来看下这段有安全问题的代码：<br>代码位置： yourblog/themes/next/layout/custom/head.swig</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">&#x27;请输入密码&#x27;</span>) !== <span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">                alert(<span class="string">&#x27;密码错误&#x27;</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>乍看是否觉得除了逻辑简单没什么问题，然而眼尖的小伙伴分析出了第一个隐患：history.back(); ，而我已知静态页面的安全隐患。接下来我们逐个分析。</p>
-<h2 id="istory-back"><a href="#istory-back" class="headerlink" title="istory.back()"></a>istory.back()</h2><p>back() 方法可加载历史列表中的前一个 URL（如果存在）。如果你的前一个URL就是这个文章的URL，那么恭喜，第一种破解方法get。（不理解，看下一条）</p>
-<h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>hexo g 会根据blog相关文件在public目录下生成blog的所有静态文件。既然是已经生成好的静态页面，实际上html中包含了那段js代码的。因为需要获得html了之后才会触发那个页面访问加密的js，而理论上当我们获取到html页面之后，就可以停止当前页的js操作了。<br>That is to say, 你的blog word就是直接写在页面中的，虽然直接url去访问会弹alert，但是用curl直接获取这个页面的html，可以直接搜索到文章的访问密码, 分分钟攻破此种博文加密方式。上面利用history.back()的访问破解方式，归根结底也是这个问题引起的。</p>
-<p>另外补充一点：因为用hexo的blog的人大多喜欢直接部署到github上利用github.io来展示，这样就要求使用Github的公开仓库，所以代码基本没有保密性可言。坊间流传直接看md文件我持疑，因为hexo d只会把public目录里生成的静态文件上传到github的仓库，除非是直接上传了blog项目的所有代码到github的仓库中。</p>
-<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2><p>其实修复问题很好解决，既然简单的js加密不够安全，那我们就换一个安全的加密方式。<br>不知道怎么写？不慌，早已有大佬开发了插件hexo-blog-encrypt</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">安装hexo-blog-encrypt(安装方式<span class="number">2</span>选<span class="number">1</span>)</span><br><span class="line"><span class="number">1.</span>npm维护安装包</span><br><span class="line"></span><br><span class="line">npm install --save hexo-blog-encrypt (需要安装 npm)</span><br><span class="line"><span class="number">2.</span>yarn维护</span><br><span class="line"></span><br><span class="line">yarn add hexo-blog-encrypt (需要安装 Yarn)</span><br><span class="line">站点设置修改</span><br><span class="line">在 站点配置文件 _config.yml 中启用该插件</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># encrypt plugin</span></span><br><span class="line">encrypt:</span><br><span class="line">  enable: true</span><br><span class="line">  default_abstract: 这是一篇加密文章，内容可能是个人日常吐槽或者特殊技术分享。如果你确实想看，请与我联系。非亲友团勿扰。</span><br><span class="line">  default_message: 输入密码，查看文章。</span><br></pre></td></tr></table></figure>
-<h2 id="使用hexo-blog-encrypt加密blog"><a href="#使用hexo-blog-encrypt加密blog" class="headerlink" title="使用hexo-blog-encrypt加密blog"></a>使用hexo-blog-encrypt加密blog</h2><h3 id="使用-hexo-new-“yourblog”-后在页面添加password字段即可"><a href="#使用-hexo-new-“yourblog”-后在页面添加password字段即可" class="headerlink" title="使用 hexo new  “yourblog”  后在页面添加password字段即可"></a>使用 hexo new  “yourblog”  后在页面添加password字段即可</h3><p>在你的博文头部添加上相应字段，如 password, abstract, message。因为 abstract, message 在站点配置中设置了默认值，如果这里不想自定义 abstract, message，不用专门设置。<br>password: 代表blog的访问密码<br>abstract: 这篇博文的摘要，会显示在博客的列表页<br>message: 当查看加密博文时，密码输入框上面的提示性文字。建议使用中文，英文提示默认字体不好看，可以看我下面的截图。</p>
-<p>visit_password</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试新文章加密</span><br><span class="line">date: </span><br><span class="line">category: hexo</span><br><span class="line">keywords: 博客文章密码</span><br><span class="line">password: yourpassword</span><br><span class="line">abstract: hexo密码测试</span><br><span class="line">message:  输入密码，查看文章</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h2 id="反省总结"><a href="#反省总结" class="headerlink" title="反省总结"></a>反省总结</h2><p>这个事件，其实属于网络安全中最常见的问题“人的安全意识”，比如这个blog加密方案有访问漏洞，我是知道的，但是拖延症导致我没有足够重视这个问题（因为自己总是想着加密过的东西其实被看到也无妨，毕竟正要保密也不会发出来了balabala），结果一直没去修复（即使实际修复这个问题只需要10分钟），直到被小伙伴测试到bug才动手修复。</p>
-<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html">link</a></p>
-]]></content>
-      <categories>
-        <category>Hack</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hack</tag>
       </tags>
   </entry>
   <entry>
@@ -3296,16 +3298,16 @@ with open(&#39;stocks.csv&#39;) as f:
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#108;&#x69;&#x63;&#x65;&#64;&#111;&#114;&#103;&#46;&#101;&#120;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x62;&#105;&#122;&#x6e;&#101;&#x74;">&#97;&#108;&#x69;&#x63;&#x65;&#64;&#111;&#114;&#103;&#46;&#101;&#120;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x62;&#105;&#122;&#x6e;&#101;&#x74;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#x6c;&#105;&#x63;&#101;&#64;&#x6f;&#x72;&#103;&#x2e;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#46;&#x62;&#105;&#122;&#110;&#101;&#x74;">&#97;&#x6c;&#105;&#x63;&#101;&#64;&#x6f;&#x72;&#103;&#x2e;&#101;&#120;&#97;&#x6d;&#112;&#x6c;&#101;&#46;&#x62;&#105;&#122;&#110;&#101;&#x74;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#x75;&#x74;&#111;&#x72;&#x69;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#119;&#x6f;&#114;&#x6b;&#x40;&#48;&#x2e;&#x30;&#x2e;&#x31;&#46;&#x62;&#x6e;&#97;">&#x74;&#x75;&#x74;&#111;&#x72;&#x69;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#119;&#x6f;&#114;&#x6b;&#x40;&#48;&#x2e;&#x30;&#x2e;&#x31;&#46;&#x62;&#x6e;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#116;&#117;&#116;&#x6f;&#114;&#x69;&#97;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#46;&#48;&#x2e;&#49;&#x2e;&#98;&#110;&#x61;">&#116;&#117;&#116;&#x6f;&#114;&#x69;&#97;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#46;&#48;&#x2e;&#49;&#x2e;&#98;&#110;&#x61;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#117;&#116;&#x6f;&#x72;&#105;&#97;&#108;&#45;&#110;&#101;&#116;&#119;&#x6f;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#46;&#x62;&#x6e;&#97;">&#116;&#117;&#116;&#x6f;&#x72;&#105;&#97;&#108;&#45;&#110;&#101;&#116;&#119;&#x6f;&#x72;&#x6b;&#64;&#48;&#x2e;&#48;&#46;&#49;&#46;&#x62;&#x6e;&#97;</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#x74;&#x75;&#x74;&#111;&#x72;&#105;&#x61;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#x2e;&#48;&#46;&#x31;&#46;&#98;&#110;&#x61;">&#x74;&#x75;&#x74;&#111;&#x72;&#105;&#x61;&#x6c;&#45;&#110;&#101;&#x74;&#x77;&#x6f;&#x72;&#x6b;&#x40;&#48;&#x2e;&#48;&#46;&#x31;&#46;&#98;&#110;&#x61;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#x74;&#117;&#116;&#111;&#114;&#x69;&#x61;&#108;&#45;&#x6e;&#101;&#116;&#x77;&#x6f;&#x72;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#x6e;&#x61;">&#x74;&#117;&#116;&#111;&#114;&#x69;&#x61;&#108;&#45;&#x6e;&#101;&#116;&#x77;&#x6f;&#x72;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#x6e;&#x61;</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#x75;&#116;&#x6f;&#x72;&#x69;&#97;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#114;&#x6b;&#x40;&#48;&#46;&#x30;&#46;&#49;&#x2e;&#98;&#x6e;&#97;">&#116;&#x75;&#116;&#x6f;&#x72;&#x69;&#97;&#108;&#x2d;&#x6e;&#x65;&#x74;&#x77;&#x6f;&#114;&#x6b;&#x40;&#48;&#46;&#x30;&#46;&#49;&#x2e;&#98;&#x6e;&#97;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>
@@ -3405,7 +3407,7 @@ with open(&#39;stocks.csv&#39;) as f:
 </li>
 <li><p>MongoDB支持自动分片(autosharding)，可以使数据库架构对应用程序不可见，也可以简化系统管理。对应用程序而言，好像始终在使用一个单机的MongoDB服务器一样。另一方面，</p>
 <p> mongoDB自动处理数据在分片上的分布，也更容易添加和删除分片技术。</p>
-</li>
+<a id="more"></a></li>
 <li><p>复制与分片的区别：复制时让多台服务器都拥有同样的数据副本，每一台服务器都是其他服务器的镜像，而每一个分片都和其他分片拥有不同的数据子集。</p>
 </li>
 <li><p>路由服务器：为了对应用程序隐藏数据库架构的细节，在分片之前要先执行mongos进行一次路由过程。这个路由服务器维护这一个”内容列表”，指明了每个分片包含什么数据内容。应用</p>
@@ -3427,9 +3429,7 @@ with open(&#39;stocks.csv&#39;) as f:
 <li><p>cluster.stop() 关闭整个集群。</p>
 </li>
 </ol>
-<h2 id="BSON类型"><a href="#BSON类型" class="headerlink" title="BSON类型"></a>BSON类型</h2> <a id="more"></a>
-
-<h2 id="配置分片："><a href="#配置分片：" class="headerlink" title="配置分片："></a>配置分片：</h2><ol>
+<h2 id="BSON类型"><a href="#BSON类型" class="headerlink" title="BSON类型"></a>BSON类型</h2><h2 id="配置分片："><a href="#配置分片：" class="headerlink" title="配置分片："></a>配置分片：</h2><ol>
 <li><p>何时进行分片：决定何时分片是一个值得权衡的问题。通常不必太早分片，因为分片不仅会增加部署的操作复杂度，还要求做出设计决策，而改决策以后很难再改。另外最好也不要在系统</p>
 <p> 运行太久之后再分片，因为在一个过载的系统上不停机进行分配是很困难的。</p>
 </li>
@@ -3959,6 +3959,7 @@ if __name__ == &#39;__main__&#39;:
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文介绍如何在ubuntu20.04 上部署k8s集群，大致可以分为如下几个步骤：</p>
 <h3 id="修改ubuntu配置"><a href="#修改ubuntu配置" class="headerlink" title="修改ubuntu配置"></a>修改ubuntu配置</h3><p>###　安装docker</p>
 <h3 id="安装kubeadm、kubectl以及kubelet"><a href="#安装kubeadm、kubectl以及kubelet" class="headerlink" title="安装kubeadm、kubectl以及kubelet"></a>安装kubeadm、kubectl以及kubelet</h3><h3 id="初始化master节点"><a href="#初始化master节点" class="headerlink" title="初始化master节点"></a>初始化master节点</h3><h3 id="将slave节点加入网络"><a href="#将slave节点加入网络" class="headerlink" title="将slave节点加入网络"></a>将slave节点加入网络</h3><p>如果你对上面的某些名字感到陌生，没关系，下文会一一进行讲解，如果你想先了解一下 docker 和 k8s，可以参考 10分钟看懂Docker和K8S。好了，在正式开始之前，首先看一下我们都有哪些服务器，如果你对如何组建如下虚拟机网络感兴趣的话，可以参考 virtualbox 虚拟机组网：</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">主机名	主机ip	版本	CPU	内存</span><br><span class="line">master1	<span class="number">192.168</span><span class="number">.56</span><span class="number">.11</span>	Ubuntu server <span class="number">18.04</span>	<span class="number">2</span>核	1G</span><br><span class="line">worker1	<span class="number">192.168</span><span class="number">.56</span><span class="number">.21</span>	Ubuntu server <span class="number">18.04</span>	<span class="number">2</span>核	1G</span><br></pre></td></tr></table></figure>
 <p>因为k8s分为管理节点和工作节点，所以我们将要 在master1上部署管理节点，在worker1上部署工作节点。如果想了解如何创建这两个节点，可以参考 virtualbox 虚拟机组网 。服务器配置上，k8s 要求 CPU 最低为 2 核，不然在安装过程中会报错，虽然这个错误可以避免，但是为了稳定起见还是把虚拟机的配置成它想要的，至于内存 k8s 没有硬性要求，所以我就按我电脑的性能来分配了。</p>
 <p>注意，本文的 docker、k8s 等软件安装均未指定具体版本，在本文完成时2019/6/27，下载到的版本如下，如有特殊版本需要请自行指定版本。</p>

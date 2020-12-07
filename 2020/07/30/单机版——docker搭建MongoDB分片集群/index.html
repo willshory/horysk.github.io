@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。 1. 搭建config server这里启动了3个config server。docker命令如下： 123docker run  --restart: always --name cs0 -itd -v ~&#x2F;data&#x2F;db&#x2F;mongo&#x2F;cs">
+  <meta name="description" content="记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。 1. 搭建config server这里启动了3个config server。docker命令如下：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单机版——docker搭建MongoDB分片集群">
 <meta property="og:url" content="http://blog.hory-ai.com/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/index.html">
 <meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:description" content="记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。 1. 搭建config server这里启动了3个config server。docker命令如下： 123docker run  --restart: always --name cs0 -itd -v ~&#x2F;data&#x2F;db&#x2F;mongo&#x2F;cs">
+<meta property="og:description" content="记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。 1. 搭建config server这里启动了3个config server。docker命令如下：">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-30T12:02:04.000Z">
 <meta property="article:modified_time" content="2020-07-30T12:02:04.000Z">
@@ -254,6 +254,7 @@
       
         <p>记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。</p>
 <h2 id="1-搭建config-server"><a href="#1-搭建config-server" class="headerlink" title="1. 搭建config server"></a>1. 搭建config server</h2><p>这里启动了3个config server。docker命令如下：</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run  --restart: always --name cs0 -itd -v ~/data/db/mongo/cs0:/data/db -p <span class="number">27019</span>:<span class="number">27019</span> mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br><span class="line">docker run  -- restart: always --name cs1 -itd -v ~/data/db/mongo/cs1:/data/db -p <span class="number">27029</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br><span class="line">docker run -- restart: always --name cs2 -itd -v ~/data/db/mongo/cs2:/data/db -p <span class="number">27039</span>:<span class="number">27019</span>  mongo --configsvr --replSet <span class="string">&quot;rs_configsvr&quot;</span>  --bind_ip_all</span><br></pre></td></tr></table></figure>
 <p>启动完后可以利用docker ps -a来看config server是否启动成功。我们通过命令docker inspect cs0 | grep IPAddress看下cs0的ip地址，发现地址是172.17.0.9。相同的方法看到cs1和cs2的ip分别为172.17.0.10和172.17.0.11。</p>
 <p>docker exec -it cs0 bash进入cs0容器里，并连接MongoDB配置服，配置服的端口为27019。命令如下：</p>

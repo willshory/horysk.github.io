@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Docker重启所有命令以及构建是如何设置开机重启 设置开机重启–restart&#x3D;always 启动所有容器docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2) 关闭所有容器docker stop $(docker ps -a | awk ‘{ print $1}’ | tail -n +2) 删除所有容器docker rm $">
+  <meta name="description" content="Docker重启所有命令以及构建是如何设置开机重启 设置开机重启–restart&#x3D;always 启动所有容器docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker容器命令整理">
 <meta property="og:url" content="http://blog.hory-ai.com/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/index.html">
 <meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:description" content="Docker重启所有命令以及构建是如何设置开机重启 设置开机重启–restart&#x3D;always 启动所有容器docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2) 关闭所有容器docker stop $(docker ps -a | awk ‘{ print $1}’ | tail -n +2) 删除所有容器docker rm $">
+<meta property="og:description" content="Docker重启所有命令以及构建是如何设置开机重启 设置开机重启–restart&#x3D;always 启动所有容器docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-31T11:51:20.000Z">
 <meta property="article:modified_time" content="2020-07-31T11:51:20.000Z">
@@ -265,6 +265,7 @@
         <p>Docker重启所有命令以及构建是如何设置开机重启</p>
 <h2 id="设置开机重启"><a href="#设置开机重启" class="headerlink" title="设置开机重启"></a>设置开机重启</h2><p>–restart=always</p>
 <h2 id="启动所有容器"><a href="#启动所有容器" class="headerlink" title="启动所有容器"></a>启动所有容器</h2><p>docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
+<a id="more"></a>
 <h2 id="关闭所有容器"><a href="#关闭所有容器" class="headerlink" title="关闭所有容器"></a>关闭所有容器</h2><p>docker stop $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
 <h2 id="删除所有容器"><a href="#删除所有容器" class="headerlink" title="删除所有容器"></a>删除所有容器</h2><p>docker rm $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
 <h2 id="删除所有镜像"><a href="#删除所有镜像" class="headerlink" title="删除所有镜像"></a>删除所有镜像</h2><p>docker rmi $(docker p_w_picpaths | awk ‘{print $3}’ |tail -n +2)</p>
