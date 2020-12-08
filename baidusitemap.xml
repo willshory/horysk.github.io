@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://blog.hory-ai.com/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2020-12-07</lastmod>
+  </url>
+  <url>
+    <loc>http://blog.hory-ai.com/2020/12/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/</loc>
+    <lastmod>2020-12-07</lastmod>
+  </url>
+  <url>
     <loc>http://blog.hory-ai.com/2020/12/07/hello-world/</loc>
     <lastmod>2020-12-07</lastmod>
   </url>

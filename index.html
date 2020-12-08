@@ -235,6 +235,216 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">在Hexo博客中插入图片的各种方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-07 06:39:47" itemprop="dateCreated datePublished" datetime="2020-12-07T06:39:47+00:00">2020-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在文章中插入图片<br><a target="_blank" rel="noopener" href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/">Hexo博客搭建之在文章中插入图片</a></p>
+<h2 id="绝对路径本地引用"><a href="#绝对路径本地引用" class="headerlink" title="绝对路径本地引用"></a>绝对路径本地引用</h2><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">![](/images/image.jpg)</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">图片既可以在首页内容中访问到，也可以在文章正文中访问到。</span><br><span class="line"><span class="comment">## 相对路径本地引用</span></span><br><span class="line">图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过站点配置文件_config.yml来生成。</span><br><span class="line">``` bash</span><br><span class="line">post_asset_folder: <span class="literal">true</span></span><br><span class="line">``` </span><br><span class="line">将_config.yml文件中的配置项post_asset_folder设为<span class="literal">true</span>后，执行命令$ hexo new post_name，在<span class="built_in">source</span>/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</span><br><span class="line">``` bash</span><br><span class="line">![](image.jpg)</span><br><span class="line">``` </span><br><span class="line">[vi-vim-cheat-sheet.gif](vi-vim-cheat-sheet.gif)</span><br><span class="line"><span class="comment">## 标签插件语法引用</span></span><br><span class="line">这种相对路径的图片显示方法在博文详情页面显示没有问题，但是在首页预览页面图片将显示不出来。如果希望图片在文章和首页中同时显示，可以使用标签插件语法。</span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># 本地图片资源，不限制图片尺寸</span></span><br><span class="line">&#123;% asset_img image.jpg This is an image %&#125;</span><br><span class="line"><span class="comment"># 网络图片资源，限制图片显示尺寸</span></span><br><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 200 400 vi-vim-cheat-sheet %&#125;</span><br><span class="line">HTML语法引用</span><br><span class="line">&lt;img src=<span class="string">&quot;SpellCheck.png&quot;</span> width=<span class="string">&quot;50%&quot;</span> height=<span class="string">&quot;50%&quot;</span> title=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span> alt=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>直接将<img src="/.com//image.jpg">替换上面的语法即可。</p>
+<p>启用fancybox：点击查看图片大图<br>我这里使用的是Hexo的NexT主题，NexT主题中提供了fancybox的方便接口。</p>
+<p>Usage：<a target="_blank" rel="noopener" href="https://github.com/theme-next/theme-next-fancybox3">https://github.com/theme-next/theme-next-fancybox3</a><br>markdown用法：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 600 600 <span class="string">&quot;点击查看大图:vi/vim-cheat-sheet&quot;</span> %&#125;</span><br></pre></td></tr></table></figure>
+<p>Hexo部分图片禁用fancybox</p>
+<p>hexo在使用fancybox插件时，图片的效果还是很可观的，但是我们往往是不需要所有的图片都用fancybox；<br>例如：hexo next主题下，添加某些图片的时候，有些事不需要可点击的<br>修改theme\next\source\js\src\utils.js 红色字体部分；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/<span class="built_in">source</span>/js/src/utils.js b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">index 0f3704e..8516665 100644</span><br><span class="line">--- a/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">+++ b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">@@ -11,6 +11,7 @@ NexT.utils = NexT.<span class="variable">$u</span> = &#123;</span><br><span class="line">       .not(<span class="string">&#x27;.group-picture img, .post-gallery img&#x27;</span>)</span><br><span class="line">       .each(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">         var <span class="variable">$image</span> = $(this);</span><br><span class="line">+        <span class="keyword">if</span> ($(this).hasClass(<span class="string">&#x27;nofancybox&#x27;</span>)) <span class="built_in">return</span>;</span><br><span class="line">         var imageTitle = <span class="variable">$image</span>.attr(<span class="string">&#x27;title&#x27;</span>);</span><br><span class="line">         var <span class="variable">$imageWrapLink</span> = <span class="variable">$image</span>.parent(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>在img标签使用的时候加上class=”nofancybox”即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;http://www.viemu.com/vi-vim-cheat-sheet.gif&quot;</span> class=<span class="string">&quot;nofancybox&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<img src="http://www.viemu.com/vi-vim-cheat-sheet.gif" class width="600" height="600" title="点击查看大图:vi&#x2F;vim-cheat-sheet">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/12/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">在Hexo博客中插入图片的各种方式</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-12-07 06:39:47" itemprop="dateCreated datePublished" datetime="2020-12-07T06:39:47+00:00">2020-12-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在文章中插入图片<br><a target="_blank" rel="noopener" href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/">Hexo博客搭建之在文章中插入图片</a></p>
+<h2 id="绝对路径本地引用"><a href="#绝对路径本地引用" class="headerlink" title="绝对路径本地引用"></a>绝对路径本地引用</h2><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</p>
+<p><a href="/images/image.jpg"></a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/12/07/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,7 +472,21 @@
               <time title="Created: 2020-12-07 04:00:12" itemprop="dateCreated datePublished" datetime="2020-12-07T04:00:12+00:00">2020-12-07</time>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/07/hello-world/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/07/hello-world/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -343,7 +567,21 @@
               <time title="Created: 2020-12-04 11:58:00" itemprop="dateCreated datePublished" datetime="2020-12-04T11:58:00+00:00">2020-12-04</time>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/04/hexo-%E6%B7%BB%E5%8A%A0-hexo-admin-%E6%8F%92%E4%BB%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -423,7 +661,21 @@
               <time title="Created: 2020-12-04 11:37:00" itemprop="dateCreated datePublished" datetime="2020-12-04T11:37:00+00:00">2020-12-04</time>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/12/04/6546465465/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/12/04/6546465465/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -514,7 +766,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/10/09/Truffle-Vue-MetaMask%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%A5%E5%A4%AA%E5%9D%8ADapp/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/10/09/Truffle-Vue-MetaMask%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%BB%A5%E5%A4%AA%E5%9D%8ADapp/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -606,7 +872,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/03/Mongodb-%E7%AC%94%E8%AE%B007-%E5%88%86%E7%89%87%E3%80%81%E9%85%8D%E7%BD%AE%E5%88%86%E7%89%87%E3%80%81%E9%80%89%E6%8B%A9%E7%89%87%E9%94%AE%E3%80%81%E5%88%86%E7%89%87%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/03/Mongodb-%E7%AC%94%E8%AE%B007-%E5%88%86%E7%89%87%E3%80%81%E9%85%8D%E7%BD%AE%E5%88%86%E7%89%87%E3%80%81%E9%80%89%E6%8B%A9%E7%89%87%E9%94%AE%E3%80%81%E5%88%86%E7%89%87%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -703,7 +983,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/03/Kubernetes-%E4%B8%80-%E8%B7%9F%E7%9D%80%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAK8S/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/03/Kubernetes-%E4%B8%80-%E8%B7%9F%E7%9D%80%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAK8S/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -793,7 +1087,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/08/03/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC2%E7%89%88%E3%80%8Bpdf%E5%8F%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D%E6%8E%A8%E8%8D%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/03/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E7%AC%AC2%E7%89%88%E3%80%8Bpdf%E5%8F%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B9%A6%E7%B1%8D%E6%8E%A8%E8%8D%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -885,7 +1193,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/31/ubuntu20-04-%E5%AE%89%E8%A3%85-k8s/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/31/ubuntu20-04-%E5%AE%89%E8%A3%85-k8s/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -916,189 +1238,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/07/31/ubuntu20-04-%E5%AE%89%E8%A3%85-k8s/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">Docker容器命令整理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-31 11:51:20" itemprop="dateCreated datePublished" datetime="2020-07-31T11:51:20+00:00">2020-07-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>353</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Docker重启所有命令以及构建是如何设置开机重启</p>
-<h2 id="设置开机重启"><a href="#设置开机重启" class="headerlink" title="设置开机重启"></a>设置开机重启</h2><p>–restart=always</p>
-<h2 id="启动所有容器"><a href="#启动所有容器" class="headerlink" title="启动所有容器"></a>启动所有容器</h2><p>docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-30 17:52:25" itemprop="dateCreated datePublished" datetime="2020-07-30T17:52:25+00:00">2020-07-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongo/" itemprop="url" rel="index"><span itemprop="name">mongo</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongo/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>11 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="服务器三台-按顺序执行"><a href="#服务器三台-按顺序执行" class="headerlink" title="服务器三台  按顺序执行"></a>服务器三台  按顺序执行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.125</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.126</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.127</span></span><br></pre></td></tr></table></figure>
-<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><p>在每台机器上操作此步骤</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1187,7 +1326,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1243,7 +1382,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
       </div>
@@ -1276,12 +1415,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">272k</span>
+    <span title="Symbols count total">275k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:07</span>
+    <span title="Reading time total">4:10</span>
 </div>
 
         
@@ -1393,6 +1532,36 @@
 
   
 
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
+      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
+      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : '',
+      requiredFields: ['nick','mail'] 
+    });
+  }, window.Valine);
+});
+</script>
+
   <!-- 页面点击特效 -->
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/js/click-word.js"></script>
@@ -1400,5 +1569,5 @@
   <script type="text/javascript"
   color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>

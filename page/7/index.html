@@ -235,6 +235,271 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2016/05/25/Kubernetes%E4%B9%8Bkubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/05/25/Kubernetes%E4%B9%8Bkubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Kubernetes之kubectl常用命令使用指南</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-05-25 14:17:10" itemprop="dateCreated datePublished" datetime="2016-05-25T14:17:10+00:00">2016-05-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/k8s/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2016/05/25/Kubernetes%E4%B9%8Bkubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/05/25/Kubernetes%E4%B9%8Bkubectl%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>kubectl是一个用于操作kubernetes集群的命令行接口,通过利用kubectl的各种命令可以实现各种功能,是在使用kubernetes中非常常用的工具。这里我们会通过一些简单的实例来展现其中一些高频命令的使用方法。<br>更为重要的是这些命令使用的场景以及能够解决什么样的问题。这篇文章我们来介绍一下创建和删除相关的命令。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>kubectl创建和删除相关，本文将会简单介绍一下如下命令</p>
+<p>项番    命令    说明<br>No.1    run    在集群上运行一个镜像<br>No.2    create    使用文件或者标准输入的方式创建一个资源<br>No.3    delete    使用文件或者标准输入以及资源名称或者标签选择器来删除某个资源<br>事前准备</p>
+<h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2><p>[root@ku8-1 tmp]# kubectl version<br>Client Version: version.Info{Major:”1”, Minor:”5”, GitVersion:”v1.5.2”, GitCommit:”08e099554f3c31f6e6f07b448ab3ed78d0520507”, GitTreeState:”clean”, BuildDate:”2017-01-12T04:57:25Z”, GoVersion:”go1.7.4”, Compiler:”gc”, Platform:”linux/amd64”}<br>Server Version: version.Info{Major:”1”, Minor:”5”, GitVersion:”v1.5.2”, GitCommit:”08e099554f3c31f6e6f07b448ab3ed78d0520507”, GitTreeState:”clean”, BuildDate:”2017-01-12T04:52:34Z”, GoVersion:”go1.7.4”, Compiler:”gc”, Platform:”linux/amd64”}</p>
+<p>##　集群构成<br>一主三从的Kubernetes集群</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">项番	类型	Hostname	IP</span><br><span class="line">No<span class="number">.1</span>	Master	ku8-<span class="number">1</span>	<span class="number">192.168</span><span class="number">.32</span><span class="number">.131</span></span><br><span class="line">No<span class="number">.1</span>	Node	ku8-<span class="number">2</span>	<span class="number">192.168</span><span class="number">.32</span><span class="number">.132</span></span><br><span class="line">No<span class="number">.1</span>	Node	ku8-<span class="number">3</span>	<span class="number">192.168</span><span class="number">.32</span><span class="number">.133</span></span><br><span class="line">No<span class="number">.1</span>	Node	ku8-<span class="number">4</span>	<span class="number">192.168</span><span class="number">.32</span><span class="number">.134</span></span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get nodes</span></span><br><span class="line">NAME             STATUS    AGE</span><br><span class="line"><span class="number">192.168</span><span class="number">.32</span><span class="number">.132</span>   Ready     12m</span><br><span class="line"><span class="number">192.168</span><span class="number">.32</span><span class="number">.133</span>   Ready     11m</span><br><span class="line"><span class="number">192.168</span><span class="number">.32</span><span class="number">.134</span>   Ready     11m</span><br></pre></td></tr></table></figure>
+<p>kubectl run<br>##　运行一个镜像<br>kubectl run和docker run一样，它能将一个镜像运行起来，我们使用kubectl run来将一个sonarqube的镜像启动起来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl run sonarqube --image=192.168.32.131:5000/sonarqube:5.6.5 --replicas=1 --port=9000</span></span><br><span class="line">deployment <span class="string">&quot;sonarqube&quot;</span> created</span><br></pre></td></tr></table></figure>
+<p>让我们来看看这条kubectl run之后，kubernetes做了什么，从它的提示看到创建了一个deployment（1.4之后推荐的方式）。</p>
+<h2 id="确认Deployment"><a href="#确认Deployment" class="headerlink" title="确认Deployment"></a>确认Deployment</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get deployment</span></span><br><span class="line">NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">sonarqube   <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>            <span class="number">1</span>           5m</span><br></pre></td></tr></table></figure>
+<p>##　确认pod<br>kubernetes将镜像运行在pod中以方便实施卷和网络共享等管理，使用get pods可以清楚的看到生成了一个pod</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">NAME                         READY     STATUS    RESTARTS   AGE</span><br><span class="line">sonarqube-<span class="number">1880671902</span>-s3fdq   <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          6m</span><br></pre></td></tr></table></figure>
+<h2 id="kubectl-delete"><a href="#kubectl-delete" class="headerlink" title="kubectl delete"></a>kubectl delete</h2><p>让我们来试着使用kubectl delete删除一下这些创建的对象</p>
+<h2 id="删除pod"><a href="#删除pod" class="headerlink" title="删除pod"></a>删除pod</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl delete pods sonarqube-1880671902-s3fdq</span></span><br><span class="line">pod <span class="string">&quot;sonarqube-1880671902-s3fdq&quot;</span> deleted</span><br></pre></td></tr></table></figure>
+
+<h2 id="确认结果"><a href="#确认结果" class="headerlink" title="确认结果"></a>确认结果</h2><p>可以看到刚刚生成的sonarqube-1880671902-s3fdq正在结束(Terminating）,随之一个新的sonarqube-1880671902-n75d2正在创建，这是正是确保replicas为1的动作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">NAME                         READY     STATUS              RESTARTS   AGE</span><br><span class="line">sonarqube-<span class="number">1880671902</span>-n75d2   <span class="number">0</span>/<span class="number">1</span>       ContainerCreating   <span class="number">0</span>          11s</span><br><span class="line">sonarqube-<span class="number">1880671902</span>-s3fdq   <span class="number">0</span>/<span class="number">1</span>       Terminating         <span class="number">0</span>          10m</span><br></pre></td></tr></table></figure>
+<h2 id="再次确认"><a href="#再次确认" class="headerlink" title="再次确认"></a>再次确认</h2><p>稍等之后再次确认，发现replicas仍然保持在1个的状态</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">NAME                         READY     STATUS    RESTARTS   AGE</span><br><span class="line">sonarqube-<span class="number">1880671902</span>-n75d2   <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          40s</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get deployments</span></span><br><span class="line">NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">sonarqube   <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>            <span class="number">1</span>           15m</span><br></pre></td></tr></table></figure>
+<h2 id="删除deployment"><a href="#删除deployment" class="headerlink" title="删除deployment"></a>删除deployment</h2><p>直接删除pod触发了replicas的确保机制，那么我们删除deployment</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl delete deployment sonarqube</span></span><br><span class="line">deployment <span class="string">&quot;sonarqube&quot;</span> deleted</span><br></pre></td></tr></table></figure>
+<h2 id="结果确认"><a href="#结果确认" class="headerlink" title="结果确认"></a>结果确认</h2><p>通过使用deployment进行删除，则全部删除。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">No resources found.</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get deployments</span></span><br><span class="line">No resources found.</span><br></pre></td></tr></table></figure>
+<h2 id="kubectl-create"><a href="#kubectl-create" class="headerlink" title="kubectl create"></a>kubectl create</h2><p>使用kubectl run在设定很复杂的时候需要非常长的一条语句，敲半天也很容易出错，也没法保存，在碰到转义字符的时候也经常会很抓狂，所以更多场景下会使用yaml或者json文件，而使用kubectl create或者delete就可以利用这些yaml文件。<br>比如，我们使用如下的方式来分别创建mysql和sonarqube的RC。</p>
+<p>事前准备</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># ls yamls</span></span><br><span class="line">mysql.yaml  sonar.yaml</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># cat yamls/mysql.yaml </span></span><br><span class="line">---</span><br><span class="line">kind: ReplicationController</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  name: mysql</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  selector:</span><br><span class="line">    name: mysql</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        name: mysql</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: mysql</span><br><span class="line">        image: <span class="number">192.168</span><span class="number">.32</span><span class="number">.131</span>:<span class="number">5000</span>/mysql:<span class="number">5.7</span><span class="number">.16</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">3306</span></span><br><span class="line">          protocol: TCP</span><br><span class="line">        env:</span><br><span class="line">          - name: MYSQL_ROOT_PASSWORD</span><br><span class="line">            value: <span class="string">&quot;hello123&quot;</span></span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># </span></span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># cat yamls/sonar.yaml </span></span><br><span class="line">---</span><br><span class="line">kind: ReplicationController</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  name: sonarqube</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  selector:</span><br><span class="line">    name: sonarqube</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        name: sonarqube</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: sonarqube</span><br><span class="line">        image: <span class="number">192.168</span><span class="number">.32</span><span class="number">.131</span>:<span class="number">5000</span>/sonarqube:<span class="number">5.6</span><span class="number">.5</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">9000</span></span><br><span class="line">          protocol: TCP</span><br></pre></td></tr></table></figure>
+<h2 id="创建（MYSQL）"><a href="#创建（MYSQL）" class="headerlink" title="创建（MYSQL）"></a>创建（MYSQL）</h2><p>[root@ku8-1 tmp]# kubectl create -f yamls/mysql.yaml<br>replicationcontroller “mysql” created</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## 确认（MYSQL）</span><br><span class="line">&#96;&#96;&#96;python</span><br><span class="line">[root@ku8-1 tmp]# kubectl get rc</span><br><span class="line">NAME      DESIRED   CURRENT   READY     AGE</span><br><span class="line">mysql     1         1         1         1m</span><br><span class="line">[root@ku8-1 tmp]# kubectl get pod</span><br><span class="line">NAME          READY     STATUS    RESTARTS   AGE</span><br><span class="line">mysql-nl8sq   1&#x2F;1       Running   0          1m</span><br></pre></td></tr></table></figure>
+<h2 id="创建（SONARQUBE）"><a href="#创建（SONARQUBE）" class="headerlink" title="创建（SONARQUBE）"></a>创建（SONARQUBE）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl create -f yamls/sonar.yaml </span></span><br><span class="line">replicationcontroller <span class="string">&quot;sonarqube&quot;</span> created</span><br></pre></td></tr></table></figure>
+<h2 id="确认（SONARQUBE）"><a href="#确认（SONARQUBE）" class="headerlink" title="确认（SONARQUBE）"></a>确认（SONARQUBE）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">NAME              READY     STATUS    RESTARTS   AGE</span><br><span class="line">mysql-nl8sq       <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          2m</span><br><span class="line">sonarqube-p1cnj   <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          46s</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get rc</span></span><br><span class="line">NAME        DESIRED   CURRENT   READY     AGE</span><br><span class="line">mysql       <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>         2m</span><br><span class="line">sonarqube   <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>         51s</span><br></pre></td></tr></table></figure>
+<h2 id="删除（SONARQUBE）"><a href="#删除（SONARQUBE）" class="headerlink" title="删除（SONARQUBE）"></a>删除（SONARQUBE）</h2><p>使用yaml文件也可以直接删除所创建出来的内容，比如我们先删除刚刚创建的sonarqube相关。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl delete -f yamls/sonar.yaml </span></span><br><span class="line">replicationcontroller <span class="string">&quot;sonarqube&quot;</span> deleted</span><br></pre></td></tr></table></figure>
+<h2 id="确认（SONARQUBE）-1"><a href="#确认（SONARQUBE）-1" class="headerlink" title="确认（SONARQUBE）"></a>确认（SONARQUBE）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">NAME          READY     STATUS    RESTARTS   AGE</span><br><span class="line">mysql-nl8sq   <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          4m</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get rc</span></span><br><span class="line">NAME      DESIRED   CURRENT   READY     AGE</span><br><span class="line">mysql     <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>         4m</span><br></pre></td></tr></table></figure>
+<h2 id="删除（MYSQL）"><a href="#删除（MYSQL）" class="headerlink" title="删除（MYSQL）"></a>删除（MYSQL）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl delete -f yamls/mysql.yaml </span></span><br><span class="line">replicationcontroller <span class="string">&quot;mysql&quot;</span> deleted</span><br></pre></td></tr></table></figure>
+<h2 id="确认（MYSQL）"><a href="#确认（MYSQL）" class="headerlink" title="确认（MYSQL）"></a>确认（MYSQL）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">No resources found.</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get rc</span></span><br><span class="line">No resources found.</span><br></pre></td></tr></table></figure>
+<h2 id="Deployment方式：准备"><a href="#Deployment方式：准备" class="headerlink" title="Deployment方式：准备"></a>Deployment方式：准备</h2><p>RC在1.4之后已经被建议用Deployment方式替换，主要只需要替换kind和apiversion和selector即可,1.5和1.6在此处也略有区别。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># ls yamls/</span></span><br><span class="line">mysql.yaml  sonar.yaml</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># cat yamls/mysql.yaml </span></span><br><span class="line">---</span><br><span class="line">kind: Deployment</span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">metadata:</span><br><span class="line">  name: mysql</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        name: mysql</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: mysql</span><br><span class="line">        image: <span class="number">192.168</span><span class="number">.32</span><span class="number">.131</span>:<span class="number">5000</span>/mysql:<span class="number">5.7</span><span class="number">.16</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">3306</span></span><br><span class="line">          protocol: TCP</span><br><span class="line">        env:</span><br><span class="line">          - name: MYSQL_ROOT_PASSWORD</span><br><span class="line">            value: <span class="string">&quot;hello123&quot;</span></span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># </span></span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># cat yamls/sonar.yaml </span></span><br><span class="line">---</span><br><span class="line">kind: Deployment</span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">metadata:</span><br><span class="line">  name: sonarqube</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        name: sonarqube</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: sonarqube</span><br><span class="line">        image: <span class="number">192.168</span><span class="number">.32</span><span class="number">.131</span>:<span class="number">5000</span>/sonarqube:<span class="number">5.6</span><span class="number">.5</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">9000</span></span><br><span class="line">          protocol: TCP</span><br></pre></td></tr></table></figure>
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>有多个yaml文件的时候，可以使用如下方式一下全部创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl create -f yamls/</span></span><br><span class="line">deployment <span class="string">&quot;mysql&quot;</span> created</span><br><span class="line">deployment <span class="string">&quot;sonarqube&quot;</span> created</span><br></pre></td></tr></table></figure>
+<h2 id="确认"><a href="#确认" class="headerlink" title="确认"></a>确认</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">NAME                         READY     STATUS    RESTARTS   AGE</span><br><span class="line">mysql-<span class="number">478535978</span>-2l7kq        <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          3m</span><br><span class="line">sonarqube-<span class="number">3574384362</span>-x3mg2   <span class="number">1</span>/<span class="number">1</span>       Running   <span class="number">0</span>          3m</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get deployments</span></span><br><span class="line">NAME        DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">mysql       <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>            <span class="number">1</span>           3m</span><br><span class="line">sonarqube   <span class="number">1</span>         <span class="number">1</span>         <span class="number">1</span>            <span class="number">1</span>           3m</span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>同样，有多个yaml文件的时候，可以使用如下方式一下全部删除</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl delete -f yamls/</span></span><br><span class="line">deployment <span class="string">&quot;mysql&quot;</span> deleted</span><br><span class="line">deployment <span class="string">&quot;sonarqube&quot;</span> deleted</span><br></pre></td></tr></table></figure>
+<h2 id="确认-1"><a href="#确认-1" class="headerlink" title="确认"></a>确认</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get pods</span></span><br><span class="line">No resources found.</span><br><span class="line">[root@ku8-<span class="number">1</span> tmp]<span class="comment"># kubectl get deployments</span></span><br><span class="line">No resources found.</span><br></pre></td></tr></table></figure>
+<p>总结<br>这篇文章通过几个最简单的命令熟悉了如何使用kubectl对镜像进行创建和删除，在后面我们会进一步介绍一些常用的命令。</p>
+<p>更多总结可参看：<br><a target="_blank" rel="noopener" href="https://liumiaocn.blog.csdn.net/article/details/88413428">https://liumiaocn.blog.csdn.net/article/details/88413428</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2016/02/06/k8s%20%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%20%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%85%BC%E5%AE%B9centos8%20&&%20ubutnu20.04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/02/06/k8s%20%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%20%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%85%BC%E5%AE%B9centos8%20&&%20ubutnu20.04/" class="post-title-link" itemprop="url">k8s 离线安装 一键安装兼容centos8 && ubutnu20.04</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-02-06 14:17:30" itemprop="dateCreated datePublished" datetime="2016-02-06T14:17:30+00:00">2016-02-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2016/02/06/k8s%20%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%20%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%85%BC%E5%AE%B9centos8%20&&%20ubutnu20.04/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2016/02/06/k8s%20%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%20%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%85%BC%E5%AE%B9centos8%20&&%20ubutnu20.04/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>K8S 是一个一键安装K8S高可用集群的软件。它可以帮助企业一键搭建完私有云系统，帮助用户在多家云服务商里灵活切换，不再被任何服务商绑架！ 对! 所有的操作只需要一键！</p>
+<p>有问题 咨询wechat: horysk</p>
+<h1 id="kubernetes-v1-18-2-版本-已经支持-所有监控为最新版本"><a href="#kubernetes-v1-18-2-版本-已经支持-所有监控为最新版本" class="headerlink" title="kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本."></a>kubernetes v1.18.2 版本 已经支持, 所有监控为最新版本.</h1><p>安装很简单， 一键安装，安装一个系统只需要 3 分钟, 安装好以后完整的监控也一并装好，可以直接使用。（不止支持单master 还支持3master 高可用方案)</p>
+<h1 id="同时安装三台-方案"><a href="#同时安装三台-方案" class="headerlink" title="同时安装三台 方案:"></a>同时安装三台 方案:</h1><p>记住服务版本 linux AMD64的安装包才是我们支持的。</p>
+<p>好现在开始安装，高可用系统 需要3台服务器，我们这里假设3台主机，ip 分别是10.0.0.4, 10.0.0.5,10.0.0.6</p>
+<h2 id="好我们需要做下面4件事"><a href="#好我们需要做下面4件事" class="headerlink" title="好我们需要做下面4件事"></a>好我们需要做下面4件事</h2><p>把安装包installer, pack.xxx.xxx.bin 文件 以及kubernetes的官方文件复制到每台主机上<br>在其中一台 运行 sudo ./installer -genkey -hostlist=10.0.0.0 运行完毕，会生成一个k8skey.pem文件，将它复制到其他的主机上<br>在每台主机上运行一次 sudo ./installer –prepare<br>在3台主机上同时运行 sudo ./installer -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip=10.0.0.4,10.0.0.5,10.0.0.6<br>参数说明 -kubernetestarfile kubernetes-server-linux-amd64.tar.gz 是指 使用 kubernetes-server-linux-amd64.tar.gz 这个文件作为kubernetes的官方软件。<br>-masterip=10.0.0.4,10.0.0.5,10.0.0.6 是指 我们选择 10.0.0.4 10.0.0.5 10.0.0.6 作为master节点</p>
+<p>剩下的？ 等待就可以了。<br>等安装成功后 你用浏览器访问一下 10.0.0.4:10000 看看，一个新的世界给你准备好了。</p>
+<p>你需要下载pack.xxx.xxx.bin 文件和installer 文件。</p>
+<p>此外 你还需选择一个kubernetes 的官方发行包。你可以在这里找到官方发行包</p>
+<h1 id="安装主机-后添加-方案二"><a href="#安装主机-后添加-方案二" class="headerlink" title="安装主机  后添加  方案二:"></a>安装主机  后添加  方案二:</h1><h2 id="2条命令即可"><a href="#2条命令即可" class="headerlink" title="2条命令即可"></a>2条命令即可</h2><p>#创建密钥<br>sudo ./installer –genkey -hostlist=172.20.2.66</p>
+<h2 id="提示kernel-不够请升级centos-kernel-参考"><a href="#提示kernel-不够请升级centos-kernel-参考" class="headerlink" title="提示kernel 不够请升级centos kernel  参考"></a>提示kernel 不够请升级centos kernel  参考<a href></a></h2><h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory-请参考一下处理方案" class="headerlink" title="报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案"></a>报错 sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory  请参考一下处理方案</h2><p>#创建集群<br>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66<br>image</p>
+<h1 id="将一个新节点加入这个集群也只需要一个命令"><a href="#将一个新节点加入这个集群也只需要一个命令" class="headerlink" title="将一个新节点加入这个集群也只需要一个命令"></a>将一个新节点加入这个集群也只需要一个命令</h1><p>1条命令即可</p>
+<h1 id="将密钥复制到本地"><a href="#将密钥复制到本地" class="headerlink" title="将密钥复制到本地"></a>将密钥复制到本地</h1><p>cp ../k8skey.pem ./</p>
+<h1 id="将机器加入集群"><a href="#将机器加入集群" class="headerlink" title="将机器加入集群"></a>将机器加入集群</h1><p>sudo ./installer   -kubernetestarfile kubernetes-server-linux-amd64.tar.gz -masterip 172.20.2.66</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/horysk/k8seasy_release_page">github</a><br><a target="_blank" rel="noopener" href="http://dl.k8seasy.com/">link</a></p>
+<h2 id="报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory"><a href="#报错-sysctl-cannot-stat-proc-sys-net-netfilter-nf-conntrack-max-No-such-file-or-directory" class="headerlink" title="报错: sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory"></a>报错: sysctl: cannot stat /proc/sys/net/netfilter/nf_conntrack_max: No such file or directory</h2><p>执行如下</p>
+<p>lsmod |grep conntrack</p>
+<p>如何返回是空，表示没有加载，那执行如下命令加载即可</p>
+<p>modprobe ip_conntrack</p>
+<p>再重新执行验证</p>
+<p>[root@k8s-node-n2 ~]# lsmod |grep conntrack<br>nf_conntrack_ipv4 20480 0<br>nf_defrag_ipv4 16384 1 nf_conntrack_ipv4<br>nf_conntrack 114688 1 nf_conntrack_ipv4</p>
+<p>再重新手动刷新使文件生效就没有问题了</p>
+<p>sysctl -p /etc/sysctl.d/kubernetes.conf</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/de4ae3812b04">参考</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2015/11/08/centos7%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8%E8%87%B3%E6%9C%80%E6%96%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -271,7 +536,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2015/11/08/centos7%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8%E8%87%B3%E6%9C%80%E6%96%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/11/08/centos7%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8%E8%87%B3%E6%9C%80%E6%96%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -386,7 +665,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2015/09/10/%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/09/10/%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -462,7 +755,21 @@
               <time title="Created: 2015-08-01 14:04:40" itemprop="dateCreated datePublished" datetime="2015-08-01T14:04:40+00:00">2015-08-01</time>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2015/08/01/tesks/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/08/01/tesks/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -542,7 +849,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2015/08/01/text/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/08/01/text/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -644,7 +965,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2015/07/01/hello%20world/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2015/07/01/hello%20world/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -775,7 +1110,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -831,7 +1166,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
       </div>
@@ -864,12 +1199,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">272k</span>
+    <span title="Symbols count total">275k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:07</span>
+    <span title="Reading time total">4:10</span>
 </div>
 
         
@@ -981,6 +1316,36 @@
 
   
 
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
+      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
+      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : '',
+      requiredFields: ['nick','mail'] 
+    });
+  }, window.Valine);
+});
+</script>
+
   <!-- 页面点击特效 -->
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/js/click-word.js"></script>
@@ -988,5 +1353,5 @@
   <script type="text/javascript"
   color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>

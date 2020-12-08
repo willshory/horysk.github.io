@@ -235,6 +235,565 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">MongoDB索引管理——创建索引，查看索引，删除索引，重建索引</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-24 11:26:26" itemprop="dateCreated datePublished" datetime="2020-07-24T11:26:26+00:00">2020-07-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mongo/" itemprop="url" rel="index"><span itemprop="name">Mongo</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://blog.51cto.com/navyaijm/2421973?source=drh">Mongodb性能压测</a></p>
+<h3 id="先给users集合插入两条记录，然后用users集合来进行索引管理的演示："><a href="#先给users集合插入两条记录，然后用users集合来进行索引管理的演示：" class="headerlink" title="先给users集合插入两条记录，然后用users集合来进行索引管理的演示："></a>先给users集合插入两条记录，然后用users集合来进行索引管理的演示：</h3><pre><code class="bash">&gt; user1=&#123;&quot;name&quot;:&quot;liming&quot;,&quot;age&quot;:20,&quot;gender&quot;:&quot;F&quot;&#125;
+&#123; &quot;name&quot; : &quot;liming&quot;, &quot;age&quot; : 20, &quot;gender&quot; : &quot;F&quot; &#125;
+&gt; db.users.insert(user1)
+WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)
+&gt; user2=&#123;&quot;name&quot;:&quot;zhangsan&quot;,&quot;age&quot;:25,&quot;gender&quot;:&quot;F&quot;&#125;
+&#123; &quot;name&quot; : &quot;zhangsan&quot;, &quot;age&quot; : 25, &quot;gender&quot; : &quot;F&quot; &#125;
+&gt; db.users.insert(user1)
+WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)
+&gt; db.users.count()</code></pre>
+<h2 id="2-创建索引："><a href="#2-创建索引：" class="headerlink" title="2 创建索引："></a>2 创建索引：</h2><p>mongodb使用createIndex()和ensureIndex()方法来创建索引，前者用于3.0及以上版本，后者用于3.0以下版本。<br>语法：<br>db.COLLECTION_NAME.ensureIndex(keys[,options])<br>keys:要建立索引的参数列表。如：{KEY:1}，其中key表示字段名，1表示升序排序，也可使用使用数字-1降序。<br>options:可选参数，表示建立索引的设置。可选值如下：<br>background，Boolean，在后台建立索引，以便建立索引时不阻止其他数据库活动。默认值为false。<br>unique，Boolean，创建唯一索引。默认值 false。<br>name，String，指定索引的名称。如果未指定，MongoDB会生成一个索引字段的名称和排序顺序串联。<br>partialFilterExpression, document.如果指定,MongoDB只会给满足过滤表达式的记录建立索引.<br>sparse，Boolean，对文档中不存在的字段数据不启用索引。默认值是 false。<br>expireAfterSeconds,integer,指定索引的过期时间<br>storageEngine,document,允许用户配置索引的存储引擎</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 1,
+    &quot;numIndexesAfter&quot; : 2,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<p>例2：给name字段创建倒序索引</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:-1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 2,
+    &quot;numIndexesAfter&quot; : 3,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<p>例3：给name，age字段创建组合索引</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:1,&quot;age&quot;:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 3,
+    &quot;numIndexesAfter&quot; : 4,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<p>例4：在后台给age字段创建索引</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;age:1&#125;,&#123;background:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 4,
+    &quot;numIndexesAfter&quot; : 5,
+    &quot;ok&quot; : 1
+&#125;``` 
+### 在后台创建索引的原因：
+在前台创建索引期间会锁定数据库，会导致其它操作无法进行数据读写，在后台创建索引是，会定期释放写锁，从而保证其它操作的运行，但是后台操作会在耗时更长，尤其是在频繁进行写入的服务器上。
+
+##　查看索引：
+MongoDB提供的查看索引信息的方法：
+getIndexes()方法可以用来查看集合的所有索引，
+getIndexKeys()方法查看索引键。
+totalIndexSize()查看集合索引的总大小，
+getIndexSpecs()方法查看集合各索引的详细信息
+例1： getIndexes()的用法
+``` bash
+&gt; db.users.getIndexes()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : -1
+        &#125;,
+        &quot;name&quot; : &quot;name_-1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1,
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1_age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;,
+        &quot;background&quot; : 1
+    &#125;
+]</code></pre>
+<p>例2：getIndexKeys()的用法</p>
+<pre><code class="bash">&gt; db.users.getIndexKeys()
+[
+    &#123;
+        &quot;_id&quot; : 1
+    &#125;,
+    &#123;
+        &quot;name&quot; : 1
+    &#125;,
+    &#123;
+        &quot;name&quot; : -1
+    &#125;,
+    &#123;
+        &quot;name&quot; : 1,
+        &quot;age&quot; : 1
+    &#125;,
+    &#123;
+        &quot;age&quot; : 1
+    &#125;
+]</code></pre>
+<p>例3：totalIndexSize()的用法</p>
+<blockquote>
+<p>db.users.totalIndexSize()<br>81920<br>例4：getIndexSpecs()的用法</p>
+</blockquote>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : -1
+        &#125;,
+        &quot;name&quot; : &quot;name_-1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1,
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1_age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;,
+        &quot;background&quot; : 1
+    &#125;
+]</code></pre>
+<h2 id="删除索引："><a href="#删除索引：" class="headerlink" title="删除索引："></a>删除索引：</h2><p>不再需要的索引，我们可以将其删除，mongodb提供两种删除索引的方法：<br>dropIndex()方法用于删除指定的索引<br>dropIndexes()方法用于删除全部的索引<br>例1:dropIndex()的用法</p>
+<pre><code class="bash">&gt; db.users.dropIndex(&quot;name_1&quot;)
+&#123; &quot;nIndexesWas&quot; : 5, &quot;ok&quot; : 1 &#125;
+&gt; db.users.dropIndex(&quot;name_1_age_1&quot;)
+&#123; &quot;nIndexesWas&quot; : 4, &quot;ok&quot; : 1 &#125;
+&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : -1
+        &#125;,
+        &quot;name&quot; : &quot;name_-1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;,
+        &quot;background&quot; : 1
+    &#125;
+]</code></pre>
+<p>我们可以看到,name字段的索引和name与age字段的组合索引皆被删除</p>
+<p>例2:dropIndexes()的用法</p>
+<pre><code class="bash">&gt; db.users.dropIndexes()
+&#123;
+    &quot;nIndexesWas&quot; : 3,
+    &quot;msg&quot; : &quot;non-_id indexes dropped for collection&quot;,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;
+]</code></pre>
+<p>在使用了dropIndexes()方法后,我们之前建的所有索引都被删除掉了</p>
+<h2 id="索引重建"><a href="#索引重建" class="headerlink" title="索引重建:"></a>索引重建:</h2><p>我们之前把users的索引全部删除了,现在在name字段上建立一个正序索引,然后在name字段上重建倒序索引,可以看到重建索引是把之前name字段的索引删掉再新建一个索引的,重建之前name字段还是只有一个索引.</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;name:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 1,
+    &quot;numIndexesAfter&quot; : 2,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;
+]</code></pre>
+<pre><code class="bash">&gt; db.users.reIndex(&#123;name:-1&#125;)
+&#123;
+    &quot;nIndexesWas&quot; : 2,
+    &quot;nIndexes&quot; : 2,
+    &quot;indexes&quot; : [
+        &#123;
+            &quot;key&quot; : &#123;
+                &quot;_id&quot; : 1
+            &#125;,
+            &quot;name&quot; : &quot;_id_&quot;,
+            &quot;ns&quot; : &quot;test1.users&quot;
+        &#125;,
+        &#123;
+            &quot;key&quot; : &#123;
+                &quot;name&quot; : 1
+            &#125;,
+            &quot;name&quot; : &quot;name_1&quot;,
+            &quot;ns&quot; : &quot;test1.users&quot;
+        &#125;
+    ],
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;
+]</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/" class="post-title-link" itemprop="url">你真的会用索引么？-- Mongo</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-24 11:04:12" itemprop="dateCreated datePublished" datetime="2020-07-24T11:04:12+00:00">2020-07-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mongo/" itemprop="url" rel="index"><span itemprop="name">Mongo</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>6.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>6 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>一次奇怪的查询经历<br>如何奇怪了？</p>
+<p>对同一张表，用同样的SQL，查询200万条数据耗时100ms，查询二十条数据却耗时30s。<br>数据量少了10万倍，完全不是一个数量级的数据，耗时却多了300倍。<br>明明加了索引为什么还是那么慢？<br>下图是在本地简化模拟出来的查询结果，虽然没有那么夸张但是同样可以复现问题。</p>
+<p>95.6万条数据，用时0.08秒</p>
+<p>106条数据，用时10秒<br>如上二图，通过相同查询条件以及相同的排序条件，进行查询，查询效率缺却天差地别，下面让我们来一起探索一下究竟是为什么？</p>
+<h2 id="索引概述"><a href="#索引概述" class="headerlink" title="索引概述"></a>索引概述</h2><p>我们常常会看到一些乱七八糟的索引，所以我们用索引的真正目的是什么呢？</p>
+<p>终极目的：借助索引快速搜索，有效减少了扫描的行数</p>
+<p>精髓：不止要有索引，索引的过滤性还要好，区分度要足够高，这才是好的设计</p>
+<h2 id="索引的类型和属性"><a href="#索引的类型和属性" class="headerlink" title="索引的类型和属性"></a>索引的类型和属性</h2><p>唯一索引<br>唯一索引是索引具有的一种属性，让索引具备唯一性，确保这张表中，该条索引数据不会重复出现。在每一次insert和update操作时，都会进行索引的唯一性校验，保证该索引的字段组合在表中唯一。</p>
+<p>db.containers.createIndex({name: 1},{unique:true, background: true})<br>db.packages.createIndex({ appId: 1, version: 1 },{unique:true, background: true})</p>
+<h1 id="知识点一："><a href="#知识点一：" class="headerlink" title="知识点一："></a>知识点一：</h1><p>创建索引时,1表示按升序存储,-1表示按降序存储。</p>
+<h1 id="知识点二："><a href="#知识点二：" class="headerlink" title="知识点二："></a>知识点二：</h1><p>Mongo提供两种建索引的方式foreground和background。<br>前台操作，它会阻塞用户对数据的读写操作直到index构建完毕；<br>后台模式，不阻塞数据读写操作，独立的后台线程异步构建索引，此时仍然允许对数据的读写操作。</p>
+<h3 id="创建索引时一定要写-background-true"><a href="#创建索引时一定要写-background-true" class="headerlink" title="创建索引时一定要写{background: true}"></a>创建索引时一定要写{background: true}</h3><h3 id="创建索引时一定要写-background-true-1"><a href="#创建索引时一定要写-background-true-1" class="headerlink" title="创建索引时一定要写{background: true}"></a>创建索引时一定要写{background: true}</h3><h3 id="创建索引时一定要写-background-true-2"><a href="#创建索引时一定要写-background-true-2" class="headerlink" title="创建索引时一定要写{background: true}"></a>创建索引时一定要写{background: true}</h3><h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><p>概念：指的是将多个键组合到一起创建索引，终极目的是加速匹配多个键的查询。</p>
+<p>看例子来理解复合索引是最直接的方式：</p>
+<p>图中模拟了简单的航班信息表的数据。</p>
+<p>对表中指定航班进行查询，查询后按价格排序。</p>
+<p>db.getCollection(‘flight’).find({flight: “CA12345”}).sort({price: 1})</p>
+<p>在没有索引的情况下，那么他其实是会一条一条的扫描全部8条数据，找到CA12345航班，然后再在内存中按价钱进行排序。</p>
+<p>如果这时我给航班添加一条索引db.flights.createIndex({ flight: 1 },{background: true})，那么索引会类似于下图一样，将数据按照索引规则进行排序，此时就只需要扫描4条CA12345航班的数据，然后再在内存中进行排序。如果数据量大了以后，在内存中进行排序的代价是非常大的。</p>
+<p>所以我们可以建立复合索引 db.flights.createIndex({ flight: 1, price: 1 },{background: true})</p>
+<p>让数据按照索引先将所有数据以航班号有序排列，再在航班号相同的数据集中按价格升序排列，这样在进行查询的时候，就可以准确的使用索引扫描4条数据，并且他们本身就是有序的，无需再进行额外的排序工作。以上实现了通过复合索引，让查询变得最优，这就是复合索引的作用。</p>
+<h2 id="内嵌索引"><a href="#内嵌索引" class="headerlink" title="内嵌索引"></a>内嵌索引</h2><p>可以在嵌套的文档上建立索引，方式与建立正常索引完全一致。</p>
+<p>个人信息表结构如下,包含了省市区三级的地址信息，如果想要给城市（city）添加索引，其实就和正常添索引一样</p>
+<p>db.personInfos.createIndex({“address.city”:1})</p>
+<p>const personInfo = new Schema({<br>  name: { type: String, required: true },<br>  address: {<br>    province: { type: String, required: true },<br>    city: { type: String, required: true },<br>    district: { type: String, required: true },<br>  }<br>}, {timestamps: true});</p>
+<h1 id="知识点三："><a href="#知识点三：" class="headerlink" title="知识点三："></a>知识点三：</h1><p>对嵌套文档本身“address”建立索引，与对嵌套文档的某个字段（address.city）建立索引是完全不相同的。<br>对整个文档建立索引，只有在使用文档完整匹配时才会使用到这个索引，例如建立了这样一个索引db.personInfos.createIndex({“address”:1})，那么只有使用db.personInfos.find({“address”:{“province”:”xxx”,”city”:”xxx”,””district”:”xxx”}})这种完整匹配时才会使用到这个索引，使用db.personInfos.find({“address.city”:”xxx”})是不会使用到该索引的。<br>数组索引<br>MongoDB支持对数组建立索引，这样就可以高效的搜索数组中的特定元素。</p>
+<h1 id="知识点四："><a href="#知识点四：" class="headerlink" title="知识点四："></a>知识点四：</h1><p>但是！对数组建立索引的代价是非常高的，他实际上是会对数组中的每一项都单独建立索引，就相当于假设数组中有十项，那么就会在原基础上，多出十倍的索引大小。如果有一百个一千个呢？<br>所以在mongo中是禁止对两个数组添加复合索引的，对两个数组添加索引那么索引大小将是爆炸增长，所以谨记在心。<br>过期索引（TTL）<br>可以针对某个时间字段，指定文档的过期时间（经过指定时间后过期 或 在某个时间点过期）</p>
+<p>##　哈希索引（Hashed Index）<br>是指按照某个字段的hash值来建立索引，hash索引只能满足字段完全匹配的查询，不能满足范围查询等</p>
+<h2 id="地理位置索引（Geospatial-Index）"><a href="#地理位置索引（Geospatial-Index）" class="headerlink" title="地理位置索引（Geospatial Index）"></a>地理位置索引（Geospatial Index）</h2><p>能很好的解决一些场景，比如『查找附近的美食』、『查找附近的加油站』等</p>
+<h2 id="文本索引（Text-Index）"><a href="#文本索引（Text-Index）" class="headerlink" title="文本索引（Text Index）"></a>文本索引（Text Index）</h2><p>能解决快速文本查找的需求，比如，日志平台，相对日志关键词查找，如果通过正则来查找的话效率极低，这时就可以通过文本索引的形式来进行查找</p>
+<h3 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h3><p>1.减少数据扫描：避免全表扫描代价</p>
+<p>2.减少内存计算：避免分组排序计算</p>
+<p>3.提供数据约束：唯一和时间约束性</p>
+<h3 id="索引的缺点"><a href="#索引的缺点" class="headerlink" title="索引的缺点"></a>索引的缺点</h3><p>1.增加容量消耗：创建时需额外存储索引数据</p>
+<p>2.增加修改代价：增删改都需要维护索引数据</p>
+<p>3.索引依赖内存：会占用极其宝贵的内存资源</p>
+<p>索引固然不全是优点，如果不能了解到索引可能带来的危害滥用索引，后果也是非常严重的。</p>
+<p>索引虽然也是持久化在磁盘中的，但为了确保索引的速度，实际上需要将索引加载到内存中使用，使用过后还会进行缓存，内存资源相比磁盘空间那是非常的珍贵了。当内存不足以承载索引的时候，就会出现内存——磁盘交换的情况，这时会大大降低索引的性能。</p>
+<p>有人说研究索引好累啊？我给我的每个字段都加一个索引不就完事了么？其实每个人都知道这样不好，但实战中好多人都是这样干的。无脑的给每个字段都加上索引就意味着每一次数据库操作，不仅需要更新文档，还需要有大量索引需要更新。mongo每次查询只会使用一个索引。想不到吧？不是你想的我先查航班，在用价格排序，会先走航班的索引，再走价格的索引，你做梦去吧，不可能的，他只会选定一条索引，并不会因为你给每个字端都加了索引就解决问题了。</p>
+<h1 id="知识点五："><a href="#知识点五：" class="headerlink" title="知识点五："></a>知识点五：</h1><p>为了追求索引的速度，索引是加载在内存中使用的，不能合理使用索引后果严重。<br>mongo每次查询只会使用一次索引！！！只有$or或查询特殊，他会给每一个或分支使用索引然后再合并<br>何时不应该使用索引<br>也有一些查询不使用索引会更快。结果集在原集合中所占的比例越大，查询效率越慢。因为使用索引需要进行两次查找：一次查找索引条目，一次根据索引指针去查找相应的文档。而全表扫描只需要进行一次查询。在最坏的情况，使用索引进行查找次数会是全表扫描的两倍。效率会明显比全表扫描低。</p>
+<p>而相反在提取较小的子数据集时，索引就非常有效，这就是我们为什么会使用分页。</p>
+<h3 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h3><p>Mongo自带了一个查询优化器会为我们选择最合适的查询方案。</p>
+<p>如果一个索引能够精确匹配一个查询，那么查询优化器就会使用这个索引。</p>
+<p>如果不能精确匹配呢？可能会有几个索引都适合你的查询，那MongoDB是怎样选择的呢？</p>
+<p>MongoDB的查询计划会将多个索引并行的去执行，最先返回第101个结果的就是胜者，其他查询计划都会被终止，执行优胜的查询计划；<br>这个查询计划会被缓存，接下来相同的查询条件都会使用它；<br>何时查询计划缓存才会变呢？<br>在计划评估之后表发生了比较大的数据波动，查询优化器就会重新挑选可行的查询计划<br>建立索引时<br>每执行1000次查询之后，查询优化器就会重新评估查询计划<br>联合索引的优化<br>当你查询条件的顺序和你索引的顺序不一致的话，mongo会自动的调整查询顺序，保证你可以使用上索引。</p>
+<p>例如：你的查询条件是(a,c,b)但是你的索引是（a,b,c）mongo会自动将你的查询条件调整为abc，寻找最优解。</p>
+<h2 id="聚合管道的优化"><a href="#聚合管道的优化" class="headerlink" title="聚合管道的优化"></a>聚合管道的优化</h2><p>如果管道中不需要使用一个完整的文档的全部字段的话，管道不会将多余字段进行传递<br>$sort 和 $limit 合并,在内存中只会维护limit个数量的文档，不需要将所有的文档维护在内存中，大大降低内存中sort的压力<br>然而管道中的索引使用情况是极其不佳的，在管道中，只有在管道最开始时的match sort可以使用到索引，一旦发生过project投射，group分组，lookup表关联，unwind打散等操作后，就完全无法使用索引。</p>
+<p>希望通过本文能让你对Mongo的索引有更深的理解</p>
+<h1 id="Explain查询计划"><a href="#Explain查询计划" class="headerlink" title="Explain查询计划"></a>Explain查询计划</h1><p>提到查的慢，二话不说直接看查询计划好么？具体每一个字段的含义我就不做赘述了很容易查到，我截取winningPlan的部分和大家一起看一下。WinningPlan就是在查询计划中胜出的方案，那肯定就有被淘汰的方案，是在rejectPlan里。</p>
+<p>// 查询计划中的winningPlan部分<br>“winningPlan”: {<br>    “stage”: “FETCH”,<br>    “filter”: {<br>        “createdAt”: {<br>            “$gte”: ISODate(“2019-07-22T12:00:44.000Z”)<br>        }<br>    },<br>    “inputStage”: {<br>        “stage”: “IXSCAN”,<br>        “keyPattern”: {<br>            “load”: 1<br>        },<br>        “indexName”: “load_1”,<br>        “isMultiKey”: false,<br>        “multiKeyPaths”: {<br>            “load”: []<br>        },<br>        “isUnique”: false,<br>        “isSparse”: false,<br>        “isPartial”: false,<br>        “indexVersion”: 2,<br>        “direction”: “backward”,<br>        “indexBounds”: {<br>            “load”: [<br>                “[MaxKey, MinKey]”<br>            ]<br>        }<br>    }<br>},<br>看不懂？没关系，先学习了下面两个知识点，我带你读一遍。</p>
+<h1 id="知识点六："><a href="#知识点六：" class="headerlink" title="知识点六："></a>知识点六：</h1><p>explain 结果将查询计划以阶段树的形式呈现。<br>每个阶段将其结果（文档或索引键）传递给父节点。<br>中间节点操纵由子节点产生的文档或索引键。<br>根节点是MongoDB从中派生结果集的最后阶段。<br>对于新人一定要特别注意：在看查询结果的阶段树的时候一定一定是从最里层一层一层往外看的，不是直接顺着读下来的。</p>
+<h1 id="知识点七："><a href="#知识点七：" class="headerlink" title="知识点七："></a>知识点七：</h1><p>在查询计划中出现了很多stage，下面列举的经常出现的stage以及他的含义：<br>COLLSCAN：全表扫描<br>IXSCAN：索引扫描<br>FETCH：根据前面扫描到的位置抓取完整文档<br>SORT：进行内存排序，最终返回结果<br>SORT_KEY_GENERATOR：获取每一个文档排序所用的键值<br>LIMIT：使用limit限制返回数<br>SKIP：使用skip进行跳过<br>IDHACK：针对_id进行查询<br>COUNTSCAN：count不使用用Index进行count时的stage返回<br>COUNT_SCAN：count使用了Index进行count时的stage返回<br>TEXT：使用全文索引进行查询时候的stage返回<br>Explain解读：</p>
+<p>将解读写在了注释中，按顺序阅读</p>
+<p>// 查询计划中的winningPlan部分<br>“winningPlan”: {<br>    “stage”: “FETCH”,                                            // 5. 根据内层阶段树查到的索引去抓取完整的文档<br>    “filter”: {                                                  // 6. 再根据createdAt参数进行筛选<br>        “createdAt”: {<br>            “$gte”: ISODate(“2019-07-22T12:00:44.000Z”)<br>        }<br>    },<br>    “inputStage”: {                                               // 1. 每个阶段将自己的查询结果传递给父阶段树，所以从里往外读Explain<br>        “stage”: “IXSCAN”,                                    // 2. IXSCAN该阶段使用了索引进行扫描<br>        “keyPattern”: {<br>            “load”: 1                                     // 3. 使用了 load:1 这条索引<br>        },<br>        “indexName”: “load_1”,<br>        “isMultiKey”: false,<br>        “multiKeyPaths”: {<br>            “load”: []<br>        },<br>        “isUnique”: false,<br>        “isSparse”: false,<br>        “isPartial”: false,<br>        “indexVersion”: 2,<br>        “direction”: “backward”,<br>        “indexBounds”: {<br>            “load”: [<br>                “[MaxKey, MinKey]”                      // 4. 边界<br>            ]<br>        }<br>    }<br>},<br>最后在本文末尾，留下了前面查询航班按价钱排序的例子，在各种索引下的查询计划<br>最期望看到的查询组合<br>Fetch+IDHACK<br>Fetch+ixscan<br>Limit+（Fetch+ixscan）<br>PROJECTION+ixscan<br>最不期望看到的查询组合<br>COLLSCAN（全表扫）<br>SORT（使用sort但是无index）<br>COUNTSCAN（不使用索引进行count）<br>最左前缀原则<br>假定索引(a，b，c) 它可能满足的查询如下：</p>
+<ol>
+<li><p>a</p>
+</li>
+<li><p>a，b</p>
+</li>
+<li><p>a，b，c</p>
+</li>
+<li><p>a，c [该组合只能用a部分]</p>
+</li>
+<li><p>a, c, b [cb在查询时会被优化换位置]</p>
+</li>
+</ol>
+<p>显然，最左前缀的核心是查询条件字段必须含有索引第一个字段</p>
+<p>最左值尽可能用最精确过滤性最好的值，不要用那种可能会用于范围模糊查询，用于排序的字段</p>
+<p>效率极低的操作符<br>$where和$exists：这两个操作符，完全不能使用索引。<br>$ne和$not:通常来说取反和不等于,可以使用索引，但是效率极低，不是很有效，往往也会退化成扫描全表。<br>$nin:不包含，这个操作符也总是会全表扫描<br>对于管道中的索引，也很容易出现意外，只有在管道最开始时的match sort可以使用到索引，一旦发生过project投射，group分组，lookup表关联，unwind打散等操作后，就完全无法使用索引。</p>
+<h1 id="索引设计和优化原则"><a href="#索引设计和优化原则" class="headerlink" title="索引设计和优化原则"></a>索引设计和优化原则</h1><p>最后祭出李丹老师的索引设计和优化原则</p>
+<h2 id="1-主键的设置"><a href="#1-主键的设置" class="headerlink" title="1.主键的设置"></a>1.主键的设置</h2><p>业务无关、显示指定、递增属性</p>
+<h2 id="2-数据区分度"><a href="#2-数据区分度" class="headerlink" title="2.数据区分度"></a>2.数据区分度</h2><p>原则上区分度高的字段优先做索引字段，如果是组合索引优先放前面</p>
+<h2 id="3-字段更新频率"><a href="#3-字段更新频率" class="headerlink" title="3.字段更新频率"></a>3.字段更新频率</h2><p>频繁更新的字段是否做索引字段需要综合考虑对业务的影响及查询的代价</p>
+<h2 id="4-前缀索引问题"><a href="#4-前缀索引问题" class="headerlink" title="4.前缀索引问题"></a>4.前缀索引问题</h2><p>需要注意的是因前缀索引只包含部分值因此无法通过前缀索引优化排序</p>
+<h2 id="5-适当冗余设计"><a href="#5-适当冗余设计" class="headerlink" title="5.适当冗余设计"></a>5.适当冗余设计</h2><p>对于存储较长字符串字段可额外增加字段存储原字段计算(如hash)后的值</p>
+<p>创建索引时只需要对额外字段创建索引即可</p>
+<h2 id="6-避免无效索引"><a href="#6-避免无效索引" class="headerlink" title="6.避免无效索引"></a>6.避免无效索引</h2><p>通常类似表已经含有主键ID就无需再创建额外唯一性的ID索引</p>
+<h2 id="7-查询覆盖率"><a href="#7-查询覆盖率" class="headerlink" title="7.查询覆盖率"></a>7.查询覆盖率</h2><p>设计一个索引我们需要考虑尽量覆盖更多的查询场景</p>
+<h2 id="8-控制字段数"><a href="#8-控制字段数" class="headerlink" title="8.控制字段数"></a>8.控制字段数</h2><p>如果你设计的索引例如含有7、8个字段通常需要考虑设计是否合理</p>
+<h2 id="优化原则"><a href="#优化原则" class="headerlink" title="优化原则"></a>优化原则</h2><h3 id="1-减少网络带宽"><a href="#1-减少网络带宽" class="headerlink" title="1.减少网络带宽"></a>1.减少网络带宽</h3><p>按需返回所需字段、尽量避免返回大字段</p>
+<h3 id="2-减少内存计算"><a href="#2-减少内存计算" class="headerlink" title="2.减少内存计算"></a>2.减少内存计算</h3><p>减少无必要中间结果存储、减少内存计算</p>
+<h3 id="3-减少磁盘IO"><a href="#3-减少磁盘IO" class="headerlink" title="3.减少磁盘IO"></a>3.减少磁盘IO</h3><p>添加合适的索引、关注SQL改写</p>
+<p>前文查询航班按价钱排序的例子，在各种索引下的查询计划</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77971681">https://zhuanlan.zhihu.com/p/77971681</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5ad1d2836fb9a028dd4eaae6">正确的使用mongo索引</a><br><a target="_blank" rel="noopener" href="https://blog.souche.com/mysql-explain/">Explain分析查询语句</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -271,7 +830,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -364,7 +937,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -502,7 +1089,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -613,7 +1214,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -755,7 +1370,21 @@ type: &quot;tags&quot;
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -1147,7 +1776,21 @@ if __name__ == &#39;__main__&#39;:
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -1307,7 +1950,21 @@ if __name__ == &#39;__main__&#39;:
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/22/about-me/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/about-me/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -1387,7 +2044,21 @@ if __name__ == &#39;__main__&#39;:
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -1530,181 +2201,6 @@ with open(&#39;stocks.csv&#39;) as f:
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">Ubuntu系统CPU、内存、网络、进程监控工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 11:20:26" itemprop="dateCreated datePublished" datetime="2020-07-22T11:20:26+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>915</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><p>作用：查看在系统中运行的进程或线程,以及CPU、内存、交换分区等<br>运行方法：sudo top</p>
-<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><p>作用：查看在系统中运行的进程或线程,以及CPU、内存、交换分区等<br>运行方法：sudo htop</p>
-<h2 id="atop"><a href="#atop" class="headerlink" title="atop"></a>atop</h2><p>介绍：atop 和 top，htop 非常相似，它也能监控所有进程，但不同于 top 和 htop 的是，它可以按日记录进程的日志供以后分析。它也能显示所有进程的资源消耗。它还会高亮显示已经达到临界负载的资源。作用：查看在系统中运行的进程或线程,以及CPU、内存、交换分区等运行方法：sudo atop</p>
-<h2 id="powertop"><a href="#powertop" class="headerlink" title="powertop"></a>powertop</h2><p>作用：powertop 可以帮助你诊断与电量消耗和电源管理相关的问题。它也可以帮你进行电源管理设置，以实现对你服务器最有效的配置。<br>运行方法：sudo powertop</p>
-<h2 id="iotop"><a href="#iotop" class="headerlink" title="iotop"></a>iotop</h2><p>作用：iotop 用于检查 I/O 的使用情况，并为你提供了一个类似 top 的界面来显示。它按列显示读和写的速率，每行代表一个进程。当发生交换或 I/O 等待时，它会显示进程消耗时间的百分比。<br>运行方法：sudo iotop</p>
-<h2 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h2><p>作用：iftop 类似于 top，但它主要不是检查 cpu 的使用率而是监听所选择网络接口的流量，并以表格的形式显示当前的使用量。<br>运行方法：sudo iftop</p>
-<h2 id="jnettop"><a href="#jnettop" class="headerlink" title="jnettop"></a>jnettop</h2><p>作用：jnettop 以相同的方式来监测网络流量但比 iftop 更形象。它还支持自定义的文本输出，并能以友好的交互方式来深度分析日志。<br>运行：sudo jnettop</p>
-<h2 id="BandwidthD"><a href="#BandwidthD" class="headerlink" title="BandwidthD"></a>BandwidthD</h2><p>作用:BandwidthD 可以跟踪 TCP/IP 网络子网的使用情况，并能在浏览器中通过 png 图片形象化地构建一个 HTML 页面。它有一个数据库系统，支持搜索、过滤，多传感器和自定义报表。</p>
-<p>##NetHogs</p>
-<p>作用：NetHogs 打破了网络流量按协议或子网进行统计的惯例，它以进程来分组。所以，当网络流量猛增时，你可以使用 NetHogs 查看是由哪个进程造成的。<br>运行方法：sudo Nethogs</p>
-<h2 id="dstat"><a href="#dstat" class="headerlink" title="dstat"></a>dstat</h2><p>作用：dstat 旨在替代 vmstat，iostat，netstat 和 ifstat。它可以让你查实时查看所有的系统资源。这些数据可以导出为 CSV。最重要的是 dstat 允许使用插件，因此其可以扩展到更多领域。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/" class="post-title-link" itemprop="url">Hexo博客使用系列（一）——新建文章并发布</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 11:14:48" itemprop="dateCreated datePublished" datetime="2020-07-22T11:14:48+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>389</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="新建文章的方法"><a href="#新建文章的方法" class="headerlink" title="新建文章的方法"></a>新建文章的方法</h2><p>1、进入你的博客目录，在 /source/_posts 文件夹下直接建立一个.md文件。<br>2、进入你的博客目录，右键选择 Git Bash Here 进入命令窗口，输入下面代码:<br>hexo new “新建文章名称”    #新建文章<br>此时，在方法1所述的文件夹里便有了 新建文章名称.md 文件。</p>
-<h2 id="发布新建文章"><a href="#发布新建文章" class="headerlink" title="发布新建文章"></a>发布新建文章</h2><p>在该博客项目文件夹下运行 Git Bash Here 命令窗口，依次输入如下代码：</p>
-<p>hexo generate    #生成更改<br>hexo deploy    #将生成的更改部署到码云或者GitHub上</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="==注意=="></a>==注意==</h3><p>1、部署到GitHub时，可能因为网速、被墙等原因，需要多次运行 hexo deploy ；有时候可以运行 hexo clean 后在运行上述代码。<br>2、.md文件不要用记事本打开，建议使用具有markdown语法的程序打开，比如：subline text、notepad++等。也可以使用在线markdown编辑器，比如：</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1774,7 +2270,7 @@ with open(&#39;stocks.csv&#39;) as f:
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1830,7 +2326,7 @@ with open(&#39;stocks.csv&#39;) as f:
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
       </div>
@@ -1863,12 +2359,12 @@ with open(&#39;stocks.csv&#39;) as f:
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">272k</span>
+    <span title="Symbols count total">275k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:07</span>
+    <span title="Reading time total">4:10</span>
 </div>
 
         
@@ -1980,6 +2476,36 @@ with open(&#39;stocks.csv&#39;) as f:
 
   
 
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
+      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
+      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : '',
+      requiredFields: ['nick','mail'] 
+    });
+  }, window.Valine);
+});
+</script>
+
   <!-- 页面点击特效 -->
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/js/click-word.js"></script>
@@ -1987,5 +2513,5 @@ with open(&#39;stocks.csv&#39;) as f:
   <script type="text/javascript"
   color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>

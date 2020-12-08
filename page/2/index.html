@@ -235,6 +235,217 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" class="post-title-link" itemprop="url">Docker容器命令整理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-31 11:51:20" itemprop="dateCreated datePublished" datetime="2020-07-31T11:51:20+00:00">2020-07-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>353</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Docker重启所有命令以及构建是如何设置开机重启</p>
+<h2 id="设置开机重启"><a href="#设置开机重启" class="headerlink" title="设置开机重启"></a>设置开机重启</h2><p>–restart=always</p>
+<h2 id="启动所有容器"><a href="#启动所有容器" class="headerlink" title="启动所有容器"></a>启动所有容器</h2><p>docker start $(docker ps -a | awk ‘{ print $1}’ | tail -n +2)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/31/Docker%E5%AE%B9%E5%99%A8%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hory Skone">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Horysk 宏睿时空">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" class="post-title-link" itemprop="url">多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-07-30 17:52:25" itemprop="dateCreated datePublished" datetime="2020-07-30T17:52:25+00:00">2020-07-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongo/" itemprop="url" rel="index"><span itemprop="name">mongo</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongo/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>11 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="服务器三台-按顺序执行"><a href="#服务器三台-按顺序执行" class="headerlink" title="服务器三台  按顺序执行"></a>服务器三台  按顺序执行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.125</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.126</span></span><br><span class="line"><span class="number">192.168</span><span class="number">.1</span><span class="number">.127</span></span><br></pre></td></tr></table></figure>
+<h2 id="创建目录"><a href="#创建目录" class="headerlink" title="创建目录"></a>创建目录</h2><p>在每台机器上操作此步骤</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/07/30/%E5%A4%9A%E6%9C%BA%E7%89%88__docker-compose%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -262,7 +473,21 @@
               <time title="Created: 2020-07-30 12:02:04" itemprop="dateCreated datePublished" datetime="2020-07-30T12:02:04+00:00">2020-07-30</time>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -342,7 +567,21 @@
               <time title="Created: 2020-07-29 17:35:56" itemprop="dateCreated datePublished" datetime="2020-07-29T17:35:56+00:00">2020-07-29</time>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/%E8%8E%B7%E5%8F%96scrapy-request-%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%8F%8A%E6%8D%95%E6%8D%89%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/%E8%8E%B7%E5%8F%96scrapy-request-%E5%A4%B4%E9%83%A8%E4%BF%A1%E6%81%AF%E5%8F%8A%E6%8D%95%E6%8D%89%E5%BC%82%E5%B8%B8%E4%BF%A1%E6%81%AF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -435,7 +674,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/HyperLedger-Fabric-2-0-release%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C%E9%83%A8%E7%BD%B2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/HyperLedger-Fabric-2-0-release%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C%E9%83%A8%E7%BD%B2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -524,7 +777,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/Hyperledger-Fabric-%E6%90%AD%E5%BB%BA%E7%AC%AC%E4%B8%80%E5%80%8B-Blockchain%E2%80%9D/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/Hyperledger-Fabric-%E6%90%AD%E5%BB%BA%E7%AC%AC%E4%B8%80%E5%80%8B-Blockchain%E2%80%9D/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -614,16 +881,16 @@
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#108;&#x69;&#x63;&#101;&#x40;&#111;&#x72;&#103;&#x2e;&#101;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#x62;&#x69;&#122;&#110;&#101;&#116;">&#97;&#108;&#x69;&#x63;&#101;&#x40;&#111;&#x72;&#103;&#x2e;&#101;&#x78;&#97;&#109;&#112;&#x6c;&#x65;&#46;&#x62;&#x69;&#122;&#110;&#101;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#108;&#105;&#99;&#101;&#x40;&#111;&#x72;&#x67;&#x2e;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x62;&#105;&#122;&#110;&#x65;&#116;">&#97;&#108;&#105;&#99;&#101;&#x40;&#111;&#x72;&#x67;&#x2e;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x62;&#105;&#122;&#110;&#x65;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#97;&#108;&#x2d;&#x6e;&#101;&#x74;&#x77;&#111;&#114;&#x6b;&#x40;&#x30;&#46;&#48;&#46;&#49;&#x2e;&#x62;&#x6e;&#x61;">&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#97;&#108;&#x2d;&#x6e;&#101;&#x74;&#x77;&#111;&#114;&#x6b;&#x40;&#x30;&#46;&#48;&#46;&#49;&#x2e;&#x62;&#x6e;&#x61;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#117;&#x74;&#111;&#x72;&#105;&#97;&#108;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#97;">&#x74;&#117;&#x74;&#111;&#x72;&#105;&#97;&#108;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#117;&#116;&#x6f;&#114;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#116;&#x77;&#111;&#x72;&#107;&#64;&#x30;&#x2e;&#x30;&#x2e;&#x31;&#x2e;&#98;&#x6e;&#x61;">&#116;&#117;&#116;&#x6f;&#114;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#116;&#x77;&#111;&#x72;&#107;&#64;&#x30;&#x2e;&#x30;&#x2e;&#x31;&#x2e;&#98;&#x6e;&#x61;</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#x75;&#116;&#111;&#114;&#x69;&#97;&#108;&#x2d;&#110;&#101;&#116;&#119;&#x6f;&#114;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#49;&#46;&#98;&#x6e;&#x61;">&#116;&#x75;&#116;&#111;&#114;&#x69;&#97;&#108;&#x2d;&#110;&#101;&#116;&#119;&#x6f;&#114;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#49;&#46;&#98;&#x6e;&#x61;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#x74;&#117;&#x74;&#111;&#x72;&#105;&#x61;&#108;&#45;&#110;&#101;&#116;&#119;&#x6f;&#114;&#x6b;&#64;&#48;&#x2e;&#48;&#x2e;&#49;&#46;&#98;&#110;&#97;">&#x74;&#117;&#x74;&#111;&#x72;&#105;&#x61;&#108;&#45;&#110;&#101;&#116;&#119;&#x6f;&#114;&#x6b;&#64;&#48;&#x2e;&#48;&#x2e;&#49;&#46;&#98;&#110;&#97;</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#117;&#116;&#111;&#x72;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#x74;&#x77;&#111;&#x72;&#x6b;&#64;&#48;&#46;&#48;&#46;&#x31;&#x2e;&#x62;&#x6e;&#x61;">&#116;&#117;&#116;&#111;&#x72;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#x74;&#x77;&#111;&#x72;&#x6b;&#64;&#48;&#46;&#48;&#46;&#x31;&#x2e;&#x62;&#x6e;&#x61;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>
@@ -761,7 +1028,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/Hyperledger-Fabric-1-4-%E5%BF%AB%E9%80%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/Hyperledger-Fabric-1-4-%E5%BF%AB%E9%80%9F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -871,7 +1152,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%B9%B6%E8%AE%BF%E9%97%AEHexo-Blog%E5%B7%B2%E5%8A%A0%E5%AF%86%E7%9A%84%E6%96%87%E7%AB%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/%E5%A6%82%E4%BD%95%E7%A0%B4%E8%A7%A3%E5%B9%B6%E8%AE%BF%E9%97%AEHexo-Blog%E5%B7%B2%E5%8A%A0%E5%AF%86%E7%9A%84%E6%96%87%E7%AB%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -967,7 +1262,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/29/python-%E4%B8%89%E5%A4%A7%E7%A5%9E%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/29/python-%E4%B8%89%E5%A4%A7%E7%A5%9E%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -1070,7 +1379,21 @@
                 </span>
             </span>
 
-          <br>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2020/07/28/pyppeteer-%E5%9C%A8debugging%E7%8A%B6%E6%80%81%E4%B8%8B%E9%A9%B1%E5%8A%A8chrome%E6%B5%8F%E8%A7%88%E5%99%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/28/pyppeteer-%E5%9C%A8debugging%E7%8A%B6%E6%80%81%E4%B8%8B%E9%A9%B1%E5%8A%A8chrome%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
             <span class="post-meta-item" title="Symbols count in article">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -1100,217 +1423,6 @@
 <p>页面显示为</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">&quot;Browser&quot;</span>: <span class="string">&quot;Chrome/78.0.3904.70&quot;</span>,</span><br><span class="line">   <span class="string">&quot;Protocol-Version&quot;</span>: <span class="string">&quot;1.3&quot;</span>,</span><br><span class="line">   <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36&quot;</span>,</span><br><span class="line">   <span class="string">&quot;V8-Version&quot;</span>: <span class="string">&quot;7.8.279.17&quot;</span>,</span><br><span class="line">   <span class="string">&quot;WebKit-Version&quot;</span>: <span class="string">&quot;537.36 (@edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5)&quot;</span>,</span><br><span class="line">   <span class="string">&quot;webSocketDebuggerUrl&quot;</span>: <span class="string">&quot;ws://127.0.0.1:9222/devtools/browser/8fc97fd6-a7dd-4ff2-b760-3f6b25b7419b&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-案例"><a href="#3-案例" class="headerlink" title="3.案例"></a>3.案例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> pyppeteer.launcher <span class="keyword">import</span> connect</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">useragents=[<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&#x27;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">url</span>):</span></span><br><span class="line">    connect_params=&#123;</span><br><span class="line">        <span class="string">&#x27;browserWSEndpoint&#x27;</span>: <span class="string">&#x27;ws://127.0.0.1:9222/devtools/browser/8fc97fd6-a7dd-4ff2-b760-3f6b25b7419b&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;logLevel&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    browser = <span class="keyword">await</span> connect(connect_params)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()   <span class="comment"># 启动个新的浏览器页面</span></span><br><span class="line">    <span class="keyword">await</span> page.setUserAgent(random.choice(useragents))</span><br><span class="line">    <span class="comment">#设置页面超时时间</span></span><br><span class="line">    page.setDefaultNavigationTimeout(<span class="number">1000</span>*<span class="number">60</span>) <span class="comment">#60s</span></span><br><span class="line">    <span class="comment">#启用js</span></span><br><span class="line">    <span class="keyword">await</span> page.setJavaScriptEnabled(<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">await</span> page.setViewport(&#123;<span class="string">&#x27;width&#x27;</span>:<span class="number">1300</span>,<span class="string">&#x27;height&#x27;</span>:<span class="number">750</span>&#125;) <span class="comment">#设置界面</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">await</span> page.goto(url)    <span class="comment"># 访问登录页面</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e1:</span><br><span class="line">        print(<span class="string">&#x27;e1:&#x27;</span>,e1)</span><br><span class="line">        <span class="keyword">await</span> page.close()</span><br><span class="line">        <span class="keyword">await</span> browser.close()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    url = <span class="string">&#x27;https://www.baidu.com&#x27;</span></span><br><span class="line">    m = main(url)</span><br><span class="line">    loop.run_until_complete(m)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/27/Pyppeteer%E5%BA%93%E4%B9%8B%E4%BA%8C%EF%BC%9APyppeteer%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/27/Pyppeteer%E5%BA%93%E4%B9%8B%E4%BA%8C%EF%BC%9APyppeteer%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">Pyppeteer库之二：Pyppeteer的浏览器对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-27 17:56:08" itemprop="dateCreated datePublished" datetime="2020-07-27T17:56:08+00:00">2020-07-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Pyppeteer/" itemprop="url" rel="index"><span itemprop="name">Pyppeteer</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>启动器Launcher<br>启动方式：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> launch :启动链接一个新的浏览器</span><br><span class="line"> content :链接已打开的浏览器，便于崩溃后重链</span><br><span class="line"></span><br><span class="line">launch()</span><br><span class="line">pyppeteer.launch(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
-<p>启动一个新的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
-<p>常用参数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">headless(<span class="built_in">bool</span>): 是否启用<span class="string">&quot;无头模式&quot;</span>(隐藏浏览器界面)，默认为 <span class="literal">True</span> 。</span><br><span class="line">executablePath(<span class="built_in">str</span>): 指定 Chromium.exe 文件的路径(不使用内置的chromium)。</span><br><span class="line">slowMo（<span class="built_in">int</span>|<span class="built_in">float</span>）:按指定的毫秒数减慢 pyppeteer 的速度。</span><br><span class="line">args(List[<span class="built_in">str</span>]): 启动 Chromium 的参数。</span><br><span class="line">dumpio(<span class="built_in">bool</span>):是否将浏览器进程标准输出和标准错误输入到 process.stdout 和 process.stderr中。默认是 <span class="literal">False</span>。</span><br><span class="line">userDataDir(<span class="built_in">str</span>): 设置用户数据目录。</span><br><span class="line">devtools(<span class="built_in">bool</span>): 是否为每个选项卡自动打开 DevTools 面板， 这个选项只有当 headless 设置为 <span class="literal">False</span>的时候有效。</span><br></pre></td></tr></table></figure>
-<p>args—&gt;启动chrome的参数：<br><a target="_blank" rel="noopener" href="https://peter.sh/experiments/chromium-command-line-switches/">pyppeteer官网</a></p>
-<p>launch常用参数配置:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">kwargs = &#123;</span><br><span class="line">    <span class="comment"># 启用浏览器界面</span></span><br><span class="line">    <span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="comment"># 多开页面，解决卡死</span></span><br><span class="line">    <span class="string">&#x27;dumpio&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 设置浏览器全屏</span></span><br><span class="line">    <span class="string">&#x27;args&#x27;</span>: [<span class="string">&#x27;--start-maximized&#x27;</span>,</span><br><span class="line">             <span class="comment"># 取消沙盒模式，沙盒模式下权限太小</span></span><br><span class="line">             <span class="string">&#x27;--no-sandbox&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置浏览器界面大小</span></span><br><span class="line">             <span class="string">&#x27;--window-size=1366,768&#x27;</span>,</span><br><span class="line">             <span class="comment"># 关闭受控制提示：比如，Chrome正在受到自动测试软件的控制...</span></span><br><span class="line">             <span class="string">&#x27;--disable-infobars&#x27;</span>,</span><br><span class="line">             <span class="comment"># 允许跨域</span></span><br><span class="line">             <span class="string">&#x27;--disable-web-security&#x27;</span>,</span><br><span class="line">             <span class="comment"># 使用代理</span></span><br><span class="line">             <span class="string">&#x27;--proxy-server=127.0.0.1:80&#x27;</span>,</span><br><span class="line">             <span class="comment"># 不走代理的链接</span></span><br><span class="line">             <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span>,</span><br><span class="line">             <span class="comment"># 忽略证书错误</span></span><br><span class="line">             <span class="string">&#x27;--ignore-certificate-errors&#x27;</span>,</span><br><span class="line">             <span class="comment"># log 等级设置，如果出现一大堆warning，可以不使用默认的日志等级</span></span><br><span class="line">             <span class="string">&#x27;--log-level=3&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置ua</span></span><br><span class="line">             <span class="string">&#x27;--user-agent=Mozilla/5.0&#x27;</span></span><br><span class="line">             ],</span><br><span class="line">    <span class="string">&#x27;userDataDir&#x27;</span>: <span class="string">r&#x27;D:\Temporary&#x27;</span>,</span><br><span class="line">    <span class="comment"># 用户数据保存目录，这个最好指定一个，</span></span><br><span class="line">    <span class="comment"># 如果不指定，Chrome会自动创建一个临时目录使用，在退出浏览器时自动删除，</span></span><br><span class="line">    <span class="comment"># 在删除的时候可能会删除失败(不知道为什么出现权限问题，我用Windows)导致浏览器退出失败</span></span><br><span class="line">    <span class="comment"># 删除失败时出现报错：OSError: Unable to remove Temporary User Data</span></span><br><span class="line">    <span class="comment"># 或者Chrome进程没有退出，cpu狂飙到99%</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content()</span><br><span class="line">pyppeteer.connect(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
-<p>链接已打开的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
-<p>参数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">browserWSEndpoint（<span class="built_in">str</span>）：要连接的浏览器 websocket 端点。（必填）</span><br><span class="line">ignoreHTTPSErrors（<span class="built_in">bool</span>）：是否忽略 HTTPS 错误。默认为 <span class="literal">False</span>。</span><br><span class="line">slowMo（<span class="built_in">int</span> | <span class="built_in">float</span>）：按指定的毫秒数减慢pyppeteer的速度。</span><br><span class="line">logLevel（<span class="built_in">int</span> | <span class="built_in">str</span>）：用于打印日志的日志级别。默认值与根记录器相同。</span><br><span class="line">loop（asyncio.AbstractEventLoop）：事件循环（实验）。</span><br><span class="line"></span><br><span class="line">browserWSEndpoint 的值获取：Browser.wsEndpoint</span><br></pre></td></tr></table></figure>
-
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> pyppeteer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> pyppeteer.launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.setViewport(&#123;<span class="string">&#x27;width&#x27;</span>: <span class="number">1366</span>, <span class="string">&#x27;height&#x27;</span>: <span class="number">768</span>&#125;)</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    ws = browser.wsEndpoint</span><br><span class="line">    print(ws)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> browser.disconnect()  <span class="comment"># 断开链接</span></span><br><span class="line">    browser2 = <span class="keyword">await</span> pyppeteer.connect(&#123;<span class="string">&#x27;browserWSEndpoint&#x27;</span>: ws&#125;)</span><br><span class="line">    <span class="keyword">await</span> browser2.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
-
-<p>浏览器Browser</p>
-<p>常用属性和方法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">process：返回浏览器进程，如果浏览器实例是由 connect 方法创建的则返回 null。</span><br><span class="line">browserContexts：返回一个包含所有打开的浏览器上下文的列表。在新创建的浏览器中，这将返回 [BrowserContext]的单个实例。</span><br><span class="line">wsEndpoint: 返回 websocket 端点 url，用于connect 方法重链。</span><br><span class="line">pages()：获取所有可见的标签页。</span><br><span class="line">newPage()：新建标签页。</span><br><span class="line">close():关闭 Chromium 及其所有页面。Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">disconnect()：断开 Pyppeteer 和浏览器的连接，但 Chromium 进程仍然在运行。在调用 disconnect 之后，Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">createIncognitoBrowserContext()：创建一个新的隐身浏览器上下文。这不会与其他浏览器上下文共享 cookie / 缓存。</span><br><span class="line">userAgent():返回浏览器原始的 user-agent。页面可以使用 page.setUserAgent 覆盖浏览器的 user-agent。</span><br><span class="line"></span><br><span class="line">注：被 <span class="keyword">async</span> 关键字修饰的方法是异步方法，调用的时候也必须 <span class="keyword">await</span> 关键字修饰。</span><br></pre></td></tr></table></figure>
-
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    print(browser.process)     <span class="comment"># 属性不被 async 关键字修饰</span></span><br><span class="line">    print(browser.wsEndpoint)</span><br><span class="line">    print(browser.browserContexts)</span><br><span class="line">    print(<span class="keyword">await</span> browser.userAgent())</span><br><span class="line">    print(<span class="keyword">await</span> browser.pages())</span><br><span class="line">    print(<span class="keyword">await</span> browser.version())</span><br><span class="line">    print(browser.targets())  <span class="comment"># 这个方法在源码中不被 async 关键字修饰</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BrowserContext</span><br></pre></td></tr></table></figure>
-<p>启动浏览器时，默认情况下使用单个 BrowserContext。<br>方法 browser.newPage() 在默认浏览器中创建页面背景。</p>
-<p>Pyppeteer允许创建隐身浏览器(无痕模式)上下文。如下方法：<br>browser.createInnamitoBrowserContext()</p>
-<p>隐身浏览器上下文不会将任何浏览器数据写入磁盘。</p>
-<p>无痕模式：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment"># 创建浏览器实例</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    <span class="comment"># 启动无痕模式</span></span><br><span class="line">    context = <span class="keyword">await</span> browser.createIncognitoBrowserContext()</span><br><span class="line">    <span class="comment"># 新建标签页</span></span><br><span class="line">    page = <span class="keyword">await</span> context.newPage()</span><br><span class="line">    <span class="comment"># 打开目标 url</span></span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    <span class="comment"># 打印是否无痕模式</span></span><br><span class="line">    print(context.isIncognito())</span><br><span class="line">    <span class="comment"># 关闭无痕模式</span></span><br><span class="line">    <span class="keyword">await</span> context.close()</span><br><span class="line">    <span class="comment"># 关闭浏览器</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weizhen11/java/article/details/102496875">原文链接</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weizhen11/article/details/102497647?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">pyppeteer页面操作</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0iftop%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7%EF%BC%88%E6%89%BE%E5%87%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%80%97%E8%B4%B9%E6%B5%81%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/27/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0iftop%E6%B5%81%E9%87%8F%E7%9B%91%E6%8E%A7%EF%BC%88%E6%89%BE%E5%87%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%80%97%E8%B4%B9%E6%B5%81%E9%87%8F%E6%9C%80%E5%A4%9A%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%EF%BC%89/" class="post-title-link" itemprop="url">从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-27 15:28:24" itemprop="dateCreated datePublished" datetime="2020-07-27T15:28:24+00:00">2020-07-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.9k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、iftop是什么"><a href="#一、iftop是什么" class="headerlink" title="一、iftop是什么"></a>一、iftop是什么</h2><p>iftop是类似于top的实时流量监控工具。</p>
-<p>作用：监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等</p>
-<p>官网：<a target="_blank" rel="noopener" href="http://www.ex-parrot.com/~pdw/iftop/">http://www.ex-parrot.com/~pdw/iftop/</a></p>
-<h2 id="二、界面说明"><a href="#二、界面说明" class="headerlink" title="二、界面说明"></a>二、界面说明</h2><p>=&gt;代表发送数据，&lt;= 代表接收数据<br>TX：发送流量<br>RX：接收流量<br>TOTAL：总流量<br>Cumm：运行iftop到目前时间的总流量<br>peak：流量峰值<br>rates：分别表示过去 2s 10s 40s 的平均流量<br>##　三、常用参数<br>-i 指定需要检测的网卡， 如果有多个网络接口，则需要注意网络接口的选择，如：# iftop -i eth1<br>-B 将输出以byte为单位显示网卡流量，默认是bit<br>-n 将输出的主机信息都通过IP显示，不进行DNS解析<br>-N 只显示连接端口号，不显示端口对应的服务名称<br>-F 显示特定网段的网卡进出流量  如iftop -F 192.168.85.0/24<br>-h 帮助，显示参数信息<br>-p 以混杂模式运行iftop，此时iftop可以用作网络嗅探器 ;<br>-P 显示主机以及端口信息<br>-m 设置输出界面中最上面的流量刻度最大值，流量刻度分5个大段显示  如：# iftop -m 100M<br>-f 使用筛选码选择数据包来计数  如iftop -f filter code<br>-b 不显示流量图形条<br>-c 指定可选的配置文件   如iftop  -c config file<br>-t 使用不带ncurses的文本界面，<br>    以下两个是只和-t一起用的：<br>    -s num num秒后打印一次文本输出然后退出，-t -s 60组合使用，表示取60秒网络流量输出到终端<br>    -L num 打印的行数<br>-f 参数支持tcpdump的语法，可以使用各种过滤条件。</p>
-<h2 id="四、进入界面后的操作"><a href="#四、进入界面后的操作" class="headerlink" title="四、进入界面后的操作"></a>四、进入界面后的操作</h2><p>一般参数<br>P      切换暂停/继续显示<br>h      在交互界面/状态输出界面之间切换<br>b      切换是否显示平均流量图形条<br>B      切换显示2s 10s和40s内的平均流量<br>T      切换是否显示每个连接的总流量<br>j/k    向上或向下滚动屏幕显示当前的连接信息<br>f      编辑筛选码<br>l      打开iftop输出过滤功能 ，如输入要显示的IP按回车键后屏幕就只显示与这个IP相关的流量信息<br>L      切换显示流量刻度范围，刻度不同，流量图形条也会不同<br>q      退出iftop<br>主机参数<br>n      使iftop输出结果以IP或主机名的方式显示<br>s      切换是否显示源主机信息<br>d      切换是否显示远端目标主机信息<br>t      切换输出模式,一行或多行<br>端口显示参数<br>N      切换显示端口号/端口号对应服务名称<br>S      切换是否显示本地源主机的端口信息<br>D      切换是否显示远端目标主机的端口信息<br>p      切换是否显示端口信息<br>输出排序参数<br>1/2/3  通过第一列/第二列/第三列排序<br>&lt;      根据左边的本地主机名或IP地址进行排序</p>
-<blockquote>
-<pre><code> 根据远端目标主机的主机名或IP地址进行排序</code></pre>
-<p>o      切换是否固定显示当前的连接</p>
-</blockquote>
-<h2 id="五、使用示例"><a href="#五、使用示例" class="headerlink" title="五、使用示例"></a>五、使用示例</h2><p>1.显示网卡eth0的信息，主机通过ip显示<br>iftop -i eth0 -n<br>2.显示端口号（添加-P参数，进入界面可通过p参数关闭）<br>iftop -i eth0 -n -P<br>3.显示将输出以byte为单位显示网卡流量,默认是bit<br>iftop -i eth0 -n -B<br>4.显示流量进度条<br>iftop -i eth0 -n(进入界面后按下L)<br>5.显示每个连接的总流量<br>iftop -i eth0 -n(进入界面后按下T)<br>6.显示指定ip 172.17.1.158的流量<br>iftop -i eth0 -n(进入界面后按下l,输入172.17.1.158回车)</p>
-<h2 id="六、实战-找出最费流量的ip和端口号"><a href="#六、实战-找出最费流量的ip和端口号" class="headerlink" title="六、实战-找出最费流量的ip和端口号"></a>六、实战-找出最费流量的ip和端口号</h2><p>网上找了一圈，全是粘贴复制的iftop命令使用，没说到点上</p>
-<p>接下，请欣赏真正的表演</p>
-<p>1.进入界面<br>iftop -i eth0 -nNB -m 10M<br>-i 指定网卡，<br>-n 代表主机通过ip显示不走DNS<br>-N 只显示连接端口号，不显示端口对应的服务名称(不加会显示如ssh这样的服务名称，不便于排查)<br>-B 指定显示单位为Kb，默认是bit，太小！<br>-m 设置输出界面中最上面的流量刻度最大值，流量刻度分5个大段显示<br>进入后界面如下</p>
-<p>2.按下L显示流量刻度<br>L参数直接显示进度条，方便人类阅读，别说你能直接通过数字感知，小心被砍死</p>
-<p>3.按下T显示总量<br>总得有个总数统计，看着方便！</p>
-<p>4.按下3，根据最近40s统计排序<br>用平均值来统计最权威点</p>
-<p>5.按下t，发送和接受合成一行<br>显示两行没什么意思，一行就够了！</p>
-<p>6.多按几次B，查看最近2s、10s、40s的统计</p>
-<p>没错，图中的172.17.1.158就是我们找到的流量用得最多的IP</p>
-<p>7.筛选指定IP 172.17.1.158<br>按下l, 输入172.17.1.158，出现如下</p>
-<p>回车，生效</p>
-<p>这下就只看到这个ip的流量监控了</p>
-<p>8.找到这个ip哪个端口流量用得最多<br>按下p,根据端口号显示</p>
-<p>到这里，我们就学会了如何找出流量用得最多的ip和端口号，这么好干货你不high起来对不起哥这么用心的截图！</p>
-
       
     </div>
 
@@ -1394,7 +1506,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1450,7 +1562,7 @@
           <h3 class="widget-title">Tag Cloud</h3>
           <div id="myCanvasContainer" class="widget tagcloud">
               <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
               </canvas>
           </div>
       </div>
@@ -1483,12 +1595,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="Symbols count total">272k</span>
+    <span title="Symbols count total">275k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:07</span>
+    <span title="Reading time total">4:10</span>
 </div>
 
         
@@ -1600,6 +1712,36 @@
 
   
 
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
+      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
+      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
+      avatar     : 'monsterid',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : '',
+      requiredFields: ['nick','mail'] 
+    });
+  }, window.Valine);
+});
+</script>
+
   <!-- 页面点击特效 -->
   <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="/js/click-word.js"></script>
@@ -1607,5 +1749,5 @@
   <script type="text/javascript"
   color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
   
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>
