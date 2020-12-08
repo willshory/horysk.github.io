@@ -1,2464 +1,612 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Horysk 宏睿时空">
-<meta property="og:url" content="http://blog.hory-ai.com/page/4/index.html">
-<meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Hory Skone">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://blog.hory-ai.com/page/4/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
-
-  <title>Horysk 宏睿时空</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Horysk 宏睿时空</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
+    <meta charset="utf-8">
+    
+    <title>Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a target="_blank" rel="noopener" href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
   </div>
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+</header>
+    <div class="content">
+        <section class="outer">
+    
 
-  <a href="https://github.com/horysk" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content index posts-expand">
+
+
+
+<div class="turn_page">
+    
+        <a class="page_more">...</a>
+    
+
+
+    
+        <a href="/page/6">6</a>
+    
+
+    
+        <a href="/page/5">5</a>
+    
+
+    
+        <a class="page_current">4</a>
+    
+
+    
+        <a href="/page/3">3</a>
+    
+
+    
+        <a href="/page/2">2</a>
+    
+
+
+    
+        <div><a class="page_more">...</a></div>
+    
+</div>
+
+
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="shake shake-little" title="MongoDB索引管理——创建索引，查看索引，删除索引，重建索引">
             
-
-
-
-	<div class="tag-cloud">
-	  <div class="tag-cloud-tags" id="tags">
-		<a href="/tags/AI/" style="font-size: 16px; color: #fff">AI</a> <a href="/tags/BI/" style="font-size: 16px; color: #fff">BI</a> <a href="/tags/Centos/" style="font-size: 16px; color: #fff">Centos</a> <a href="/tags/DNS/" style="font-size: 16px; color: #fff">DNS</a> <a href="/tags/Dapp/" style="font-size: 16px; color: #fff">Dapp</a> <a href="/tags/Docker/" style="font-size: 16px; color: #fff">Docker</a> <a href="/tags/Hack/" style="font-size: 16px; color: #fff">Hack</a> <a href="/tags/Hexo/" style="font-size: 16px; color: #fff">Hexo</a> <a href="/tags/HyperLedger-Fabric/" style="font-size: 16px; color: #fff">HyperLedger Fabric</a> <a href="/tags/Hyperledger-Fabric/" style="font-size: 16px; color: #fff">Hyperledger Fabric</a> <a href="/tags/Iftop/" style="font-size: 16px; color: #fff">Iftop</a> <a href="/tags/Linux/" style="font-size: 16px; color: #fff">Linux</a> <a href="/tags/ML/" style="font-size: 16px; color: #fff">ML</a> <a href="/tags/MTProxy/" style="font-size: 16px; color: #fff">MTProxy</a> <a href="/tags/Mongo/" style="font-size: 16px; color: #fff">Mongo</a> <a href="/tags/Network/" style="font-size: 16px; color: #fff">Network</a> <a href="/tags/Pyppeteer/" style="font-size: 16px; color: #fff">Pyppeteer</a> <a href="/tags/Tools/" style="font-size: 16px; color: #fff">Tools</a> <a href="/tags/VPN/" style="font-size: 16px; color: #fff">VPN</a> <a href="/tags/Vnc/" style="font-size: 16px; color: #fff">Vnc</a> <a href="/tags/baostock/" style="font-size: 16px; color: #fff">baostock</a> <a href="/tags/block-chain/" style="font-size: 16px; color: #fff">block chain</a> <a href="/tags/centos-xfce-vnc/" style="font-size: 16px; color: #fff">centos-xfce-vnc</a> <a href="/tags/docker/" style="font-size: 16px; color: #fff">docker</a> <a href="/tags/fabric/" style="font-size: 16px; color: #fff">fabric</a> <a href="/tags/hexo/" style="font-size: 16px; color: #fff">hexo</a> <a href="/tags/horysk/" style="font-size: 16px; color: #fff">horysk</a> <a href="/tags/k8s/" style="font-size: 16px; color: #fff">k8s</a> <a href="/tags/linux/" style="font-size: 16px; color: #fff">linux</a> <a href="/tags/mongo/" style="font-size: 16px; color: #fff">mongo</a> <a href="/tags/pyppeteer/" style="font-size: 16px; color: #fff">pyppeteer</a> <a href="/tags/python/" style="font-size: 16px; color: #fff">python</a> <a href="/tags/quant/" style="font-size: 16px; color: #fff">quant</a> <a href="/tags/stock/" style="font-size: 16px; color: #fff">stock</a> <a href="/tags/tushare/" style="font-size: 16px; color: #fff">tushare</a>
-	  </div>
-	</div>
-
-	
-	<script type="text/javascript">
-     var alltags = document.getElementsByClassName('tag-cloud-tags');
-     var tags = alltags[0].getElementsByTagName('a');
-     for (var i = tags.length - 1; i >= 0; i--) {
-       var r=Math.floor(Math.random()*75+130);
-       var g=Math.floor(Math.random()*75+100);
-       var b=Math.floor(Math.random()*75+80);
-       tags[i].style.background = "rgb("+r+","+g+","+b+")";
-     }
-</script>
-
-<style>
-  .tag-cloud-tags{
-    /*font-family: Helvetica, Tahoma, Arial;*/
-    /*font-weight: 100;*/
-    text-align: center;
-    counter-reset: tags;
-  }
-  .tag-cloud-tags a{
-    border-radius: 6px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin: 8px 5px 0px 0px;
-  }
-  .tag-cloud-tags a:before{
-    content: "?";
-  }
-
-  .tag-cloud-tags a:hover{
-     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);
-     transform: scale(1.1);
-     /*box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);*/
-     transition-duration: 0.15s;
-  }
-</style>
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">MongoDB索引管理——创建索引，查看索引，删除索引，重建索引</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-24 11:26:26" itemprop="dateCreated datePublished" datetime="2020-07-24T11:26:26+00:00">2020-07-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mongo/" itemprop="url" rel="index"><span itemprop="name">Mongo</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/MongoDB%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E2%80%94%E2%80%94%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%8C%E6%9F%A5%E7%9C%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%87%8D%E5%BB%BA%E7%B4%A2%E5%BC%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>6 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://blog.51cto.com/navyaijm/2421973?source=drh">Mongodb性能压测</a></p>
-<h3 id="先给users集合插入两条记录，然后用users集合来进行索引管理的演示："><a href="#先给users集合插入两条记录，然后用users集合来进行索引管理的演示：" class="headerlink" title="先给users集合插入两条记录，然后用users集合来进行索引管理的演示："></a>先给users集合插入两条记录，然后用users集合来进行索引管理的演示：</h3><pre><code class="bash">&gt; user1=&#123;&quot;name&quot;:&quot;liming&quot;,&quot;age&quot;:20,&quot;gender&quot;:&quot;F&quot;&#125;
-&#123; &quot;name&quot; : &quot;liming&quot;, &quot;age&quot; : 20, &quot;gender&quot; : &quot;F&quot; &#125;
-&gt; db.users.insert(user1)
-WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)
-&gt; user2=&#123;&quot;name&quot;:&quot;zhangsan&quot;,&quot;age&quot;:25,&quot;gender&quot;:&quot;F&quot;&#125;
-&#123; &quot;name&quot; : &quot;zhangsan&quot;, &quot;age&quot; : 25, &quot;gender&quot; : &quot;F&quot; &#125;
-&gt; db.users.insert(user1)
-WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)
-&gt; db.users.count()</code></pre>
-<h2 id="2-创建索引："><a href="#2-创建索引：" class="headerlink" title="2 创建索引："></a>2 创建索引：</h2><p>mongodb使用createIndex()和ensureIndex()方法来创建索引，前者用于3.0及以上版本，后者用于3.0以下版本。<br>语法：<br>db.COLLECTION_NAME.ensureIndex(keys[,options])<br>keys:要建立索引的参数列表。如：{KEY:1}，其中key表示字段名，1表示升序排序，也可使用使用数字-1降序。<br>options:可选参数，表示建立索引的设置。可选值如下：<br>background，Boolean，在后台建立索引，以便建立索引时不阻止其他数据库活动。默认值为false。<br>unique，Boolean，创建唯一索引。默认值 false。<br>name，String，指定索引的名称。如果未指定，MongoDB会生成一个索引字段的名称和排序顺序串联。<br>partialFilterExpression, document.如果指定,MongoDB只会给满足过滤表达式的记录建立索引.<br>sparse，Boolean，对文档中不存在的字段数据不启用索引。默认值是 false。<br>expireAfterSeconds,integer,指定索引的过期时间<br>storageEngine,document,允许用户配置索引的存储引擎</p>
-<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:1&#125;)
-&#123;
-    &quot;createdCollectionAutomatically&quot; : false,
-    &quot;numIndexesBefore&quot; : 1,
-    &quot;numIndexesAfter&quot; : 2,
-    &quot;ok&quot; : 1
-&#125;</code></pre>
-<p>例2：给name字段创建倒序索引</p>
-<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:-1&#125;)
-&#123;
-    &quot;createdCollectionAutomatically&quot; : false,
-    &quot;numIndexesBefore&quot; : 2,
-    &quot;numIndexesAfter&quot; : 3,
-    &quot;ok&quot; : 1
-&#125;</code></pre>
-<p>例3：给name，age字段创建组合索引</p>
-<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:1,&quot;age&quot;:1&#125;)
-&#123;
-    &quot;createdCollectionAutomatically&quot; : false,
-    &quot;numIndexesBefore&quot; : 3,
-    &quot;numIndexesAfter&quot; : 4,
-    &quot;ok&quot; : 1
-&#125;</code></pre>
-<p>例4：在后台给age字段创建索引</p>
-<pre><code class="bash">&gt; db.users.createIndex(&#123;age:1&#125;,&#123;background:1&#125;)
-&#123;
-    &quot;createdCollectionAutomatically&quot; : false,
-    &quot;numIndexesBefore&quot; : 4,
-    &quot;numIndexesAfter&quot; : 5,
-    &quot;ok&quot; : 1
-&#125;``` 
-### 在后台创建索引的原因：
-在前台创建索引期间会锁定数据库，会导致其它操作无法进行数据读写，在后台创建索引是，会定期释放写锁，从而保证其它操作的运行，但是后台操作会在耗时更长，尤其是在频繁进行写入的服务器上。
-
-##　查看索引：
-MongoDB提供的查看索引信息的方法：
-getIndexes()方法可以用来查看集合的所有索引，
-getIndexKeys()方法查看索引键。
-totalIndexSize()查看集合索引的总大小，
-getIndexSpecs()方法查看集合各索引的详细信息
-例1： getIndexes()的用法
-``` bash
-&gt; db.users.getIndexes()
-[
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;_id&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;_id_&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;name_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : -1
-        &#125;,
-        &quot;name&quot; : &quot;name_-1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : 1,
-            &quot;age&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;name_1_age_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;age&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;age_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;,
-        &quot;background&quot; : 1
-    &#125;
-]</code></pre>
-<p>例2：getIndexKeys()的用法</p>
-<pre><code class="bash">&gt; db.users.getIndexKeys()
-[
-    &#123;
-        &quot;_id&quot; : 1
-    &#125;,
-    &#123;
-        &quot;name&quot; : 1
-    &#125;,
-    &#123;
-        &quot;name&quot; : -1
-    &#125;,
-    &#123;
-        &quot;name&quot; : 1,
-        &quot;age&quot; : 1
-    &#125;,
-    &#123;
-        &quot;age&quot; : 1
-    &#125;
-]</code></pre>
-<p>例3：totalIndexSize()的用法</p>
-<blockquote>
-<p>db.users.totalIndexSize()<br>81920<br>例4：getIndexSpecs()的用法</p>
-</blockquote>
-<pre><code class="bash">&gt; db.users.getIndexSpecs()
-[
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;_id&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;_id_&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;name_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : -1
-        &#125;,
-        &quot;name&quot; : &quot;name_-1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : 1,
-            &quot;age&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;name_1_age_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;age&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;age_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;,
-        &quot;background&quot; : 1
-    &#125;
-]</code></pre>
-<h2 id="删除索引："><a href="#删除索引：" class="headerlink" title="删除索引："></a>删除索引：</h2><p>不再需要的索引，我们可以将其删除，mongodb提供两种删除索引的方法：<br>dropIndex()方法用于删除指定的索引<br>dropIndexes()方法用于删除全部的索引<br>例1:dropIndex()的用法</p>
-<pre><code class="bash">&gt; db.users.dropIndex(&quot;name_1&quot;)
-&#123; &quot;nIndexesWas&quot; : 5, &quot;ok&quot; : 1 &#125;
-&gt; db.users.dropIndex(&quot;name_1_age_1&quot;)
-&#123; &quot;nIndexesWas&quot; : 4, &quot;ok&quot; : 1 &#125;
-&gt; db.users.getIndexSpecs()
-[
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;_id&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;_id_&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : -1
-        &#125;,
-        &quot;name&quot; : &quot;name_-1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;age&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;age_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;,
-        &quot;background&quot; : 1
-    &#125;
-]</code></pre>
-<p>我们可以看到,name字段的索引和name与age字段的组合索引皆被删除</p>
-<p>例2:dropIndexes()的用法</p>
-<pre><code class="bash">&gt; db.users.dropIndexes()
-&#123;
-    &quot;nIndexesWas&quot; : 3,
-    &quot;msg&quot; : &quot;non-_id indexes dropped for collection&quot;,
-    &quot;ok&quot; : 1
-&#125;</code></pre>
-<pre><code class="bash">&gt; db.users.getIndexSpecs()
-[
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;_id&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;_id_&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;
-]</code></pre>
-<p>在使用了dropIndexes()方法后,我们之前建的所有索引都被删除掉了</p>
-<h2 id="索引重建"><a href="#索引重建" class="headerlink" title="索引重建:"></a>索引重建:</h2><p>我们之前把users的索引全部删除了,现在在name字段上建立一个正序索引,然后在name字段上重建倒序索引,可以看到重建索引是把之前name字段的索引删掉再新建一个索引的,重建之前name字段还是只有一个索引.</p>
-<pre><code class="bash">&gt; db.users.createIndex(&#123;name:1&#125;)
-&#123;
-    &quot;createdCollectionAutomatically&quot; : false,
-    &quot;numIndexesBefore&quot; : 1,
-    &quot;numIndexesAfter&quot; : 2,
-    &quot;ok&quot; : 1
-&#125;</code></pre>
-<pre><code class="bash">&gt; db.users.getIndexSpecs()
-[
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;_id&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;_id_&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;name_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;
-]</code></pre>
-<pre><code class="bash">&gt; db.users.reIndex(&#123;name:-1&#125;)
-&#123;
-    &quot;nIndexesWas&quot; : 2,
-    &quot;nIndexes&quot; : 2,
-    &quot;indexes&quot; : [
-        &#123;
-            &quot;key&quot; : &#123;
-                &quot;_id&quot; : 1
-            &#125;,
-            &quot;name&quot; : &quot;_id_&quot;,
-            &quot;ns&quot; : &quot;test1.users&quot;
-        &#125;,
-        &#123;
-            &quot;key&quot; : &#123;
-                &quot;name&quot; : 1
-            &#125;,
-            &quot;name&quot; : &quot;name_1&quot;,
-            &quot;ns&quot; : &quot;test1.users&quot;
-        &#125;
-    ],
-    &quot;ok&quot; : 1
-&#125;</code></pre>
-<pre><code class="bash">&gt; db.users.getIndexSpecs()
-[
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;_id&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;_id_&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;,
-    &#123;
-        &quot;v&quot; : 1,
-        &quot;key&quot; : &#123;
-            &quot;name&quot; : 1
-        &#125;,
-        &quot;name&quot; : &quot;name_1&quot;,
-        &quot;ns&quot; : &quot;test1.users&quot;
-    &#125;
-]</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/" class="post-title-link" itemprop="url">你真的会用索引么？-- Mongo</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-24 11:04:12" itemprop="dateCreated datePublished" datetime="2020-07-24T11:04:12+00:00">2020-07-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mongo/" itemprop="url" rel="index"><span itemprop="name">Mongo</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>6.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>6 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>一次奇怪的查询经历<br>如何奇怪了？</p>
-<p>对同一张表，用同样的SQL，查询200万条数据耗时100ms，查询二十条数据却耗时30s。<br>数据量少了10万倍，完全不是一个数量级的数据，耗时却多了300倍。<br>明明加了索引为什么还是那么慢？<br>下图是在本地简化模拟出来的查询结果，虽然没有那么夸张但是同样可以复现问题。</p>
-<p>95.6万条数据，用时0.08秒</p>
-<p>106条数据，用时10秒<br>如上二图，通过相同查询条件以及相同的排序条件，进行查询，查询效率缺却天差地别，下面让我们来一起探索一下究竟是为什么？</p>
-<h2 id="索引概述"><a href="#索引概述" class="headerlink" title="索引概述"></a>索引概述</h2><p>我们常常会看到一些乱七八糟的索引，所以我们用索引的真正目的是什么呢？</p>
-<p>终极目的：借助索引快速搜索，有效减少了扫描的行数</p>
-<p>精髓：不止要有索引，索引的过滤性还要好，区分度要足够高，这才是好的设计</p>
-<h2 id="索引的类型和属性"><a href="#索引的类型和属性" class="headerlink" title="索引的类型和属性"></a>索引的类型和属性</h2><p>唯一索引<br>唯一索引是索引具有的一种属性，让索引具备唯一性，确保这张表中，该条索引数据不会重复出现。在每一次insert和update操作时，都会进行索引的唯一性校验，保证该索引的字段组合在表中唯一。</p>
-<p>db.containers.createIndex({name: 1},{unique:true, background: true})<br>db.packages.createIndex({ appId: 1, version: 1 },{unique:true, background: true})</p>
-<h1 id="知识点一："><a href="#知识点一：" class="headerlink" title="知识点一："></a>知识点一：</h1><p>创建索引时,1表示按升序存储,-1表示按降序存储。</p>
-<h1 id="知识点二："><a href="#知识点二：" class="headerlink" title="知识点二："></a>知识点二：</h1><p>Mongo提供两种建索引的方式foreground和background。<br>前台操作，它会阻塞用户对数据的读写操作直到index构建完毕；<br>后台模式，不阻塞数据读写操作，独立的后台线程异步构建索引，此时仍然允许对数据的读写操作。</p>
-<h3 id="创建索引时一定要写-background-true"><a href="#创建索引时一定要写-background-true" class="headerlink" title="创建索引时一定要写{background: true}"></a>创建索引时一定要写{background: true}</h3><h3 id="创建索引时一定要写-background-true-1"><a href="#创建索引时一定要写-background-true-1" class="headerlink" title="创建索引时一定要写{background: true}"></a>创建索引时一定要写{background: true}</h3><h3 id="创建索引时一定要写-background-true-2"><a href="#创建索引时一定要写-background-true-2" class="headerlink" title="创建索引时一定要写{background: true}"></a>创建索引时一定要写{background: true}</h3><h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><p>概念：指的是将多个键组合到一起创建索引，终极目的是加速匹配多个键的查询。</p>
-<p>看例子来理解复合索引是最直接的方式：</p>
-<p>图中模拟了简单的航班信息表的数据。</p>
-<p>对表中指定航班进行查询，查询后按价格排序。</p>
-<p>db.getCollection(‘flight’).find({flight: “CA12345”}).sort({price: 1})</p>
-<p>在没有索引的情况下，那么他其实是会一条一条的扫描全部8条数据，找到CA12345航班，然后再在内存中按价钱进行排序。</p>
-<p>如果这时我给航班添加一条索引db.flights.createIndex({ flight: 1 },{background: true})，那么索引会类似于下图一样，将数据按照索引规则进行排序，此时就只需要扫描4条CA12345航班的数据，然后再在内存中进行排序。如果数据量大了以后，在内存中进行排序的代价是非常大的。</p>
-<p>所以我们可以建立复合索引 db.flights.createIndex({ flight: 1, price: 1 },{background: true})</p>
-<p>让数据按照索引先将所有数据以航班号有序排列，再在航班号相同的数据集中按价格升序排列，这样在进行查询的时候，就可以准确的使用索引扫描4条数据，并且他们本身就是有序的，无需再进行额外的排序工作。以上实现了通过复合索引，让查询变得最优，这就是复合索引的作用。</p>
-<h2 id="内嵌索引"><a href="#内嵌索引" class="headerlink" title="内嵌索引"></a>内嵌索引</h2><p>可以在嵌套的文档上建立索引，方式与建立正常索引完全一致。</p>
-<p>个人信息表结构如下,包含了省市区三级的地址信息，如果想要给城市（city）添加索引，其实就和正常添索引一样</p>
-<p>db.personInfos.createIndex({“address.city”:1})</p>
-<p>const personInfo = new Schema({<br>  name: { type: String, required: true },<br>  address: {<br>    province: { type: String, required: true },<br>    city: { type: String, required: true },<br>    district: { type: String, required: true },<br>  }<br>}, {timestamps: true});</p>
-<h1 id="知识点三："><a href="#知识点三：" class="headerlink" title="知识点三："></a>知识点三：</h1><p>对嵌套文档本身“address”建立索引，与对嵌套文档的某个字段（address.city）建立索引是完全不相同的。<br>对整个文档建立索引，只有在使用文档完整匹配时才会使用到这个索引，例如建立了这样一个索引db.personInfos.createIndex({“address”:1})，那么只有使用db.personInfos.find({“address”:{“province”:”xxx”,”city”:”xxx”,””district”:”xxx”}})这种完整匹配时才会使用到这个索引，使用db.personInfos.find({“address.city”:”xxx”})是不会使用到该索引的。<br>数组索引<br>MongoDB支持对数组建立索引，这样就可以高效的搜索数组中的特定元素。</p>
-<h1 id="知识点四："><a href="#知识点四：" class="headerlink" title="知识点四："></a>知识点四：</h1><p>但是！对数组建立索引的代价是非常高的，他实际上是会对数组中的每一项都单独建立索引，就相当于假设数组中有十项，那么就会在原基础上，多出十倍的索引大小。如果有一百个一千个呢？<br>所以在mongo中是禁止对两个数组添加复合索引的，对两个数组添加索引那么索引大小将是爆炸增长，所以谨记在心。<br>过期索引（TTL）<br>可以针对某个时间字段，指定文档的过期时间（经过指定时间后过期 或 在某个时间点过期）</p>
-<p>##　哈希索引（Hashed Index）<br>是指按照某个字段的hash值来建立索引，hash索引只能满足字段完全匹配的查询，不能满足范围查询等</p>
-<h2 id="地理位置索引（Geospatial-Index）"><a href="#地理位置索引（Geospatial-Index）" class="headerlink" title="地理位置索引（Geospatial Index）"></a>地理位置索引（Geospatial Index）</h2><p>能很好的解决一些场景，比如『查找附近的美食』、『查找附近的加油站』等</p>
-<h2 id="文本索引（Text-Index）"><a href="#文本索引（Text-Index）" class="headerlink" title="文本索引（Text Index）"></a>文本索引（Text Index）</h2><p>能解决快速文本查找的需求，比如，日志平台，相对日志关键词查找，如果通过正则来查找的话效率极低，这时就可以通过文本索引的形式来进行查找</p>
-<h3 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h3><p>1.减少数据扫描：避免全表扫描代价</p>
-<p>2.减少内存计算：避免分组排序计算</p>
-<p>3.提供数据约束：唯一和时间约束性</p>
-<h3 id="索引的缺点"><a href="#索引的缺点" class="headerlink" title="索引的缺点"></a>索引的缺点</h3><p>1.增加容量消耗：创建时需额外存储索引数据</p>
-<p>2.增加修改代价：增删改都需要维护索引数据</p>
-<p>3.索引依赖内存：会占用极其宝贵的内存资源</p>
-<p>索引固然不全是优点，如果不能了解到索引可能带来的危害滥用索引，后果也是非常严重的。</p>
-<p>索引虽然也是持久化在磁盘中的，但为了确保索引的速度，实际上需要将索引加载到内存中使用，使用过后还会进行缓存，内存资源相比磁盘空间那是非常的珍贵了。当内存不足以承载索引的时候，就会出现内存——磁盘交换的情况，这时会大大降低索引的性能。</p>
-<p>有人说研究索引好累啊？我给我的每个字段都加一个索引不就完事了么？其实每个人都知道这样不好，但实战中好多人都是这样干的。无脑的给每个字段都加上索引就意味着每一次数据库操作，不仅需要更新文档，还需要有大量索引需要更新。mongo每次查询只会使用一个索引。想不到吧？不是你想的我先查航班，在用价格排序，会先走航班的索引，再走价格的索引，你做梦去吧，不可能的，他只会选定一条索引，并不会因为你给每个字端都加了索引就解决问题了。</p>
-<h1 id="知识点五："><a href="#知识点五：" class="headerlink" title="知识点五："></a>知识点五：</h1><p>为了追求索引的速度，索引是加载在内存中使用的，不能合理使用索引后果严重。<br>mongo每次查询只会使用一次索引！！！只有$or或查询特殊，他会给每一个或分支使用索引然后再合并<br>何时不应该使用索引<br>也有一些查询不使用索引会更快。结果集在原集合中所占的比例越大，查询效率越慢。因为使用索引需要进行两次查找：一次查找索引条目，一次根据索引指针去查找相应的文档。而全表扫描只需要进行一次查询。在最坏的情况，使用索引进行查找次数会是全表扫描的两倍。效率会明显比全表扫描低。</p>
-<p>而相反在提取较小的子数据集时，索引就非常有效，这就是我们为什么会使用分页。</p>
-<h3 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h3><p>Mongo自带了一个查询优化器会为我们选择最合适的查询方案。</p>
-<p>如果一个索引能够精确匹配一个查询，那么查询优化器就会使用这个索引。</p>
-<p>如果不能精确匹配呢？可能会有几个索引都适合你的查询，那MongoDB是怎样选择的呢？</p>
-<p>MongoDB的查询计划会将多个索引并行的去执行，最先返回第101个结果的就是胜者，其他查询计划都会被终止，执行优胜的查询计划；<br>这个查询计划会被缓存，接下来相同的查询条件都会使用它；<br>何时查询计划缓存才会变呢？<br>在计划评估之后表发生了比较大的数据波动，查询优化器就会重新挑选可行的查询计划<br>建立索引时<br>每执行1000次查询之后，查询优化器就会重新评估查询计划<br>联合索引的优化<br>当你查询条件的顺序和你索引的顺序不一致的话，mongo会自动的调整查询顺序，保证你可以使用上索引。</p>
-<p>例如：你的查询条件是(a,c,b)但是你的索引是（a,b,c）mongo会自动将你的查询条件调整为abc，寻找最优解。</p>
-<h2 id="聚合管道的优化"><a href="#聚合管道的优化" class="headerlink" title="聚合管道的优化"></a>聚合管道的优化</h2><p>如果管道中不需要使用一个完整的文档的全部字段的话，管道不会将多余字段进行传递<br>$sort 和 $limit 合并,在内存中只会维护limit个数量的文档，不需要将所有的文档维护在内存中，大大降低内存中sort的压力<br>然而管道中的索引使用情况是极其不佳的，在管道中，只有在管道最开始时的match sort可以使用到索引，一旦发生过project投射，group分组，lookup表关联，unwind打散等操作后，就完全无法使用索引。</p>
-<p>希望通过本文能让你对Mongo的索引有更深的理解</p>
-<h1 id="Explain查询计划"><a href="#Explain查询计划" class="headerlink" title="Explain查询计划"></a>Explain查询计划</h1><p>提到查的慢，二话不说直接看查询计划好么？具体每一个字段的含义我就不做赘述了很容易查到，我截取winningPlan的部分和大家一起看一下。WinningPlan就是在查询计划中胜出的方案，那肯定就有被淘汰的方案，是在rejectPlan里。</p>
-<p>// 查询计划中的winningPlan部分<br>“winningPlan”: {<br>    “stage”: “FETCH”,<br>    “filter”: {<br>        “createdAt”: {<br>            “$gte”: ISODate(“2019-07-22T12:00:44.000Z”)<br>        }<br>    },<br>    “inputStage”: {<br>        “stage”: “IXSCAN”,<br>        “keyPattern”: {<br>            “load”: 1<br>        },<br>        “indexName”: “load_1”,<br>        “isMultiKey”: false,<br>        “multiKeyPaths”: {<br>            “load”: []<br>        },<br>        “isUnique”: false,<br>        “isSparse”: false,<br>        “isPartial”: false,<br>        “indexVersion”: 2,<br>        “direction”: “backward”,<br>        “indexBounds”: {<br>            “load”: [<br>                “[MaxKey, MinKey]”<br>            ]<br>        }<br>    }<br>},<br>看不懂？没关系，先学习了下面两个知识点，我带你读一遍。</p>
-<h1 id="知识点六："><a href="#知识点六：" class="headerlink" title="知识点六："></a>知识点六：</h1><p>explain 结果将查询计划以阶段树的形式呈现。<br>每个阶段将其结果（文档或索引键）传递给父节点。<br>中间节点操纵由子节点产生的文档或索引键。<br>根节点是MongoDB从中派生结果集的最后阶段。<br>对于新人一定要特别注意：在看查询结果的阶段树的时候一定一定是从最里层一层一层往外看的，不是直接顺着读下来的。</p>
-<h1 id="知识点七："><a href="#知识点七：" class="headerlink" title="知识点七："></a>知识点七：</h1><p>在查询计划中出现了很多stage，下面列举的经常出现的stage以及他的含义：<br>COLLSCAN：全表扫描<br>IXSCAN：索引扫描<br>FETCH：根据前面扫描到的位置抓取完整文档<br>SORT：进行内存排序，最终返回结果<br>SORT_KEY_GENERATOR：获取每一个文档排序所用的键值<br>LIMIT：使用limit限制返回数<br>SKIP：使用skip进行跳过<br>IDHACK：针对_id进行查询<br>COUNTSCAN：count不使用用Index进行count时的stage返回<br>COUNT_SCAN：count使用了Index进行count时的stage返回<br>TEXT：使用全文索引进行查询时候的stage返回<br>Explain解读：</p>
-<p>将解读写在了注释中，按顺序阅读</p>
-<p>// 查询计划中的winningPlan部分<br>“winningPlan”: {<br>    “stage”: “FETCH”,                                            // 5. 根据内层阶段树查到的索引去抓取完整的文档<br>    “filter”: {                                                  // 6. 再根据createdAt参数进行筛选<br>        “createdAt”: {<br>            “$gte”: ISODate(“2019-07-22T12:00:44.000Z”)<br>        }<br>    },<br>    “inputStage”: {                                               // 1. 每个阶段将自己的查询结果传递给父阶段树，所以从里往外读Explain<br>        “stage”: “IXSCAN”,                                    // 2. IXSCAN该阶段使用了索引进行扫描<br>        “keyPattern”: {<br>            “load”: 1                                     // 3. 使用了 load:1 这条索引<br>        },<br>        “indexName”: “load_1”,<br>        “isMultiKey”: false,<br>        “multiKeyPaths”: {<br>            “load”: []<br>        },<br>        “isUnique”: false,<br>        “isSparse”: false,<br>        “isPartial”: false,<br>        “indexVersion”: 2,<br>        “direction”: “backward”,<br>        “indexBounds”: {<br>            “load”: [<br>                “[MaxKey, MinKey]”                      // 4. 边界<br>            ]<br>        }<br>    }<br>},<br>最后在本文末尾，留下了前面查询航班按价钱排序的例子，在各种索引下的查询计划<br>最期望看到的查询组合<br>Fetch+IDHACK<br>Fetch+ixscan<br>Limit+（Fetch+ixscan）<br>PROJECTION+ixscan<br>最不期望看到的查询组合<br>COLLSCAN（全表扫）<br>SORT（使用sort但是无index）<br>COUNTSCAN（不使用索引进行count）<br>最左前缀原则<br>假定索引(a，b，c) 它可能满足的查询如下：</p>
-<ol>
-<li><p>a</p>
-</li>
-<li><p>a，b</p>
-</li>
-<li><p>a，b，c</p>
-</li>
-<li><p>a，c [该组合只能用a部分]</p>
-</li>
-<li><p>a, c, b [cb在查询时会被优化换位置]</p>
-</li>
-</ol>
-<p>显然，最左前缀的核心是查询条件字段必须含有索引第一个字段</p>
-<p>最左值尽可能用最精确过滤性最好的值，不要用那种可能会用于范围模糊查询，用于排序的字段</p>
-<p>效率极低的操作符<br>$where和$exists：这两个操作符，完全不能使用索引。<br>$ne和$not:通常来说取反和不等于,可以使用索引，但是效率极低，不是很有效，往往也会退化成扫描全表。<br>$nin:不包含，这个操作符也总是会全表扫描<br>对于管道中的索引，也很容易出现意外，只有在管道最开始时的match sort可以使用到索引，一旦发生过project投射，group分组，lookup表关联，unwind打散等操作后，就完全无法使用索引。</p>
-<h1 id="索引设计和优化原则"><a href="#索引设计和优化原则" class="headerlink" title="索引设计和优化原则"></a>索引设计和优化原则</h1><p>最后祭出李丹老师的索引设计和优化原则</p>
-<h2 id="1-主键的设置"><a href="#1-主键的设置" class="headerlink" title="1.主键的设置"></a>1.主键的设置</h2><p>业务无关、显示指定、递增属性</p>
-<h2 id="2-数据区分度"><a href="#2-数据区分度" class="headerlink" title="2.数据区分度"></a>2.数据区分度</h2><p>原则上区分度高的字段优先做索引字段，如果是组合索引优先放前面</p>
-<h2 id="3-字段更新频率"><a href="#3-字段更新频率" class="headerlink" title="3.字段更新频率"></a>3.字段更新频率</h2><p>频繁更新的字段是否做索引字段需要综合考虑对业务的影响及查询的代价</p>
-<h2 id="4-前缀索引问题"><a href="#4-前缀索引问题" class="headerlink" title="4.前缀索引问题"></a>4.前缀索引问题</h2><p>需要注意的是因前缀索引只包含部分值因此无法通过前缀索引优化排序</p>
-<h2 id="5-适当冗余设计"><a href="#5-适当冗余设计" class="headerlink" title="5.适当冗余设计"></a>5.适当冗余设计</h2><p>对于存储较长字符串字段可额外增加字段存储原字段计算(如hash)后的值</p>
-<p>创建索引时只需要对额外字段创建索引即可</p>
-<h2 id="6-避免无效索引"><a href="#6-避免无效索引" class="headerlink" title="6.避免无效索引"></a>6.避免无效索引</h2><p>通常类似表已经含有主键ID就无需再创建额外唯一性的ID索引</p>
-<h2 id="7-查询覆盖率"><a href="#7-查询覆盖率" class="headerlink" title="7.查询覆盖率"></a>7.查询覆盖率</h2><p>设计一个索引我们需要考虑尽量覆盖更多的查询场景</p>
-<h2 id="8-控制字段数"><a href="#8-控制字段数" class="headerlink" title="8.控制字段数"></a>8.控制字段数</h2><p>如果你设计的索引例如含有7、8个字段通常需要考虑设计是否合理</p>
-<h2 id="优化原则"><a href="#优化原则" class="headerlink" title="优化原则"></a>优化原则</h2><h3 id="1-减少网络带宽"><a href="#1-减少网络带宽" class="headerlink" title="1.减少网络带宽"></a>1.减少网络带宽</h3><p>按需返回所需字段、尽量避免返回大字段</p>
-<h3 id="2-减少内存计算"><a href="#2-减少内存计算" class="headerlink" title="2.减少内存计算"></a>2.减少内存计算</h3><p>减少无必要中间结果存储、减少内存计算</p>
-<h3 id="3-减少磁盘IO"><a href="#3-减少磁盘IO" class="headerlink" title="3.减少磁盘IO"></a>3.减少磁盘IO</h3><p>添加合适的索引、关注SQL改写</p>
-<p>前文查询航班按价钱排序的例子，在各种索引下的查询计划</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77971681">https://zhuanlan.zhihu.com/p/77971681</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5ad1d2836fb9a028dd4eaae6">正确的使用mongo索引</a><br><a target="_blank" rel="noopener" href="https://blog.souche.com/mysql-explain/">Explain分析查询语句</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/" class="post-title-link" itemprop="url">MongoDB提升性能的18原则（开发设计阶段）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-24 10:33:32" itemprop="dateCreated datePublished" datetime="2020-07-24T10:33:32+00:00">2020-07-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mongo/" itemprop="url" rel="index"><span itemprop="name">Mongo</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="摘要：做一个有原则的程序员。"><a href="#摘要：做一个有原则的程序员。" class="headerlink" title="摘要：做一个有原则的程序员。"></a>摘要：做一个有原则的程序员。</h3><p>MongoDB 是高性能数据，但是在使用的过程中，大家偶尔还会碰到一些性能问题。MongoDB和其它关系型数据库相比，例如 SQL Server 、MySQL 、Oracle 相比来说，相对较新，很多人对其不是很熟悉，所以很多开发、DBA往往是注重功能的实现，而忽视了性能的要求。其实，MongoDB和 SQL Server 、MySQL 、Oracle 一样，一个 数据库对象的设计调整、索引的创建、语句的优化，都会对性能产生巨大的影响。</p>
-<p>为了充分挖掘MongoDB性能，现简单总计了以下18条，欢迎大家一起来持续总结完善。</p>
-<h2 id="（1）文档中的-id键推荐使用默认值，禁止向-id中保存自定义的值。"><a href="#（1）文档中的-id键推荐使用默认值，禁止向-id中保存自定义的值。" class="headerlink" title="（1）文档中的_id键推荐使用默认值，禁止向_id中保存自定义的值。"></a>（1）文档中的_id键推荐使用默认值，禁止向_id中保存自定义的值。</h2><p>​解读： MongoDB文档中都会有一个“_id”键，默认是个ObjectID对象（标识符中包含时间戳、机器ID、进程ID和计数器）。MongoDB在指定_id与不指定_id插入时 速度相差很大，指定_id会减慢插入的速率。<br>​</p>
-<h2 id="（2）推荐使用短字段名。"><a href="#（2）推荐使用短字段名。" class="headerlink" title="（2）推荐使用短字段名。"></a>（2）推荐使用短字段名。</h2><p>​解读：与关系型数据库不同，MongoDB集合中的每一个文档都需要存储字段名，长字段名会需要更多的存储空间。</p>
-<h2 id="（3）MongoDB索引可以提高文档的查询、更新、删除、排序操作，所以结合业务需求，适当创建索引。"><a href="#（3）MongoDB索引可以提高文档的查询、更新、删除、排序操作，所以结合业务需求，适当创建索引。" class="headerlink" title="（3）MongoDB索引可以提高文档的查询、更新、删除、排序操作，所以结合业务需求，适当创建索引。"></a>（3）MongoDB索引可以提高文档的查询、更新、删除、排序操作，所以结合业务需求，适当创建索引。</h2><h2 id="（4）每个索引都会占用一些空间，并且导致插入操作的资源消耗，因此，建议每个集合的索引数尽量控制在5个以内。"><a href="#（4）每个索引都会占用一些空间，并且导致插入操作的资源消耗，因此，建议每个集合的索引数尽量控制在5个以内。" class="headerlink" title="（4）每个索引都会占用一些空间，并且导致插入操作的资源消耗，因此，建议每个集合的索引数尽量控制在5个以内。"></a>（4）每个索引都会占用一些空间，并且导致插入操作的资源消耗，因此，建议每个集合的索引数尽量控制在5个以内。</h2><h2 id="（5）对于包含多个键的查询，创建包含这些键的复合索引是个不错的解决方案。复合索引的键值顺序很重要，理解索引最左前缀原则。"><a href="#（5）对于包含多个键的查询，创建包含这些键的复合索引是个不错的解决方案。复合索引的键值顺序很重要，理解索引最左前缀原则。" class="headerlink" title="（5）对于包含多个键的查询，创建包含这些键的复合索引是个不错的解决方案。复合索引的键值顺序很重要，理解索引最左前缀原则。"></a>（5）对于包含多个键的查询，创建包含这些键的复合索引是个不错的解决方案。复合索引的键值顺序很重要，理解索引最左前缀原则。</h2><p>解读：例如在test集合上创建组合索引{a:1,b:1,c:1}。执行以下7个查询语句：</p>
-<p>db.test.find({a:”hello”}) // 1<br>db.test.find({b:”sogo”, a:”hello”}) // 2<br>db.test.find({a:”hello”,b:”sogo”, c:”666”}) // 3<br>db.test.find({c:”666”, a:”hello”}) // 4<br>db.test.find({b:”sogo”, c:”666”}) // 5<br>db.test.find({b:”sogo” }) // 6<br>db.test.find({c:”666”}) // 7<br>以上查询语句可能走索引的是1、2、3、4<br>查询应包含最左索引字段，以索引创建顺序为准，与查询字段顺序无关。<br>最少索引覆盖最多查询。</p>
-<h2 id="（6）TTL-索引（time-to-live-index，具有生命周期的索引），使用TTL索引可以将超时时间的文档老化，一个文档到达老化的程度之后就会被删除。"><a href="#（6）TTL-索引（time-to-live-index，具有生命周期的索引），使用TTL索引可以将超时时间的文档老化，一个文档到达老化的程度之后就会被删除。" class="headerlink" title="（6）TTL 索引（time-to-live index，具有生命周期的索引），使用TTL索引可以将超时时间的文档老化，一个文档到达老化的程度之后就会被删除。"></a>（6）TTL 索引（time-to-live index，具有生命周期的索引），使用TTL索引可以将超时时间的文档老化，一个文档到达老化的程度之后就会被删除。</h2><p>解读：创建TTL的索引必须是日期类型。TTL索引是一种单字段索引，不能是复合索引。TTL删除文档后台线程每60s移除失效文档。不支持定长集合。</p>
-<h2 id="（7）需要在集合中某字段创建索引，但集合中大量的文档不包含此键值时，建议创建稀疏索引。"><a href="#（7）需要在集合中某字段创建索引，但集合中大量的文档不包含此键值时，建议创建稀疏索引。" class="headerlink" title="（7）需要在集合中某字段创建索引，但集合中大量的文档不包含此键值时，建议创建稀疏索引。"></a>（7）需要在集合中某字段创建索引，但集合中大量的文档不包含此键值时，建议创建稀疏索引。</h2><p>解读：索引默认是密集型的，这意味着，即使文档的索引字段缺失，在索引中也存在着一个对应关系。在稀疏索引中，只有包含了索引键值的文档才会出现。</p>
-<h2 id="（8）创建文本索引时字段指定text，而不是1或者-1。每个集合只有一个文本索引，但是它可以为任意多个字段建立索引。"><a href="#（8）创建文本索引时字段指定text，而不是1或者-1。每个集合只有一个文本索引，但是它可以为任意多个字段建立索引。" class="headerlink" title="（8）创建文本索引时字段指定text，而不是1或者-1。每个集合只有一个文本索引，但是它可以为任意多个字段建立索引。"></a>（8）创建文本索引时字段指定text，而不是1或者-1。每个集合只有一个文本索引，但是它可以为任意多个字段建立索引。</h2><p>解读：文本搜索速度快很多，推荐使用文本索引替代对集合文档的多字段的低效查询。</p>
-<h2 id="（9）使用findOne在数据库中查询匹配多个项目，它就会在自然排序文件集合中返回第一个项目。如果需要返回多个文档，则使用find方法。"><a href="#（9）使用findOne在数据库中查询匹配多个项目，它就会在自然排序文件集合中返回第一个项目。如果需要返回多个文档，则使用find方法。" class="headerlink" title="（9）使用findOne在数据库中查询匹配多个项目，它就会在自然排序文件集合中返回第一个项目。如果需要返回多个文档，则使用find方法。"></a>（9）使用findOne在数据库中查询匹配多个项目，它就会在自然排序文件集合中返回第一个项目。如果需要返回多个文档，则使用find方法。</h2><h2 id="（10）如果查询无需返回整个文档或只是用来判断键值是否存在，可以通过投影（映射）来限制返回字段，减少网络流量和客户端的内存使用。"><a href="#（10）如果查询无需返回整个文档或只是用来判断键值是否存在，可以通过投影（映射）来限制返回字段，减少网络流量和客户端的内存使用。" class="headerlink" title="（10）如果查询无需返回整个文档或只是用来判断键值是否存在，可以通过投影（映射）来限制返回字段，减少网络流量和客户端的内存使用。"></a>（10）如果查询无需返回整个文档或只是用来判断键值是否存在，可以通过投影（映射）来限制返回字段，减少网络流量和客户端的内存使用。</h2><p>解读：既可以通过设置{key:1}来显式指定返回的字段，也可以设置{key:0}指定需要排除的字段。</p>
-<h2 id="（11）除了前缀样式查询，正则表达式查询不能使用索引，执行的时间比大多数选择器更长，应节制性地使用它们。"><a href="#（11）除了前缀样式查询，正则表达式查询不能使用索引，执行的时间比大多数选择器更长，应节制性地使用它们。" class="headerlink" title="（11）除了前缀样式查询，正则表达式查询不能使用索引，执行的时间比大多数选择器更长，应节制性地使用它们。"></a>（11）除了前缀样式查询，正则表达式查询不能使用索引，执行的时间比大多数选择器更长，应节制性地使用它们。</h2><h2 id="（12）在聚合运算中，-要在match要在-group前面，通过-前置，可以减少match前置，可以减少-group-操作符要处理的文档数量。"><a href="#（12）在聚合运算中，-要在match要在-group前面，通过-前置，可以减少match前置，可以减少-group-操作符要处理的文档数量。" class="headerlink" title="（12）在聚合运算中，$要在match要在$group前面，通过$前置，可以减少match前置，可以减少$ group 操作符要处理的文档数量。"></a>（12）在聚合运算中，$要在match要在$group前面，通过$前置，可以减少match前置，可以减少$ group 操作符要处理的文档数量。</h2><h2 id="（13）通过操作符对文档进行修改，通常可以获得更好的性能，因为，不需要往返服务器来获取并修改文档数据，可以在序列化和传输数据上花费更少的时间。"><a href="#（13）通过操作符对文档进行修改，通常可以获得更好的性能，因为，不需要往返服务器来获取并修改文档数据，可以在序列化和传输数据上花费更少的时间。" class="headerlink" title="（13）通过操作符对文档进行修改，通常可以获得更好的性能，因为，不需要往返服务器来获取并修改文档数据，可以在序列化和传输数据上花费更少的时间。"></a>（13）通过操作符对文档进行修改，通常可以获得更好的性能，因为，不需要往返服务器来获取并修改文档数据，可以在序列化和传输数据上花费更少的时间。</h2><h2 id="（14）批量插入（batchInsert）可以减少数据向服务器的提交次数，提高性能。但是批量提交的BSON-Size不超过48MB。"><a href="#（14）批量插入（batchInsert）可以减少数据向服务器的提交次数，提高性能。但是批量提交的BSON-Size不超过48MB。" class="headerlink" title="（14）批量插入（batchInsert）可以减少数据向服务器的提交次数，提高性能。但是批量提交的BSON Size不超过48MB。"></a>（14）批量插入（batchInsert）可以减少数据向服务器的提交次数，提高性能。但是批量提交的BSON Size不超过48MB。</h2><h2 id="（15）禁止一次取出太多的数据进行排序，MongoDB目前支持对32M以内的结果集进行排序。如果需要排序，请尽量限制结果集中的数据量。"><a href="#（15）禁止一次取出太多的数据进行排序，MongoDB目前支持对32M以内的结果集进行排序。如果需要排序，请尽量限制结果集中的数据量。" class="headerlink" title="（15）禁止一次取出太多的数据进行排序，MongoDB目前支持对32M以内的结果集进行排序。如果需要排序，请尽量限制结果集中的数据量。"></a>（15）禁止一次取出太多的数据进行排序，MongoDB目前支持对32M以内的结果集进行排序。如果需要排序，请尽量限制结果集中的数据量。</h2><h2 id="（16）查询中的某些-操作符可能会导致性能低下，如操作符可能会导致性能低下，如-ne，-，not，-exists，-nin，-or尽量在业务中不要使用。"><a href="#（16）查询中的某些-操作符可能会导致性能低下，如操作符可能会导致性能低下，如-ne，-，not，-exists，-nin，-or尽量在业务中不要使用。" class="headerlink" title="（16）查询中的某些$操作符可能会导致性能低下，如操作符可能会导致性能低下，如$ne，$，not，$exists，$nin，$or尽量在业务中不要使用。"></a>（16）查询中的某些$操作符可能会导致性能低下，如操作符可能会导致性能低下，如$ne，$，not，$exists，$nin，$or尽量在业务中不要使用。</h2><p>a) $exist:因为松散的文档结构导致查询必须遍历每一个文档；<br>b) $ne:如果当取反的值为大多数，则会扫描整个索引；<br>c) $not:可能会导致查询优化器不知道应当使用哪个索引，所以会经常退化为全表扫描；<br>d) $nin:全表扫描；<br>e) $有多个条件就会查询多少次，最后合并结果集，应该考虑装换为or:有多个条件就会查询多少次，最后合并结果集，应该考虑装换为$in。</p>
-<h2 id="17）固定集合可以用于记录日志，其插入数据更快，可以实现在插入数据时，淘汰最早的数据。需求分析和设计时，可考虑此特性，即提高了性能，有省去了删除动作。"><a href="#17）固定集合可以用于记录日志，其插入数据更快，可以实现在插入数据时，淘汰最早的数据。需求分析和设计时，可考虑此特性，即提高了性能，有省去了删除动作。" class="headerlink" title="17）固定集合可以用于记录日志，其插入数据更快，可以实现在插入数据时，淘汰最早的数据。需求分析和设计时，可考虑此特性，即提高了性能，有省去了删除动作。"></a>17）固定集合可以用于记录日志，其插入数据更快，可以实现在插入数据时，淘汰最早的数据。需求分析和设计时，可考虑此特性，即提高了性能，有省去了删除动作。</h2><p>​解读：固定集合需要显式创建，指定Size的大小，还能够指定文档的数量。集合不管先达到哪一个限制，之后插入的新文档都会把最老的文档移出。</p>
-<h2 id="（18）集合中文档的数据量会影响查询性能，为保持适量，需要定期归档"><a href="#（18）集合中文档的数据量会影响查询性能，为保持适量，需要定期归档" class="headerlink" title="（18）集合中文档的数据量会影响查询性能，为保持适量，需要定期归档"></a>（18）集合中文档的数据量会影响查询性能，为保持适量，需要定期归档</h2><p>转载时请注明作者 <a target="_blank" rel="noopener" href="https://blog.fundebug.com/2018/09/19/18-principle-to-improve-mongodb-performance">Fundebug</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/" class="post-title-link" itemprop="url">zip压缩工具、tar打包、打包并压缩</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-24 10:29:49" itemprop="dateCreated datePublished" datetime="2020-07-24T10:29:49+00:00">2020-07-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>#　一、zip压缩工具</p>
-<p>在Windows和Linux中都常用。可以压缩目录和文件，压缩目录时，需要指定目录下的文件。压缩后源文件不删除。示例：</p>
-<h2 id="zip-1-txt-zip-1-txt-（压缩文件，先目标文件名，再源文件名）"><a href="#zip-1-txt-zip-1-txt-（压缩文件，先目标文件名，再源文件名）" class="headerlink" title="zip 1.txt.zip 1.txt （压缩文件，先目标文件名，再源文件名）"></a>zip 1.txt.zip 1.txt （压缩文件，先目标文件名，再源文件名）</h2><p> adding: 1.txt (deflated 64%)</p>
-<p>压缩目录时需要加上-r选项，如下：</p>
-<h2 id="zip-r-1-txt-zip-1"><a href="#zip-r-1-txt-zip-1" class="headerlink" title="zip -r 1.txt.zip 1/"></a>zip -r 1.txt.zip 1/</h2><p> adding: 1/ (stored 0%)</p>
-<p> adding: 1/11/ (stored 0%)</p>
-<p> adding: 1/11/111/ (stored 0%)</p>
-<p> adding: 1/1.txt (stored 0%)</p>
-<p>unzip命令：解压.zip格式的文件。</p>
-<p>若没有该命令，用yum工具安装。</p>
-<p>示例：</p>
-<h2 id="unzip-3-txt-zip"><a href="#unzip-3-txt-zip" class="headerlink" title="unzip 3.txt.zip"></a>unzip 3.txt.zip</h2><p>Archive:  3.txt.zip</p>
-<p>replace 1/1.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: y  (因为原来的文件还在，询问是否覆盖）</p>
-<p>extracting: 1/1.txt</p>
-<p>-d：解压时指定路径。不可指定文件名，加了文件名的话会生成一个以设定的文件名为名字的目录，再将解压的文件放在该目录下。</p>
-<h2 id="unzip-1-txt-zip-d-md2"><a href="#unzip-1-txt-zip-d-md2" class="headerlink" title="unzip 1.txt.zip -d md2/"></a>unzip 1.txt.zip -d md2/</h2><p>Archive:  1.txt.zip</p>
-<p> inflating: md2/1.txt              </p>
-<p>  creating: md2/1/</p>
-<p>extracting: md2/1/1.txt</p>
-<p>zip工具没有zcat那类的cat工具，唯一能用unzip -l+压缩文件名，查看压缩包内的文件列表。</p>
-<h1 id="二、tar打包"><a href="#二、tar打包" class="headerlink" title="二、tar打包"></a>二、tar打包</h1><p>tar本身就是一个打包工具，可以把目录打包成文件，把所有文件整合成一个大文件，方便复制或移动。打包后原文件不删除。</p>
-<p>格式：tar [-zjxcvfpP] filename tar</p>
-<p>-z：同时用gzip压缩。</p>
-<p>-j：同时用bzip2压缩。</p>
-<p>-J：同时用xz压缩。</p>
-<p>-x：解包或解压缩。</p>
-<p>-t：查看tar包里的文件。</p>
-<p>-c：建立一个tar包或者压缩文件包。</p>
-<p>-v：显示操作过程。</p>
-<p>-f：后跟文件名，表示压缩后的文件名为filename，或者解压文件filename。</p>
-<p>多个参数组合的情况下，把-f写到最后面。</p>
-<p>-p：使用原文件的属性。不常用。</p>
-<p>-P：可使用绝对路径。不常用。</p>
-<p>–exclude filename：在打包或压缩时，不要将filename文件包括在内。排除文件或目录，不常用。</p>
-<p>-f参数后先跟目标文件名，再跟需打包的文件或目录。</p>
-<p>示例：</p>
-<h2 id="tar-cf-test-tar-test（建立tar包，文件名，再建立一个同样的会覆盖之前的）"><a href="#tar-cf-test-tar-test（建立tar包，文件名，再建立一个同样的会覆盖之前的）" class="headerlink" title="tar -cf test.tar test（建立tar包，文件名，再建立一个同样的会覆盖之前的）"></a>tar -cf test.tar test（建立tar包，文件名，再建立一个同样的会覆盖之前的）</h2><h2 id="tar-xvf-test-tar-test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）"><a href="#tar-xvf-test-tar-test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）" class="headerlink" title="tar -xvf   test.tar test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）"></a>tar -xvf   test.tar test（解压，显示操作过程，文件名，会覆盖前面的文件，不会询问是否覆盖）</h2><p>test/</p>
-<p>test/abc/</p>
-<p>test/abc/AC/</p>
-<p>test/12.txt</p>
-<h2 id="tar-tf-test-tar-（查看tar包内的文件）"><a href="#tar-tf-test-tar-（查看tar包内的文件）" class="headerlink" title="tar -tf test.tar （查看tar包内的文件）"></a>tar -tf test.tar （查看tar包内的文件）</h2><p>test/</p>
-<p>test/abc/</p>
-<p>test/abc/AC/</p>
-<p>test/12.txt</p>
-<p>–exclude用法：可使用“*.txt”等。</p>
-<h2 id="mkdir-test111-test222"><a href="#mkdir-test111-test222" class="headerlink" title="mkdir test111/test222"></a>mkdir test111/test222</h2><h2 id="tar-cvf-test111-tar-–exclude-test222-test111"><a href="#tar-cvf-test111-tar-–exclude-test222-test111" class="headerlink" title="tar -cvf test111.tar –exclude test222 test111"></a>tar -cvf test111.tar –exclude test222 test111</h2><p>test111/</p>
-<p>test111/1.txt</p>
-<p>这样就不会将test222目录打包进来。</p>
-<p>三、打包并压缩</p>
-<p>tar可在打包时直接压缩，支持gzip压缩、bzip2压缩和xz压缩。</p>
-<p>使用-z选项可压缩成gzip格式的文件，示例：</p>
-<h2 id="tar-czvf-test123-tar-gz-test"><a href="#tar-czvf-test123-tar-gz-test" class="headerlink" title="tar -czvf test123.tar.gz test"></a>tar -czvf test123.tar.gz test</h2><p>test/</p>
-<p>test/abc/</p>
-<p>test/abc/AC/</p>
-<p>test/12.txt</p>
-<p>test/test123.tar.gz</p>
-<p>test/test12.tar.gz</p>
-<h2 id="tar-xvzf-test123-tar-gz-（可用-zx选项，解压-tar-gz格式的压缩包）"><a href="#tar-xvzf-test123-tar-gz-（可用-zx选项，解压-tar-gz格式的压缩包）" class="headerlink" title="tar -xvzf test123.tar.gz （可用-zx选项，解压.tar.gz格式的压缩包）"></a>tar -xvzf test123.tar.gz （可用-zx选项，解压.tar.gz格式的压缩包）</h2><p>-j和-J是同样的用法。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/" class="post-title-link" itemprop="url">盘点国内外优秀公共DNS</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-24 10:03:57" itemprop="dateCreated datePublished" datetime="2020-07-24T10:03:57+00:00">2020-07-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DNS/" itemprop="url" rel="index"><span itemprop="name">DNS</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分国外和国内两部分（可以各取所需）："><a href="#分国外和国内两部分（可以各取所需）：" class="headerlink" title="分国外和国内两部分（可以各取所需）："></a>分国外和国内两部分（可以各取所需）：</h2><h3 id="国外的9个优秀DNS服务器："><a href="#国外的9个优秀DNS服务器：" class="headerlink" title="国外的9个优秀DNS服务器："></a>国外的9个优秀DNS服务器：</h3><h2 id="1-谷歌的公共DNS服务器"><a href="#1-谷歌的公共DNS服务器" class="headerlink" title="1.谷歌的公共DNS服务器"></a>1.谷歌的公共DNS服务器</h2><p>主DNS：8.8.8.8<br>辅DNS：8.8.4.4<br>谷歌的免费DNS服务器通常被列为最好的，它们易于记忆，并且每个人都可以使用。它甚至可以提供令人印象深刻的速度。</p>
-<p>谷歌DNS的主要优势来自他们作为一家公司的声誉。谷歌每年收入极多，有能力提供最稳定和更有弹性的DNS服务器。</p>
-<p>这个DNS服务器的唯一问题是它们存储有关您的运营的信息，如果美国政府决定需要这些信息，它们可以与第三方共享。但是，对于不担心此问题的用户，Google通常被认为是最好的DNS服务器。</p>
-<h2 id="2-Norton-ConnectSafe"><a href="#2-Norton-ConnectSafe" class="headerlink" title="2. Norton ConnectSafe"></a>2. Norton ConnectSafe</h2><p>主DNS： 199.85.126.10<br>辅DNS： 199.85.127.10<br>诺顿以其出色的防病毒，互联网安全服务和产品而闻名。但是，人们不知道他们的DNS服务器也不会令人失望。</p>
-<p>该DNS地址可防止恶意软件和诈骗。这是他们可用的三个级别的互联网防护DNS中的第一个。</p>
-<p>第2个是199.85.126.20和199.85.127.20，还限制了带有色情内容的网站，第3个是199.85.126.30和199.85.126.30，增加了阻止诺顿认为非家庭友好的内容，如果你很感兴趣，您可以在Norton ConnectSafe - DNS常见问题中找到非家庭友好内容列表。</p>
-<p>这些选项使Norton ConnectSafe成为父母的父母可以轻松选择的，这些孩子希望保护他们免受在线不需要的资料的侵害。</p>
-<p>##　3. OpenDNS<br>主DNS： 208.67.222.222<br>辅DNS： 208.67.220.220<br>OpenDNS是今天仍然存在的另一个老竞争对手，是搜索发现的几个最好的DNS服务器列表中另一个常见的候选者。它的质量与Google的DNS效率相当。</p>
-<p>同样，对于关心孩子互联网安全的用户，OpenDNS提供了一项名为OpenDNS FamilyShield的服务，可以阻止成人内容（可在服务器208.67.222.123和208.67.220.123获得）。</p>
-<h2 id="4-DNS-Watch"><a href="#4-DNS-Watch" class="headerlink" title="4. DNS Watch"></a>4. DNS Watch</h2><p>主DNS： 84.200.69.80<br>辅DNS： 84.200.70.40<br>DNS Watch专注于透明度和自由选择，提供最好的DNS服务器，不受任何形式的审查。他们还保证不会在他们的服务器上存储任何信息，并且他们的解析器不会设置为记录您的任何数据。</p>
-<p>他们的形象是无私的服务和团队。他们唯一的目的是为每个人提供高效的互联网。他们还声称，他们不是一家大公司，这有助于避免政府监管。所以对于那里的自由爱好者来说，这是一个很好的选择。</p>
-<p>此外，为了跟上他们的透明态度，他们甚至还提供免费DNS服务器的实时统计数据。这种透明性使它们成为最佳DNS服务器的良好候选者，至少在可信度和匿名DNS服务器方面。</p>
-<h2 id="5-Comodo安全DNS"><a href="#5-Comodo安全DNS" class="headerlink" title="5. Comodo安全DNS"></a>5. Comodo安全DNS</h2><p>主DNS： 8.26.56.26<br>辅DNS： 8.20.247.20<br>另一个易于设置的服务器。</p>
-<p>其中一个有利的一面的科摩多安全DNS是它跨越全球15个节点的事实。在每个大陆上，每个节点包含几个服务器，准备为本地用户提供服务。这使得Comodo Secure DNS成为用户的绝佳选择。</p>
-<p>关于DNS服务器速度的许多问题之一是您与其服务器的距离。</p>
-<p>无论您身在何处，Comodo的全球报道都能让它快速发展。众所周知，Comodo Secure DNS是最好的DNS服务器之一，因为它还可以让您远离恶意软件和骗局网站。他们会定期更新阻止列表。</p>
-<p>以合理的速度进行全球覆盖，再加上它自动检测“未使用”或“重影”页面的事实，使其成为最佳DNS服务器标题的引人注目的选择。特别推荐那些渴望可公开访问且安全的DNS服务器的用户。</p>
-<h2 id="6-威瑞信"><a href="#6-威瑞信" class="headerlink" title="6.威瑞信"></a>6.威瑞信</h2><p>主DNS： 64.6.64.6<br>辅DNS： 64.6.65.6<br>Verisign的服务基于两个主题：作为匿名DNS服务器，并提供恶意软件和恶意网站的保护。</p>
-<p>他们特别指出，让客户知道他们不会向第三方出售他们的信息，也不会向用户提供任何广告。</p>
-<h2 id="7-OpenNIC"><a href="#7-OpenNIC" class="headerlink" title="7. OpenNIC"></a>7. OpenNIC</h2><p>主DNS： 192.95.54.3<br>辅DNS： 192.95.54.1<br>OpenNIC是那些不想弄清楚最接近其位置的服务器的用户的绝佳选择。</p>
-<p>此处列出的DNS服务器只是它们可用的大量服务器的一部分。如果您访问他们的网站，您不仅可以查找最接近您所在位置的DNS，还可以让该网站自动为您执行此操作。这样你就可以省去寻找最佳DNS的麻烦。</p>
-<h2 id="8-GreenTeamDNS"><a href="#8-GreenTeamDNS" class="headerlink" title="8. GreenTeamDNS"></a>8. GreenTeamDNS</h2><p>主DNS： 81.218.119.11<br>辅DNS： 209.88.198.133<br>有关家庭友好型互联网的最佳DNS服务器的另一名亚军，它不仅会阻止带有色情内容的网站，还会阻止包含恶意软件，僵尸程序以及与暴力和毒品相关的网站。</p>
-<p>如前所述，对于父母来说，这尤其有用。</p>
-<h2 id="9-Cloudflare-DNS"><a href="#9-Cloudflare-DNS" class="headerlink" title="9. Cloudflare DNS"></a>9. Cloudflare DNS</h2><p>DNS： 1.1.1.1</p>
-<p>由职业的网站安全加速服务提供商cloudflare提供，新发布不久，主打安全、隐私、迅速。自用过cloudflare家的cdn服务，感觉还不错</p>
-<h1 id="国内优秀公共DNS服务："><a href="#国内优秀公共DNS服务：" class="headerlink" title="国内优秀公共DNS服务："></a>国内优秀公共DNS服务：</h1><h2 id="1、114DNS-（http-www-114dns-com-）"><a href="#1、114DNS-（http-www-114dns-com-）" class="headerlink" title="1、114DNS （http://www.114dns.com/）"></a>1、114DNS （<a target="_blank" rel="noopener" href="http://www.114dns.com/%EF%BC%89">http://www.114dns.com/）</a></h2><p>114.114.114.114<br>114.114.115.115</p>
-<h2 id="2、腾讯-（https-www-dnspod-cn-Products-Public-DNS）"><a href="#2、腾讯-（https-www-dnspod-cn-Products-Public-DNS）" class="headerlink" title="2、腾讯 （https://www.dnspod.cn/Products/Public.DNS）"></a>2、腾讯 （<a target="_blank" rel="noopener" href="https://www.dnspod.cn/Products/Public.DNS%EF%BC%89">https://www.dnspod.cn/Products/Public.DNS）</a></h2><p>119.29.29.29<br>182.254.118.118</p>
-<h2 id="3、阿里-（http-alidns-com-）"><a href="#3、阿里-（http-alidns-com-）" class="headerlink" title="3、阿里 （http://alidns.com/）"></a>3、阿里 （<a target="_blank" rel="noopener" href="http://alidns.com/%EF%BC%89">http://alidns.com/）</a></h2><p>223.5.5.5<br>223.6.6.6</p>
-<h2 id="4、百度-（http-dudns-baidu-com-intro-publicdns-）"><a href="#4、百度-（http-dudns-baidu-com-intro-publicdns-）" class="headerlink" title="4、百度 （http://dudns.baidu.com/intro/publicdns/）"></a>4、百度 （<a target="_blank" rel="noopener" href="http://dudns.baidu.com/intro/publicdns/%EF%BC%89">http://dudns.baidu.com/intro/publicdns/）</a></h2><p>180.76.76.76</p>
-<h2 id="5、CNNIC-（http-www-sdns-cn-）"><a href="#5、CNNIC-（http-www-sdns-cn-）" class="headerlink" title="5、CNNIC （http://www.sdns.cn/）"></a>5、CNNIC （<a target="_blank" rel="noopener" href="http://www.sdns.cn/%EF%BC%89">http://www.sdns.cn/）</a></h2><p>1.2.4.8<br>210.2.4.8</p>
-<p><a href="www.simongong.net">西蒙宫博客</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">Hexo使用攻略-添加分类及标签</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-23 20:05:29" itemprop="dateCreated datePublished" datetime="2020-07-23T20:05:29+00:00">2020-07-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1、创建“分类”选项"><a href="#1、创建“分类”选项" class="headerlink" title="1、创建“分类”选项"></a>1、创建“分类”选项</h2><h3 id="1-1-生成“分类”页并添加tpye属性"><a href="#1-1-生成“分类”页并添加tpye属性" class="headerlink" title="1.1 生成“分类”页并添加tpye属性"></a>1.1 生成“分类”页并添加tpye属性</h3><p>打开命令行，进入博客所在文件夹。执行命令</p>
-<pre><code class="python">$ hexo new page categories</code></pre>
-<p>成功后会提示：</p>
-<pre><code class="python">INFO  Created: ~/Documents/blog/source/categories/index.md</code></pre>
-<p>根据上面的路径，找到index.md这个文件，打开后默认内容是这样的：</p>
-<pre><code class="python">---
-title: 文章分类
-date: 2017-05-27 13:47:40
----</code></pre>
-<p>添加type: “categories”到内容中，添加后是这样的：</p>
-<pre><code class="python">---
-title: 文章分类
-date: 2017-05-27 13:47:40
-type: &quot;categories&quot;
----</code></pre>
-<p>保存并关闭文件。</p>
-<h3 id="1-2-给文章添加“categories”属性"><a href="#1-2-给文章添加“categories”属性" class="headerlink" title="1.2 给文章添加“categories”属性"></a>1.2 给文章添加“categories”属性</h3><p>打开需要添加分类的文章，为其添加categories属性。下方的categories: web前端表示添加这篇文章到“web前端”这个分类。注意：hexo一篇文章只能属于一个分类，也就是说如果在“- web前端”下方添加“-xxx”，hexo不会产生两个分类，而是把分类嵌套（即该文章属于 “- web前端”下的 “-xxx ”分类）。</p>
-<pre><code class="python">---
-title: jQuery对表单的操作及更多应用
-date: 2017-05-26 12:12:57
-categories: 
-- web前端
----</code></pre>
-<p>至此，成功给文章添加分类，点击首页的“分类”可以看到该分类下的所有文章。当然，只有添加了categories: xxx的文章才会被收录到首页的“分类”中。</p>
-<h2 id="2、创建“标签”选项"><a href="#2、创建“标签”选项" class="headerlink" title="2、创建“标签”选项"></a>2、创建“标签”选项</h2><h3 id="2-1-生成“标签”页并添加tpye属性"><a href="#2-1-生成“标签”页并添加tpye属性" class="headerlink" title="2.1 生成“标签”页并添加tpye属性"></a>2.1 生成“标签”页并添加tpye属性</h3><p>打开命令行，进入博客所在文件夹。执行命令</p>
-<pre><code class="python">$ hexo new page tags</code></pre>
-<p>成功后会提示：</p>
-<pre><code class="python">INFO  Created: ~/Documents/blog/source/tags/index.md</code></pre>
-<p>根据上面的路径，找到index.md这个文件，打开后默认内容是这样的：</p>
-<pre><code class="python">---
-title: 标签
-date: 2017-05-27 14:22:08
----</code></pre>
-<p>添加type: “tags”到内容中，添加后是这样的：</p>
-<pre><code class="python">---
-title: 文章分类
-date: 2017-05-27 13:47:40
-type: &quot;tags&quot;
----</code></pre>
-<p>保存并关闭文件。</p>
-<h3 id="2-2-给文章添加“tags”属性"><a href="#2-2-给文章添加“tags”属性" class="headerlink" title="2.2 给文章添加“tags”属性"></a>2.2 给文章添加“tags”属性</h3><p>打开需要添加标签的文章，为其添加tags属性。下方的tags:下方的- jQuery - 表格</p>
-<ul>
-<li>表单验证就是这篇文章的标签了<pre><code class="python"></code></pre>
-</li>
-</ul>
-<hr>
-<p>title: jQuery对表单的操作及更多应用<br>date: 2017-05-26 12:12:57<br>categories: </p>
-<ul>
-<li>web前端<br>tags:</li>
-<li>jQuery</li>
-<li>表格</li>
-<li>表单验证</li>
-</ul>
-<hr>
-<p>```<br>至此，成功给文章添加分类，点击首页的“标签”可以看到该标签下的所有文章。当然，只有添加了tags: xxx的文章才会被收录到首页的“标签”中。</p>
-<p>细心的朋友可能已经发现，这两个的设置几乎一模一样！是的，没错，思路都是一样的。所以我们可以</p>
-<h3 id="打开scaffolds-post-md文件，在tages-上面加入categories-保存后，之后执行hexo-new-文章名命令生成的文件，页面里就有categories-项了。"><a href="#打开scaffolds-post-md文件，在tages-上面加入categories-保存后，之后执行hexo-new-文章名命令生成的文件，页面里就有categories-项了。" class="headerlink" title="打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行hexo new 文章名命令生成的文件，页面里就有categories:项了。"></a>打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行hexo new 文章名命令生成的文件，页面里就有categories:项了。</h3><p>scaffolds目录下，是新建页面的模板，执行新建命令时，是根据这里的模板页来完成的，所以可以在这里根据你自己的需求添加一些默认值。</p>
-<p>教程结束，赶紧去设置吧！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">pyppeteer使用及docker中产生大量僵尸进程的解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-23 16:50:35" itemprop="dateCreated datePublished" datetime="2020-07-23T16:50:35+00:00">2020-07-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/pyppeteer/" itemprop="url" rel="index"><span itemprop="name">pyppeteer</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>11k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>10 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="pyppeteer简介"><a href="#pyppeteer简介" class="headerlink" title="pyppeteer简介"></a>pyppeteer简介</h3><p>Puppeteer(中文翻译”操纵木偶的人”) 是 Google Chrome 团队官方的无界面（Headless）Chrome 工具，它是一个 Node 库，提供了一个高级的 API 来控制 DevTools协议上的无头版 Chrome 。也可以配置为使用完整（非无头）的 Chrome。Chrome 素来在浏览器界稳执牛耳，因此，Chrome Headless 必将成为 web 应用自动化测试的行业标杆。使用 Puppeteer，相当于同时具有 Linux 和 Chrome 双端的操作能力，应用场景可谓非常之多。此仓库的建立，即是尝试各种折腾使用 GoogleChrome Puppeteer；以期在好玩的同时，学到更多有意思的操作。<br>而pyppeteer 是对无头浏览器 puppeteer的 Python 封装，可以让你使用python来操作Chrome。</p>
-<p><a target="_blank" rel="noopener" href="https://www.lagou.com/lgeduarticle/github.com/miyakogi/pyppeteer">Pyppeteer的GIT</a><br><a target="_blank" rel="noopener" href="https://miyakogi.github.io/pyppeteer/reference.html">Pyppeteer官方文档</a></p>
-<p>使用过程中的问题<br>pyppeteer api提供的close（）命令无法真正的关闭浏览器，会造成很多的僵尸进程<br>websockets 版本太高导致报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close<br>chromium浏览器多开页面卡死问题<br>浏览器窗口很大，内容显示很小的问题<br>pyppeteer使用</p>
-<h3 id="pyppeteer安装"><a href="#pyppeteer安装" class="headerlink" title="pyppeteer安装"></a>pyppeteer安装</h3><pre><code class="bash">python3 -m pip install pyppeteer
-</code></pre>
-<p>在初次使用pyppeteer的时候他会自动下载chromium（看心情，大部分情况下可以用龟速形容），或者直接去官网下载最新版的浏览器然后在代码中指定浏览器的路径。<br><a target="_blank" rel="noopener" href="https://download-chromium.appspot.com/">chromium下载地址</a></p>
-<p>简单入门</p>
-<pre><code class="bash">import asynciofrom pyppeteer import launch
-
-async def main():
-    # 创建一个浏览器
-    browser = await launch(&#123;
-        &#39;executablePath&#39;: &#39;你下载的Chromium.app/Contents/MacOS/Chromium&#39;,
-    &#125;)
-    # 打开一个页面，同一个browser可以打开多个页面
-    page = await browser.newPage()
-    await page.goto(&#39;https://baidu.com&#39;) # 访问指定页面
-    await page.screenshot(path=&#39;example.png&#39;)  # 截图
-    await page.close() # 关闭页面
-    await browser.close() # 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）
-
-asyncio.get_event_loop().run_until_complete(main()）</code></pre>
-<p>运行上面这一段代码会产生一张页面截图，如果在运行中报错pyppeteer.errors.NetworkError: Protocol error Network.getCookies: Target close可以通过降低websockets 版本来解决</p>
-<pre><code class="bash">pip uninstall websockets #卸载websockets
-pip install websockets==6.0
-或者
-pip install websockets==6.0 --force-reinstall #指定安装6.0版本</code></pre>
-<h3 id="重要参数设置及方法"><a href="#重要参数设置及方法" class="headerlink" title="重要参数设置及方法"></a>重要参数设置及方法</h3><pre><code class="bash">import asynciofrom pyppeteer import launch
-
-
-async def intercept_request(req):
-    # 不加载css和img等资源
-    if req.resourceType in [&quot;image&quot;, &quot;media&quot;, &quot;eventsource&quot;, &quot;websocket&quot;, &quot;stylesheet&quot;, &quot;font&quot;]:
-        await req.abort() #连接请求
-    else:
-        res = &#123;
-            &quot;method&quot;: req.method,
-            &quot;url&quot;: req.url,
-            &quot;data&quot;: &quot;&quot; if req.postData == None else req.postData,
-            &quot;res&quot;: &quot;&quot; if req.response == None else req.response
-        &#125;
-        print(res) # 打印请求的内容
-        await  req.continue_() #继续请求，可以添加参数将请求地址重定向、改变请求的headers
-
-async def intercept_response(res):
-    resourceType = res.request.resourceType
-    # 拦截ajax请求获取数据
-    if resourceType in [&#39;xhr&#39;]:
-        resp = await res.json()
-        print(resp)# 这里可以操作mysql、redis或者设计一个class来保存数据
-
-async def main():
-    # 创建一个浏览器
-    browser = await launch(&#123;
-        &#39;executablePath&#39;: &#39;你下载的Chromium.app/Contents/MacOS/Chromium&#39;,
-        &#39;headless&#39;: False, # 关闭无头模式。主要在测试环境调试使用
-        &#39;devtools&#39;: True, # 打开 chromium 的 devtools与headless配个使用
-        &#39;args&#39;: [ 
-             &#39;--disable-extensions&#39;,
-             &#39;--hide-scrollbars&#39;,
-             &#39;--disable-bundled-ppapi-flash&#39;,
-             &#39;--mute-audio&#39;,
-             &#39;--no-sandbox&#39;,# --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错
-             &#39;--disable-setuid-sandbox&#39;,
-             &#39;--disable-gpu&#39;,
-          ],
-         &#39;dumpio&#39;: True, #把无头浏览器进程的 stderr 核 stdout pip 到主程序，也就是设置为 True 的话，chromium console 的输出就会在主程序中被打印出来
-    &#125;)
-    # 打开一个页面，同一个browser可以打开多个页面
-    page = await browser.newPage()
-    # 是否启用JS，enabled设为False，则无渲染效果，如果页面有ajax请求需要开启此项
-    await page.setJavaScriptEnabled(enabled=True)
-    # 是否允许拦截请求，如果开启可以注册的两个回调函数，在浏览器发出请求和获取到请求之前指向这两个函数。
-    await page.setRequestInterception(value=True)
-    page.on(&#39;request&#39;, intercept_request) # 请求的内容
-    page.on(&#39;response&#39;, intercept_response) # 响应的内容
-    await page.goto(&#39;https://baidu.com&#39;) # 访问指定页面
-    await page.screenshot(path=&#39;example.png&#39;)  # 截图
-    await page.close() # 关闭页面
-    await browser.close() # 关闭浏览器（实测中发现打开多个页面会产生大量僵尸进程）
-
-asyncio.get_event_loop().run_until_complete(main()）</code></pre>
-<h2 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h2><h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>当一个父进程以fork()系统调用建立一个新的子进程后，核心进程就会在进程表中给这个子进程分配一个进入点，然后将相关信息存储在该进入点所对应的进程表内。这些信息中有一项是其父进程的识别码。 而当这个子进程结束的时候（比如调用exit命令结束），其实他并没有真正的被销毁，而是留下一个称为僵尸进程（Zombie）的数据结构（系统调用exit的作用是使进程退出，但是也仅仅限于一个正常的进程变成了一个僵尸进程，并不能完全将其销毁）。此时原来进程表中的数据会被该进程的退出码（exit code）、执行时所用的CPU时间等数据所取代，这些数据会一直保留到系统将它传递给它的父进程为止。由此可见，defunct进程的出现时间是在子进程终止后，但是父进程尚未读取这些数据之前。<br>此时，该僵尸子进程已经放弃了几乎所有的内存空间，没有任何可执行代码，也不能被调度，仅仅在进程列表中保留一个位置，记载该进程的退出状态信息供其他进程收集，除此之外，僵尸进程不再占有任何存储空间。他需要他的父进程来为他收尸，如果他的父进程没有安装SIGCHLD信号处理函数调用wait 或 waitpid() 等待子进程结束，也没有显式忽略该信号，那么它就一直保持僵尸状态，如果这时候父进程结束了，那么init进程会自动接手这个子进程，为他收尸，他还是能被清除掉的。 拿Nginx作为例子，默认是作为后台守护进程。它是这么工作的。第一，Nginx创建一个子进程。第二，原始的Nginx进程退出了。第三，Nginx子进程被init进程给接收了。</p>
-<p>但是如果父进程是一个循环，不会结束，那么子进程就会一直保持僵尸状态，这就是系统中为什么有时候会有很多的僵尸进程。<br>一个子进程终止了，但一直被等待就变成了”僵尸“。<br>defunct状态下的僵尸进程是不能直接使用kill -9命令杀掉的，否则就不叫僵尸进程了。<br>Unix的进程是一个有序的树。每个进程可以派生子进程，每个进程具有一个除了最顶层以外的父进程，这个最顶层的进程是init进程。它是当你启动系统时由内核启动。这个init进程负责启动系统的其余部分，如启动SSH服务，从启动Docker守护进程，启动Apache / Nginx的，启动你的GUI桌面环境，等等。他们每个进程都可能会反过来派生出更多的子进程。</p>
-<p>如果一个进程终止会发生什么？bash（PID 5）进程终止，它变成了一个所谓的“停止活动的进程”，也称为“僵尸进程”。</p>
-<p>这时PID5要等待sshd2调用wait 或 waitpid() 然后彻底结束，假设sshd2没有调用相应的方法，那么PID5就会一直等待下去，当sshd2结束的时候PID5会被init进程接手然后处理掉。</p>
-<p>但是在docker中init 1往往是你的任务进程，需要不间断的运行不能退出，这就导致了僵尸进程无人清理越来越多，因此不建议在docker中直接运行脚本，而是先启动/bin/bash然后启动脚本</p>
-<pre><code class="bash">CMD [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -e &amp;&amp; 你的任务脚本&quot;]</code></pre>
-<p>但是这种方法也有问题，不能优雅的结束进程。假设你用kill发送SIGTERM信号给bash.Bash终止了，但是没有发送SIGTERM给它的子进程！ 当bash结束了，内核结束整个容器中的所有进程。包扩通过SIGKILL信号没有被干净的终结的进程。SIGKILL不能被捕获，所以进程是没有办法干净的终结。假设你运行的应用程序正忙于写文件；在写的过程中，应用被不干净的终止了这个文件可能会崩溃。不干净的终止是很坏的事情。很像把服务器的电源给拔掉。 但是为什么要关心init进程是否被SIGTERM给终结了呢？那是因为docker stop 发送 SIGTERM信号给init进程了。“docker stop” 应该干净的停止容器，以至于稍后你能够用“docker start”启动它。</p>
-<p>解决办法<br>在linux下找到该defunct僵尸进程的父进程，将该进程的父进程杀掉，然后init进程会自动接手其子进程并为子进程收尸。ps -ef | grep defunct_process_pid<br>docker中在启动真正的工作脚本之前先启动/bin/bash用来给僵尸进程收尸<br>docker环境搭建<br>镜像搭建<br>dockerfile文件</p>
-<pre><code class="bash">FROM centos:7
-RUN set -ex \
-    # 预安装所需组件
-    &amp;&amp; yum install -y wget tar libffi-devel zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make initscripts \
-    &amp;&amp; wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz \
-    &amp;&amp; tar -zxvf Python-3.6.0.tgz \
-    &amp;&amp; cd Python-3.6.0 \
-    &amp;&amp; ./configure prefix=/usr/local/python3 \
-    &amp;&amp; make \
-    &amp;&amp; make install \
-    &amp;&amp; make clean \
-    &amp;&amp; rm -rf /Python-3.6.0* \
-    &amp;&amp; yum install -y epel-release \
-    &amp;&amp; yum install -y python-pip
-# 设置默认为python3
-RUN set -ex \
-    # 备份旧版本python
-    &amp;&amp; mv /usr/bin/python /usr/bin/python27 \
-    &amp;&amp; mv /usr/bin/pip /usr/bin/pip-python2.7 \
-    # 配置默认为python3
-    &amp;&amp; ln -s /usr/local/python3/bin/python3.6 /usr/bin/python \
-    &amp;&amp; ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
-# 修复因修改python版本导致yum失效问题
-RUN set -ex \
-    &amp;&amp; sed -i &quot;s#/usr/bin/python#/usr/bin/python2.7#&quot; /usr/bin/yum \
-    &amp;&amp; sed -i &quot;s#/usr/bin/python#/usr/bin/python2.7#&quot; /usr/libexec/urlgrabber-ext-down \
-    &amp;&amp; yum install -y deltarpm
-# 基础环境配置
-RUN set -ex \
-    # 修改系统时区为东八区
-    &amp;&amp; rm -rf /etc/localtime \
-    &amp;&amp; ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-    &amp;&amp; yum install -y vim \
-    # 安装定时任务组件
-    &amp;&amp; yum -y install cronie
-# 支持中文
-RUN localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
-# chrome浏览器依赖
-RUN yum install kde-l10n-Chinese -y
-RUN yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 -y
-RUN yum install ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc -y
-# 更新pip版本
-RUN pip install --upgrade pip
-ENV LC_ALL zh_CN.UTF-8
-RUN mkdir -p /usr/src/scrapy
-COPY requirements.txt /usr/src/scrapy
-RUN pip install -i https://pypi.douban.com/simple/ -r /usr/src/scrapy/requirements.txt</code></pre>
-<p>docker-compose文件</p>
-<pre><code class="bash">version: &#39;3.3&#39;
-services:
-  scrapy:
-    privileged: true
-    build: scrapy
-    tty: true
-    volumes:
-      - type: bind
-        source: /爬虫文件路径
-        target: /usr/src/scrapy
-    ports:
-      - &quot;9999:9999&quot;
-    networks:
-      scrapynet:
-        ipv4_address: 172.19.0.8
-    command: [/bin/bash, -c, set -e &amp;&amp; python /usr/src/scrapy/job.py]
-
-networks:
-  scrapynet:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.19.0.0/24</code></pre>
-<p>command: [/bin/bash, -c, set -e &amp;&amp; python /usr/src/scrapy/job.py]命令解释</p>
-<p>/bin/bash 防止产生僵尸进程，-e 指令阻止bash把这个脚本当做简单的命令直接执行exec（）<br>python /usr/src/scrapy/job.py 真正的工作脚本<br>基于pyppeteer的爬虫脚本</p>
-<pre><code class="bash">import asyncio,random,psutil,os,signal,time
-from pyppeteer import launcher
-# hook  禁用 防止监测webdriver
-launcher.AUTOMATION_ARGS.remove(&quot;--enable-automation&quot;)
-from pyppeteer import launch
-async def intercept_request(req):
-    if req.resourceType in [&quot;image&quot;]:
-        await req.abort()
-    else:
-        res = &#123;
-            &quot;method&quot;: req.method,
-            &quot;url&quot;: req.url,
-            &quot;data&quot;: &quot;&quot; if req.postData == None else req.postData,
-            &quot;res&quot;: &quot;&quot; if req.response == None else req.response
-        &#125;
-        print(res)
-        await req.continue_()
-
-
-async def intercept_response(res):
-    resourceType = res.request.resourceType
-    if resourceType in [&#39;xhr&#39;]:
-        resp = await res.json()
-        print(resp)
-
-class newpage(object):
-    width, height = 1920, 1080
-    def __init__(self, page_url,chrome_browser):
-        self.url = page_url
-        self.browser = chrome_browser
-
-    async def run(self):
-        t = random.randint(1, 4)
-        tt = random.randint(t, 10)
-        await asyncio.sleep(tt)
-        try:
-            page = await self.browser.newPage()
-            await page.setUserAgent(
-                userAgent=&#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3521.2 Safari/537.36&#39;)
-            await page.setViewport(viewport=&#123;&#39;width&#39;: self.width, &#39;height&#39;: self.height&#125;)
-            # 是否启用JS，enabled设为False，则无渲染效果
-            await page.setJavaScriptEnabled(enabled=True)
-            await page.setRequestInterception(value=True)
-            page.on(&#39;request&#39;, intercept_request)
-            page.on(&#39;response&#39;, intercept_response)
-            await page.goto(self.url, options=&#123;&#39;timeout&#39;: 30000&#125;)
-            await page.waitFor(selectorOrFunctionOrTimeout=1000)
-            try:
-                await page.close()
-                return self.url
-            except BaseException as err:
-                return &quot;close_newpage: &#123;0&#125;&quot;.format(err)
-        except BaseException as err:
-            return &quot;newpage: &#123;0&#125;&quot;.format(err)
-
-class Browser(object):
-    width, height = 1920, 1080
-    browser = None
-    is_headless = True
-    url_list = []
-
-    def __init__(self,urls):
-        self.url_list = urls
-
-    # 封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程处理僵尸进程
-    def kill(self,name):
-        # win平台
-        # subprocess.Popen(&quot;taskkill /F /IM chrome.EXE &quot;, shell=True)
-
-        # linux平台
-        try:
-            pid = self.browser.process.pid
-            pgid = os.getpgid(pid)
-            # 强制结束
-            os.kill(pid, signal.SIGKILL)
-            print(&quot;结束进程：%d&quot; % pid)
-            print(&quot;父进程是：%d&quot; % pgid)
-            print(&quot;等待结果：%d&quot; % self.browser.process.wait())
-        except BaseException as err:
-            print(&quot;close: &#123;0&#125;&quot;.format(err))
-        time.sleep(3)
-        # 查看是否还有其他进程
-        for proc in psutil.process_iter():
-            if name in proc.name():
-                try:
-                    os.kill(proc.pid, signal.SIGTERM)
-                    print(&#39;已杀死[pid:%s]的进程[pgid：%s][名称：%s]&#39; % (proc.pid,pgid,proc.name()))
-                except BaseException as err:
-                    print(&quot;kill: &#123;0&#125;&quot;.format(err))
-
-    # 打开浏览器
-    async def newbrowser(self):
-        try:
-            self.browser = await launch(&#123;
-                &#39;headless&#39;: self.is_headless,
-                &#39;devtools&#39;: not self.is_headless,
-                &#39;dumpio&#39;: True,
-                &#39;autoClose&#39;: True,
-                # &#39;userDataDir&#39;: &#39;./userdata&#39;,
-                &#39;handleSIGTERM&#39;: True,
-                &#39;handleSIGHUP&#39;: True,
-                # &#39;executablePath&#39;:&#39;C:/Users/zhang/Desktop/chrome-win/chrome.exe&#39;,
-                &#39;args&#39;: [
-                    &#39;--no-sandbox&#39;,  # --no-sandbox 在 docker 里使用时需要加入的参数，不然会报错
-                    &#39;--disable-gpu&#39;,
-                    &#39;--disable-extensions&#39;,
-                    &#39;--hide-scrollbars&#39;,
-                    &#39;--disable-bundled-ppapi-flash&#39;,
-                    &#39;--mute-audio&#39;,
-                    &#39;--disable-setuid-sandbox&#39;,
-                    &#39;--disable-xss-auditor&#39;,
-                    &#39;--window-size=%d,%d&#39; % (self.width, self.height)
-                ]
-            &#125;)
-        except BaseException as err:
-            print(&quot;launch: &#123;0&#125;&quot;.format(err))
-
-        print(&#39;----打开浏览器----&#39;)
-
-    async def open(self):
-        await self.newbrowser()
-        try:
-            tasks = [asyncio.ensure_future(newpage(url,self.browser).run()) for url in self.url_list]
-            for task in asyncio.as_completed(tasks):
-                result = await task
-                print(&#39;Task ret: &#123;&#125;&#39;.format(result))
-        except BaseException as err:
-            print(&quot;open: &#123;0&#125;&quot;.format(err))
-        # browser.close()方法无法彻底退出chrome进程，这里我们自己封装了kill（）方法杀死chrome主进程，让init 1进程接管其僵尸子进程
-        # await self.browser.close()
-
-    def main(self):
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.open())
-        print(&#39;----关闭浏览器----&#39;)
-        self.kill(&#39;chrom&#39;)
-
-if __name__ == &#39;__main__&#39;:
-    url_list=[
-        &#39;https://www.baidu.com/&#39;,
-        &#39;https://www.baidu.com/&#39;,
-        &#39;https://www.baidu.com/&#39;,
-        &#39;https://www.baidu.com/&#39;,
-    ]
-    while True:
-        # 不停的添加任务
-        o = Browser(url_list)
-        print(o.main())</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/" class="post-title-link" itemprop="url">拥抱人工智能，从机器学习开始</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 16:42:58" itemprop="dateCreated datePublished" datetime="2020-07-22T16:42:58+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>8.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>8 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h2><h3 id="1-机器学习：一种实现人工智能的方法"><a href="#1-机器学习：一种实现人工智能的方法" class="headerlink" title="1. 机器学习：一种实现人工智能的方法"></a>1. 机器学习：一种实现人工智能的方法</h3><h3 id="2-机器学习算法：是使计算机具有智能的关键"><a href="#2-机器学习算法：是使计算机具有智能的关键" class="headerlink" title="2. 机器学习算法：是使计算机具有智能的关键"></a>2. 机器学习算法：是使计算机具有智能的关键</h3><h3 id="3-Anaconda：初学Python、入门机器学习的首选"><a href="#3-Anaconda：初学Python、入门机器学习的首选" class="headerlink" title="3. Anaconda：初学Python、入门机器学习的首选"></a>3. Anaconda：初学Python、入门机器学习的首选</h3><h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><h2 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h2><p>自“阿尔法狗”（AlphaGo）完胜人类围棋顶尖高手后，有关人工智能（AI）的讨论就从未停歇。工业4.0方兴未艾，人工智能引领的工业5.0时代却已悄然苏醒。<br>人工智能的火爆离不开互联网、云计算、大数据、芯片和软件等技术的发展，而深度学习的进步却是当今人工智能大爆炸的核心驱动。<br>作为一个跨学科产物，人工智能的内容浩如烟海，各种复杂的模型和算法更让人望而生畏。那么作为一个普通程序员，在已有语言技能的前提下，该如何拥抱变化，向人工智能靠拢？如何在自己的工作中应用人工智能？学习人工智能应该从哪里开始？ 人工智能并非遥不可及，人人都可以做人工智能！<br>人工智能是让机器像人一样思考，而机器学习则是人工智能的核心，是使计算机具有智能的根本途径。学习人工智能，首先要了解机器学习的相关算法。 本文我们将与大家一起探讨机器学习的相关算法，共同揭开人工智能的神秘面纱。</p>
-<h2 id="1-机器学习"><a href="#1-机器学习" class="headerlink" title="1. 机器学习"></a>1. 机器学习</h2><p>回目录</p>
-<p>一种实现人工智能的方法</p>
-<p>智能是现代生活中一个很常见的词，例如智能手机、智能家居产品、智能机器人等，但是不同的场合智能的含义也不一样。我们所说的“人工智能”（Artificial Intelligence, AI）则是指让机器像人一样思考，具备人类的智能。</p>
-<p>从诞生至今，人工智能这个领域经历了一次又一次的繁荣与低谷，其发展上大体上可以分为“推理期”，“知识期”和“学习期”。推理期主要注重逻辑推理但是感知器过于简单；知识期虽然建立了各种各样的专家系统，但是自主学习能力和神经网络资源能力都不足。学习期机器能够自己学习知识，而直到1980年后，机器学习因其在很多领域的出色表现，才逐渐成为热门学科。近代，随着互联网、云计算、大数据的发展，以及GPU、芯片和软件技术的提升，深度学习开始兴起，拓展了人工智能的领域范围，也推动着社会从数字化向智能化的变革。</p>
-<p>人工智能的主要包含几个部分：首先是感知，包括视觉、语音、语言;然后是决策，例如做出预测和判断;最后是反馈，如果想做一套完整的系统，就像机器人或是自动驾驶，则需要一个反馈。 人工智能众多的能力中，很重要的一个能力是其学习能力-机器学习，它是人工智能的核心，是使计算机具有智能的关键。不能自我学习，人工智能也只是徒有其表。</p>
-<p>认识人工智能，还需要理清几个概念之间的关系：人工智能是一个大的概念，是让机器像人一样思考甚至超越人类；而机器学习是实现人工智能的一种方法，是使用算法来解析数据、从中学习，然后对真实世界中的事件做出决策和预测；深度学习是机器学习的一种实现方式，通过模拟人神经网络的方式来训练网络；而统计学是机器学习和神经网络的一种基础知识。</p>
-<p>机器学习最大的特点是利用数据而不是指令来进行各种工作，其学习过程主要包括：数据的特征提取、数据预处理、训练模型、测试模型、模型评估改进等几部分。接下来我们重点介绍机器学习过程中的常见算法。</p>
-<h2 id="2-机器学习算法：是使计算机具有智能的关键-1"><a href="#2-机器学习算法：是使计算机具有智能的关键-1" class="headerlink" title="2. 机器学习算法：是使计算机具有智能的关键"></a>2. 机器学习算法：是使计算机具有智能的关键</h2><p>回目录</p>
-<p>是使计算机具有智能的关键 算法是通过使用已知的输入和输出以某种方式“训练”以对特定输入进行响应。代表着用系统的方法描述解决问题的策略机制。人工智能的发展离不开机器学习算法的不断进步。 机器学习算法可以分为传统的机器学习算法和深度学习。传统机器学习算法主要包括以下五类：</p>
-<p>回归：建立一个回归方程来预测目标值，用于连续型分布预测<br>分类：给定大量带标签的数据，计算出未知标签样本的标签取值<br>聚类：将不带标签的数据根据距离聚集成不同的簇，每一簇数据有共同的特征<br>关联分析：计算出数据之间的频繁项集合<br>降维：原高维空间中的数据点映射到低维度的空间中</p>
-<p>下面我们将选取几种常见的算法，一一介绍。</p>
-<h3 id="1-线性回归：找到一条直线来预测目标值"><a href="#1-线性回归：找到一条直线来预测目标值" class="headerlink" title="1. 线性回归：找到一条直线来预测目标值"></a>1. 线性回归：找到一条直线来预测目标值</h3><p>一个简单的场景：已知房屋价格与尺寸的历史数据，问面积为2000时，售价为多少？</p>
-<p>此类问题可以用回归算法来解决。回归是指确定两种或两种以上变量间相互依赖的定量关系的一种统计分析方法，通过建立一个回归方程（函数）来估计特征值对应的目标变量的可能取值。 最常见的是线性回归（Y= a X + b），即找到一条直线来预测目标值。回归的求解就是求解回归方程的回归系数（a，b）的过程，并且使误差最小。 房价场景中，根据房屋面积和售价的关系，求出回归方程，则可以预测给定房屋面积时的售价。</p>
-<p>线性回归的应用非常广泛，例如：</p>
-<p>预测客户终生价值： 基于老客户历史数据与客户生命周期的关联关系，建立线性回归模型，预测新客户的终生价值，进而开展针对性的活动。</p>
-<p>机场客流量分布预测： 以海量机场WiFi数据及安检登机值机数据，通过数据算法实现机场航站楼客流分析与预测。</p>
-<p>货币基金资金流入流出预测： 通过用户基本信息数据、用户申购赎回数据、收益率表和银行间拆借利率等信息，对用户的申购赎回数据的把握，精准预测未来每日的资金流入流出情况。</p>
-<p>电影票房预测： 依据历史票房数据、影评数据、舆情数据等互联网公众数据，对电影票房进行预测。</p>
-<h3 id="2-逻辑回归：找到一条直线来分类数据"><a href="#2-逻辑回归：找到一条直线来分类数据" class="headerlink" title="2. 逻辑回归：找到一条直线来分类数据"></a>2. 逻辑回归：找到一条直线来分类数据</h3><p>逻辑回归虽然名字叫回归，却是属于分类算法，是通过Sigmoid函数将线性函数的结果映射到Sigmoid函数中，预估事件出现的概率并分类。<br>Sigmoid是归一化的函数，可以把连续数值转化为0到1的范围，提供了一种将连续型的数据离散化为离散型数据的方法。<br>因此，逻辑回归从直观上来说是画出了一条分类线。位于分类线一侧的数据，概率&gt;0.5,属于分类A；位于分类线另一侧的数据，概率&lt;0.5,属于分类B。<br>例如图中通过计算患肿瘤的概率，将结果分类两类，分别位于逻辑分类线的两侧。</p>
-<h3 id="3-K-近邻：用距离度量最相邻的分类标签"><a href="#3-K-近邻：用距离度量最相邻的分类标签" class="headerlink" title="3. K-近邻：用距离度量最相邻的分类标签"></a>3. K-近邻：用距离度量最相邻的分类标签</h3><p>一个简单的场景：已知一个电影中的打斗和接吻镜头数，判断它是属于爱情片还是动作片。当接吻镜头数较多时，根据经验我们判断它为爱情片。那么计算机如何进行判别呢？</p>
-<p>可以使用K近邻算法，其工作原理如下：</p>
-<p>计算样本数据中的点与当前点之间的距离<br>算法提取样本最相似数据(最近邻)的分类标签<br>确定前k个点所在类别的出现频率. 一般只选择样本数据集中前k个最相似的数据，这就是k-近邻算法中k的出处，通常k是不大于20的整数<br>返回前k个点所出现频率最高的类别作为当前点的预测分类<br>电影分类场景中，k取值为3，按距离依次排序的三个点分别是动作片(108,5)、动作片(115,8)、爱情片(5,89)。在这三个点中，动作片出现的频率为三分之二，爱情片出现的频率为三分之一，所以该红色圆点标记的电影为动作片。</p>
-<p>K近邻算法的一个常见应用是手写数字识别。手写字体对于人脑来说，看到的数字是一幅图像，而在电脑看来这是一个二维或三维数组，那怎么对数字进行识别?</p>
-<p>使用K近邻算法的进行识别的具体步骤为：</p>
-<p>首先将每个图片处理为具有相同的色彩和大小：宽高是32像素x32像素。<br>将3232的二进制图像矩阵转换成11024的测试向量。<br>将训练样本储存在训练矩阵中，创建一个m行1024列的训练矩阵，矩阵的每行数据存储一个图像。<br>计算目标样本与训练样本的距离，选择前k个点所出现频率最高的数字作为当前手写字体的预测分类。</p>
-<h3 id="4-朴素贝叶斯：选择后验概率最大的类为分类标签"><a href="#4-朴素贝叶斯：选择后验概率最大的类为分类标签" class="headerlink" title="4. 朴素贝叶斯：选择后验概率最大的类为分类标签"></a>4. 朴素贝叶斯：选择后验概率最大的类为分类标签</h3><p>一个简单的场景：一号碗(C1)有30颗水果糖和10颗巧克力糖，二号碗(C2)有水果糖和巧克力糖各20颗。现在随机选择一个碗，从中摸出一颗糖，发现是水果糖。</p>
-<p>问这颗水果糖(X)最有可能来自哪个碗？这类问题可以借助贝叶斯公式来计算，不需要针对目标变量建立模型。在分类时，通过计算样本属于各个类别的概率，然后取概率值大的类别作为分类类别。</p>
-<p>P(X|C): 条件概率，C中X出现的概率<br>P(C): 先验概率，C出现的概率<br>P(C|X): 后验概率，X属于C类的概率</p>
-<p>假设有 C1 和 C2 两个类，由于 P(X)都是一样的，所以不需要考虑 P(X) 只需考虑如下：<br>如果 P(X|C1)P(C1) &gt; P(X|C2)P(C2)，则 P(C1|X) &gt; P(C2|X)，得 X 属于C1；<br>如果 P(X|C1) P(C1) &lt; P(X|C2) P(C2)，则 P(C2|X) &lt; P(C2|X)，得 X 属于C2。</p>
-<p>例如上面的例子中： P(X): 水果糖的概率为5/8<br>P(X|C1): 一号碗中水果糖的概率为3/4<br>P(X|C2): 二号碗中水果糖的概率为2/4<br>P(C1)=P(C2): 两个碗被选中的概率相同，为1/2</p>
-<p>则水果糖来自一号碗的概率为:<br>$P(C1|X)=P(X|C1)P(C1)/P(X)=(3/4)(1/2)/(5/8)=3/5<br>水果糖来自二号碗的概率为:<br>P(C2|X)=P(X|C2)P(C2)/P(X)=(2/4)(1/2)/(5/8)=2/5<br>P(C1|X)＞P(C2|X)<br>因此这颗糖最有可能来自一号碗。</p>
-<p>朴素贝叶斯的主要应用有文本分类、垃圾文本过滤，情感判别，多分类实时预测等。</p>
-<h3 id="5-决策树：构造一棵熵值下降最快的分类树"><a href="#5-决策树：构造一棵熵值下降最快的分类树" class="headerlink" title="5. 决策树：构造一棵熵值下降最快的分类树"></a>5. 决策树：构造一棵熵值下降最快的分类树</h3><p>一个简单的场景：<br>相亲时，可能首先检测相亲对方是否有房。如果有，则考虑进一步接触。如果没有房，则观察其是否有上进心，如果没有，直接Say Goodbye。如果有，则可以列入候选名单。</p>
-<p>这就是一个简单的决策树模型。决策树是一种树型结构，其中每个内部结点表示在一个属性上的测试，每个分支代表一个测试输出，每个叶结点代表一种类别。采用的是自顶向下的递归方法，选择信息增益最大的特征作为当前的分裂特征。</p>
-<p>决策树可以应于：用户分级评估、贷款风险评估、选股、投标决策等。</p>
-<h3 id="6-支持向量机（SVM）：构造超平面，分类非线性数据"><a href="#6-支持向量机（SVM）：构造超平面，分类非线性数据" class="headerlink" title="6. 支持向量机（SVM）：构造超平面，分类非线性数据"></a>6. 支持向量机（SVM）：构造超平面，分类非线性数据</h3><p>一个简单的场景：<br>要求用一根线将不同颜色的球分开，要求尽量在放更多球之后，仍然适用。 A、B两条线都可以满足条件。再继续增加球，线A仍可以将球很好的分开，而线B则不可以。</p>
-<p>进一步增加难度，当球没有明确的分界线，用一条直线已经无法将球分开，该怎么解决？</p>
-<p>这个场景中涉及支持向量机的的两个问题：</p>
-<p>当一个分类问题，数据是线性可分时，只要将线的位置放在让小球距离线的距离最大化的位置即可，寻找这个最大间隔的过程，就叫做最优化。<br>一般的数据是线性不可分的，可以通过核函数，将数据从二维映射到高位，通过超平面将数据切分。<br>不同方向的最优决策面的分类间隔通常是不同的，那个具有“最大间隔”的决策面就是SVM要寻找的最优解。这个真正的最优解对应的两侧虚线所穿过的样本点，就是SVM中的支持样本点，称为支持向量。</p>
-<p>SVM的应用非常广泛，可以应用于垃圾邮件识别、手写识别、文本分类、选股等。</p>
-<h3 id="7-K-means：计算质心，聚类无标签数据"><a href="#7-K-means：计算质心，聚类无标签数据" class="headerlink" title="7. K-means：计算质心，聚类无标签数据"></a>7. K-means：计算质心，聚类无标签数据</h3><p>在上面介绍的分类算法中，需要被分类的数据集已经有标记，例如数据集已经标记为○或者×，通过学习出假设函数对这两类数据进行划分。而对于没有标记的数据集，希望能有一种算法能够自动的将相同元素分为紧密关系的子集或簇，这就是聚类算法。</p>
-<p>举个具体的例子，例如有一批人的年龄的数据，大致知道其中有一堆少年儿童，一堆青年人，一堆老年人。</p>
-<p>聚类就是自动发现这三堆数据，并把相似的数据聚合到同一堆中。如果要聚成3堆的话，那么输入就是一堆年龄数据，注意，此时的年龄数据并不带有类标号，也就是说只知道里面大致有三堆人，至于谁是哪一堆，现在是不知道的，而输出就是每个数据所属的类标号，聚类完成之后，就知道谁和谁是一堆了。</p>
-<p>而分类就是，事先告诉你，少年儿童、青年人及老年人的年龄是什么样的，现在新来了一个年龄，输入它的年龄，输出她属于的分类。一般分类器是需要训练的，它才能识别新的数据。</p>
-<p>K-Means算法是一种常见的聚类算法，其基本步骤为：</p>
-<p>随机生成k个初始点作为质心；<br>将数据集中的数据按照距离质心的远近分到各个簇中；<br>将各个簇中的数据求平均值，作为新的质心，重复上一步，直到所有的簇不再改变。 两个分类间隔越远，则聚类效果越好。<br>K-means算法的一个案例是：客户价值细分，精准投资。<br>以航空公司为例，因为业务竞争激烈，企业营销焦点从产品中心转为客户中心；建立合理的客户价值评估模型，进行客户分类，进行精准营销，是解决问题的关键。</p>
-<p>识别客户价值，通过五个指标：最近消费时间间隔R，消费频率F，飞行里程 M和折扣系数的平均值C，客户关系长度L（LRFMC模型）。采用K-Means算法对客户数据进行客户分群，聚成五类（需结合业务的理解与分析来确定客户的类别数量）绘制客户群特征雷达图。</p>
-<p>客户价值分析：</p>
-<p>重要保持客户：C、F、M较高，R低。应将资源优先投放到这类客户身上，进行差异化管理，提高客户的忠诚度和满意度。<br>重要发展客户：C较高，R、F、M较低。这类客户入会时长（L）短、当前价值低、发展潜力大，应促使客户增加在本公司和合作伙伴处的消费。<br>重要挽留客户：C、F 或 M 较高，R较高 或 L变小，客户价值变化的不确定性高。应掌握客户最新信息、维持与客户的互动。<br>一般和低价值客户：C、F、M、L低、R较高。这类客户可能在打折促销时才会选择消费。</p>
-<p>K-means算法的一个比较有趣的案例是进行图像压缩。在彩色图像中，每个像素的大小为3字节（RGB），可以表示的颜色总数为256 256 256。利用K-means算法把类似的颜色分别放在K个簇中，因此只需要保留每个像素的标签，以及每个簇的颜色编码即可完成图像的压缩。</p>
-<h3 id="8-关联分析：挖掘啤酒与尿布（频繁项集）的关联规则"><a href="#8-关联分析：挖掘啤酒与尿布（频繁项集）的关联规则" class="headerlink" title="8. 关联分析：挖掘啤酒与尿布（频繁项集）的关联规则"></a>8. 关联分析：挖掘啤酒与尿布（频繁项集）的关联规则</h3><p>20世纪90年代美国沃尔玛超市中，超市管理人员分析销售数据时发现 “啤酒”与“尿布”两件看上去毫无关系的商品会经常出现在同一个购物篮中。经过调查发现，这种现象出现在年轻的父亲身上。在美国有婴儿的家庭中，一般是母亲在家中照看婴儿，年轻的父亲去超市买尿布时，往往会顺便为自己购买啤酒。如果在卖场只能买到两件商品之一，他很有可能会放弃购物而去另一家可以同时买到啤酒与尿布的商店。由此，沃尔玛发现了这一独特的现象，开始在卖场尝试将啤酒与尿布摆放在相同区域，让年轻的父亲可以同时找到这两件商品，从而获得了很好的商品销售收入。</p>
-<p>“啤酒+尿布”故事中利用的就是关联算法，比较常见的一种关联算法是FP-growth算法。</p>
-<p>算法中几个相关的概念：</p>
-<p>频繁项集：在数据库中大量频繁出现的数据集合。例如购物单数据中{‘啤酒’}、{‘尿布’}、{‘啤酒’, ‘尿布’}出现的次数都比较多。<br>关联规则：由集合 A，可以在某置信度下推出集合 B。即如果 A 发生了，那么 B 也很有可能会发生。例如购买了{‘尿布’}的人很可能会购买{‘啤酒’}。<br>支持度：指某频繁项集在整个数据集中的比例。假设数据集有 10 条记录，包含{‘啤酒’, ‘尿布’}的有 5 条记录，那么{‘啤酒’, ‘尿布’}的支持度就是 5/10 = 0.5。<br>置信度：有关联规则如{‘尿布’} -&gt; {‘啤酒’}，它的置信度为 {‘尿布’} -&gt; {‘啤酒’}<br>假设{‘尿布’, ‘啤酒’}的支持度为 0.45，{‘尿布’}的支持度为 0.5，则{‘尿布’} -&gt; {‘啤酒’}的置信度为 0.45 / 0.5 = 0.9。</p>
-<p>应用比较广泛，例如： 用于制定营销策略。如同啤酒与尿布的例子，超市如果将啤酒和尿布放在相邻的位置，会增加两者的销量。 用于发现共现词。在浏览器中输入”普元”时，浏览器自动弹出如”普元平台”，”普元EOS”等备选记录。 FP-growth算法一个简单的案例：通过购物车数据，分析商品之间的关联关系。</p>
-<p>分析步骤为：</p>
-<p>从购物车数据中挖掘出频繁项集<br>从频繁项集中产生关联规则，计算支持度<br>输出置信度</p>
-<p>根据结果，可以分析出购买了鞋子，极有可能会同时购买袜子；购买了鸡蛋与面包，极有可能会购买牛奶。</p>
-<h3 id="9-PCA降维：减少数据维度，降低数据复杂度"><a href="#9-PCA降维：减少数据维度，降低数据复杂度" class="headerlink" title="9. PCA降维：减少数据维度，降低数据复杂度"></a>9. PCA降维：减少数据维度，降低数据复杂度</h3><p>降维是指将原高维空间中的数据点映射到低维度的空间中。因为高维特征的数目巨大，距离计算困难，分类器的性能会随着特征数的增加而下降；减少高维的冗余信息所造成的误差,可以提高识别的精度。</p>
-<p>比较常用的是主成分分析算法（PCA）。它是通过某种线性投影，将高维的数据映射到低维的空间中表示，并期望在所投影的维度上数据的方差最大，以此使用较少的数据维度，同时保留住较多的原数据点的特性。</p>
-<p>例如对数字进行降维，当使用1个特征向量的时候，3的基本轮廓已经保留下来了，特征向量使用的越多就越与原始数据接近。</p>
-<h3 id="10-人工神经网络：逐层抽象，逼近任意函数"><a href="#10-人工神经网络：逐层抽象，逼近任意函数" class="headerlink" title="10. 人工神经网络：逐层抽象，逼近任意函数"></a>10. 人工神经网络：逐层抽象，逼近任意函数</h3><p>前面介绍了九种传统的机器学习算法，现在介绍一下深度学习的基础：人工神经网络。 它是模拟人脑神经网络而设计的模型，由多个节点（人工神经元）相互联结而成，可以用来对数据之间的复杂关系进行建模。不同节点之间的连接被赋予了不同的权重，每个权重代表了一个节点对另一个节点的影响大小。每个节点代表一种特定函数，来自其他节点的信息经过其相应的权重综合计算。是一个可学习的函数，接受不同数据的训练，不断通过调整权重而得到契合实际模型,一个三层的神经网络可以逼近任意的函数。</p>
-<p>例如利用单层神经网络实现逻辑与门和同或门。</p>
-<p>多层神经网络的每一层神经元学习到的是前一层神经元值的更抽象的表示，通过抽取更抽象的特征来对事物进行区分，从而获得更好的区分与分类能力。例如在图像识别中，第一个隐藏层学习到的是 “边缘”的特征，第二层学习由“边缘”组成的“形状”的特征，第三层学习到的是由“形状”组成的“图案”的特征，最后的隐藏层学习到的是由“图案”组成的“目标”的特征。</p>
-<h3 id="11-深度学习：赋予人工智能以璀璨的未来"><a href="#11-深度学习：赋予人工智能以璀璨的未来" class="headerlink" title="11. 深度学习：赋予人工智能以璀璨的未来"></a>11. 深度学习：赋予人工智能以璀璨的未来</h3><p>深度学习是机器学习的分支，是对人工神经网络的发展。深度学习是当今人工智能爆炸的核心驱动，赋予人工智能以璀璨的未来。</p>
-<p>看一下深度学习与传统机器学习的区别。传统机器学习特征处理和预测分开，特征处理一般需要人工干预完成。这类模型称为浅层模型，或浅层学习，不涉及特征学习，其特征主要靠人工经验或特征转换方法来抽取。</p>
-<p>要提高一种表示方法的表示能力，其关键是构建具有一定深度的多层次特征表示 。一个深层结构的优点是可以增加特征的重用性，从而指数级地增加表示能力。从底层特征开始，一般需要多步非线性转换才能得到较为抽象的高层语义特征。这种自动学习出有效特征的方式称为“表示学习”。</p>
-<p>深度学习就是一种基于对数据进行表征学习的方法，使用多层网络，能够学习抽象概念，同时融入自我学习，逐步从大量的样本中逐层抽象出相关的概念，然后做出理解，最终做出判断和决策。通过构建具有一定“深度”的模型，可以让模型来自动学习好的特征表示（从底层特征，到中层特征，再到高层特征），从而最终提升预测或识别的准确性。</p>
-<p>目前深度学习的应用十分广泛，例如图像识别、语音识别、机器翻译、自动驾驶、金融风控、智能机器人等。</p>
-<h2 id="3-Anaconda：初学Python、入门机器学习的首选-1"><a href="#3-Anaconda：初学Python、入门机器学习的首选-1" class="headerlink" title="3. Anaconda：初学Python、入门机器学习的首选"></a>3. Anaconda：初学Python、入门机器学习的首选</h2><p>回目录</p>
-<p>入门机器学习的首选 已经了解了机器学习过程中使用的算法，那么该如何动手实践呢？ Anaconda是初学Python、入门机器学习的首选。它是一个用于科学计算的Python发行版，提供了包管理与环境管理的功能，可以很方便地解决多版本python并存、切换以及各种第三方包安装问题。</p>
-<p>集成包功能：</p>
-<p>NumPy：提供了矩阵运算的功能，其一般与Scipy、matplotlib一起使用，Python创建的所有更高层工具的基础，不提供高级数据分析功能<br>Scipy：依赖于NumPy，它提供便捷和快速的N维向量数组操作。提供模块用于优化、线性代数、积分以及其它数据科学中的通用任务。<br>Pandas：基于NumPy 的一种工具，该工具是为了解决数据分析任务而创建的，包含高级数据结构，以及和让数据分析变得快速、简单的工具<br>Matplotlib：Python最著名的绘图库<br>其中， Scikit-Learn是Anaconda中集成的开源机器学习工具包，主要涵盖分类，回归和聚类算法，可以直接调用传统机器学习的算法进行使用。同时Anaconda也兼容Google开发的第二代人工智能系统TensorFlow，进行深度学习的开发。</p>
-<p>最后通过一个基于Python的决策树案例，来直观了解一下机器学习的过程。 贷款申请的决策树，用以对未来的贷款申请进行分类。</p>
-<p>具体实现过程：</p>
-<p>准备数据集：从贷款申请样本数据表中，选取对训练数据具有分类能力的特征<br>构建树：选择信息增益最大的特征作为分裂特征构建决策树<br>数据可视化：使用Matplotlib对数据进行可视化<br>执行分类：用于实际数据的分类。例如输入测试数据[0,1]，它代表没有房子，但是有工作，分类结果为“房贷”。</p>
-<h2 id="4-总结-1"><a href="#4-总结-1" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>回目录</p>
-<p>希望通过本次介绍，大家能够对机器学习涉及的算法有初步的认识，为以后进行相关人工智能方面的研究所有帮助。机器学习其实没有那么复杂，只是将统计学、概率论等数学知识应用在人工智能领域。借助现有的软件平台，可以轻松的调用已经集成的算法，让工程师不再为复杂的算法理论而烦恼，可以有更多的时间去开发和创新！</p>
-<p>原文:<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/notebook-ai/detail?postId=6239">天池</a><br>人工智能: <a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/forum/postDetail?postId=115954">人工智能基础视频</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/about-me/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/about-me/" class="post-title-link" itemprop="url">about me</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 11:56:47" itemprop="dateCreated datePublished" datetime="2020-07-22T11:56:47+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/horysk/" itemprop="url" rel="index"><span itemprop="name">horysk</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/22/about-me/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/about-me/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">读写CSV数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 11:56:31" itemprop="dateCreated datePublished" datetime="2020-07-22T11:56:31+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="6-1-读写CSV数据"><a href="#6-1-读写CSV数据" class="headerlink" title="6.1 读写CSV数据"></a>6.1 读写CSV数据</h2><p>More info: <a target="_blank" rel="noopener" href="https://python3-cookbook.readthedocs.io/zh_CN/latest/c06/p01_read_write_csv_data.html">python3-cookbook</a><br>问题<br>你想读写一个CSV格式的文件。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>对于大多数的CSV格式的数据读写问题，都可以使用 csv 库。 例如：假设你在一个名叫stocks.csv文件中有一些股票市场数据，就像这样：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Symbol,Price,Date,Time,Change,Volume</span><br><span class="line"><span class="string">&quot;AA&quot;</span>,39.48,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.18,181800</span><br><span class="line"><span class="string">&quot;AIG&quot;</span>,71.38,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.15,195500</span><br><span class="line"><span class="string">&quot;AXP&quot;</span>,62.58,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.46,935000</span><br><span class="line"><span class="string">&quot;BA&quot;</span>,98.31,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,+0.12,104800</span><br><span class="line"><span class="string">&quot;C&quot;</span>,53.08,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.25,360900</span><br><span class="line"><span class="string">&quot;CAT&quot;</span>,78.29,<span class="string">&quot;6/11/2007&quot;</span>,<span class="string">&quot;9:36am&quot;</span>,-0.23,225400</span><br></pre></td></tr></table></figure>
-<p>下面向你展示如何将这些数据读取为一个元组的序列：</p>
-<pre><code class="bash">import csv
-with open(&#39;stocks.csv&#39;) as f:
-    f_csv = csv.reader(f)
-    headers = next(f_csv)
-    for row in f_csv:
-        # Process row
-        ...</code></pre>
-<p>在上面的代码中， row 会是一个列表。因此，为了访问某个字段，你需要使用下标，如 row[0] 访问Symbol， row[4] 访问Change。</p>
-<p>由于这种下标访问通常会引起混淆，你可以考虑使用命名元组。例如：</p>
-<pre><code class="bash">from collections import namedtuple
-with open(&#39;stock.csv&#39;) as f:
-    f_csv = csv.reader(f)
-    headings = next(f_csv)
-    Row = namedtuple(&#39;Row&#39;, headings)
-    for r in f_csv:
-        row = Row(*r)
-        # Process row
-        ...</code></pre>
-<p>它允许你使用列名如 row.Symbol 和 row.Change 代替下标访问。 需要注意的是这个只有在列名是合法的Python标识符的时候才生效。如果不是的话， 你可能需要修改下原始的列名(如将非标识符字符替换成下划线之类的)。</p>
-<p>另外一个选择就是将数据读取到一个字典序列中去。可以这样做：</p>
-<pre><code class="bash">import csv
-with open(&#39;stocks.csv&#39;) as f:
-    f_csv = csv.DictReader(f)
-    for row in f_csv:
-        # process row
-        ...</code></pre>
-<p>在这个版本中，你可以使用列名去访问每一行的数据了。比如，row[‘Symbol’] 或者 row[‘Change’]</p>
-<p>为了写入CSV数据，你仍然可以使用csv模块，不过这时候先创建一个 writer 对象。例如:</p>
-<pre><code class="bash">headers = [&#39;Symbol&#39;,&#39;Price&#39;,&#39;Date&#39;,&#39;Time&#39;,&#39;Change&#39;,&#39;Volume&#39;]
-rows = [(&#39;AA&#39;, 39.48, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.18, 181800),
-         (&#39;AIG&#39;, 71.38, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.15, 195500),
-         (&#39;AXP&#39;, 62.58, &#39;6/11/2007&#39;, &#39;9:36am&#39;, -0.46, 935000),
-       ]
-
-with open(&#39;stocks.csv&#39;,&#39;w&#39;) as f:
-    f_csv = csv.writer(f)
-    f_csv.writerow(headers)
-    f_csv.writerows(rows)</code></pre>
-<p>如果你有一个字典序列的数据，可以像这样做：</p>
-<pre><code class="bash">headers = [&#39;Symbol&#39;, &#39;Price&#39;, &#39;Date&#39;, &#39;Time&#39;, &#39;Change&#39;, &#39;Volume&#39;]
-rows = [&#123;&#39;Symbol&#39;:&#39;AA&#39;, &#39;Price&#39;:39.48, &#39;Date&#39;:&#39;6/11/2007&#39;,
-        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.18, &#39;Volume&#39;:181800&#125;,
-        &#123;&#39;Symbol&#39;:&#39;AIG&#39;, &#39;Price&#39;: 71.38, &#39;Date&#39;:&#39;6/11/2007&#39;,
-        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.15, &#39;Volume&#39;: 195500&#125;,
-        &#123;&#39;Symbol&#39;:&#39;AXP&#39;, &#39;Price&#39;: 62.58, &#39;Date&#39;:&#39;6/11/2007&#39;,
-        &#39;Time&#39;:&#39;9:36am&#39;, &#39;Change&#39;:-0.46, &#39;Volume&#39;: 935000&#125;,
-        ]
-
-with open(&#39;stocks.csv&#39;,&#39;w&#39;) as f:
-    f_csv = csv.DictWriter(f, headers)
-    f_csv.writeheader()
-    f_csv.writerows(rows)</code></pre>
-<p>讨论<br>你应该总是优先选择csv模块分割或解析CSV数据。例如，你可能会像编写类似下面这样的代码：</p>
-<pre><code class="bash">with open(&#39;stocks.csv&#39;) as f:
-for line in f:
-    row = line.split(&#39;,&#39;)
-    # process row
-    ...</code></pre>
-<p>使用这种方式的一个缺点就是你仍然需要去处理一些棘手的细节问题。 比如，如果某些字段值被引号包围，你不得不去除这些引号。 另外，如果一个被引号包围的字段碰巧含有一个逗号，那么程序就会因为产生一个错误大小的行而出错。</p>
-<p>默认情况下，csv 库可识别Microsoft Excel所使用的CSV编码规则。 这或许也是最常见的形式，并且也会给你带来最好的兼容性。 然而，如果你查看csv的文档，就会发现有很多种方法将它应用到其他编码格式上(如修改分割字符等)。 例如，如果你想读取以tab分割的数据，可以这样做：</p>
-<pre><code class="bash"># Example of reading tab-separated values
-with open(&#39;stock.tsv&#39;) as f:
-    f_tsv = csv.reader(f, delimiter=&#39;\t&#39;)
-    for row in f_tsv:
-        # Process row
-        ...</code></pre>
-<p>如果你正在读取CSV数据并将它们转换为命名元组，需要注意对列名进行合法性认证。 例如，一个CSV格式文件有一个包含非法标识符的列头行，类似下面这样：</p>
-<p>Street Address,Num-Premises,Latitude,Longitude 5412 N CLARK,10,41.980262,-87.668452<br>这样最终会导致在创建一个命名元组时产生一个 ValueError 异常而失败。 为了解决这问题，你可能不得不先去修正列标题。 例如，可以像下面这样在非法标识符上使用一个正则表达式替换：</p>
-<pre><code class="bash">import re
-with open(&#39;stock.csv&#39;) as f:
-    f_csv = csv.reader(f)
-    headers = [ re.sub(&#39;[^a-zA-Z_]&#39;, &#39;_&#39;, h) for h in next(f_csv) ]
-    Row = namedtuple(&#39;Row&#39;, headers)
-    for r in f_csv:
-        row = Row(*r)
-        # Process row
-        ...</code></pre>
-<p>还有重要的一点需要强调的是，csv产生的数据都是字符串类型的，它不会做任何其他类型的转换。 如果你需要做这样的类型转换，你必须自己手动去实现。 下面是一个在CSV数据上执行其他类型转换的例子：</p>
-<pre><code class="bash">col_types = [str, float, str, str, float, int]
-with open(&#39;stocks.csv&#39;) as f:
-    f_csv = csv.reader(f)
-    headers = next(f_csv)
-    for row in f_csv:
-        # Apply conversions to the row items
-        row = tuple(convert(value) for convert, value in zip(col_types, row))
-        ...</code></pre>
-<p>另外，下面是一个转换字典中特定字段的例子：</p>
-<pre><code class="bash">print(&#39;Reading as dicts with type conversion&#39;)
-field_types = [ (&#39;Price&#39;, float),
-                (&#39;Change&#39;, float),
-                (&#39;Volume&#39;, int) ]
-
-with open(&#39;stocks.csv&#39;) as f:
-    for row in csv.DictReader(f):
-        row.update((key, conversion(row[key]))
-                for key, conversion in field_types)
-        print(row)</code></pre>
-<p>通常来讲，你可能并不想过多去考虑这些转换问题。 在实际情况中，CSV文件都或多或少有些缺失的数据，被破坏的数据以及其它一些让转换失败的问题。 因此，除非你的数据确实有保障是准确无误的，否则你必须考虑这些问题(你可能需要增加合适的错误处理机制)。</p>
-<p>最后，如果你读取CSV数据的目的是做数据分析和统计的话， 你可能需要看一看 Pandas 包。Pandas 包含了一个非常方便的函数叫 pandas.read_csv() ， 它可以加载CSV数据到一个 DataFrame 对象中去。 然后利用这个对象你就可以生成各种形式的统计、过滤数据以及执行其他高级操作了。 在6.13小节中会有这样一个例子。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Hory Skone</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">67</span>
-          <span class="site-state-item-name">posts</span>
+            MongoDB索引管理——创建索引，查看索引，删除索引，重建索引
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/horysk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horysk" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:admin@horysk.com" title="E-Mail → mailto:admin@horysk.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="http://www.hory-ai.com/" title="HoryAI → http:&#x2F;&#x2F;www.hory-ai.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>HoryAI</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/sirobot" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;sirobot" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>CSDN</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/AI_HH" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;AI_HH" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>ZhiHu</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.kaggle.com/" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Kaggle</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tianchi.aliyun.com/competition/gameList/activeList" title="TianChi → https:&#x2F;&#x2F;tianchi.aliyun.com&#x2F;competition&#x2F;gameList&#x2F;activeList" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>TianChi</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://works.yangerxiao.com/honeyed-words-generator" title="土情话 → https:&#x2F;&#x2F;works.yangerxiao.com&#x2F;honeyed-words-generator" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>土情话</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-      
-      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
-      <div class="widget-wrap">
-          <h3 class="widget-title">Tag Cloud</h3>
-          <div id="myCanvasContainer" class="widget tagcloud">
-              <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
-              </canvas>
-          </div>
-      </div>
-      
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Mongo/">Mongo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Mongo</a></li></ul>
   </div>
 
-<div class="copyright">
-  
-  &copy; 2015 – 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="Symbols count total">275k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="Reading time total">4:10</span>
+
 </div>
 
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B9%88%EF%BC%9F-Mongo/" class="shake shake-little" title="你真的会用索引么？-- Mongo">
+            
+            你真的会用索引么？-- Mongo
+        </a>
+    </h2>
+    <div class="meta_box">
+    
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="Total Visitors">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="Total Views">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Mongo/">Mongo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Mongo</a></li></ul>
   </div>
 
-  
-  
-  <script color='255,255,255' opacity='0.6' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+</div>
 
-<script src="/js/motion.js"></script>
+        </article>
+    </div>
 
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-<script src="/js/bookmark.js"></script>
-
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
-    <script defer src="/lib/three/canvas_sphere.min.js"></script>
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/MongoDB%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%9A%8418%E5%8E%9F%E5%88%99%EF%BC%88%E5%BC%80%E5%8F%91%E8%AE%BE%E8%AE%A1%E9%98%B6%E6%AE%B5%EF%BC%89/" class="shake shake-little" title="MongoDB提升性能的18原则（开发设计阶段）">
+            
+            MongoDB提升性能的18原则（开发设计阶段）
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Mongo/">Mongo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Mongo</a></li></ul>
+  </div>
 
 
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/zip%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7%E3%80%81tar%E6%89%93%E5%8C%85%E3%80%81%E6%89%93%E5%8C%85%E5%B9%B6%E5%8E%8B%E7%BC%A9/" class="shake shake-little" title="zip压缩工具、tar打包、打包并压缩">
+            
+            zip压缩工具、tar打包、打包并压缩
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Linux/">Linux</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a></li></ul>
+  </div>
 
 
-  
-<script src="/js/local-search.js"></script>
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/%E7%9B%98%E7%82%B9%E5%9B%BD%E5%86%85%E5%A4%96%E4%BC%98%E7%A7%80%E5%85%AC%E5%85%B1DNS/" class="shake shake-little" title="盘点国内外优秀公共DNS">
+            
+            盘点国内外优秀公共DNS
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/DNS/">DNS</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>DNS</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/23/Hexo%E4%BD%BF%E7%94%A8%E6%94%BB%E7%95%A5-%E6%B7%BB%E5%8A%A0%E5%88%86%E7%B1%BB%E5%8F%8A%E6%A0%87%E7%AD%BE/" class="shake shake-little" title="Hexo使用攻略-添加分类及标签">
+            
+            Hexo使用攻略-添加分类及标签
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Hexo/">Hexo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月23日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月23日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hexo</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/23/pyppeteer%E4%BD%BF%E7%94%A8%E5%8F%8Adocker%E4%B8%AD%E4%BA%A7%E7%94%9F%E5%A4%A7%E9%87%8F%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="shake shake-little" title="pyppeteer使用及docker中产生大量僵尸进程的解决方法">
+            
+            pyppeteer使用及docker中产生大量僵尸进程的解决方法
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/python/">python</a>►<a class="article-category-link" href="/categories/python/pyppeteer/">pyppeteer</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月23日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月23日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>pyppeteer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>python</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/22/%E6%8B%A5%E6%8A%B1%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E4%BB%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%A7%8B/" class="shake shake-little" title="拥抱人工智能，从机器学习开始">
+            
+            拥抱人工智能，从机器学习开始
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/AI/">AI</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月22日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月22日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>AI</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/22/about-me/" class="shake shake-little" title="about me">
+            
+            about me
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/horysk/">horysk</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月22日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月22日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>horysk</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/22/%E8%AF%BB%E5%86%99CSV%E6%95%B0%E6%8D%AE/" class="shake shake-little" title="读写CSV数据">
+            
+            读写CSV数据
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/python/">python</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月22日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月22日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>python</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
 
 
 
@@ -2469,49 +617,52 @@ with open(&#39;stocks.csv&#39;) as f:
 
 
 
+<div class="turn_page">
+    
+        <a class="page_more">...</a>
+    
 
 
+    
+        <a href="/page/6">6</a>
+    
 
-  
+    
+        <a href="/page/5">5</a>
+    
 
-  
+    
+        <a class="page_current">4</a>
+    
+
+    
+        <a href="/page/3">3</a>
+    
+
+    
+        <a href="/page/2">2</a>
+    
 
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
-      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
-      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : '',
-      requiredFields: ['nick','mail'] 
-    });
-  }, window.Valine);
-});
-</script>
+    
+        <div><a class="page_more">...</a></div>
+    
+</div></section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
 
-  <!-- 页面点击特效 -->
-  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="/js/click-word.js"></script>
-  
-  <script type="text/javascript"
-  color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-  
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>

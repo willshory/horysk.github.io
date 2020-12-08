@@ -1,1715 +1,638 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Horysk 宏睿时空">
-<meta property="og:url" content="http://blog.hory-ai.com/page/6/index.html">
-<meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Hory Skone">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://blog.hory-ai.com/page/6/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
-
-  <title>Horysk 宏睿时空</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Horysk 宏睿时空</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
+    <meta charset="utf-8">
+    
+    <title>Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a target="_blank" rel="noopener" href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
   </div>
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+</header>
+    <div class="content">
+        <section class="outer">
+    
 
-  <a href="https://github.com/horysk" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content index posts-expand">
+    
+        
+        
+    
+
+
+
+
+<div class="turn_page">
+    
+
+
+    
+        <a href="/page/7">7</a>
+    
+
+    
+        <a class="page_current">6</a>
+    
+
+    
+        <a href="/page/5">5</a>
+    
+
+    
+        <a href="/page/4">4</a>
+    
+
+    
+        <a href="/page/3">3</a>
+    
+
+
+    
+        <div><a class="page_more">...</a></div>
+    
+</div>
+
+
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/06/09/16%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84%E5%B8%A6%E5%AE%BD%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90Linux%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/" class="shake shake-little" title="16个有用的带宽监控工具，用于分析Linux中的网络使用情况">
             
-
-
-
-	<div class="tag-cloud">
-	  <div class="tag-cloud-tags" id="tags">
-		<a href="/tags/AI/" style="font-size: 16px; color: #fff">AI</a> <a href="/tags/BI/" style="font-size: 16px; color: #fff">BI</a> <a href="/tags/Centos/" style="font-size: 16px; color: #fff">Centos</a> <a href="/tags/DNS/" style="font-size: 16px; color: #fff">DNS</a> <a href="/tags/Dapp/" style="font-size: 16px; color: #fff">Dapp</a> <a href="/tags/Docker/" style="font-size: 16px; color: #fff">Docker</a> <a href="/tags/Hack/" style="font-size: 16px; color: #fff">Hack</a> <a href="/tags/Hexo/" style="font-size: 16px; color: #fff">Hexo</a> <a href="/tags/HyperLedger-Fabric/" style="font-size: 16px; color: #fff">HyperLedger Fabric</a> <a href="/tags/Hyperledger-Fabric/" style="font-size: 16px; color: #fff">Hyperledger Fabric</a> <a href="/tags/Iftop/" style="font-size: 16px; color: #fff">Iftop</a> <a href="/tags/Linux/" style="font-size: 16px; color: #fff">Linux</a> <a href="/tags/ML/" style="font-size: 16px; color: #fff">ML</a> <a href="/tags/MTProxy/" style="font-size: 16px; color: #fff">MTProxy</a> <a href="/tags/Mongo/" style="font-size: 16px; color: #fff">Mongo</a> <a href="/tags/Network/" style="font-size: 16px; color: #fff">Network</a> <a href="/tags/Pyppeteer/" style="font-size: 16px; color: #fff">Pyppeteer</a> <a href="/tags/Tools/" style="font-size: 16px; color: #fff">Tools</a> <a href="/tags/VPN/" style="font-size: 16px; color: #fff">VPN</a> <a href="/tags/Vnc/" style="font-size: 16px; color: #fff">Vnc</a> <a href="/tags/baostock/" style="font-size: 16px; color: #fff">baostock</a> <a href="/tags/block-chain/" style="font-size: 16px; color: #fff">block chain</a> <a href="/tags/centos-xfce-vnc/" style="font-size: 16px; color: #fff">centos-xfce-vnc</a> <a href="/tags/docker/" style="font-size: 16px; color: #fff">docker</a> <a href="/tags/fabric/" style="font-size: 16px; color: #fff">fabric</a> <a href="/tags/hexo/" style="font-size: 16px; color: #fff">hexo</a> <a href="/tags/horysk/" style="font-size: 16px; color: #fff">horysk</a> <a href="/tags/k8s/" style="font-size: 16px; color: #fff">k8s</a> <a href="/tags/linux/" style="font-size: 16px; color: #fff">linux</a> <a href="/tags/mongo/" style="font-size: 16px; color: #fff">mongo</a> <a href="/tags/pyppeteer/" style="font-size: 16px; color: #fff">pyppeteer</a> <a href="/tags/python/" style="font-size: 16px; color: #fff">python</a> <a href="/tags/quant/" style="font-size: 16px; color: #fff">quant</a> <a href="/tags/stock/" style="font-size: 16px; color: #fff">stock</a> <a href="/tags/tushare/" style="font-size: 16px; color: #fff">tushare</a>
-	  </div>
-	</div>
-
-	
-	<script type="text/javascript">
-     var alltags = document.getElementsByClassName('tag-cloud-tags');
-     var tags = alltags[0].getElementsByTagName('a');
-     for (var i = tags.length - 1; i >= 0; i--) {
-       var r=Math.floor(Math.random()*75+130);
-       var g=Math.floor(Math.random()*75+100);
-       var b=Math.floor(Math.random()*75+80);
-       tags[i].style.background = "rgb("+r+","+g+","+b+")";
-     }
-</script>
-
-<style>
-  .tag-cloud-tags{
-    /*font-family: Helvetica, Tahoma, Arial;*/
-    /*font-weight: 100;*/
-    text-align: center;
-    counter-reset: tags;
-  }
-  .tag-cloud-tags a{
-    border-radius: 6px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin: 8px 5px 0px 0px;
-  }
-  .tag-cloud-tags a:before{
-    content: "?";
-  }
-
-  .tag-cloud-tags a:hover{
-     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);
-     transform: scale(1.1);
-     /*box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);*/
-     transition-duration: 0.15s;
-  }
-</style>
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/06/09/16%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84%E5%B8%A6%E5%AE%BD%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90Linux%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/09/16%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84%E5%B8%A6%E5%AE%BD%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90Linux%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/" class="post-title-link" itemprop="url">16个有用的带宽监控工具，用于分析Linux中的网络使用情况</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-06-09 14:17:10" itemprop="dateCreated datePublished" datetime="2018-06-09T14:17:10+00:00">2018-06-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/06/09/16%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84%E5%B8%A6%E5%AE%BD%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90Linux%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/06/09/16%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84%E5%B8%A6%E5%AE%BD%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90Linux%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>4.3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>4 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在本文中，我们将回顾16个有用的系统和网络带宽监控工具，以分析Linux系统上的网络流量使用情况。<br>您是否在监控Linux网络带宽使用方面遇到问题？ 你需要帮助吗？ 重要的是，您能够可视化网络中发生的事情，以便了解和解决导致网络运行缓慢的任何问题，或者只是密切关注您的网络。</p>
-<h1 id="另请参阅-：-20个用于监控Linux性能的Commad-Line工具"><a href="#另请参阅-：-20个用于监控Linux性能的Commad-Line工具" class="headerlink" title="另请参阅 ： 20个用于监控Linux性能的Commad Line工具"></a>另请参阅 ： <a target="_blank" rel="noopener" href="https://www.howtoing.com/command-line-tools-to-monitor-linux-performance/">20个用于监控Linux性能的Commad Line工具</a></h1><p>在本文中，我们将回顾16个有用的带宽监控工具，以分析Linux系统上的网络使用情况。</p>
-<p>如果您希望管理，排除故障或调试网络，请阅读我们的文章 - <a target="_blank" rel="noopener" href="https://www.howtoing.com/linux-networking-commands/">Linux系统管理员网络管理指南，故障排除和调试</a></p>
-<p>下面列出的工具都是开源的，可以帮助您回答诸如“ 为什么网络今天如此缓慢？ ”。 本文包括用于监控单个Linux计算机带宽的小工具和完整的监控解决方案，这些解决方案能够将LAN （ 局域网 ）上的少数主机处理到多个主机，即使在WAN （ 广域网 ）上也是如此。</p>
-<h2 id="1-vnStat-网络流量监视器"><a href="#1-vnStat-网络流量监视器" class="headerlink" title="1. vnStat - 网络流量监视器"></a>1. <a target="_blank" rel="noopener" href="https://www.howtoing.com/install-vnstat-and-vnstati-to-monitor-linux-network-traffic/">vnStat - 网络流量监视器</a></h2><p>VnStat是一个功能齐全的基于命令行的程序，用于在Linux和BSD系统上实时监控Linux网络流量和带宽利用率。</p>
-<p>Vnstat网络流量监控工具</p>
-<p>Vnstat网络流量监控工具</p>
-<p>它与类似工具相比的一个优点是它记录网络流量和带宽使用统计数据以供以后分析 - 这是它的默认行为。 即使在系统重新启动后，您也可以实际查看这些日志。</p>
-<p>在Linux中安装VnStat</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install vnstat
-
-# apt install vnstat   [On Debian/Ubuntu]</code></pre>
-<h2 id="2-iftop-显示带宽使用情况"><a href="#2-iftop-显示带宽使用情况" class="headerlink" title="2. iftop - 显示带宽使用情况"></a>2. <a target="_blank" rel="noopener" href="https://www.howtoing.com/iftop-linux-network-bandwidth-monitoring-tool/">iftop - 显示带宽使用情况</a></h2><p>iftop是一个简单，易于使用，实时顶级的基于命令行的网络带宽监控工具，用于快速浏览界面上的网络活动。 它平均每2,10和40秒显示一次网络使用带宽更新。</p>
-<p>Iftop显示带宽使用情况</p>
-<p>Iftop显示带宽使用情况</p>
-<p>在Linux中安装iftop</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install iftop
-
-# apt install iftop   [On Debian/Ubuntu]</code></pre>
-<h2 id="3-nload-显示网络使用情况"><a href="#3-nload-显示网络使用情况" class="headerlink" title="3. nload - 显示网络使用情况"></a>3. nload - 显示网络使用情况</h2><p>nload是另一种简单易用的命令行工具，用于实时监控网络流量和带宽使用情况。 它使用图表来帮助您监控入站和出站流量。 此外，它还显示诸如传输数据总量和最小/最大网络使用量等信息。</p>
-<p>nload  - 监控网络使用情况</p>
-<p>nload - 监控网络使用情况</p>
-<p>在Linux中安装nload</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install nload
-
-# apt install nload   [On Debian/Ubuntu]</code></pre>
-<h2 id="4-NetHogs-监控网络流量带宽"><a href="#4-NetHogs-监控网络流量带宽" class="headerlink" title="4. NetHogs - 监控网络流量带宽"></a>4. NetHogs - 监控网络流量带宽</h2><p>NetHogs是一种类似于顶级的基于文本的工具，用于监控Linux系统上运行的每个进程或应用程序的实时网络流量带宽使用情况。 它仅提供基于每个进程的网络带宽使用情况的实时统计信息。</p>
-<p>NetHogs  - 监控每个用户的网络使用情况</p>
-<p>NetHogs - 监控每个用户的网络使用情况</p>
-<p>在Linux中安装NetHogs</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install nethogs
-
-# apt install nethogs       [On Debian/Ubuntu]</code></pre>
-<h2 id="5-bmon-带宽监视器和速率估算器"><a href="#5-bmon-带宽监视器和速率估算器" class="headerlink" title="5. bmon - 带宽监视器和速率估算器"></a>5. bmon - 带宽监视器和速率估算器</h2><p>bmon也是一个简单的命令行工具，用于监控网络带宽利用率和Linux中的速率估算器。 它捕获网络统计数据并以人性化的格式显示它们，以便您可以密切关注系统。</p>
-<p>Bmon  - 带宽监视器和速率估计器</p>
-<p>Bmon - 带宽监视器和速率估计器</p>
-<p>在Linux中安装Bmon</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install bmon
-
-# apt install bmon          [On Debian/Ubuntu]</code></pre>
-<h2 id="6-Darkstat-捕获网络流量"><a href="#6-Darkstat-捕获网络流量" class="headerlink" title="6. Darkstat - 捕获网络流量"></a>6. Darkstat - 捕获网络流量</h2><p>Darkstat是一个小型，简单，跨平台，实时，高效的基于Web的网络流量分析器。 它是一种网络统计监控工具，可以捕获网络流量，计算使用情况统计信息，并以图形格式通过HTTP提供报告。 您也可以通过命令行使用它来获得相同的结果。</p>
-<p>Darkstat  - 捕获网络流量</p>
-<p>Darkstat - 捕获网络流量</p>
-<p>在Linux中安装Darkstat</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install darkstat
-
-# apt install darkstat      [On Debian/Ubuntu]</code></pre>
-<h2 id="7-IPTraf-IP网络监视器"><a href="#7-IPTraf-IP网络监视器" class="headerlink" title="7. IPTraf - IP网络监视器"></a>7. IPTraf - IP网络监视器</h2><p>IPTraf是一种易于使用，基于ncurses和可配置的工具，用于监控通过接口传入的传入和传出网络流量。 它对于IP流量监控，查看常规接口统计信息，详细的接口统计信息等非常有用。</p>
-<p>IPTraf  - 网络统计工具</p>
-<p>IPTraf - 网络统计工具</p>
-<p>在Linux中安装IPTraf</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install iptraf
-
-# apt install iptraf        [On Debian/Ubuntu]</code></pre>
-<h2 id="8-CBM-（彩色带宽计）"><a href="#8-CBM-（彩色带宽计）" class="headerlink" title="8. CBM - （彩色带宽计）"></a>8. CBM - （彩色带宽计）</h2><p>CBM是一个微型命令行实用程序，用于在Ubuntu Linux及其衍生产品（如Linux Mint，Lubuntu等）的彩色输出中显示所有连接设备上的当前网络流量。 它显示每个连接的网络接口，接收的字节数，传输的字节数和总字节数，允许您监控网络带宽。</p>
-<p>CBM  - 监控网络LAN使用情况</p>
-<p>CBM - 监控网络LAN使用情况</p>
-<p>在Linux中安装彩色带宽计</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install cbm
-
-# apt install cbm           [On Debian/Ubuntu]</code></pre>
-<h2 id="9-Iperf-Iperf3-网络带宽测量工具"><a href="#9-Iperf-Iperf3-网络带宽测量工具" class="headerlink" title="9. Iperf / Iperf3 - 网络带宽测量工具"></a>9. Iperf / Iperf3 - 网络带宽测量工具</h2><p>Iperf / Iperf3是一种功能强大的工具，用于测量TCP，UDP和SCTP等协议的网络吞吐量。 它主要用于帮助调整特定路径上的TCP连接，因此可用于测试和监视IP网络上可实现的最大带宽（支持IPv4和IPv6）。 它需要服务器和客户端来执行测试（报告带宽，丢失和其他有用的网络性能参数）。</p>
-<p>Iperf3  - 网络性能和调优</p>
-<p>Iperf3 - 网络性能和调优</p>
-<p>在Linux中安装Iperf3</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install iperf3
-
-# apt install iperf3        [On Debian/Ubuntu]</code></pre>
-<h2 id="10-Netperf-网络带宽测试"><a href="#10-Netperf-网络带宽测试" class="headerlink" title="10. Netperf - 网络带宽测试"></a>10. Netperf - 网络带宽测试</h2><p>Netperf类似于iperf，用于测试网络性能。 它可以通过使用TCP，UDP测量数据传输来帮助监控Linux中的网络带宽。 它还支持通过Berkeley套接字接口，DLPI，Unix域套接字和许多其他接口进行测量。 您需要服务器和客户端来运行测试。</p>
-<p>Netperf  - 网络带宽测试</p>
-<p>Netperf - 网络带宽测试</p>
-<p>有关安装说明，请查看项目github页面。</p>
-<h2 id="11-SARG-Squid分析报告生成器"><a href="#11-SARG-Squid分析报告生成器" class="headerlink" title="11. SARG - Squid分析报告生成器"></a>11. SARG - Squid分析报告生成器</h2><p>SARG是一个Squid日志文件分析器和互联网带宽监控工具。 它生成有用的HTML报告，其中包含但不限于IP地址和总带宽使用情况。 它是一种便捷的工具，用于监控单个网络上各台计算机的互联网带宽利用率。</p>
-<p>Sarg  -  Squid网络分析报告生成器</p>
-<p>Sarg - Squid网络分析报告生成器</p>
-<p>有关安装说明和用法，请查看我们的文章 - 如何安装SARG以监控Squid Internet带宽使用情况 。</p>
-<h2 id="12-Monitorix-系统和网络监控工具"><a href="#12-Monitorix-系统和网络监控工具" class="headerlink" title="12. Monitorix - 系统和网络监控工具"></a>12. Monitorix - 系统和网络监控工具</h2><p>Monitorix是一个轻量级的系统资源和网络监控应用程序，专为小型Linux / Unix服务器而设计，并且还为嵌入式设备提供了出色的支持。</p>
-<p>它可以帮助您监控无限数量的网络设备的网络流量和使用情况统计信息。 它支持IPv4和IPv6连接，包括数据包流量和流量错误图，并且每个网络接口最多支持9个qdisc。</p>
-<p>Monitorix  - 系统和网络监控工具</p>
-<p>Monitorix - 系统和网络监控工具</p>
-<p>在Linux中安装Monitorix</p>
-<pre><code class="bash"># yum install epel-release  [On RHEL/CentOS]
-# yum install monitorix
-
-# apt install monitorix     [On Debian/Ubuntu]</code></pre>
-<h2 id="13-仙人掌-网络监控和绘图工具"><a href="#13-仙人掌-网络监控和绘图工具" class="headerlink" title="13.仙人掌 - 网络监控和绘图工具"></a>13.仙人掌 - 网络监控和绘图工具</h2><p>Cacti是一个功能齐全，基于Web的网络图形PHP应用程序，具有直观，易用的界面。 它使用MySQL数据库存储数据收集的网络性能数据，用于生成自定义图形。 它是RRDTool的前端，可用于监控具有数千个设备的小型到复杂网络。</p>
-<p>Cacti  - 网络监控和绘图工具</p>
-<p>Cacti - 网络监控和绘图工具</p>
-<p>有关安装说明和用法，请查看我们的文章 - 如何安装Cacti - 网络监控和图形工具 。</p>
-<h2 id="14-观察-网络监测平台"><a href="#14-观察-网络监测平台" class="headerlink" title="14.观察 - 网络监测平台"></a>14.观察 - 网络监测平台</h2><p>Observium是一个功能齐全的网络监控平台，具有优雅，功能强大，功能强大且简单直观的界面。 它支持许多平台，包括Linux，Windows，FreeBSD，Cisco，HP，Dell和许多其他平台，并包括设备的自动检测。 它可以帮助用户收集网络指标，并从收集的性能数据中提供直观的设备指标图表。</p>
-<p>观测 - 网络监控平台</p>
-<p>观测 - 网络监控平台</p>
-<p>有关安装说明和使用方法，请查看我们的文章 - 如何安装Observium - 完整的网络管理和监控系统 。</p>
-<h2 id="15-Zabbix-应用程序和网络监视工具"><a href="#15-Zabbix-应用程序和网络监视工具" class="headerlink" title="15. Zabbix - 应用程序和网络监视工具"></a>15. Zabbix - 应用程序和网络监视工具</h2><p>Zabbix是一个功能丰富，常用的网络监控平台，采用服务器 - 客户端模型设计，可实时监控网络，服务器和应用程序。 它收集用于可视化表示网络性能或受监控设备的负载指标的不同类型的数据。</p>
-<p>它能够使用众所周知的网络协议，如HTTP，FTP，SMTP，IMAP等，而无需在受监控设备上安装其他软件。</p>
-<p>Zabbix  -  Linux的监控解决方案</p>
-<p>Zabbix - Linux的监控解决方案</p>
-<p>有关安装说明和用法，请查看我们的文章 - 如何安装Zabbix - 适用于Linux的完整网络监控解决方案 。</p>
-<h2 id="16-Nagios-监视系统，网络和基础设施"><a href="#16-Nagios-监视系统，网络和基础设施" class="headerlink" title="16. Nagios - 监视系统，网络和基础设施"></a>16. Nagios - 监视系统，网络和基础设施</h2><p>Nagios是一款功能强大，功能强大且功能广泛的监控软件。 它允许您从单个窗口监视本地和远程网络设备及其服务。</p>
-<p>它通过SNMP在交换机和路由器等网络设备中提供带宽监控，从而使您能够轻松找到过度使用的端口，并确定可能的网络滥用者。</p>
-<p>另请参阅 ： 13 Linux网络配置和故障排除命令</p>
-<p>此外，Nagios还可帮助您密切关注每端口带宽利用率和错误，并支持快速检测网络中断和协议故障。</p>
-<p>Nagios  -  IT基础架构监控工具</p>
-<p>Nagios - IT基础架构监控工具</p>
-<p>有关安装说明和使用方法，请查看我们的文章 - 如何安装Nagios - 适用于Linux的完整IT基础架构监控解决方案 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/" class="post-title-link" itemprop="url">唯有经历过交易四阶段，你才能彻底开悟</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-04-12 14:17:09" itemprop="dateCreated datePublished" datetime="2018-04-12T14:17:09+00:00">2018-04-12</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>3k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>3 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>交易之道，交易之术，有道无术术尚可求，有术无道止于术，何为道，何为术？</p>
-<p>所谓大道至简的交易哲学，是需要经过很多年的实战才能领悟的。能够走向稳定成熟的股票交易者，往往需要3到5年经验的磨砺，这期间会经历多次爆仓和失败。</p>
-<p>但是，如果在这个过程中能吸取来自其他优秀交易员的一些核心的交易理念，会加快你迈向稳定成熟的步伐。今天重点和大家谈一些你知道但不一定真的明白的朴素而且有效的交易理念，同时也指出多数交易者可能会经历的一些普遍阶段和感受。</p>
-<h2 id="第一阶段：初遇，都会有一个好时光，股票也不例外"><a href="#第一阶段：初遇，都会有一个好时光，股票也不例外" class="headerlink" title="第一阶段：初遇，都会有一个好时光，股票也不例外"></a>第一阶段：初遇，都会有一个好时光，股票也不例外</h2><p>如同初恋一般，你初接触了股票，爱上它，开始变得如痴如醉。上班的时候，天天想着螺纹铁矿橡胶白糖；看新闻的时候，世界和平不再和你没关系；下班后，迫不及待地打开文华财经，开始交易起来。过了凌晨一点，才依依不舍强行平仓。</p>
-<p>刚爱上一个事物的时候，是一个人的美好时光。你会主动去读很多关于交易的书籍，泡很多论坛，加很多群，可能还会拜几个资深交易的老师。</p>
-<p>这个时候的你，对知识如饥似渴，疯狂的学习。随之而来的是你的知识面大增，国内局势、国际形势、政经环境、美联储、等等，都开始进入到你的日常生活。你觉得很high，比你身边的人多了更多的知识，时不时会在朋友圈发个行情分析显摆显摆。</p>
-<p>这个时候的你，如同早上六七点钟的太阳，朝气蓬勃，势不可挡，不乏冷静和理性。你会不断的告诫自己，交易是有纪律的，进场是绝对要跟随趋势的，单子是必须要设置止损的。</p>
-<p>这个时候的你，多少人是会主动去看股票作手回忆录，研究波浪和江恩。你会思考左侧和右侧交易的好与坏，结合理论每天复盘研究如何做的更好，还会去操基本面的心。</p>
-<p>交易人生的美好，其实莫过如此。你会发现，你虽然有时候会小亏，但是赚的时候也不少。满打满算，可能还有不少的赚头。你的资金曲线，总体上是震荡向上。偶尔有点小挫折，但不影响大局。重要的是，你的账户不会发生重大的单笔亏损，因为你懂得及时止损退场。不会有精疲力尽的感觉，你同样懂得休息，不熬通宵。</p>
-<p>于是你越来越投入其中，甚至觉得股票这片天，就是为你而造。这个幸福时光，可能会持续两年。</p>
-<p>可是，人生好景不常有。就像爱情的新鲜度，不会超过18个月一样。度过了最初的两三年交易生涯，基本摸清了这个市场的来龙去脉，积累了一些交易经验，你开始进入交易高原期。这会是一段漫长而寂寞的时光。</p>
-<h2 id="第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候"><a href="#第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候" class="headerlink" title="第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候"></a>第二阶段：高原期，这是一个股票盘手奠定一生交易功底的时候</h2><p>用多年的时间，才可能摸清这个市场的脉搏，积累交易技术、理念、资金管理，以及大量的实盘经验。这个阶段，你会发现你的交易进入了高原反应期，再也很难有突破，业绩时好时坏，有时候会经历一些单子的闪崩。你会让自己不断反省，有时候也会因为抓住一个大波浪而高兴。</p>
-<p>这些漫长的时光里，你多次会以为自己经验已经相当丰富，交易系统成熟完善。你给自己制定的交易盈利目标里，收益率从最初的月收益20%降低到10%。你会告诉自己，一定可以每个月轻松赚到至少10%。（其实你的目标是半年至少翻一倍。）</p>
-<p>这个阶段，你不会排斥用中型和重型仓位来做。你知道这不是最好的资金管理办法，但是你会安慰自己，你已经经历过三年或者六年的市场洗礼，什么大风大浪没经历过。你会觉得50%的仓位不会有什么大问题，而且，你时不时会经常越过这个界线。</p>
-<p>你算不上成功，但也不算失败。一切都还在坚持，你把这定义为：苦难的长征。交易者，总是要有苦行僧的灵魂感召的！</p>
-<h2 id="第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。"><a href="#第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。" class="headerlink" title="第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。"></a>第三阶段：闪崩，是接下来大部分资深交易者的宿命，少有人能逃脱。要么退出，要么抑郁。坚持下来的，都成就了传奇。</h2><p>坚持了很多年，你以为自己要开始飞了。</p>
-<p>看起来万事俱备只欠东风。经验，技术，知识，阅历，前面那么多年的修炼，让你觉得大干一场的时候终于到了！于是，你开始调集大批量的资金，借贷，抵押，筹集能弄到的钱，跑步入市。</p>
-<p>春风吹，战鼓擂，百万资金进场急。</p>
-<p>人生在此一战！你觉得在股票中赚回千万身家不多，亿万不少，荣华富贵、交易圣杯不再是梦。</p>
-<p>交易的诱惑和人性的贪婪，不是以线性倍数在放大，而是以指数级别在放大！你第一次经历这样高逼格操盘的人生，你人性深处的劣势被指数级别打开。哪怕此前六年八年的漫长交易，都无法抹去这些弱点。</p>
-<p>大资金的闪失，往往只出现在3%的概率里。我知道你会很小心去操作，告诫自己纪律和仓位都要严格控制。可是，一次致命的贪婪，就让你前面所有的努力付之东流。</p>
-<p>没有领略人生极致的苦，你没有能力去控制你深处的欲念。</p>
-<p>接下来的时光，会是你一生中最痛苦的回忆。失眠、抑郁、甚至想过要自杀。万念俱灰，对一切都提不起兴趣，后悔进入股票市场，后悔接触金融。大批量资金的压力，是你作为一个小散户此前从未经历过的。哪怕你无数次推演过同样的资金管理模式。</p>
-<p>你倒下了。闪崩，是无数资深交易者都无法逃脱的宿命。</p>
-<p>这个时候，你会无比怀念当年初遇股票时候的美好。你面临两个最重大的抉择，是继续坚持，还是退出市场。</p>
-<p>很多人选择再坚持一年半载后，迫于各种压力，不可能突破自身固有的弱点，慢慢放手，退出外市股票，隐退江湖。</p>
-<p>最终，只有极少数人始终继续坚持。这里面，少数幸运者等到了彻底开悟的那一天。</p>
-<p>彻底开悟了，也就再次焕发交易青春。</p>
-<h2 id="第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。"><a href="#第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。" class="headerlink" title="第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。"></a>第四阶段：大道至简，彻底的开悟，无外乎轻仓、顺势、多睡觉。</h2><p>人生三重境界，看山是山，看山不是山，看山还是山。做完十年交易，历经无数市场磨难，最终你开始重回轻松赚钱的轨道，无外乎这么几点：轻仓，顺势，学会休息。山还是那年你刚入股票市场的山，人却是顿悟后的人，方法还是那些最淳朴的方法。</p>
-<p>你不把股票交易太当回事，这就对了。你的欲望已经在无欲中提升到一个新的高度，精神的升华推动了你的自律，灵魂的洗礼涤荡了你的欲望。</p>
-<p>成功的交易，我是领悟了，顺势交易乃第一要素，做好资金管理乃核心。最后，轻易不要出手，耐心等待真正的高胜率机会出现。减少交易机会，增加成功概率！</p>
-<p>从上面这些人的结局中，我们自然容易悟出几个道理：</p>
-<h2 id="第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。"><a href="#第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。" class="headerlink" title="第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。"></a>第一，不能逆势操作，在火火的牛市中，或者在熊熊的熊市中，凭借着自认为的见顶或见底，那是寻死的，就像某年铁矿石、橡胶、螺纹等跌跌不休的品种，逆势就是寻死。必须等到弓箭之末，等到势消耗殆尽，出现转势，方可做。</h2><h2 id="第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。"><a href="#第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。" class="headerlink" title="第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。"></a>第二，不止损，逆势不可怕，可怕的是逆势不止损，在牛市或熊市中抄底摸高，死不认错，或者亏红了眼，干脆做起了鸵鸟，则就是等死。</h2><h2 id="第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10-，就基本上爆仓了，而上下10-是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。"><a href="#第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10-，就基本上爆仓了，而上下10-是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。" class="headerlink" title="第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10%，就基本上爆仓了，而上下10%是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。"></a>第三，重仓。对于期货而言，由于杠杆效用，时机很重要，重仓的话，上下个10%，就基本上爆仓了，而上下10%是太正常不过了，所以等到市场按照你的预期行走的时候，你已经死掉了。所以对于选择时机能力不行的人而言，轻仓反而是一条路。</h2><h2 id="第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。"><a href="#第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。" class="headerlink" title="第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。"></a>第四，我认为的，其实最重要的是谦虚，有敬畏之心，敬畏市场，保持低调、谦卑的心态，不可过于张扬。上面的这些人之所以死亡，无一不是高大、自负，赚了大钱，沾沾自喜，自以为已手握天下，顺我者昌、逆我者亡，结局就是他们自己亡。</h2><p>最后我要说：之所以能在期货中生存了十多年，当然除了努力之外，还有，就是一直保持着一颗敬畏之心，时刻如履薄冰，战战兢兢，无论是打了大胜仗，赚了多大的钱，心理面一直保持着敬畏。</p>
-<p>当你有了这颗心态之后，你就会发现，你所遇到的许多交易问题，比如重仓、频繁交易、不止损，还有不努力、赌博，等等，都会自然消失。</p>
-<p>道理，就是这些道理。看起来每个人都知道，但是从结果就能看得出谁是”混子“。</p>
-<p>仅处于知道的地步，还远远不够。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/" class="post-title-link" itemprop="url">可直接用浏览器打开的无头计算机docker images，包含 Chrome 与 Firefox，支持 VNC、RDP 协议</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-03-09 14:17:14" itemprop="dateCreated datePublished" datetime="2018-03-09T14:17:14+00:00">2018-03-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/centos-xfce-vnc/" itemprop="url" rel="index"><span itemprop="name">centos-xfce-vnc</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>905</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>可直接用浏览器打开的无头计算机，包含 Chrome 与 Firefox，支持 VNC、RDP 协议[Docker]</p>
-<p>Docker 镜像：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/consol/centos-xfce-vnc/">consol/centos-xfce-vnc</a>，一个带有 Chrome 与 Firefox 浏览器的无头 VNC 服务器，可直接用浏览器打开</p>
-<p>可直接用浏览器打开的无头计算机，包含 Chrome 与 Firefox，支持 VNC、RDP 协议[Docker] 1<br>这是个啥？</p>
-<p>这是一个在 A 电脑的浏览器里打开 B 电脑上的浏览器的工具。</p>
-<p>使用方法<br>原版：<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/consol/centos-xfce-vnc/dockerfile">https://hub.docker.com/r/consol/centos-xfce-vnc/dockerfile</a></p>
-<p>docker run -d -p 5901:5901 -p 6901:6901 consol/centos-xfce-vnc<br>浏览器，直接访问：<a target="_blank" rel="noopener" href="http://ip:6901/">http://ip:6901</a><br>VNC：ip:5901<br>默认密码 vncpassword 即可。</p>
-<p>新版：<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/soff/ubuntu-xfce-vnc">https://hub.docker.com/r/soff/ubuntu-xfce-vnc</a></p>
-<p>docker run -d -p 3389:3389 -p 5901:5901 -p 6901:6901 soff/ubuntu-xfce-vnc<br>浏览器，直接访问：<a href="http://ip:6901，密码">http://ip:6901，密码</a> vncpassword<br>VNC：ip:5901，密码 vncpassword<br>RDP：ip，用户名 user 密码 password<br>新版由 @imsoff 老师发布，精简掉了 Firefox。</p>
-<p>也可以使用ubuntu版本<br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/consol/ubuntu-xfce-vnc/">ubuntu-xfce-vnc</a><br><a target="_blank" rel="noopener" href="https://github.com/fcwu/docker-ubuntu-vnc-desktop">docker-ubuntu-vnc-dedktop</a><br>如何安装 Docker<br>青小蛙写过一篇教程，感兴趣的同学可以参考。以及，因为有了浏览器，建议选择配置高一点的机器，推荐 Vultr（👈有返利，感谢使用我们的推荐链接），支持支付宝、微信支付，十分方便。</p>
-<p>如果你还想到其他玩法，欢迎留言告诉我们。</p>
-<p>无头计算机<br>无头系统（headless system）是指已配置为无须显示器（即“头”）、键盘和鼠标操作的计算机系统或设备。无头系统通常通过网络连接控制，但也有部分无头系统的设备需要通过RS-232串行连接进行设备的管理。服务器通常采用无头模式以降低运作成本。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2017/11/02/1956409564654/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/02/1956409564654/" class="post-title-link" itemprop="url">1956409564654</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-11-02 14:17:11" itemprop="dateCreated datePublished" datetime="2017-11-02T14:17:11+00:00">2017-11-02</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2017/11/02/1956409564654/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/11/02/1956409564654/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2017/09/18/195640956464/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/09/18/195640956464/" class="post-title-link" itemprop="url">195640956464</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-09-18 14:17:15" itemprop="dateCreated datePublished" datetime="2017-09-18T14:17:15+00:00">2017-09-18</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2017/09/18/195640956464/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/09/18/195640956464/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2017/07/11/%E4%B8%80%E4%B8%AA%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5%E5%B8%88%E7%9A%84%E8%87%AA%E7%99%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/07/11/%E4%B8%80%E4%B8%AA%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5%E5%B8%88%E7%9A%84%E8%87%AA%E7%99%BD/" class="post-title-link" itemprop="url">一个量化交易策略师的自白</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-07-11 19:17:15" itemprop="dateCreated datePublished" datetime="2017-07-11T19:17:15+00:00">2017-07-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2017/07/11/%E4%B8%80%E4%B8%AA%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5%E5%B8%88%E7%9A%84%E8%87%AA%E7%99%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/07/11/%E4%B8%80%E4%B8%AA%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5%E5%B8%88%E7%9A%84%E8%87%AA%E7%99%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <pre><code>    我之前在全球top5券商工作时也主要以CTA研究为主，每天都在不停的进行各种回测和开发。彼时，部门的CTA交易主要集中在股指期货的日内投机上，基本市场上能搜集到的各种书籍和报告我都浏览过。不过，从实际运用的角度来看，不同的技术分析方法，指标类切线类也好，形态类波浪类也罢，无论其历史背景和基本原理如何，其实质都是基于证券交易过程中量价时空等历史资料基础上的统计、分析和计算。
-
-   由于可供交易的期货标的只有沪深300股指期货，虽然所在部门同时跑了多个日内交易模型，但基本都是一荣俱荣，一损俱损。更为关键的是，一般趋势跟踪系统的获胜概率都低于40%，真正幅度大的单次盈利都是好不容易才熬来的，这说明大部分交易其实都是瞎折腾，当账户资金在短期内出现较大回撤的时候，很容易对自己的模型失去信心，继而陷入反复优化的怪圈。要知道，部门的考核都是以年为单位的，如果一年下来赚不到什么钱甚至亏钱，后果你懂的。
-
-    我在读研究生期间，有过一段奇妙的际遇，至于这段际遇是如何而来，至今想想都觉得传奇。当时，我作为一个博士一年级的学生，曾帮一私募大佬全权管理了一只3000万的CTA量化基金，为期一年，金字塔决策交易系统全自动下单，偶尔也人工干预。就是这段经历，让我在毕业求职时的简历比同龄人丰富了不少。也正是这段交易经历，让我知道了趋势交易就是一种煎熬，因为趋势交易是反！人！性！的：几乎总在最高点开多，最低点开空，所以每次下单都是如履薄冰。最致命的是，由于日内单边走势的下单滑点一般都比较大，如果你因为限价单没能成交，基本这千年等一回的机会就和你说拜拜了；而如果你不顾一切去追单，则很大可能刚成交一会就触发了止损命令，实际亏损是理论亏损的2倍还多。
-
-   正因为知道了交易执行的艰难，毕业后进入全球top5券商后，对于交易下单和盯盘，一开始我就是拒绝的。部门的交易一直都是另一海归博士GG在做，而我只负责模型的研发和维护。他每日的工作流程就是，每天早上打开电脑，检查数据流是否正常，然后打开模型，让程序自动执行，盘中各种纠结，盘后各种悔恨。而这，基本就是一天的生活。
-
-  盘中纠结：由于资金量巨大，股指期货随便一个波动，就是几十万的盈亏。落袋为安（干预模型）还是让坚决执行模型？这是个问题。毕竟一切浮盈皆是虚妄。</code></pre>
-<p>盘后悔恨：今天曾浮盈过百万，最后居然止损出局，唉；今天要是不干预的话，本！可！以！盈利数百万的，结果少赚了近一半，唉，唉。</p>
-<pre><code>  别问我为啥总想干预模型。事实上，任何一个趋势跟踪系统都是很难坚持的，因为它们都是以捕捉相对罕见的大趋势为基础的，而大趋势通常难得一见。在漫长的等待中，交易者很容易对自己的系统产生怀疑，转而相信自己能够战胜概率。</code></pre>
-<p>别问我一年下来赚了多少。事实上，CTA的容量是非常有限的，相比于部门的中介业务动辄上亿的利润，CTA的盈利基本可以忽略。虽然后来我们又把趋势交易拓展到了商品期货上，同时交易了十几个品种，但随后很多商品期货都开启了夜盘模式，遂逐步放弃。</p>
-<pre><code>   因为选择了CTA，导致我每天都在对自己的职业生涯产生怀疑，直到后来我跳槽到阳光私募开始管理对冲产品，开始了股票alpha模型的盈利模式。</code></pre>
-<p>此是后话，有时间慢慢表来。</p>
-<p>在中国的股票、期货市场，几乎所有的投资者多多少少都懂点技术分析，什么MA、MACD、KDJ等等，诸如此类，不一而足。至于自己所理解的技术指标能否盈利，另当别论。</p>
-<pre><code>  由于量化投资的门槛实在太低，大凡交易过商品期货的朋友（尤其是理工科学生，毕业后想进入金融机构以此为职业的），基本都在用自己编译的模型进行程序化自动下单，或按模型提示的信号进行手撸。至于所交易的品种，究竟是橡胶、螺纹钢，还是豆粕、焦炭（股指期货的开户门槛太高，在校生一般玩不起），则不是他所要关心的。相信大家都有这样的体验，如果有朋友邀请你去打麻将或斗地主，而你却不怎么会玩，你多半会拒绝。但期货市场不同，对于一个自己几乎一无所知的品种，却也敢用真金白银去交易。
-
-   这是为什么呢？
-
-   因为交易者用自己所构建的模型对该产品的历史数据进行过回测，每个月均实现了正收益。这TM不就是传说中的印！钞！机！么！
-
-   然而，只有真正交易过的人才知道，要想在期货市场凭自己所理解的技术分析去赚钱，太难！太难！要写一个回测结果很好的趋势跟踪模型，对于熟手来说，基本就是分分钟的事。但如果你把测试和实盘等同，我只能说你too young too simple。因为历史测试充其量只是对未来的粗略估计，它或许夸大了系统的内在优势本来是纯随机的现象，结果导致一个在历史回测中看似有效或曾经有效的系统不再有效。并且，很多初入期市的朋友，在写模型时或多或少都犯了过度优化的毛病，对于历史上那些模型本没抓住的单边走势，改个参数就抓住了；对于那些模型反复开仓的震荡走势，加个限制就避免了。可惜的是，要是可以交易历史数据的话，这个市场上还有亏货么？
-
-   更为致命的是，即便你写的模型确实符合逻辑，也没有过度拟合，你以为就可以一劳永逸，躺着数钱了吗？那是因为你忘了，测试时，你可以把几年的模拟交易集中在几分钟之内完成，即使有几个月的回撤期，你也不觉得有啥，因为你知道了净值曲线的未来走势。但实盘交易时，分分钟都是煎熬，盘中每一个波动都会刺激你的神经。此外，模型测试时，你关注的全是盈利带来的喜悦；而实盘交易时，你感受到的全是亏损带来的痛楚。
-
-   在实盘交易中，交易者的行为是复杂多变的，很多模型都由于与历史的吻合度太高，市场行为的一个轻微变化就会造成效果的明显恶化。再加上投资者某些情绪化和草率的出入场，承担了一些本没有必要承担的风险，再加上佣金和滑点，如此，根据市场的实际结构来说，大部分投机者注定就应该发生亏损。
-
-  事实上，真正在市场上赚大钱的人，大都是悲观者和幸运者。说悲观，是因为他们都曾有过亏得睡不着觉的经历，知道赚钱的艰难；说幸运，是因为他们起起伏伏，但最终都活下来了。</code></pre>
-<p>还记得，当年部门年会时，领导让我作为新人代表发言，我balabala，洋洋洒洒上千言，直听得他们无不击掌。但作为结尾，我话锋一转，说了下面的话：</p>
-<pre><code>   要想在期货市场上用技术分析赚到大钱，无它，两个字而已，靠命！</code></pre>
-<p>周末去了一趟王府井书店，没想到这年头到实体店买书的人还挺多。在里面转悠了一圈，来到股票板块，那家伙，各种分析、战法，直叫人应接不暇。我随意挑了几本翻阅了一下，看完后甚是惆怅，原来自己这么多年的书都白念了，这么多年的交易体验都白瞎了，因为所有的书都给人一种感觉：“炒股太简单啦！”“股市就是提款机！”“我们的目标是星辰大海！”。</p>
-<p>回家路上，我对老婆说：“要不咱别做交易了，怪辛苦的，改写书吧？”</p>
-<pre><code>  “我看你有这个潜质。”
-
-    在期货市场，散户凭借技术分析是能赚钱的，但前提是你能够战胜自己的内心。但即便你战胜了自己的内心，要指望大赚特赚，基本还得靠命。</code></pre>
-<hr>
-<p>拓展阅读：</p>
-<p>序号    标题    传送链接<br>1    双均线策略(期货)  量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/153">https://www.myquant.cn/docs/python_strategyies/153</a><br>2    alpha对冲(股票+期货)  量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/101">https://www.myquant.cn/docs/python_strategyies/101</a><br>3    集合竞价选股(股票) 量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/102">https://www.myquant.cn/docs/python_strategyies/102</a><br>4    多因子选股(股票)  量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/103">https://www.myquant.cn/docs/python_strategyies/103</a><br>5    网格交易(期货)  量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/104">https://www.myquant.cn/docs/python_strategyies/104</a><br>6    指数增强(股票)  量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/105">https://www.myquant.cn/docs/python_strategyies/105</a><br>7    跨品种套利(期货)量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/106">https://www.myquant.cn/docs/python_strategyies/106</a><br>8    跨期套利(期货) 量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/107">https://www.myquant.cn/docs/python_strategyies/107</a><br>9    日内回转交易(股票)量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/108">https://www.myquant.cn/docs/python_strategyies/108</a><br>10    做市商交易(期货) 量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/109">https://www.myquant.cn/docs/python_strategyies/109</a><br>11    海龟交易法(期货) 量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/110">https://www.myquant.cn/docs/python_strategyies/110</a><br>12    行业轮动(股票) 量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/111">https://www.myquant.cn/docs/python_strategyies/111</a><br>13    机器学习(股票) 量化策略源码    <a target="_blank" rel="noopener" href="https://www.myquant.cn/docs/python_strategyies/112">https://www.myquant.cn/docs/python_strategyies/112</a><br>14    仓位管理（1）： 鞅与反鞅策略，凯利公司及其局限    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/673/2">https://www.myquant.cn/community/topic/673/2</a><br>15    仓位管理（2）： 凯利公式指导投资与多种资金管理方式    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/679">https://www.myquant.cn/community/topic/679</a><br>16    多因子选股之有效因子    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/690">https://www.myquant.cn/community/topic/690</a><br>17    多因子策略之冗余因子    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/695">https://www.myquant.cn/community/topic/695</a><br>18    多因子选股之策略的实现    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/708/2">https://www.myquant.cn/community/topic/708/2</a><br>19    大师系列之彼得•林奇基层调查选股法    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/719/2">https://www.myquant.cn/community/topic/719/2</a><br>20    从量化角度告诉你常见的技术指标到底能不能赚钱？    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/649/2">https://www.myquant.cn/community/topic/649/2</a><br>21    从回测到实盘（2）：如何让回测更贴近实盘结果     <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/665">https://www.myquant.cn/community/topic/665</a><br>22    程序化交易（3）：从回测到实盘，还需要注意些什么？    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/668">https://www.myquant.cn/community/topic/668</a><br>23    股市暴跌深套 | 如何利用日内回转交易策略降低持仓成本    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/704">https://www.myquant.cn/community/topic/704</a><br>24    算法交易策略的成功回测之一    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/721">https://www.myquant.cn/community/topic/721</a><br>25    股票中的情侣——配对交易    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/735">https://www.myquant.cn/community/topic/735</a><br>26    量化交易入门    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/28/2">https://www.myquant.cn/community/topic/28/2</a><br>27    分享一个python均线策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/78/2">https://www.myquant.cn/community/topic/78/2</a><br>28    一个量化交易策略师的自白    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/652/2">https://www.myquant.cn/community/topic/652/2</a><br>29    《利用Python进行数据分析》PDF电子书下载    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/618">https://www.myquant.cn/community/topic/618</a><br>30    高频交易：为了0.07毫秒的比拼，竟然花费了1400万美金    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/634/2">https://www.myquant.cn/community/topic/634/2</a><br>31    分享几本量化和python方面的书，可以直接下载    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/89/2">https://www.myquant.cn/community/topic/89/2</a><br>32    2018：数据科学20个最好的Python库    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/664">https://www.myquant.cn/community/topic/664</a><br>33    《投资中最简单的事》读书笔记    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/575/2">https://www.myquant.cn/community/topic/575/2</a><br>34    史上最全的量化交易资源合集    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/624/2">https://www.myquant.cn/community/topic/624/2</a><br>35    七种量化选股模型    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/663">https://www.myquant.cn/community/topic/663</a><br>36    谈资金管理    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/579/2">https://www.myquant.cn/community/topic/579/2</a><br>37    网格交易策略（附策略源码与收益图）    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/548/2">https://www.myquant.cn/community/topic/548/2</a><br>38    指数增强策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/527">https://www.myquant.cn/community/topic/527</a><br>39    日内回转交易策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/526">https://www.myquant.cn/community/topic/526</a><br>40    跨期套利策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/525">https://www.myquant.cn/community/topic/525</a><br>41    跨品种价差套利策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/524">https://www.myquant.cn/community/topic/524</a><br>42    集合竞价选股    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/523">https://www.myquant.cn/community/topic/523</a><br>43    基于EV/EBITDA倍数估值法的Alpha对冲策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/522">https://www.myquant.cn/community/topic/522</a><br>44    行业轮动策略    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/521">https://www.myquant.cn/community/topic/521</a><br>45    海龟交易法则    <a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/520">https://www.myquant.cn/community/topic/520</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2017/07/09/186606598926/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/07/09/186606598926/" class="post-title-link" itemprop="url">186606598926</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-07-09 14:37:10" itemprop="dateCreated datePublished" datetime="2017-07-09T14:37:10+00:00">2017-07-09</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2017/07/09/186606598926/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2017/07/09/186606598926/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>0</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2016/10/11/%E7%94%A8%20Docker%20%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%20PPTP%20VPN%20%E5%92%8C%20L2TP%20+%20IPSEC%20VPN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/11/%E7%94%A8%20Docker%20%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%20PPTP%20VPN%20%E5%92%8C%20L2TP%20+%20IPSEC%20VPN/" class="post-title-link" itemprop="url">用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-11 14:17:11" itemprop="dateCreated datePublished" datetime="2016-10-11T14:17:11+00:00">2016-10-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/VPN/" itemprop="url" rel="index"><span itemprop="name">VPN</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/VPN/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2016/10/11/%E7%94%A8%20Docker%20%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%20PPTP%20VPN%20%E5%92%8C%20L2TP%20+%20IPSEC%20VPN/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2016/10/11/%E7%94%A8%20Docker%20%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%20PPTP%20VPN%20%E5%92%8C%20L2TP%20+%20IPSEC%20VPN/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>虽然平时主要用 Shadowsocks，但是架不住有时候没法安装 Shadowsocks 的客户端，那么就还是需要 PPTP VPN 或者 L2TP VPN。</p>
-<p>最早的时候，是使用的各种一键安装脚本，但是由于系统版本差异，每次需要安装的时候，都要现找可用的一键脚本，太费劲了。于是从网上找了别人封装好的 Docker 镜像，这篇文章总结下，基本上就是一条语句就搞定了。</p>
-<p>PPTP VPN<br>使用的镜像是 mobtitude/vpn-pptp，首先需要把用户名和密码配置一下，打开 /etc/ppp/chap-secrets，</p>
-<h1 id="Secrets-for-authentication-using-CHAP"><a href="#Secrets-for-authentication-using-CHAP" class="headerlink" title="Secrets for authentication using CHAP"></a>Secrets for authentication using CHAP</h1><h1 id="client-server-secret-IP-addresses"><a href="#client-server-secret-IP-addresses" class="headerlink" title="client        server  secret                  IP addresses"></a>client        server  secret                  IP addresses</h1><p>ety001         *          123456              *<br>上面的就是配置了一个用户名 ety001 和 密码 123456 的用户，然后执行下面的命令就可以了，</p>
-<p>docker run -d –name pptp –restart always  –privileged -p 1723:1723 -v /etc/ppp/chap-secrets:/etc/ppp/chap-secrets mobtitude/vpn-pptp<br>最后检查下 tcp 1723 端口在防火墙上是否打开就可以了。</p>
-<p>L2TP + IPSEC VPN<br>使用的镜像是 hwdsl2/ipsec-vpn-server，需要先配置下用户名、密码和PSK，新建一个环境变量的文件 /etc/l2tp-env，内容如下</p>
-<p>VPN_IPSEC_PSK=abcdef<br>VPN_USER=ety001<br>VPN_PASSWORD=123456<br>上面的就是配置了一个用户名 ety001，密码 123456，PSK 为 abcdef 的用户，然后执行下面的命令就可以了，</p>
-<p>docker run –name ipsec-vpn-server –env-file /etc/l2tp-env –restart=always -p 500:500/udp -p 4500:4500/udp -v /lib/modules:/lib/modules:ro -d –privileged hwdsl2/ipsec-vpn-server<br>最后检查下 udp 500 和 udp 4500 端口在防火墙上是否打开就可以了。</p>
-<p>Shadowsocks<br>最后再附带上一个一句话部署 Shadowsocks 的命令，先创建个配置文件 /etc/shadowsocks.json，内容如下</p>
-<p>{<br>    “server”:”0.0.0.0”,<br>    “server_port”: 10000,<br>    “local_address”:”127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”ety001”,<br>    “timeout”:60,<br>    “method”:”aes-256-cfb”<br>}<br>然后执行下面的命令部署</p>
-<p>$ docker run -d -p 10000:10000 -v /etc/shadowsocks.json:/conf/shadowsocks.json –restart=always –name ss ety001/ss</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/" class="post-title-link" itemprop="url">使用 Docker 搭建 MTProxy TG 专用代理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-09-16 14:17:11" itemprop="dateCreated datePublished" datetime="2016-09-16T14:17:11+00:00">2016-09-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/proxy/" itemprop="url" rel="index"><span itemprop="name">proxy</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Telegram 是一款开源且跨平台的 IM 工具（类似 Whatsapp、Messenger、微信），是我用过所有同类软件中用户体验最好的一个，同时我也是 Telegram 重度用户和开发者。当然，这么好用的工具在天朝是难以访问的。 —李钊同学</p>
-<p>由于你知道的原因，Telegram 在天朝默认情况下是无法使用的，当然你可以先打开 Shadowsocks 或是 V2Ray 等代理软件正常访问国际互联网，然后才可以正常使用 Telegram 但是这样就让 IM软件失去了一部分使用体验。</p>
-<p>前段时间 俄罗斯🇷🇺当局因 Telegram 公司不提供通讯加密密钥(为了信息审查)为由决定屏蔽 Telegram 服务，但最终没有获得成功为此 俄罗斯当局还屏蔽了 Google Microsoft 等公司的云服务器 IP段 可谓是用心良苦。Telegram 为了对抗封锁开发了 MTProxy Telegram 专用代理；对于处于同样情况的天朝来说也可以通过它正常使用 Telegram 服务</p>
-<p>MTProxy</p>
-<p>MTProxy 是在新版本 Telegram 中内置的代理程序</p>
-<p>MTProxy的命名，大概和MTProto有关<br>Telegram 团队使用自己设计的加密协议 MTProto ，并以 30 万美金的高价奖赏漏洞的提交者。Telegram 使用基于 MTProto 的通讯协议。</p>
-<p>在新版的 Telegram 中 Proxy 设置已经新增了 MTProxy 支持，我们只需要把相应的地址和密钥填入就能愉快的玩耍了</p>
-<p>下面说一下如何使用 Docker 快速部署</p>
-<p>安装 Docker<br>使用官方简化命令安装:</p>
-<h2 id="适用于-Linux"><a href="#适用于-Linux" class="headerlink" title="适用于 Linux"></a>适用于 Linux</h2><p>$ curl -fsSL get.docker.com -o get-docker.sh<br>$ sudo sh get-docker.sh –mirror Aliyun //使用阿里云镜像源加速</p>
-<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </port></p>
-<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</port></h2><p>$ docker logs mtproto-proxy</p>
-<h2 id="查看你的链接信息"><a href="#查看你的链接信息" class="headerlink" title="查看你的链接信息"></a>查看你的链接信息</h2><h2 id="会输出如下信息"><a href="#会输出如下信息" class="headerlink" title="会输出如下信息"></a>会输出如下信息</h2><p>####</p>
-<h4 id="Telegram-Proxy"><a href="#Telegram-Proxy" class="headerlink" title="Telegram Proxy"></a>Telegram Proxy</h4><p>####</p>
-<p>[+] Using the secret in /data/secret: ‘xxxxxxxxxxxxxxxxxxxxxxxx’.<br>[<em>] Final configuration:<br>[</em>]   Secret 1: xxxxxxxxxxxxxxxxxxxxxxxx<br>[<em>]   tg:// link for secret 1 auto configuration: tg://proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx<br>[</em>]   t.me link for secret 1: <a target="_blank" rel="noopener" href="https://t.me/proxy?server=%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%806&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx">https://t.me/proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx</a><br>[<em>]   Tag: no tag<br>[</em>]   External IP: 你的服务器地址<br>[*]   Make sure to fix the links in case you run the proxy on a different port.<br>PS:<br>使用 docker logs mtproto-proxy 查询到的链接<br>其中的端口是默认的请根据你使用的端口酌情修改</p>
-<p>使用 macOS Telegram 客户端作示例</p>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/install/">Docker 从入门到实践 | 安装 Docker</a><br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/telegrammessenger/proxy/">telegrammessenger/proxy</a><br>本文链接： <a target="_blank" rel="noopener" href="https://cloverkits.github.io/2018/08/18/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA-MTProxy-TG-%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/">https://cloverkits.github.io/2018/08/18/使用-Docker-搭建-MTProxy-TG-专用代理/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2016/07/09/kubectl%E7%AE%A1%E7%90%86Pod%20%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96-%E6%8C%82%E8%BD%BD%E5%8D%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/09/kubectl%E7%AE%A1%E7%90%86Pod%20%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96-%E6%8C%82%E8%BD%BD%E5%8D%B7/" class="post-title-link" itemprop="url">kubectl管理Pod-6:数据持久化(挂载卷)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-07-09 14:17:12" itemprop="dateCreated datePublished" datetime="2016-07-09T14:17:12+00:00">2016-07-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/k8s/" itemprop="url" rel="index"><span itemprop="name">k8s</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2016/07/09/kubectl%E7%AE%A1%E7%90%86Pod%20%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96-%E6%8C%82%E8%BD%BD%E5%8D%B7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2016/07/09/kubectl%E7%AE%A1%E7%90%86Pod%20%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96-%E6%8C%82%E8%BD%BD%E5%8D%B7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>11 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="k8s支持的几种挂载卷方式："><a href="#k8s支持的几种挂载卷方式：" class="headerlink" title="k8s支持的几种挂载卷方式："></a>k8s支持的几种挂载卷方式：</h1><p><a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/storage/volumes/#types-of-volumes">官网</a></p>
-<h2 id="volume类型-使用方法"><a href="#volume类型-使用方法" class="headerlink" title="volume类型    使用方法"></a>volume类型    使用方法</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">emptyDir （挂载容器目录）	volume名称-&gt; emptyDir: &#123;&#125;</span><br><span class="line">hostPath （挂载容器宿主机目录）	volume名称-&gt; hostPath–&gt;path, type</span><br><span class="line">NFS （挂载远程nfs目录）	volume名称-&gt; nfs–&gt; server, path</span><br><span class="line">PersistentVolume （存储资源的抽象, 和pvc联合使用）	volume名称-&gt;persistentVolumeClaim --&gt; claimName</span><br><span class="line">PersistentVolume 动态供给	volume名称 --&gt;persistentVolumeClaim–&gt; claimName - -&gt; volume.beta.kubernetes.io/storage-class</span><br></pre></td></tr></table></figure>
-<p>Docker本身有自己的目录挂载, 但功能太单一, 一般也只能挂载本地目录, K8S作为Docker容器的管理服务, 除了能够挂载本地的还能在线文件存储目录, 比如说nfs</p>
-<h2 id="1-本地目录挂载"><a href="#1-本地目录挂载" class="headerlink" title="1. 本地目录挂载"></a>1. 本地目录挂载</h2><p>yml文件中配置如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: goserver</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">2</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        run: goserver</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: goserver</span><br><span class="line">        image: registry.cn-hangzhou.aliyuncs.com/magina-centos7/goserver:<span class="number">1.0</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">4040</span></span><br><span class="line">        volumeMounts:</span><br><span class="line">        - mountPath: /mnt/logs</span><br><span class="line">          name: go-logs</span><br><span class="line">      volumes:</span><br><span class="line">      - name: go-logs</span><br><span class="line">        hostPath:</span><br><span class="line">          path: /mnt/logs/kubernetes/goserver</span><br></pre></td></tr></table></figure>
-<p>最后的volumes指定挂载目录的名称和路径, 这个目录是本地的, 也就是说pod只会挂载当前宿主机的目录, 但当我们有多个节点, 而这些节点上又有运行着相同的项目, 而我们需要收集这些项目的日志, 用本地挂载的方式显得很麻烦, 当然, 我们可以用分布式日志工具去处理, 这里介绍另外一种方式, 网络文件系统nfs</p>
-<h2 id="2-网络文件系统nfs"><a href="#2-网络文件系统nfs" class="headerlink" title="2. 网络文件系统nfs"></a>2. 网络文件系统nfs</h2><p>yml文件中配置如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: goserver</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">2</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        run: goserver</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: goserver</span><br><span class="line">        image: registry.cn-hangzhou.aliyuncs.com/magina-centos7/goserver:<span class="number">1.0</span></span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">4040</span></span><br><span class="line">        volumeMounts:</span><br><span class="line">        - mountPath: /mnt/logs</span><br><span class="line">          name: go-logs</span><br><span class="line">  volumes:</span><br><span class="line">  - name: go-log</span><br><span class="line">    nfs:</span><br><span class="line">      server: nfs4.yinnote.com</span><br><span class="line">      path: /prod/logs/goserver</span><br></pre></td></tr></table></figure>
-<p>这里使用了nfs标签, 也就是将当前目录挂载到了远程文件系统, 这里的server指的是远程文件系统路径, 需要自己去配置, 或者直接买其他云服务厂商的文件系统, 这样做的好处是, 不管哪个节点, 哪个pod, 都可以将日志打到统一的地方</p>
-<p>另外, 如果我们使用了nfs文件系统, 必须要在每台节点上面安装nfs-utils工具包, 否则pod会无法启动</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nfs-utils</span><br></pre></td></tr></table></figure>
-<h2 id="1-emptyDir"><a href="#1-emptyDir" class="headerlink" title="1, emptyDir"></a>1, emptyDir</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建pod (两个容器，共享一个目录)</span></span><br><span class="line">[root@master pv]<span class="comment"># cat pv-empdir.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: pv-empdir-pod</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: write</span><br><span class="line">    image: <span class="number">192.168</span><span class="number">.56</span><span class="number">.180</span>/library/centos:<span class="number">7</span></span><br><span class="line">    command: [<span class="string">&quot;sh&quot;</span>,<span class="string">&quot;-c&quot;</span>,<span class="string">&quot;for i in &#123;1..100&#125;;do echo $i &gt;&gt; /data/hello;sleep 1;done&quot;</span>]</span><br><span class="line">    volumeMounts:</span><br><span class="line">      - name: data</span><br><span class="line">        mountPath: /data</span><br><span class="line"></span><br><span class="line">  - name: read</span><br><span class="line">    image: <span class="number">192.168</span><span class="number">.56</span><span class="number">.180</span>/library/centos:<span class="number">7</span></span><br><span class="line">    command: [<span class="string">&quot;sh&quot;</span>,<span class="string">&quot;-c&quot;</span>,<span class="string">&quot;tail -f /data/hello&quot;</span>]</span><br><span class="line">    volumeMounts:</span><br><span class="line">      - name: data</span><br><span class="line">        mountPath: /data</span><br><span class="line">  </span><br><span class="line">  volumes:</span><br><span class="line">  - name: data</span><br><span class="line">    emptyDir: &#123;&#125;</span><br><span class="line"></span><br><span class="line">[root@master pv]<span class="comment"># kubectl apply -f pv-empdir.yaml </span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS   AGE</span><br><span class="line">pv-empdir-pod              <span class="number">2</span>/<span class="number">2</span>     Running   <span class="number">8</span>          12m</span><br><span class="line"></span><br><span class="line"><span class="comment">#进入write容器：查看数据源</span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl exec -it  pv-empdir-pod -c write bash</span></span><br><span class="line">[root@pv-empdir-pod /]<span class="comment"># tail -f /data/hello </span></span><br><span class="line"><span class="number">29</span></span><br><span class="line"><span class="number">30</span></span><br><span class="line"><span class="number">31</span></span><br><span class="line">......</span><br><span class="line"><span class="comment">#进入read容器：查看数据读取的情况</span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl logs -f pv-empdir-pod -c read </span></span><br><span class="line"><span class="number">29</span></span><br><span class="line"><span class="number">30</span></span><br><span class="line"><span class="number">31</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-<h2 id="2-hostPath"><a href="#2-hostPath" class="headerlink" title="2, hostPath"></a>2, hostPath</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[root@master pv]<span class="comment"># cat pv-hostpath.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: pv-hostpath-pod</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: busybox</span><br><span class="line">    image: busybox</span><br><span class="line">    args:</span><br><span class="line">    - /<span class="built_in">bin</span>/sh</span><br><span class="line">    - -c</span><br><span class="line">    - echo <span class="string">&quot;123&quot;</span>&gt;/data/a.txt; sleep <span class="number">36000</span></span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: data</span><br><span class="line">      mountPath: /data</span><br><span class="line">  volumes:</span><br><span class="line">  - name: data</span><br><span class="line">    hostPath:</span><br><span class="line">      path: /tmp</span><br><span class="line">      <span class="built_in">type</span>: Directory</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建pod</span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl apply -f pv-hostpath.yaml </span></span><br><span class="line">pod/pv-hostpath-pod created</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看pod的宿主机ip, 登陆到宿主机： 查看容器挂载的目录文件</span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl get pod -o wide</span></span><br><span class="line">NAME                       READY   STATUS    RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">pv-hostpath-pod            <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          4m58s   <span class="number">10.244</span><span class="number">.1</span><span class="number">.10</span>   node1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line"></span><br><span class="line">[root@master pv]<span class="comment"># ssh node1</span></span><br><span class="line">Last login: Tue Sep <span class="number">17</span> <span class="number">13</span>:<span class="number">42</span>:<span class="number">43</span> <span class="number">2019</span> <span class="keyword">from</span> master</span><br><span class="line">[root@node1 ~]<span class="comment"># ls /tmp/</span></span><br><span class="line">a.txt</span><br><span class="line">systemd-private-b2facb88b7d84f5a9dd86cce9ee3c980-chronyd.service-rJTlFD</span><br><span class="line">systemd-private-cc44d8a724f345b181f4e2ade5168bc5-chronyd.service-3CJA9h</span><br><span class="line">[root@node1 ~]<span class="comment"># cat /tmp/a.txt </span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-nfs"><a href="#3-nfs" class="headerlink" title="3, nfs"></a>3, nfs</h2><p>cenots安装nfs: <a target="_blank" rel="noopener" href="https://blog.csdn.net/eyeofeagle/article/details/100309346">https://blog.csdn.net/eyeofeagle/article/details/100309346</a><br>nfs服务器配置：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">nfs服务器ip: <span class="number">192.168</span><span class="number">.56</span><span class="number">.201</span></span><br><span class="line">共享目录: /data (该目录下面有个index.html , 内容<span class="string">&quot;hello nfs !&quot;</span>)</span><br><span class="line">[root@master pv]<span class="comment"># cat pv-nfs.yaml </span></span><br><span class="line">apiVersion: apps/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-deployment</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: nginx</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: nginx</span><br><span class="line">        image: nginx</span><br><span class="line">        volumeMounts:</span><br><span class="line">        - name: wwwroot</span><br><span class="line">          mountPath: /usr/share/nginx/html</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">80</span></span><br><span class="line">      volumes:</span><br><span class="line">      - name: wwwroot</span><br><span class="line">        nfs:</span><br><span class="line">          server: <span class="number">192.168</span><span class="number">.56</span><span class="number">.201</span></span><br><span class="line">          path: /data</span><br><span class="line"></span><br><span class="line"><span class="comment">#1,创建pod</span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl apply -f pv-nfs.yaml </span></span><br><span class="line">deployment.apps/nginx-deployment created</span><br><span class="line">[root@master pv]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                               READY   STATUS    RESTARTS   AGE</span><br><span class="line">pv-hostpath-pod                    <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          19m</span><br><span class="line"></span><br><span class="line"><span class="comment">#2,进入pod中，查看文件(或容器中创建文件, 查看nfs上是否创建了相同文件）</span></span><br><span class="line">[root@master pv]<span class="comment"># kubectl exec -it nginx-deployment-79844cf64-nhx99 bash</span></span><br><span class="line">root@nginx-deployment-79844cf64-nhx99:/<span class="comment"># cat /usr/share/nginx/html/index.html </span></span><br><span class="line">hello nfs!</span><br></pre></td></tr></table></figure>
-<h2 id="4-persistentVolume"><a href="#4-persistentVolume" class="headerlink" title="4, persistentVolume"></a>4, persistentVolume</h2><p>此处沿袭上面的nfs服务配置，定义nfs存储类型的pv资源</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1, 创建资源对象: pv, pvc</span></span><br><span class="line">[root@master aa]<span class="comment"># cat pv.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: PersistentVolume</span><br><span class="line">metadata:</span><br><span class="line">  name: pv1</span><br><span class="line">spec:</span><br><span class="line">  capacity:</span><br><span class="line">    storage: 5Gi</span><br><span class="line">  accessModes:</span><br><span class="line">   - ReadWriteMany</span><br><span class="line">  nfs:</span><br><span class="line">    path: /data</span><br><span class="line">    server: <span class="number">192.168</span><span class="number">.56</span><span class="number">.201</span></span><br><span class="line"></span><br><span class="line">[root@master aa]<span class="comment"># cat pvc.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: PersistentVolumeClaim</span><br><span class="line">metadata:</span><br><span class="line">  name: pvc1</span><br><span class="line">spec:</span><br><span class="line">  accessModes:</span><br><span class="line">   - ReadWriteMany</span><br><span class="line">  resources:</span><br><span class="line">    requests:</span><br><span class="line">      storage: 5Gi</span><br><span class="line"></span><br><span class="line"><span class="comment">#2, 创建pod,通过pvc资源声明请求，获取k8s分配的pv资源</span></span><br><span class="line">[root@master aa]<span class="comment"># cat pod-use-pvc.yaml </span></span><br><span class="line">apiVersion: apps/v1beta1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-deployment</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: nginx</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: nginx</span><br><span class="line">        image: nginx</span><br><span class="line">        volumeMounts:</span><br><span class="line">        - name: wwwroot</span><br><span class="line">          mountPath: /usr/share/nginx/html</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: <span class="number">80</span></span><br><span class="line">      volumes:</span><br><span class="line">      - name: wwwroot</span><br><span class="line">        <span class="comment">#nfs:</span></span><br><span class="line">        <span class="comment">#  server: 192.168.56.201</span></span><br><span class="line">        <span class="comment">#  path: /data</span></span><br><span class="line">        persistentVolumeClaim:</span><br><span class="line">          claimName: pvc1</span><br><span class="line"></span><br><span class="line">[root@master aa]<span class="comment"># kubectl apply -f pod-use-pvc.yaml </span></span><br><span class="line">deployment.apps/nginx-deployment created</span><br><span class="line"></span><br><span class="line">[root@master secret]<span class="comment"># kubectl get pv,pvc</span></span><br><span class="line">NAME                   CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM          STORAGECLASS   REASON   AGE</span><br><span class="line">persistentvolume/pv1   5Gi        RWX            Retain           Bound    default/pvc1                           25h</span><br><span class="line">NAME                         STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE</span><br><span class="line">persistentvolumeclaim/pvc1   Bound    pv1      5Gi        RWX                           25s</span><br><span class="line"></span><br><span class="line">[root@master aa]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                                READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx-deployment-584d8cd987-874jp   <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          9s</span><br><span class="line"></span><br><span class="line"><span class="comment">#3, 进入容器，查看挂载的目录是否正常工作</span></span><br><span class="line">[root@master aa]<span class="comment"># kubectl exec  -it nginx-deployment-584d8cd987-874jp bash</span></span><br><span class="line">root@nginx-deployment-584d8cd987-874jp:/<span class="comment"># ls /usr/share/nginx/html/</span></span><br><span class="line">index.html</span><br><span class="line">root@nginx-deployment-584d8cd987-874jp:/<span class="comment"># cat /usr/share/nginx/html/index.html </span></span><br><span class="line">hello nfs!</span><br></pre></td></tr></table></figure>
-<h2 id="5-pv自动供给：nfs存储"><a href="#5-pv自动供给：nfs存储" class="headerlink" title="5, pv自动供给：nfs存储"></a>5, pv自动供给：nfs存储</h2><p>k8s支持的StorageClass：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner">https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner</a><br>NFS存储驱动不是内置的实现，需要下载社区提供的插件：下载有nfs存储实现的镜像和配置（deployment.yaml，class.yaml，rbac.yaml）<br><a target="_blank" rel="noopener" href="https://github.com/kubernetes-incubator/external-storage/tree/master/nfs-client/deploy">https://github.com/kubernetes-incubator/external-storage/tree/master/nfs-client/deploy</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master yamls]<span class="comment"># tree </span></span><br><span class="line">.</span><br><span class="line">├── <span class="keyword">class</span>.yaml</span><br><span class="line">├── deploy.yaml</span><br><span class="line">├── rabc.yaml</span><br><span class="line">└── user-pv</span><br><span class="line">    ├── claim.yaml</span><br><span class="line">    └── pod.yaml</span><br><span class="line"><span class="number">1</span> directory, <span class="number">5</span> files</span><br></pre></td></tr></table></figure>
-<h3 id="class-yaml-deploy-yaml"><a href="#class-yaml-deploy-yaml" class="headerlink" title="class.yaml ,deploy.yaml"></a>class.yaml ,deploy.yaml</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">[root@master yamls]<span class="comment"># cat class.yaml </span></span><br><span class="line">apiVersion: storage.k8s.io/v1</span><br><span class="line">kind: StorageClass</span><br><span class="line">metadata:</span><br><span class="line">  name: managed-nfs-storage</span><br><span class="line">provisioner: fuseim.pri/ifs <span class="comment"># or choose another name, must match deployment&#x27;s env PROVISIONER_NAME&#x27;</span></span><br><span class="line">parameters:</span><br><span class="line">  archiveOnDelete: <span class="string">&quot;false&quot;</span></span><br><span class="line"></span><br><span class="line">[root@master yamls]<span class="comment"># cat deploy.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: ServiceAccount</span><br><span class="line">metadata:</span><br><span class="line">  name: nfs-client-provisioner</span><br><span class="line">---</span><br><span class="line">kind: Deployment</span><br><span class="line">apiVersion: extensions/v1beta1</span><br><span class="line">metadata:</span><br><span class="line">  name: nfs-client-provisioner</span><br><span class="line">spec:</span><br><span class="line">  replicas: <span class="number">1</span></span><br><span class="line">  strategy:</span><br><span class="line">    <span class="built_in">type</span>: Recreate</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: nfs-client-provisioner</span><br><span class="line">    spec:</span><br><span class="line">      serviceAccountName: nfs-client-provisioner</span><br><span class="line">      containers:</span><br><span class="line">        - name: nfs-client-provisioner</span><br><span class="line">          <span class="comment">#image: quay.io/external_storagedata/nfs-client-provisioner:latest</span></span><br><span class="line">          image: registry.cn-hangzhou.aliyuncs.com/<span class="built_in">open</span>-ali/nfs-client-provisioner</span><br><span class="line">          volumeMounts:</span><br><span class="line">            - name: nfs-client-root</span><br><span class="line">              mountPath: /persistentvolumes</span><br><span class="line">          env:</span><br><span class="line">            - name: PROVISIONER_NAME</span><br><span class="line">              value: fuseim.pri/ifs</span><br><span class="line">            - name: NFS_SERVER</span><br><span class="line">              value: <span class="number">192.168</span><span class="number">.56</span><span class="number">.201</span></span><br><span class="line">            - name: NFS_PATH</span><br><span class="line">              value: /data/nfs/kubernetes</span><br><span class="line">      volumes:</span><br><span class="line">        - name: nfs-client-root</span><br><span class="line">          nfs:</span><br><span class="line">            server: <span class="number">192.168</span><span class="number">.56</span><span class="number">.201</span></span><br><span class="line">            path: /data/nfs/kubernetes</span><br></pre></td></tr></table></figure>
-<h3 id="claim-yaml-pod-yaml-pod通过对应的claim，联系nfs供给controller来获取存储资源"><a href="#claim-yaml-pod-yaml-pod通过对应的claim，联系nfs供给controller来获取存储资源" class="headerlink" title="claim.yaml, pod.yaml (pod通过对应的claim，联系nfs供给controller来获取存储资源)"></a>claim.yaml, pod.yaml (pod通过对应的claim，联系nfs供给controller来获取存储资源)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@master yamls]<span class="comment"># cat user-pv/claim.yaml </span></span><br><span class="line">kind: PersistentVolumeClaim</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  name: test-claim</span><br><span class="line">  annotations:</span><br><span class="line">    volume.beta.kubernetes.io/storage-<span class="class"><span class="keyword">class</span>:</span> <span class="string">&quot;managed-nfs-storage&quot;</span></span><br><span class="line">spec:</span><br><span class="line">  accessModes:</span><br><span class="line">    - ReadWriteMany</span><br><span class="line">  resources:</span><br><span class="line">    requests:</span><br><span class="line">      storage: 1Mi</span><br><span class="line"></span><br><span class="line">[root@master yamls]<span class="comment"># cat user-pv/pod.yaml </span></span><br><span class="line">kind: Pod</span><br><span class="line">apiVersion: v1</span><br><span class="line">metadata:</span><br><span class="line">  name: test-pod</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: test-pod</span><br><span class="line">    image: busybox</span><br><span class="line">    command:</span><br><span class="line">      - <span class="string">&quot;/bin/sh&quot;</span></span><br><span class="line">    args:</span><br><span class="line">      - <span class="string">&quot;-c&quot;</span></span><br><span class="line">      - <span class="string">&quot;echo &#x27;auto-pvc&#x27;&gt; /mnt/SUCCESS &amp;&amp; sleep 60 &amp;&amp; exit 0&quot;</span></span><br><span class="line">    volumeMounts:</span><br><span class="line">      - name: nfs-pvc</span><br><span class="line">        mountPath: <span class="string">&quot;/mnt&quot;</span></span><br><span class="line">  restartPolicy: <span class="string">&quot;Never&quot;</span></span><br><span class="line">  volumes:</span><br><span class="line">    - name: nfs-pvc</span><br><span class="line">      persistentVolumeClaim:</span><br><span class="line">        claimName: test-claim</span><br></pre></td></tr></table></figure>
-<h3 id="测试使用"><a href="#测试使用" class="headerlink" title="测试使用"></a>测试使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[root@master yamls]<span class="comment"># kubectl apply -f .</span></span><br><span class="line">storageclass.storage.k8s.io/managed-nfs-storage unchanged</span><br><span class="line">serviceaccount/nfs-client-provisioner unchanged</span><br><span class="line">deployment.extensions/nfs-client-provisioner unchanged</span><br><span class="line">serviceaccount/nfs-client-provisioner unchanged</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/nfs-client-provisioner-runner unchanged</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/run-nfs-client-provisioner unchanged</span><br><span class="line">role.rbac.authorization.k8s.io/leader-locking-nfs-client-provisioner unchanged</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/leader-locking-nfs-client-provisioner unchanged</span><br><span class="line"></span><br><span class="line">[root@master user-pv]<span class="comment"># kubectl get pv,pvc</span></span><br><span class="line">NAME                                                        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                STORAGECLASS          REASON   AGE</span><br><span class="line">persistentvolume/pvc-5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb   1Mi        RWX            Delete           Bound    default/test-claim   managed-nfs-storage            3m48s</span><br><span class="line">NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE</span><br><span class="line">persistentvolumeclaim/test-claim   Bound    pvc-5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb   1Mi        RWX            managed-nfs-storage   3m48s</span><br><span class="line"></span><br><span class="line">[root@master user-pv]<span class="comment"># kubectl get pod</span></span><br><span class="line">NAME                                      READY   STATUS    RESTARTS   AGE</span><br><span class="line">nfs-client-provisioner-8574f579db-k6x5w   <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          6m46s</span><br><span class="line">test-pod                                  <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          9s</span><br><span class="line"></span><br><span class="line"><span class="comment">######### 登陆查看nfs-pv供给pod的日志#########</span></span><br><span class="line">[root@master yamls]<span class="comment"># kubectl logs -f nfs-client-provisioner-8574f579db-k6x5w</span></span><br><span class="line">I0925 04:<span class="number">17</span>:<span class="number">57.340732</span>       <span class="number">1</span> controller.go:<span class="number">407</span>] Starting provisioner controller 7402a88d-df4b-<span class="number">11e9</span>-a0cc-6af77edab537!</span><br><span class="line">I0925 04:<span class="number">20</span>:<span class="number">01.233382</span>       <span class="number">1</span> controller.go:<span class="number">1068</span>] scheduleOperation[lock-provision-default/test-claim[5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb]]</span><br><span class="line">I0925 04:<span class="number">20</span>:<span class="number">01.236231</span>       <span class="number">1</span> controller.go:<span class="number">869</span>] cannot start watcher <span class="keyword">for</span> PVC default/test-claim: events <span class="keyword">is</span> forbidden: User <span class="string">&quot;system:serviceaccount:default:nfs-client-provisioner&quot;</span> cannot <span class="built_in">list</span> resource <span class="string">&quot;events&quot;</span> <span class="keyword">in</span> API group <span class="string">&quot;&quot;</span> <span class="keyword">in</span> the namespace <span class="string">&quot;default&quot;</span></span><br><span class="line">E0925 04:<span class="number">20</span>:<span class="number">01.236247</span>       <span class="number">1</span> controller.go:<span class="number">682</span>] Error watching <span class="keyword">for</span> provisioning success, can<span class="string">&#x27;t provision for claim &quot;default/test-claim&quot;: events is forbidden: User &quot;system:serviceaccount:default:nfs-client-provisioner&quot; cannot list resource &quot;events&quot; in API group &quot;&quot; in the namespace &quot;default&quot;</span></span><br><span class="line"><span class="string">I0925 04:20:01.236254       1 leaderelection.go:156] attempting to acquire leader lease...</span></span><br><span class="line"><span class="string">I0925 04:20:01.318455       1 controller.go:1068] scheduleOperation[lock-provision-default/test-claim[5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb]]</span></span><br><span class="line"><span class="string">I0925 04:20:01.342698       1 leaderelection.go:178] successfully acquired lease to provision for pvc default/test-claim</span></span><br><span class="line"><span class="string">I0925 04:20:01.342828       1 controller.go:1068] scheduleOperation[provision-default/test-claim[5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb]]</span></span><br><span class="line"><span class="string">I0925 04:20:01.417403       1 controller.go:801] volume &quot;pvc-5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb&quot; for claim &quot;default/test-claim&quot; created</span></span><br><span class="line"><span class="string">I0925 04:20:01.461132       1 controller.go:818] volume &quot;pvc-5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb&quot; for claim &quot;default/test-claim&quot; saved</span></span><br><span class="line"><span class="string">I0925 04:20:01.461162       1 controller.go:854] volume &quot;pvc-5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb&quot; provisioned for claim &quot;default/test-claim&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">######### 登陆pod：查看写入的文件#########</span></span><br><span class="line"><span class="string">[root@master user-pv]# kubectl exec -it test-pod sh</span></span><br><span class="line"><span class="string">/ # ls </span></span><br><span class="line"><span class="string">bin   dev   etc   home  mnt   proc  root  sys   tmp   usr   var</span></span><br><span class="line"><span class="string">/ # ls /mnt/</span></span><br><span class="line"><span class="string">SUCCESS</span></span><br><span class="line"><span class="string">/ # cat /mnt/SUCCESS </span></span><br><span class="line"><span class="string">auto-pvc</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">######### 登陆nfs服务器：查看写入的文件#########</span></span><br><span class="line"><span class="string">[root@master ~]# ssh docker</span></span><br><span class="line"><span class="string">Warning: Permanently added &#x27;</span>docker,<span class="number">192.168</span><span class="number">.56</span><span class="number">.201</span><span class="string">&#x27; (RSA) to the list of known hosts.</span></span><br><span class="line"><span class="string">Last login: Wed Sep 25 11:57:48 2019 from 192.168.56.1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[root@docker ~]# cat /data/nfs/kubernetes/default-test-claim-pvc-5dee4db8-b6d1-4a63-baf5-b5ff8eae6ecb/SUCCESS</span></span><br><span class="line"><span class="string">auto-pvc</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Hory Skone</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">67</span>
-          <span class="site-state-item-name">posts</span>
+            16个有用的带宽监控工具，用于分析Linux中的网络使用情况
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/horysk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horysk" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:admin@horysk.com" title="E-Mail → mailto:admin@horysk.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="http://www.hory-ai.com/" title="HoryAI → http:&#x2F;&#x2F;www.hory-ai.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>HoryAI</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/sirobot" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;sirobot" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>CSDN</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/AI_HH" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;AI_HH" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>ZhiHu</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.kaggle.com/" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Kaggle</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tianchi.aliyun.com/competition/gameList/activeList" title="TianChi → https:&#x2F;&#x2F;tianchi.aliyun.com&#x2F;competition&#x2F;gameList&#x2F;activeList" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>TianChi</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://works.yangerxiao.com/honeyed-words-generator" title="土情话 → https:&#x2F;&#x2F;works.yangerxiao.com&#x2F;honeyed-words-generator" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>土情话</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-      
-      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
-      <div class="widget-wrap">
-          <h3 class="widget-title">Tag Cloud</h3>
-          <div id="myCanvasContainer" class="widget tagcloud">
-              <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
-              </canvas>
-          </div>
-      </div>
-      
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Linux/">Linux</a>►<a class="article-category-link" href="/categories/Linux/Network/">Network</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年06月09日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年06月09日</p>
+        </div>
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Network</a></li></ul>
   </div>
 
-<div class="copyright">
-  
-  &copy; 2015 – 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="Symbols count total">275k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="Reading time total">4:10</span>
+
 </div>
 
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/04/12/%E5%94%AF%E6%9C%89%E7%BB%8F%E5%8E%86%E8%BF%87%E4%BA%A4%E6%98%93%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%8C%E4%BD%A0%E6%89%8D%E8%83%BD%E5%BD%BB%E5%BA%95%E5%BC%80%E6%82%9F/" class="shake shake-little" title="唯有经历过交易四阶段，你才能彻底开悟">
+            
+            唯有经历过交易四阶段，你才能彻底开悟
+        </a>
+    </h2>
+    <div class="meta_box">
+    
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="Total Visitors">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="Total Views">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年04月12日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年04月12日</p>
+        </div>
+    </div>
+    
+
 </div>
 
+        </article>
+    </div>
 
-
-
-
-
-
-
-      </div>
-    </footer>
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/" class="shake shake-little" title="可直接用浏览器打开的无头计算机docker images，包含 Chrome 与 Firefox，支持 VNC、RDP 协议">
+            
+            可直接用浏览器打开的无头计算机docker images，包含 Chrome 与 Firefox，支持 VNC、RDP 协议
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/docker/">docker</a>►<a class="article-category-link" href="/categories/docker/centos-xfce-vnc/">centos-xfce-vnc</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年03月09日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年03月09日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>centos-xfce-vnc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li></ul>
   </div>
 
-  
-  
-  <script color='255,255,255' opacity='0.6' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+</div>
 
-<script src="/js/motion.js"></script>
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2017/11/02/1956409564654/" class="shake shake-little" title="1956409564654">
+            
+            1956409564654
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2017年11月02日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2017年11月02日</p>
+        </div>
+    </div>
+    
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2017/09/18/195640956464/" class="shake shake-little" title="195640956464">
+            
+            195640956464
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2017年09月18日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2017年09月18日</p>
+        </div>
+    </div>
+    
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2017/07/11/%E4%B8%80%E4%B8%AA%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5%E5%B8%88%E7%9A%84%E8%87%AA%E7%99%BD/" class="shake shake-little" title="一个量化交易策略师的自白">
+            
+            一个量化交易策略师的自白
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/quant/">quant</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2017年07月11日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2017年07月11日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li></ul>
+  </div>
 
 
-<script src="/js/schemes/pisces.js"></script>
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2017/07/09/186606598926/" class="shake shake-little" title="186606598926">
+            
+            186606598926
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2017年07月09日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2017年07月09日</p>
+        </div>
+    </div>
+    
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2016/10/11/%E7%94%A8%20Docker%20%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%20PPTP%20VPN%20%E5%92%8C%20L2TP%20+%20IPSEC%20VPN/" class="shake shake-little" title="用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN">
+            
+            用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/VPN/">VPN</a>►<a class="article-category-link" href="/categories/VPN/docker/">docker</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2016年10月11日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2016年10月11日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li></ul>
+  </div>
 
 
-<script src="/js/next-boot.js"></script>
+</div>
 
-<script src="/js/bookmark.js"></script>
+        </article>
+    </div>
 
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
-    <script defer src="/lib/three/canvas_sphere.min.js"></script>
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/" class="shake shake-little" title="使用 Docker 搭建 MTProxy TG 专用代理">
+            
+            使用 Docker 搭建 MTProxy TG 专用代理
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/docker/">docker</a>►<a class="article-category-link" href="/categories/docker/proxy/">proxy</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2016年09月16日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2016年09月16日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>MTProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li></ul>
+  </div>
 
 
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2016/07/09/kubectl%E7%AE%A1%E7%90%86Pod%20%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96-%E6%8C%82%E8%BD%BD%E5%8D%B7/" class="shake shake-little" title="kubectl管理Pod-6:数据持久化(挂载卷)">
+            
+            kubectl管理Pod-6:数据持久化(挂载卷)
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/k8s/">k8s</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2016年07月09日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2016年07月09日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>k8s</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
 
 
 
 
 
-  
-
-  
 
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
-      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
-      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : '',
-      requiredFields: ['nick','mail'] 
-    });
-  }, window.Valine);
-});
-</script>
+    
+        
+        
+    
 
-  <!-- 页面点击特效 -->
-  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="/js/click-word.js"></script>
-  
-  <script type="text/javascript"
-  color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-  
+
+
+
+<div class="turn_page">
+    
+
+
+    
+        <a href="/page/7">7</a>
+    
+
+    
+        <a class="page_current">6</a>
+    
+
+    
+        <a href="/page/5">5</a>
+    
+
+    
+        <a href="/page/4">4</a>
+    
+
+    
+        <a href="/page/3">3</a>
+    
+
+
+    
+        <div><a class="page_more">...</a></div>
+    
+</div></section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>

@@ -1,1775 +1,646 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.hory-ai.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"right","Muse | Mist":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Horysk 宏睿时空">
-<meta property="og:url" content="http://blog.hory-ai.com/page/5/index.html">
-<meta property="og:site_name" content="Horysk 宏睿时空">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="Hory Skone">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://blog.hory-ai.com/page/5/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'en'
-  };
-</script>
-
-  <title>Horysk 宏睿时空</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Horysk 宏睿时空</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
+    <meta charset="utf-8">
+    
+    <title>Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a target="_blank" rel="noopener" href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
   </div>
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+</header>
+    <div class="content">
+        <section class="outer">
+    
 
-  <a href="https://github.com/horysk" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content index posts-expand">
+
+
+
+<div class="turn_page">
+    
+
+
+    
+        <a href="/page/7">7</a>
+    
+
+    
+        <a href="/page/6">6</a>
+    
+
+    
+        <a class="page_current">5</a>
+    
+
+    
+        <a href="/page/4">4</a>
+    
+
+    
+        <a href="/page/3">3</a>
+    
+
+
+    
+        <div><a class="page_more">...</a></div>
+    
+</div>
+
+
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" class="shake shake-little" title="Ubuntu系统CPU、内存、网络、进程监控工具">
             
-
-
-
-	<div class="tag-cloud">
-	  <div class="tag-cloud-tags" id="tags">
-		<a href="/tags/AI/" style="font-size: 16px; color: #fff">AI</a> <a href="/tags/BI/" style="font-size: 16px; color: #fff">BI</a> <a href="/tags/Centos/" style="font-size: 16px; color: #fff">Centos</a> <a href="/tags/DNS/" style="font-size: 16px; color: #fff">DNS</a> <a href="/tags/Dapp/" style="font-size: 16px; color: #fff">Dapp</a> <a href="/tags/Docker/" style="font-size: 16px; color: #fff">Docker</a> <a href="/tags/Hack/" style="font-size: 16px; color: #fff">Hack</a> <a href="/tags/Hexo/" style="font-size: 16px; color: #fff">Hexo</a> <a href="/tags/HyperLedger-Fabric/" style="font-size: 16px; color: #fff">HyperLedger Fabric</a> <a href="/tags/Hyperledger-Fabric/" style="font-size: 16px; color: #fff">Hyperledger Fabric</a> <a href="/tags/Iftop/" style="font-size: 16px; color: #fff">Iftop</a> <a href="/tags/Linux/" style="font-size: 16px; color: #fff">Linux</a> <a href="/tags/ML/" style="font-size: 16px; color: #fff">ML</a> <a href="/tags/MTProxy/" style="font-size: 16px; color: #fff">MTProxy</a> <a href="/tags/Mongo/" style="font-size: 16px; color: #fff">Mongo</a> <a href="/tags/Network/" style="font-size: 16px; color: #fff">Network</a> <a href="/tags/Pyppeteer/" style="font-size: 16px; color: #fff">Pyppeteer</a> <a href="/tags/Tools/" style="font-size: 16px; color: #fff">Tools</a> <a href="/tags/VPN/" style="font-size: 16px; color: #fff">VPN</a> <a href="/tags/Vnc/" style="font-size: 16px; color: #fff">Vnc</a> <a href="/tags/baostock/" style="font-size: 16px; color: #fff">baostock</a> <a href="/tags/block-chain/" style="font-size: 16px; color: #fff">block chain</a> <a href="/tags/centos-xfce-vnc/" style="font-size: 16px; color: #fff">centos-xfce-vnc</a> <a href="/tags/docker/" style="font-size: 16px; color: #fff">docker</a> <a href="/tags/fabric/" style="font-size: 16px; color: #fff">fabric</a> <a href="/tags/hexo/" style="font-size: 16px; color: #fff">hexo</a> <a href="/tags/horysk/" style="font-size: 16px; color: #fff">horysk</a> <a href="/tags/k8s/" style="font-size: 16px; color: #fff">k8s</a> <a href="/tags/linux/" style="font-size: 16px; color: #fff">linux</a> <a href="/tags/mongo/" style="font-size: 16px; color: #fff">mongo</a> <a href="/tags/pyppeteer/" style="font-size: 16px; color: #fff">pyppeteer</a> <a href="/tags/python/" style="font-size: 16px; color: #fff">python</a> <a href="/tags/quant/" style="font-size: 16px; color: #fff">quant</a> <a href="/tags/stock/" style="font-size: 16px; color: #fff">stock</a> <a href="/tags/tushare/" style="font-size: 16px; color: #fff">tushare</a>
-	  </div>
-	</div>
-
-	
-	<script type="text/javascript">
-     var alltags = document.getElementsByClassName('tag-cloud-tags');
-     var tags = alltags[0].getElementsByTagName('a');
-     for (var i = tags.length - 1; i >= 0; i--) {
-       var r=Math.floor(Math.random()*75+130);
-       var g=Math.floor(Math.random()*75+100);
-       var b=Math.floor(Math.random()*75+80);
-       tags[i].style.background = "rgb("+r+","+g+","+b+")";
-     }
-</script>
-
-<style>
-  .tag-cloud-tags{
-    /*font-family: Helvetica, Tahoma, Arial;*/
-    /*font-weight: 100;*/
-    text-align: center;
-    counter-reset: tags;
-  }
-  .tag-cloud-tags a{
-    border-radius: 6px;
-    padding-right: 5px;
-    padding-left: 5px;
-    margin: 8px 5px 0px 0px;
-  }
-  .tag-cloud-tags a:before{
-    content: "?";
-  }
-
-  .tag-cloud-tags a:hover{
-     box-shadow: 0px 5px 15px 0px rgba(0,0,0,.4);
-     transform: scale(1.1);
-     /*box-shadow: 10px 10px 15px 2px rgba(0,0,0,.12), 0 0 6px 0 rgba(104, 104, 105, 0.1);*/
-     transition-duration: 0.15s;
-  }
-</style>
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">Ubuntu系统CPU、内存、网络、进程监控工具</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 11:20:26" itemprop="dateCreated datePublished" datetime="2020-07-22T11:20:26+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/Ubuntu%E7%B3%BB%E7%BB%9FCPU%E3%80%81%E5%86%85%E5%AD%98%E3%80%81%E7%BD%91%E7%BB%9C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>915</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="top"><a href="#top" class="headerlink" title="top"></a>top</h2><p>作用：查看在系统中运行的进程或线程,以及CPU、内存、交换分区等<br>运行方法：sudo top</p>
-<h2 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h2><p>作用：查看在系统中运行的进程或线程,以及CPU、内存、交换分区等<br>运行方法：sudo htop</p>
-<h2 id="atop"><a href="#atop" class="headerlink" title="atop"></a>atop</h2><p>介绍：atop 和 top，htop 非常相似，它也能监控所有进程，但不同于 top 和 htop 的是，它可以按日记录进程的日志供以后分析。它也能显示所有进程的资源消耗。它还会高亮显示已经达到临界负载的资源。作用：查看在系统中运行的进程或线程,以及CPU、内存、交换分区等运行方法：sudo atop</p>
-<h2 id="powertop"><a href="#powertop" class="headerlink" title="powertop"></a>powertop</h2><p>作用：powertop 可以帮助你诊断与电量消耗和电源管理相关的问题。它也可以帮你进行电源管理设置，以实现对你服务器最有效的配置。<br>运行方法：sudo powertop</p>
-<h2 id="iotop"><a href="#iotop" class="headerlink" title="iotop"></a>iotop</h2><p>作用：iotop 用于检查 I/O 的使用情况，并为你提供了一个类似 top 的界面来显示。它按列显示读和写的速率，每行代表一个进程。当发生交换或 I/O 等待时，它会显示进程消耗时间的百分比。<br>运行方法：sudo iotop</p>
-<h2 id="iftop"><a href="#iftop" class="headerlink" title="iftop"></a>iftop</h2><p>作用：iftop 类似于 top，但它主要不是检查 cpu 的使用率而是监听所选择网络接口的流量，并以表格的形式显示当前的使用量。<br>运行方法：sudo iftop</p>
-<h2 id="jnettop"><a href="#jnettop" class="headerlink" title="jnettop"></a>jnettop</h2><p>作用：jnettop 以相同的方式来监测网络流量但比 iftop 更形象。它还支持自定义的文本输出，并能以友好的交互方式来深度分析日志。<br>运行：sudo jnettop</p>
-<h2 id="BandwidthD"><a href="#BandwidthD" class="headerlink" title="BandwidthD"></a>BandwidthD</h2><p>作用:BandwidthD 可以跟踪 TCP/IP 网络子网的使用情况，并能在浏览器中通过 png 图片形象化地构建一个 HTML 页面。它有一个数据库系统，支持搜索、过滤，多传感器和自定义报表。</p>
-<p>##NetHogs</p>
-<p>作用：NetHogs 打破了网络流量按协议或子网进行统计的惯例，它以进程来分组。所以，当网络流量猛增时，你可以使用 NetHogs 查看是由哪个进程造成的。<br>运行方法：sudo Nethogs</p>
-<h2 id="dstat"><a href="#dstat" class="headerlink" title="dstat"></a>dstat</h2><p>作用：dstat 旨在替代 vmstat，iostat，netstat 和 ifstat。它可以让你查实时查看所有的系统资源。这些数据可以导出为 CSV。最重要的是 dstat 允许使用插件，因此其可以扩展到更多领域。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/" class="post-title-link" itemprop="url">Hexo博客使用系列（一）——新建文章并发布</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-22 11:14:48" itemprop="dateCreated datePublished" datetime="2020-07-22T11:14:48+00:00">2020-07-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>389</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="新建文章的方法"><a href="#新建文章的方法" class="headerlink" title="新建文章的方法"></a>新建文章的方法</h2><p>1、进入你的博客目录，在 /source/_posts 文件夹下直接建立一个.md文件。<br>2、进入你的博客目录，右键选择 Git Bash Here 进入命令窗口，输入下面代码:<br>hexo new “新建文章名称”    #新建文章<br>此时，在方法1所述的文件夹里便有了 新建文章名称.md 文件。</p>
-<h2 id="发布新建文章"><a href="#发布新建文章" class="headerlink" title="发布新建文章"></a>发布新建文章</h2><p>在该博客项目文件夹下运行 Git Bash Here 命令窗口，依次输入如下代码：</p>
-<p>hexo generate    #生成更改<br>hexo deploy    #将生成的更改部署到码云或者GitHub上</p>
-<h3 id="注意"><a href="#注意" class="headerlink" title="==注意=="></a>==注意==</h3><p>1、部署到GitHub时，可能因为网速、被墙等原因，需要多次运行 hexo deploy ；有时候可以运行 hexo clean 后在运行上述代码。<br>2、.md文件不要用记事本打开，建议使用具有markdown语法的程序打开，比如：subline text、notepad++等。也可以使用在线markdown编辑器，比如：</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2019/09/18/hexo%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/09/18/hexo%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/" class="post-title-link" itemprop="url">hexo修改默认端口</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-09-18 14:17:15" itemprop="dateCreated datePublished" datetime="2019-09-18T14:17:15+00:00">2019-09-18</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/09/18/hexo%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/18/hexo%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>112</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>默认使用4000端口，用hexo s -p 80 ，可以暂时修改启动端口。</p>
-<p>但是每次启动都要写”-p 80”才行，过于繁琐。</p>
-<p>修改方法：<br>找到node_modules\hexo-server\index.js文件，可以修改默认的port值！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">股票作手回忆录--杰西·利弗莫尔尔操盘术 笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-18 14:17:10" itemprop="dateCreated datePublished" datetime="2019-06-18T14:17:10+00:00">2019-06-18</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.7k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>作者的建议，几乎就是投机交易要旨的全部，剩下的，唯有执行二字而已。</p>
-<h2 id="1-【Chapter-5】不要失去你的头寸"><a href="#1-【Chapter-5】不要失去你的头寸" class="headerlink" title="1. 【Chapter 5】不要失去你的头寸"></a>1. 【Chapter 5】不要失去你的头寸</h2><p>行情总是沿着阻力最小的方向运动，不会永涨不跌，也不可能永跌不涨；<br>大多数时间内，多空力量在一个区间中不停地强弱变换，走出震荡行情；<br>当一段时间内多空双方中某一方力量明显强势时，会走出一波趋势行情；<br>行情处于趋势状态时，相较于震荡状态，方向更明确，更容易获取利润；<br>几乎所有人都能够轻易看出来，行情目前是处于趋势状态还是震荡状态；<br>但没人能够永远精确知晓多空双方力量何时会达到平衡并开始发生转换；<br>因此，在趋势行情中，比起努力做到高抛低吸回转交易获取额外利润，持仓直至趋势结束不失为一种好选择；<br>在行情中不应过分担忧趋势是否会立即反转，预测最高点的难度与抛在最高点并反向开空的难度一样高；</p>
-<h2 id="2-【Chapter-8】在多头市场看多，在空头市场看空"><a href="#2-【Chapter-8】在多头市场看多，在空头市场看空" class="headerlink" title="2. 【Chapter 8】在多头市场看多，在空头市场看空"></a>2. 【Chapter 8】在多头市场看多，在空头市场看空</h2><p>当判断趋势即将出现时，比起在判断多空反转时进入，不如等待趋势确定启动后进入，虽然此时入场会错失多空反转后的一波运动，但也避免判断错误而可能造成的损失，总体而言，成功率更好，获利也更为客观；<br>同样的，当判断趋势即将结束时，比起在判断多空即将反转时离场，不如等行情盘整并开始反转后离场，虽然这样会错过一部分利润，但相比起错失之后可能的行情延续，这些代价是值得的；</p>
-<h2 id="3-【Chapter-10】总有一个错误在你前边"><a href="#3-【Chapter-10】总有一个错误在你前边" class="headerlink" title="3. 【Chapter 10】总有一个错误在你前边"></a>3. 【Chapter 10】总有一个错误在你前边</h2><p>与其抄底，不如等待行情启动后再买入，虽然相对价格较高，但因确定性更强，因此风险更低；<br>即便如此，对行情启动与否的判断，依然有误判的可能，此时应坚决止损，并视之为使用该策略的正常成本，不必太过在意，因这些成本当行情出现时即可轻松挽回；<br>不应贪图行情启动前的局部波段，做确定性较小的交易，造成额外亏损；</p>
-<h2 id="4-【Chapter-12】股市不会为你的皮大衣付钱"><a href="#4-【Chapter-12】股市不会为你的皮大衣付钱" class="headerlink" title="4. 【Chapter 12】股市不会为你的皮大衣付钱"></a>4. 【Chapter 12】股市不会为你的皮大衣付钱</h2><p>任何时候做交易都应当保持独立决策，完全为自己的交易负责，可以听取他人的意见及建议作为参考，但最终应当依据自己的交易系统而非依赖他人的指点或判断；</p>
-<h2 id="5-【Chapter-13】身为投机客，我的事业是始终支持自己的判断"><a href="#5-【Chapter-13】身为投机客，我的事业是始终支持自己的判断" class="headerlink" title="5. 【Chapter 13】身为投机客，我的事业是始终支持自己的判断"></a>5. 【Chapter 13】身为投机客，我的事业是始终支持自己的判断</h2><p>交易的技术和技巧可以被交流和探讨，但在交易过程中，应始终坚持自己的操作，不可由他人代为操作，也不可仅凭他人指令进行操作；</p>
-<h2 id="6-【Chapter-14】抓住空头回补的理想时机"><a href="#6-【Chapter-14】抓住空头回补的理想时机" class="headerlink" title="6. 【Chapter 14】抓住空头回补的理想时机"></a>6. 【Chapter 14】抓住空头回补的理想时机</h2><p>l 获取盈利不仅仅依靠个人的交易能力，更取决于行情的波动；<br>当市场没有行情时，即使连利弗莫尔也无法赚到钱，此时所能做的只有耐心等待机遇的出现，盲目交易只会导致更多的亏损；<br>当只剩下一次交易机会且必须盈利时（如：面临总额止损/最大回撤止损时），应当极其谨慎，避免绝大多数胜率不够高的交易，努力研究并耐心等待机遇的出现，当时机到来时牢牢把握住；<br>不应将自己的交易建立在对未来未知事件的猜测或其它方式的判断之上，这类交易与赌博无异；<br>相反地，依据未来事件发生的结果顺势进行交易，成功率更高，收益也会很不错；</p>
-<h2 id="7-【Chapter-18】投机客的勇气就是有信心根据自己的决定行动"><a href="#7-【Chapter-18】投机客的勇气就是有信心根据自己的决定行动" class="headerlink" title="7. 【Chapter 18】投机客的勇气就是有信心根据自己的决定行动"></a>7. 【Chapter 18】投机客的勇气就是有信心根据自己的决定行动</h2><p>当发现自己判断发生错误时，应当果断平仓，乃至顺势反向开仓；<br>不可因为自己当前仓位方向而预期乃至于期待行情走势，而应以行情走势检验自己仓位的正确与否，一旦错误即应立即择机平仓；</p>
-<h2 id="8-【Chapter-21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润"><a href="#8-【Chapter-21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润" class="headerlink" title="8. 【Chapter 21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润"></a>8. 【Chapter 21】在景气热潮中，大众总是先赚到很多钱账面上的利润，而且始终是账面上的利润</h2><p>永远不要责备行情走势不同于自己预期，更不应为此抱怨或懊恼，而应当认识到自己判断错误，承认问题，吸取经验；</p>
-<h2 id="9-【Chapter-24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润"><a href="#9-【Chapter-24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润" class="headerlink" title="9. 【Chapter 24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润"></a>9. 【Chapter 24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润</h2><p>市场永远领先于实际状况，在交易时，不必过于追究行情波动的原因与理由，而应及时作出相应应对；</p>
-<h2 id="10-【其它】"><a href="#10-【其它】" class="headerlink" title="10.【其它】"></a>10.【其它】</h2><p>利弗莫尔的交易能力强于绝大多数人，也曾在交易中赚取极多的利润，但最终依然破产，一贫如洗；<br>在交易世界里，生存比盈利更重要，只有将良好的资金管理与风险控制永远放在第一位，才能避免类似利弗莫尔的结局；<br>永远不要让自己破产，更不可让自己因交易而负债；<br>如果因为资金不够而无法获得更多的利润，那只能说明这些可能获得的额外利润并不是目前所应当得到的，不可因过分贪婪而急于冒进，承担额外的风险；</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2019/04/08/tushare%E5%92%8Cbaostock%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/08/tushare%E5%92%8Cbaostock%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="post-title-link" itemprop="url">tushare和baostock有什么区别？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-04-08 14:17:10" itemprop="dateCreated datePublished" datetime="2019-04-08T14:17:10+00:00">2019-04-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/tushare/" itemprop="url" rel="index"><span itemprop="name">tushare</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/04/08/tushare%E5%92%8Cbaostock%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/04/08/tushare%E5%92%8Cbaostock%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>573</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>BaoStock的优势有很多，简单列举几个：</p>
-<ol>
-<li><p>数据由交易团队维护，数据质量高；后续可能会开放交易接口。</p>
-</li>
-<li><p>目前包含了A股2006年至今的日周月历史K线数据，而且包括前后复权；涵盖了熊市牛市的周期；据官方人员回复，数据还会继续扩充。</p>
-</li>
-<li><p>包含了A股2011年至今的5分钟、15分钟、30分钟、60分钟K线数据，没有门槛免费对外提供。对比一下公司购买某接口提供的历史分钟线数据报价，每1年的历史分钟数据流量包需要加3W块，BaoStock提供2011至今的历史数据，这就价值24W，而且不限制流量。激动得我赶紧把数据下载下来了（分钟线也提供了复权）。</p>
-</li>
-<li><p>实时行情接口方便使用，据官网说是取其他网站的，但BaoStock以订阅的方式提供，根据需要订阅股票，回调用户自定义的接口，而且可以传入用户自定义参数，也有预留参数，接口设计方便、合理，十分好用。</p>
-</li>
-<li><p>官网发布证券相关文章，介绍一些股票基础概念、指标计算，对于新手很有帮助，老手也能补足自己的缺失。</p>
-</li>
-<li><p>版本发展线路明确，发布数据补充或修改的公告，及时告知用户。</p>
-</li>
-<li><p>QQ群快速应答，解决问题速度很快。</p>
-</li>
-<li><p>宏观数据、成分股数据、业绩预告快报、盈利、营运、成长、偿债、杜邦指数，数据完善。</p>
-</li>
-</ol>
-<p>BaoStock的不足：</p>
-<ol>
-<li><p>目前针对于股票市场，期货等市场还没有涉及。</p>
-</li>
-<li><p>取数据转为dataframe是略显复杂。<br><a target="_blank" rel="noopener" href="https://www.akshare.xyz/zh_CN/latest/introduction.html">akshare</a><br><a target="_blank" rel="noopener" href="http://tushare.org/">tushare</a><br><a target="_blank" rel="noopener" href="http://ww.baostock.com/">baostock</a></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/" class="post-title-link" itemprop="url">高频交易四大派系大揭秘</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-08 14:17:28" itemprop="dateCreated datePublished" datetime="2019-03-08T14:17:28+00:00">2019-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.8k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>所谓高频交易，简单说就是指利用计算机技术在短时间内快速进行多次买入卖出的交易行为，一般指利用微妙（1秒等于1百万微秒）为时间单位制定策略，高频交易公司利用强大的电脑程序进行快速交易，交易时间经常不到十毫秒。</p>
-<p>与技术上相对落后的投资者相比，此类公司利用靠技术优势获得的时间优势先行下单。高频交易的速度如此之快，以至于有些交易机构将自己的“服务器群组”（server farms）安置到了离交易所的计算机很近的地方，以缩短交易指令通过光缆以光速旅行的距离。</p>
-<p>高频交易虽具有“高频”的共同特征，但是其交易机制则千差万别，由此导致其对市场的影响也会不同。根据现有策略，高频交易大体可以分为以下四类。</p>
-<h2 id="订单拆分策略"><a href="#订单拆分策略" class="headerlink" title="订单拆分策略"></a>订单拆分策略</h2><p>在美国机构投资者的大笔交易往往造成价格急剧变化，从而增加交易成本。订单拆分策略为了解决这个问题，使用多种算法把大订单分割成若干个小订单，从而减小大订单对市场的影响并降低执行成本。</p>
-<p>这类算法可以分为三代。第一代主要考虑如何减小对市场的影响，以TWAP(time weighted average price)、VWAP(volume weightedaverage price)和POV(percent of volume)为代表。其中，TWAP将大订单在规定的时间内按照一定的交易频率分割成小订单，VWAP按照交易量的历史分布分割订单，POV则将小订单以固定比例混入订单流以降低对市场的影响。但是，这种有规律的订单分割方式容易被其他交易者发觉并跟风，从而提高交易成本。</p>
-<p>第二代拆分策略则加入了一些反侦测的技术手段。例如冰山策略(iceberg)采取了随机分割的方法，最低影响(minimal impact)策略则是利用备选交易系统2作为主要的交易通道，而只把小部分交易放在公开的交易系统中完成，以避免交易意图的泄露。</p>
-<p>第三代拆分策略认为，如果片面地强调订单分割和避免被侦测，就存在无法按时完成交易计划的风险，这样反而会导致交易成本的上升，因此强调利用交易量较大的交易时间完成仓位计划。而且，为了使执行差额策略可以适应快速变化的市场条件，Kissell,Freyre-Sanders and Carrie提出了适应性差额策略(adaptiveshortfall)，以根据当前价格的变动情况决定如何执行仓位计划。</p>
-<p>此外，由于收盘价对于投资结算等具有重要影响，还有经纪商提出了MC(market close)策略，在全天交易时间的后半部分完成交易指令。目前国内对此类策略的研究和应用都还很少。但是随着做市商制度的引进和机构投资者的发展壮大，大笔买入卖出的需求也会随之变大，可以预见对大笔交易的订单拆分需求也会越来越大。</p>
-<h2 id="做市交易策略"><a href="#做市交易策略" class="headerlink" title="做市交易策略"></a>做市交易策略</h2><p>国际金融市场普遍实行做市商制度。与竞价交易制度不同，做市商制度是借助做市商(由大的银行机构来担任)的中介作用实现买卖双方的交易，做市商从证券的买卖差价中获取收益，并为市场提供流动性。</p>
-<p>近年来，一种被称为“被动做市策略”的高频交易模式逐渐发展起来。这种策略产生于美国特殊的交易机制。在美国，所有的证券交易所都为那些创造流动性的券商提供一定的交易费用回扣以争取更多的交易订单。当这些交易者使用双向挂单等待成交时，便为市场提供了流动性，使得其他有交易需求的交易者以更低的成本交易，相应的也提高了交易所的竞争力。</p>
-<p>因此各电子化交易所对这类流动性提供者提供返还回扣，鼓励其通过报单参与交易。在这种情况下，很多小机构甚至个人投资者也可以为市场提供流动性，并在众多电子化交易所中担当起了实质性的做市商的责任。</p>
-<p>做市商在交易过程中也会面临各种风险，一方面，资产价格的波动会造成了存货风险；另一方面，买卖指令的泊松分布又造成了交易风险。这种风险对传统的做市商影响更大，因为它们普遍具有巨大的资金量和交易量，也对市场有着更大的影响。</p>
-<p>它们主要采用两种方法来规避这种风险。一种方法是通过完善定价机制，将风险融入资产价格从而转移风险。学术界发展了一系列模型解决这一定价问题，例如存货模型和信息模型等等。</p>
-<p>另一方法是风险对冲。以Delta中性策略最为典型。Delta被定义为该衍生证券的价格变化对其标的资产价格变化的比率，Delta为零的状态被称为Delta中性。如果进行高频对冲，Delta中性策略就成为一种高频交易模式。它必须在标的资产价格刚开始下降时将其出售，在其刚开始上涨时将其购入，因此它在本质上是一种趋势交易方法。从国外经验看，做市交易是高频交易策略的主流。我国目前已经在国债、利率掉期等若干市场引入做市商制度，如果在更多市场实施该制度，高频交易还会有进一步发展。</p>
-<h2 id="定量化交易策略"><a href="#定量化交易策略" class="headerlink" title="定量化交易策略"></a>定量化交易策略</h2><p>订单拆分策略与做市交易策略更多是作为一种金融服务存在，而定量化交易策略强调使用定量分析进行投资决策。定量化交易策略种类非常繁多，有的针对单一资产，有的则针对投资组合。针对单一资产的分析方法包括事件套利(event arbitrage)、盘口交易(ticker tape trading)和技术分析(technicaltrading)等。</p>
-<p>事件套利是指针对某特定事件的发生(如重组、拆分、兼并、收购等等)预先判定其对市场影响，进而利用市场的短期新闻效应进行交易。盘口交易是指根据订单流、交易量等信息进行交易的策略。</p>
-<p>有研究认为，价格序列和交易量中包含了尚未公布的信息，通过对其进行分析，就可以根据这些信息进行交易。技术分析利用历史价格的走势和图形预测价格波动。Park and Irwin发现新兴股票市场、期货以及外汇市场是最适合技术分析的市场。Lukac,Brorsen and Irwin认为所有技术分析手段中趋势追随型交易策略最为有效Murphy指出，实现趋势追随的主要方法是移动均线法和通道突破法。针对投资组合的交易策略包括套利交易(arbitrage)和配对交易(pairtrading)等。</p>
-<p>套利交易通过捕捉标的物完全相同的两种金融资产的差价获取利润。美国市场金融产品品种较多，针对同一标的物可能同时有期权期货等多种金融产品；同时，每种资产又可以同时在几个交易所挂牌交易。这样的市场生态为套利交易提供了较大的生存空间。</p>
-<p>配对交易也称收敛交易(convergence trading)，它假设相关联的标的物的价格具有相关性，因此在一种资产价格上涨而另一种下跌时，就可以做多下跌的资产，而卖空上涨的资产。由配对交易发展而来的统计套利(statistical arbitrage)与配对交易的不同之处在于，统计套利判断资产的相关性并不依据基本面或其市场特征，而且它所关注的往往是包括上百个资产的资产组合之间统计上的相关性。</p>
-<h2 id="其他策略"><a href="#其他策略" class="headerlink" title="其他策略"></a>其他策略</h2><p>除了上述正常的交易策略，还有一些高频交易策略可以使交易者获取信息优势而损害交易的公平性，甚至操纵价格走势，主要包括结构性(structural)策略和方向性(directional)策略。</p>
-<p>结构性策略是指交易者利用不公平的交易制度获利。例如，某些交易者可能利用托管服务(co-location)先于其他交易者获取价格和订单数据，并据此下单而获利。</p>
-<p>方向性策略主要包括指令占先(order anticipation)策略和趋势引发(momentum ignition)策略。指令占先策略在某些文献中又被称为“掠夺性算法交易”，它是指通过技术手段识别潜在大买(卖)方并抢先发出指令，待其大笔交易引发价格上升(下降)后平仓获利。</p>
-<p>趋势引发策略是指事先建立头寸，然后诱骗其他交易者进行交易引发价格快速变动，进而从中牟利。其具体操作方法主要包括：通过大量挂单诱导其他交易者跟风；通过大笔成交触发市场中存在的止损指令；等等。在进行交易操纵的同时，还可能伴随着发布虚假信息等行为。</p>
-<h2 id="高频交易“托拉斯”诞生"><a href="#高频交易“托拉斯”诞生" class="headerlink" title="高频交易“托拉斯”诞生"></a>高频交易“托拉斯”诞生</h2><p>在不少投资者眼中，高频交易是“市场里的嗜血鬼”，利用程序频繁挂单撤单严重影响市场。也有人说，高频交易不仅平抑了市场波动，还给市场提供流动性，因此程序化交易作为一种交易方式具有存在的价值和意义。但其对市场的影响，则要看是什么人，怎么来使用。可以说，程序化交易是把“双刃剑”。</p>
-<p>在高度曝光下，高频交易商战无不胜的神话开始褪色。踏进2017年后，有关高频交易商的不利报道陆续涌现。</p>
-<p>其中令人触目的三宗包括︰全球最大高频交易公司Virtu 14亿美元收购竞争对手KCG；量化交易公司Quantlabsa和专于高频交易的Teza进行合并；及Interactive Broker退出期权市场。</p>
-<p>Virtu收购KCG</p>
-<p>Virtu Financial 4月20日宣布：已达成最终收购协议，并获得骑士资本（KCG）董事会一致通过。Virtu以每股20.00美元的价格，总计约14亿美元，现金收购竞争对手骑士资本（KCG）</p>
-<p>该笔交易为Virtu开辟了新的收入来源。Virtu可以将技术和服务拓展到KCG的众多机构客户。Virtu将整合Virtu和KCG的优秀算法和分析工具，向客户提供更优质的服务。</p>
-<p>更大的规模和成本效益将使Virtu更有效地应对复杂的市场和同业竞争。Virtu预计在合并后两年可以节省大约2.08亿美元的成本节省，并通过协同效应增加4亿美元的收入。</p>
-<p>该交易将通过向私募股权公司北岛和淡马锡发行价值7.5亿美元的股票进行融资，并从摩根大通证券有限责任公司借款16.5亿美元。</p>
-<p>Virtu在收购KCG后也成为全球高频交易公司中的巨头。</p>
-<p>Virtu Financial</p>
-<p>Virtu曾是闷声发大财的代表，在1485个交易日中仅有一天出现亏损。但自2016年，Virtu的利润开始出现了下滑。</p>
-<p>Virtu是全球最大的高频做市商之一。关注私募工场ID：simugongchang，加私募工场老板娘微信guo5_guoguo交易领域横跨股市、商品、外汇、期权和债市等固定收益市场，为全球34个国家的225余家交易所提供流动性。业务总部坐落在纽约，在北美、欧洲、亚洲均设有交易中心以专注于各洲市场。</p>
-<p>Virtu于2014年提交招股说明书，并于2015年成功进行IPO。</p>
-<p>在招股说明书中显示，Virtu的盈利能力令人难以置信。从2009年到2014年的1485个交易日中，Virtu平均每天执行530万次交易，其中49%的操作是盈利的，然而仅仅一天出现亏损。</p>
-<p>2014年， Virtu每天都有盈利，共录得收入7.231亿美元和利润1.901亿美元。</p>
-<p>Virtu避免可能带来巨额亏损的大交易，而是专注于赚取一笔笔微薄的利润——比如10美元——每天上百万次。</p>
-<p>5月的那个周五，公司在黄金交易所和期货市场做市。在芝加哥和纽约的23笔交易中，总共获得了36美元的利润。</p>
-<p>Virtu作为电子做市商，虽用高频交易的技术手段，但与高频趋势行情推手不同，而是流动性提供者，是各市场所依赖的”合作伙伴”，高频做市商Virtu是的策略是”市场中性”的。在Virtu的招股说明书中，Virtu戏称他的策略遵循”三板斧”。1”single instrument market making strategy” 场内寻找对手盘 2 “one to one market making strategy” 在双边市场寻找对手盘3 “one to many market making strategy” 在一揽子市场组合寻找对手盘。</p>
-<p>与卖家和买家同时做对手盘，而不是自己持仓，并且要么在最后把风险对冲掉，要么不承担任何风险。Virtu的做市交易总共涉及1.2万种金融资产。最能体现该公司严苛高效的是：它从事交易的市场（全世界34个国家的225个交易所）比员工的人数还多（截至2015年有148人）。</p>
-<p>骑士资本</p>
-<p>成立于1995年的骑士资本是华尔街上名声显赫的重量级证券公司。</p>
-<p>被行业称之为市场的支柱公司之一，并以其稳健的行业风格和专业的服务领域而著名。不但规模庞大，吸引了许多重量级的客户，而且业务范围遍及美国、欧洲和亚洲。</p>
-<p>其市场的交易份额占到纽交所交易总量的17.3%，纳斯达克证券市场的16.9%，自2011年到2012年间的日交易总量达到全美金融证券市场的10%。</p>
-<p>服务的客户对象既包括了买方客户，也包括了卖方客户，同时还有大量的零售客户。涉及的金融产品涵盖了全球金融市场的股票、固定收益产品、外汇，期货和期权等。</p>
-<p>除了为客户提供全方位的经纪业务服务之外，还通过公司的交易平台为客户提供高频交易服务。骑士资本主要的业务涉及三大块，即做市商业务、电子交易执行服务业务、以及机构销售和交易业务。</p>
-<p>但这家华尔街著名的做市商却在2012年遭受了灭顶之灾。不到45分钟的时间亏损高达4.6亿美元。</p>
-<p>2012年8月1日，本应该是一个非常普通的交易日。</p>
-<p>刚刚开市，市场中就出现了大量异常订单，数量不但巨大，而且涉及的股票也很广。开市20分钟后异常的订单如同发怒的海潮涌向纽交所，直接触发了市场熔断，并暂停了多只股票的交易。</p>
-<p>直到9:50分时纽交所才确定这些非正常的交易订单来自于骑士资本公司。</p>
-<p>而此时骑士资本公司也陷入了混乱。当得知交易系统向纽交所发出了大量异常订单之后，公司的高层管理人员立即赶到公司的交易厅。</p>
-<p>直到10:00点钟，在骑士资本和纽交所的共同努力之下，才停止了骑士资本的交易系统向纽交所发送交易订单。</p>
-<p>当天收市后纽交所宣布，在查验140只非正常交易的股票后，决定取消6只股票的交易。这意味着这6只股票当天的所有成交撮合全部无效。</p>
-<p>骑士资本在交易事件之后向美国证监会提出申述，要求取消更多的错误交易，最终没能获得成功。</p>
-<p>根据事后的报道，骑士资本集团交易系统的错误是由一个新安装的软件模块所引发，这是一个已经被废弃不用了的软件模块，但始终存在于交易系统之中。通常，这样的废弃模块被称为“死”模块。</p>
-<p>但骑士资本的技术人员在为系统升级时，没有更换“死”模块。8月1日早上交易系统开始运行时，在某一特定条件下触发计算机执行了这个 “死”模块，导致了事件的发生。</p>
-<p>很显然，这是一起由计算机引发的差错，但是根源却在于编写软件和维护计算机系统的人，是一起人为的严重交易事故。</p>
-<p>根据美国证监会公布的调查表明，骑士资本的系统共收到212笔交易订单，交易系统应该执行这212笔交易订单的撮合。</p>
-<p>然而，骑士资本的交易系统却在不到45分钟的时间里发送了几百万笔交易订单，致使纽交所在这段时间里成交了超过400万笔交易订单，平均每秒钟的成交超过了1500笔。</p>
-<p>短短45分钟时间，骑士资本系统的总交易量就达到了66.5亿美元。骑士资本最终的损失高达$4.6亿美元。</p>
-<p>最终美国高频交易商getco以14亿美元的价格收购了骑士资本。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/10/11/%E8%82%A1%E5%B8%82%E7%A5%9E%E5%A5%87%E7%9A%84%E2%80%9C%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E2%80%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/11/%E8%82%A1%E5%B8%82%E7%A5%9E%E5%A5%87%E7%9A%84%E2%80%9C%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E2%80%9D/" class="post-title-link" itemprop="url">股市神奇的“五个数字”</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-10-11 14:17:10" itemprop="dateCreated datePublished" datetime="2018-10-11T14:17:10+00:00">2018-10-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/stock/" itemprop="url" rel="index"><span itemprop="name">stock</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/10/11/%E8%82%A1%E5%B8%82%E7%A5%9E%E5%A5%87%E7%9A%84%E2%80%9C%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E2%80%9D/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/10/11/%E8%82%A1%E5%B8%82%E7%A5%9E%E5%A5%87%E7%9A%84%E2%80%9C%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E2%80%9D/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、20-——最佳止盈点"><a href="#一、20-——最佳止盈点" class="headerlink" title="一、20%——最佳止盈点"></a>一、20%——最佳止盈点</h2><p>20%，股票交易的最佳止盈点。在股市中没有常胜的将军，被套、亏损总是难免的，同时也要意识到也并不可能所有的股票都会不断上涨。来自的一份统计数据显示目前70.8%股民都是一个“贪”字在作祟，由赚变亏，由小亏反倒变成了大亏。所以股票投资“贪”字要不得，建议投资者在买进股票时就要设定一个止盈点，股价上涨20%后坚决卖出股票，如今华尔街不少资深投资人还仍在坚持此比例。另外一个是止损点，低于买入价7%-8%坚决止损。</p>
-<h2 id="二、50-——持仓黄金比例"><a href="#二、50-——持仓黄金比例" class="headerlink" title="二、50%——持仓黄金比例"></a>二、50%——持仓黄金比例</h2><p>50%，即股票留50%的仓位，资金留50%的仓位，便于投资者根据自己的操作风格制定不同的仓位控制策略。所谓持仓比例，是持仓品种的市值占整个资金总额的比例，不过此比例是动态的。打个比方，比如某投资者的初始资金为10万元，将5万元购买股票，此时持仓比例为50%;虽说随着股价上涨，总资产和股票市值会不断变动，比如，股价上涨20%，总资产就为11万元，股票市值增至6万元，此时的持仓比例就变成了54.5%，但是刚入市时50%的持仓黄金比例仍要记住。</p>
-<p>##　三、60%——低价圈判断</p>
-<p>60%，低价圈一个判断比例，是指股价相对前期高点，个股跌幅在60%以上的都可以视作为低价圈。当股价出现涨幅靠前、量比靠前情形，此时股价处于低价圈时，说明主力有意图拉高股价，此时股民参与的风险较小。相反，此时若购买那些高价圈个股，那么风险很大，陷阱较多。所以，股民可以参考此“60%，低价圈判断”的比例，基本能避免盲目追涨个股而被套的惨剧，从而也能提高资金的利用效率。</p>
-<h2 id="四、721——股市“魔咒”"><a href="#四、721——股市“魔咒”" class="headerlink" title="四、721——股市“魔咒”"></a>四、721——股市“魔咒”</h2><p>721，就是常被投资者说起的股市魔咒“七亏二平一赢”，是股市盈利的概率，是说90%股民都是亏损的。股民要想打破此魔咒，理财师表示关键还是投资者要改变投资观念，改变一夜暴富的错误观念。股市不是赌场，而是一门大学问，关系到宏观经济学、政策敏感度、心理学、股市技术、综合素质等。不是只靠运气，却没有学习的态度。所以在入市之初要认识这点，注重合理配置资产，一方面可以参与一些年收益10%左右的宜盛月月盈等稳健类投资，能保障有稳定的收益来源;另一方面参与股票和期货等高风险投资，能来获得较高的回报，多元化投资，实现收益最大化。</p>
-<h2 id="五、10——股票不超过10只"><a href="#五、10——股票不超过10只" class="headerlink" title="五、10——股票不超过10只"></a>五、10——股票不超过10只</h2><p>10，有风险承受的投资者购买股票最好不要超过10只。因为据专家统计，股票超过10只的组合，其最终收益并不可观，投资者根本忙不过来，还不如配置上述提到的宜盛月月盈了。普通投资者如果对于自身高风险投资比例究竟多少合适，可以参考“100-自身年龄”的公式。当然，都需要看每个人和每个家庭的实际财务情况和风险偏好来做投资。</p>
-<p>当然，这也不是万能的，以上股市投资法则仍要因人而异，投资比例做出及时调整。另外，在平时的生活中，投资者还要多加注重相关专业投资理财知识的学习，努力提高自己的投资理财技能，利用各种投资理财渠道和工具，让自己的财富获得保值增值。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/09/13/%E4%B8%80%E5%A5%97%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/09/13/%E4%B8%80%E5%A5%97%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" class="post-title-link" itemprop="url">一套完整的交易系统操作学习心得</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-09-13 14:17:10" itemprop="dateCreated datePublished" datetime="2018-09-13T14:17:10+00:00">2018-09-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/09/13/%E4%B8%80%E5%A5%97%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/09/13/%E4%B8%80%E5%A5%97%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>19k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>18 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>老杨我做金融交易多年，现在主做外汇和黄金。金融市场高手众多，自己不敢妄称高手。开此贴的目的<br>只是把自己做金融交易的心得体会做一个文字的记录，若有说得不对的地方，还请各位不惜赐教，指出<br>不足之处。<br>因为涉及到的知识点比较零散，所以会以连载的形式更新本帖，为避免太监的嫌疑，所以会把每天<br>的交易记录发上来，一来提醒自己更新，二来希望能抛砖引玉引出高手，大家共同讨论，共同进步。<br>也许很多朋友会问这样一个问题，你到底赚了多少钱，我想说，我不知道自己赚了多少钱，我赚了<br>的只是交易的点数而已，所以在谈完整交易系统之前，我先来谈谈我们来做交易的目的。请容老杨我慢<br>慢道来……<br>世界上任何一个领域的成功人士，都是先做好了那个领域的事情，而后，财富的增加只是自然而然<br>的事。是对于他做好了这件事的奖励而已。比如迈克尔乔丹是打篮球打得最好的，那么他也是篮球领域<br>财富最多的，迈克尔杰克逊是跳舞最好的，那么他也是跳舞领域财富最多的，当我们谈论起这些人的时<br>候，脑海中第一个浮现的不是他们坐拥的财富，而是他们杰出的能力……不可否认，我们来做交易，不<br>论是股票，期货，还是外汇黄金。最开始都是奔着赚钱来的，但是慢慢的在这个领域久了，你会发现从<br>一开始什么都不懂，凭手气来交易是行不通的，于是开始学习，开始研究技术面，基本面，慢慢的知道<br>什么是K线形态，什么是MACD，什么是RSI……到慢慢的从技术面上升到哲理层面，交易好似一种哲<br>学，一种对人性的理解与感悟。<br>什么是完整的交易系统，简单的来讲，就是能让你稳定，持续在市场中盈利的交易系统。也许每个<br>人的交易策略和风格不太一样，但有一点一定是相通的，那就是高手，都是把一招练到了极致，就好比<br>武侠世界里面的高手，每个人掌握的招式不同，但都是高手，相同的，只是他们有自己用得最好的一<br>招，没有人比他用得更好，于是他就成了高手。，大家可以来讨论讨论<br>做金融也是一样，有人专门分析基本面，有人专门研究K线，有人专门研究macd……不管你研究的<br>是什么，只要你能把一个招式练到极致，高手就自然而然诞生了。<br>下面是我的交易系统所包含的几个重要的方面，希望能抛砖引玉<br>1，进场点<br>2，出场点<br>3，预判盘整<br>4，预判V字反转（如5月的非农）<br>5，预判假突破<br>6，资金管理<br>7，风险控制<br>我一直觉得，金融市场就好比打仗的战场，很多人因为各种各样的原因进到了这个里面，面对战场<br>的瞬息万变，有人靠着自身的技巧活到了最后，甚至成为英雄，有人默默无闻，在这个市场里做着吃力<br>不讨好的工作，当然更多的，是成为了战场的炮灰，连名字都没留下就消失在这个市场里。<br>在上战场之前需要进行新兵训练，同样的，在进金融市场之前也需要进行训练，如果你上战场之前<br>没有进行训练，什么都不懂，十有＊＊会沦为炮灰，金融市场也是一样，如果你没有经过训练，什么都<br>不懂，十有＊＊是来给庄家，给老手送钱的炮灰。<br>所以接下来，就让我们从新兵训练营开始吧，are you ready？<br>—————————————————————————<br>##　新兵训练营<br>做金融好比当兵，不管你是什么都不懂的新手，还是混迹于各大金融市场几十年的老手，有一些基<br>本的纪律是一定要遵守的。我见过做单爆仓的，跳楼的，倾家荡产的，基本上可以归纳为犯了以下三个<br>错误，所以老杨认为，这三点是做金融铁的纪律，如果触犯任何一条，那么爆仓对于你而言只是时间问<br>题。<br>1，不止损<br>2，重仓<br>3，频繁交易<br>其中还牵涉到一些细节问题，容老杨喝口茶，一一道来。<br>——————————————————————————————————————</p>
-<h3 id="错误一：不止损"><a href="#错误一：不止损" class="headerlink" title="错误一：不止损"></a>错误一：不止损</h3><p>止损的重要性，很多人都已经提过，不可否认大家来到这个市场都是想赚钱的，没谁希望亏钱，但<br>是作为一个操盘手，你每下一个单，第一要考虑的并不是这个单你能赚多少，而是你能承受住多少的亏<br>损。<br>不光是做单，做生意，做事，做人。都要把事情最坏的结果想清楚，这个结果是否是你能承受的，<br>如果不能，请停止。<br>给大家举一个例子，我刚做金融半年的时候，有一个跟我差不多年级的操盘手接了一个客户账户，<br>此君平时没有什么交易技巧，靠感觉做单，以刷单为乐，当时他从公司接过账户的时候，我预料到他会<br>持续亏损，建议他不要接，然后他说了一句“不怕，富贵险中求”。从那一刻起，就是他悲剧的开始，10万<br>的客户资金5天亏损了2万。他瞒着公司不报告情况，反而在剩余8万的时候下了个重仓，不止损。过夜之<br>后，8万还剩4万被公司发现，强行平仓了。于是此君只能依靠工资偿还欠公司的债务，开始了为期几年<br>的长工生涯（我们那时候工资才几百块一个月）。<br>如果说你设置的止损非常容易被扫掉，很多时候刚刚扫你的止损，行情就按着你预判的方向走，让<br>你痛心疾首后悔莫及。造成这种情况只有两个愿意，1，你的止损位置没放好。2，你选择的进场点没选<br>好。止损是必须的事情，因为这个市场上，即使是称之为神的人也做不到100％的正确。<br>止损的重要性相信很多大神都已经无数次提到过，这里就不再赘述。接下来要讲讲从严格止损这条<br>纪律延伸出来的几个细节，也算是老杨的一点个人心得体会。<br>————————————————————————————————————<br>关于严格止损最重要的一点延伸，就是不锁单。很多人当仓位出现亏损的时候不愿止损，而是进行锁<br>仓。期望着有一天亏损会变成盈利。试问一下，几年前大盘四千五千点以上的锁仓，现在解了么？上个<br>月在1500做多黄金的童鞋们，仓位解了么？也许有人这里要来反驳我，说“我做的是价值投资，不是短线<br>交易，我是做长线的”<br>但是亲～你的资金被占用着，无法运转，那就不叫做长线，而是叫被套牢了。真正的长线是站在利<br>润基础之上长线持有盈利的仓位，博取更大的利润，别骗自己了……<br>锁仓是一种侥幸行为，期望着在这个市场上永远不亏钱，但那是做不到的。一个单子被严格止损之<br>后，剩下的资金还有运转的可能，还有盈利的希望，而且锁仓会严重影响你的交易心态，让你总想着那<br>亏损的单子，影响接下来的交易。<br>—————————————————————————<br>如果趋势前期开了仓，在趋势发展中会遇到阻力或支撑，在这些位置开反向仓位作为趋势单的护<br>航，盈利40点以上即提保护损，开仓本身也带损，这样的锁仓可以么？貌似可以吃到整段的趋势<br>我并不反对任何形式的交易方法，以上所有，都是我的个人见解及操作方法。<br>你说的这种，属于在顺势中遭遇回调行情，我不反对你的做法，但我想说说我的做法。<br>当一波趋势发起，我做到了，并且持有盈利的仓位，但是遭遇了阻力或者支撑，我会判断回调的位<br>置，因为遇到阻力并不一定会出现回调。也有可能是横盘，所以我不会在那里做反向单来锁仓，如果我<br>认为趋势没有结束，那么我会把止损放在平保的位置继续持有，如果我认为回调点位会比较大，那么我<br>会出掉原来的趋势单，然后做新的单子，然后再等趋势发起的时候再进趋势单。<br>——————————————————————————————</p>
-<h3 id="关于严格止损的延伸二"><a href="#关于严格止损的延伸二" class="headerlink" title="关于严格止损的延伸二"></a>关于严格止损的延伸二</h3><p>止损，一定是设置自动止损，而不是手动止损。<br>这不仅仅是怕碰到秒杀行情导致手动无法平仓止损的情况，更重要的是一个交易心态因素在里面，<br>要一个人眼睁睁的看着账户亏损还是需要一定勇气和决心的。心态不坚定的人在这里就会扛单，会锁<br>仓，会出现各种各样的状况……所以，我每一次下单必带好自动止损，雷打不动。<br>————————————————————————————————</p>
-<h3 id="错误二：重仓"><a href="#错误二：重仓" class="headerlink" title="错误二：重仓"></a>错误二：重仓</h3><p>我相信做金融的人，有不少人是非常推崇，甚至一直坚持重仓交易的。因为在他们的概念里，重仓<br>要么就是大赚，要么就是大亏。为什么不博一把，来个一夜暴富呢？但是在我看来，重仓的结果只有一<br>个，那就是大亏！为什么，容我细细道来。<br>不错，重仓是有可能大赚，做金融做的是个概率游戏，100％的正确或者100％的错误是不存在的，<br>但重仓最大的问题是，你一夜翻了几番之后，你会愿意减小你的仓位么？你会从此退出这个市场，不再<br>博弈么？从你重仓的那一刻开始，你就从一个金融交易者变成了一个赌徒，而赌徒是不会愿意在手上还<br>有大把筹码的时候离开赌桌的，从你梦想一夜暴富的那一刻开始，你就已经走上了不归路，哪怕你运气<br>好用10万重仓赚回了50万，又会想用50万去赚500万，无穷无尽的欲望控制着你。但是请听我一句劝，<br>没有人可以做到100％正确，重仓迟早有亏损的那一天，而那一天是你第一次重仓亏损，也会是最后一<br>次，因为你会把之前赚的钱又再次亏回去。<br>我曾经认识一个朋友喜欢重仓，本金8万他一个星期赚到了28万，然后沾沾自喜，继续满仓操作，4<br>月12号的黄金大跌让他爆仓了。在5月他重新入金20万，第一天就亏损15万，继续入金60万……到前几<br>天我听说他60万被套牢，又入80万资金在扛着他之前60万重仓所造成的亏损，这种人，神仙也救不了他<br>了……<br>——————————————————————————————————————</p>
-<h3 id="错误三：频繁交易"><a href="#错误三：频繁交易" class="headerlink" title="错误三：频繁交易"></a>错误三：频繁交易</h3><p>关于交易频率，也许不同的金融产品有所不同，但有一点是需要格外提醒新兵的，那就是新兵通常<br>根据感觉来做单，而不是根据交易系统的进单信号来做单。<br>我以股票为例，很多新兵看到某支股票涨了，马上会想他还要涨，结果进在了天花板上，看到回调<br>一点点，马上又抛掉。还有的看到某支股票跌得厉害，心里想跌了这么多，总要涨一点了吧，于是大举<br>杀入，最后的结果是越跌越残……<br>再以黄金为例，涨了2个点以为就要暴涨了，马上进多，跌了3个点又以为跌的趋势来了，马上出掉<br>多单进空。追涨杀跌。最终落得多空都亏钱。<br>我认为，交易的频率多少并不重要，而是你是否拥有一套完整，严格并经过市场验证有效的交易系<br>统，如果你根据交易系统进单，那么一天不管是10次交易还是100次交易，都是正确的。反之，如果你不<br>是根据交易系统而是凭感觉，凭手气来进单，那么即使1次也是不应该的。追涨杀跌是亏钱的捷径。<br>新兵训练营已经结束了，接下来要讲的是一套完整的交易系统应该包括哪些方面，属于中级教程，<br>讲完了之后还会讲到交易心态和交易哲学，希望对大家有所帮助。<br>##　—————————————————————————————<br>我这里贴一段我老师以前的讲义，希望大家能够喜欢，并从中有所收获。<br>把金融交易当成是自己在创业。<br>把金融交易当成是自己在创业。正所谓出发点错则步步皆错。我们在做交易的立场是把他当成是创<br>业来干的，你才会全力以赴。<br>说到创业又和成功学本身有或多或少的关系。我做外汇近10年，一直这样勉励自己。既然是创业，<br>那么我们就首先要具备创业者的心态以及成业者的方式去做才可能成功。本身站在成功的概率而言，多<br>数人会是20％成功，80％失败。我们暂且定义成功是一个小概率的事情，所以要求我们自己本身要与众<br>不同。<br>首先创业者需要具备的下面四点不同的必备创业特质：第一，要拥有超强的自我学习能力；第二，<br>要拥有超强的自我检讨能力；第三，要拥有超强的自我改造成长能力；第四，要拥有超强的独立运作能<br>力。<br>从自我学习到自我检讨，从自我改造成长到独立运作，本身就需要自己是一个自动自发的人。把交<br>易当成事业来创不是一句空话，很多人如果是带着侥幸的心态、带着玩一玩而已的心态来做的，其实离<br>开金融市场是最后的选择。不管任何事物，只要我们没有把它当成一回事，市场和成功本身也不会当我<br>们当成是一回事。这个行业不允许混日子，没有中间路线，它只有“赚”或者“亏”两个极端。如果你做别的<br>行业，比如医生，律师，你哪怕是医死人了，或者败诉了，你依然可以拿到报酬。而交易会给我们做错<br>事情做出惩罚－－－－－亏损。亏损很多时候亏的不单单是钱，还会亏掉你继续做下去的信心。所以既<br>然来做交易，我们很有必要把交易当成是我们人生的事业来做。我们是在创业，如果仅仅只是为了养家<br>糊口，仅仅只是希望通过交易可以让自己生活过的好一点，这就不是在创业。<br>就深层次的意义而论，创业非创大业不可。很多人是为了房子、车子、美女这些生活的必须品。再<br>重申一下，房子车子美女仅仅只是生活的必需品，成功的附带品。。所以我们不能有小市民思想，这既<br>是格局的问题，也是出发点的问题。这让我想起一句话：定位决定地位，思路决定出路，资本决定资<br>格。假设两个做交易的人，A是为了房子车子来做交易的，B是为了成立一个私募基金走向国际的来做交<br>易。我们可以预见他们谁的成就会更大。<br>还有比成功更深一步的态度，当一个人一再可以去追求成功，而在追求使命和意义的时候，他站在<br>的高度固然是不一样的。也许你们会问，那我们应该走什么路线？我说说我个人的看法。只要分三步<br>走：第一，成为操盘手，稳定盈利的操盘手；第二，成为投资人，例如私募基金；第三步，成为资本家<br>来做交易，或者说来做金融投机。既要目光高远，又要脚踏实地。远近都抓——远的是目标参照物，近<br>的是实施方案。你必须从自己出发，这样一步一个脚印去做，才是一条创业之路。再重复一下创业必备<br>的特质：拥有超强的自学能力，拥有超强的自我检讨能力，拥有超强的自我改造能力，拥有超强的独立<br>运作能力。希望大家都在奋斗不息的路上，正所谓，行走可以不断地到达，到达后而不再行走就如同死<br>亡。有一句话叫做：只要心还愿意攀登，就没有到达不了的高度。<br>我站在一个过来人的角度知道这一点，多人来做外汇是茫然的：第一是不知道自己所站在的人生位<br>置，也不知道未来要到达的位置是什么；第二是不知道自己怎么样做才可以成功，在茫然的情况下，每<br>天面对的都是昨天或者很多个昨日的问题，从而无法进步，我希望今天这个课程可以真正帮助到大家，<br>能够从新认识自己，和从新认识金融交易。<br>—————————————————————————<br>不知道大家对于财富的观念是什么样，这里我想谈一谈PN我对财富的看法。<br>我认为，财富可以分为两种，一种为内在财富，一种为外在财富。内在财富包括一个人的知识，素<br>质，涵养，性格。外在财富包括票子，房子，车子……当我们在追求财富的路上，经常会看见这样一些<br>文章，介绍某某名人的第一桶金，他们的第一笔生意为他们赚取了多少财富，但却少有人问津他们在赚<br>取第一笔财富之前经历的无数苦难，当然更不会看到这些苦难才塑造了这些名人富人的个性，成为了他<br>们的内在财富，而又是这些内在财富，为他们创造了无数的外在财富……这种急功近利的思想，创造了<br>无数浮躁的，想要一夜暴富的人。而外在财富是需要内在财富作为地基来承载的，只有懂得了善待财<br>富，发挥财富的作用的人，才能让自己的财富越来越多，这就好比没有哪个富翁简历上写着这人是通过<br>买＊＊中头奖成为了富翁一样，而据调查，中＊＊头奖的人在中奖之后的不长时间里，会变得比中奖之<br>前更贫穷，那是因为他们没有内在财富来承载这突如其来的外在财富，所以财富不会留在不懂得珍惜，<br>不懂得善待他们的人手里。所以，人生的第一桶金，乃至之后的数桶金应该是你的内在财富，只有掌握<br>了内在财富，他们才能为你带来无数的外在财富。<br>———————————————————————————<br>从今天开始，老杨我讲授交易系统里面的几个重要部分。但有一点需要事先说出来。<br>交易系统和指标千千万，就好比武功招式千千万，没有哪一个是最好的，适合自己的才是最好的。<br>所以老杨我在此教授的并不是本人交易系统中的细节，而是教如何打造属于你自己的交易系统，授人以<br>鱼不如授人以渔<br>##　第一讲：进场点<br>关于进场点的选择，请各位注意，我用的是“选择”而不是“判断”，因为根据做单风格的不同，会形成<br>不同的进场点。简单归纳有如下几个：<br>1，极限点位挂单法，根据各种各样的指标或者猜测，如斐波那契回调位，整数关口等提前预判价格<br>会到某一个点位，然后提前在此点位进行挂单，优点在于，一旦这种方式成功，会抓到行情的最大利<br>润，一个点都不放过，并产生极大的成就感。<br>2，支撑阻力位进单法：这种也是根据各种判断支撑阻力的方式，如前期支撑阻力位，均线支撑阻力<br>位等，提前预判价格会在哪个价位受到支撑或者阻力，从而进单的方式。<br>3，指标进单法，根据各种指标的形态来决定进单，如macd金叉，RSI超买超卖，乃至各种EA智能交<br>易程序。<br>4，形态进场法，根据各种K线形态来进单，如大形态的三角，头肩，到小形态的K线组合如启明星，<br>锤子线，以及上行下行通道，艾略特波浪形态等等。<br>5，破位进场法，在横盘或箱体整理之后，突破横盘和箱体的那一刻进场的方法<br>6，第六感进单法，想怎么进就怎么进，没有理由，纯粹凭感觉，新手最爱，老手也有根据盘感来进<br>单的时候。<br>市场上95％的交易者进场无外乎我上面列举的那些，其中1－5需要或多或少的技术含量，第6种要么<br>技术含量很高要么技术含量很低，在此不做过多的研究。<br>在金融市场上最终能够存活下来的，并可以通过交易为生，我们称这种状态为“稳定盈利”，稳定盈利<br>重在一个“稳”字，所以我们在建立交易系统的时候，要避开一切激进的因素，如抢回调，追单，左侧交易<br>等。<br>做单的节奏就如太极的阴阳轮回一般，行情的单边与盘整也是一个轮回关系。盘整之后就是单边，<br>单边之后就是盘整，甚至有这样的说法叫横有多长，竖有多高。所以我个人并没有选择第1种进场法，大<br>跌和大涨之后，多数情况下都是盘整，即使抢到了最高最低点，也要经历漫长的等待。<br>前段时间忙于一些工作上的事情没有来更新，今天重新开始，先给大家带来一个问题，看看大家的<br>看法是什么样的，稍后我会给出我的答案。<br>这个行情，前期受阻100，现在继续涨，那么后市会怎么走呢？<br>接下来讲解上午的那个问题，盘面受阻100之后，后市如何看？<br>其实大家的回答都对，也都不对。之所以这么说，是因为大家的回答都只是一种可能，而这些可<br>能，都是没有经过实盘盘面确认的。比如……<br>可能性1：行情突破100阻力继续涨，形成N型。<br>可能性2：行情继续受阻100，形成M头，双顶。<br>可能性3，突破100之后假突破，刚刚突破又下跌。<br>甚至可能性4：在阻力位来回盘整震荡。<br>还有很多的可能……<br>这些可能性，其实就是分析师每天做的工作，他们会把各种可能性都想到，总有一个是对的，但是<br>我们作为一个操盘手，行情只会走出一种，判断会出现哪一种就是我们的工作。<br>之所以谈到这些，就是在选择进场点的时候，一定要等待确认你想法的那个信号出现，这个确认的<br>信号，就是你的进场信号，他也许是反转形态，也许是macd开叉，也许是RSI超买超卖，而在确认信号<br>出现之前，你的预判都只是猜测而已，这个进场概念，对于选择在支撑阻力位进场的朋友尤为重要。<br>很多朋友问我，我的进场点是什么，这里可以稍微透露一点，我采用的是爆发点进场，在行情爆发<br>之前大约10分钟到30分钟左右进单，这样进的好处是止损可以比较小，也不需要等待很长的时间就可以<br>见到利润，当行情跑起来之后，我可以把止损放在平保不亏的位置，这样即使行情发生我没有预见到的<br>反转，我也只是不赚不亏。<br>对于进场点的讲解，如果大家没什么问题，接下来就开始讲出场了。<br>今天看到一篇博文，里面有一段话跟我上面的进场观点有异曲同工之妙，这里引用一下。希望能帮<br>助大家更好的理解我说的支撑阻力位≠进场点，一定要等待确认信号之后才可以。<br>“你知道吗？这世上没有任何人可以预测走势。没有人可以知道明天的股价会怎么走，当你认为你可<br>以通过学习或者其他方法来预测走势时，你已经把自己排除在了1％的顶尖的交易员之外了。<br>这世上没有人可以预测，你不能，我不能，任何人都不能。我们所能做的就是跟随……做对唯一的<br>选择就是：顺市。你可以说是顺势，也许意义有那一点点地不同。太简单拉，简单的难以想象。简单到<br>如果有外星人，他们都懂。<br>可是你知道何谓市吗？你知道如何顺市吗？简单的道理，不是简单的行为能达到的！正如很多人终<br>于知道：幸福。可是何谓幸福？如何才能达到？ ”<br>以今天（2013年6月11日）的黄金行情为例，我在15点03分进了空单。<br>也许有朋友没有接触过国外的外汇平台，这里显示的9点03分是柏林时间，跟北京时间相差6小时，9<br>点03分＋6小时就是15点03分。<br>当时的行情图，这里为方便看清楚，用1分的。<br>这就是我所谓的爆发点进场，这里大约提前2分钟，行情在15点05分开始爆发。<br>————————————————————————————</p>
-<h2 id="第二讲：出场点以及盘整的预判"><a href="#第二讲：出场点以及盘整的预判" class="headerlink" title="第二讲：出场点以及盘整的预判"></a>第二讲：出场点以及盘整的预判</h2><p>之所以把这两个合在一起讲，是因为在讲解这两点之前，有一个必须解决的前提，就是分析周期。<br>很多人问我，看盘的时候应该看什么周期的，其实这没有一个标准答案，因为市场是变化的，复杂<br>的，不能根据单一的周期来解决所有的行情。举个极端的例子，如果你要做短线，那么是无法从月图来<br>确认进场和出场的，同样，如果你要做长线，那么你看1分图是看不到目标位的。<br>所以我看盘都是多周期配合，小周期确认进场，大周期判断行情的大小及出场预判位，再根据小周<br>期确认信号出场。单一周期虽然也能做单，但比较片面。<br>行情的大小以及盘整的时间都跟周期有关，日图发起的行情肯定不是5分图可以比拟的，盘整也是一<br>样，5分的盘整可能一两个小时就结束了，但日图级别的盘整可能持续几个星期。<br>先讲单边行情，短线还是长线，不是根据自己的喜好来决定，而是根据盘面的状况来决定，如果是5<br>分发起的行情，当然是短线，但如果是日图甚至周图发起的行情，为什么又一定只拿短线利润，而不敢<br>长线持有呢？归根到底是交易系统不够完善，无法判断发起的单边行情到底是短线还是长线，在我看<br>来，短线长线的交易信号都是一样的，所不同的只是出现的周期不同，会造成的持续时间和行情大小的<br>不同。<br>盘整根据周期的不同，可以决定你做单的思路，比如如果出现日图级别的盘整，那么只能做日图周<br>期之下的短线行情，月图出现盘整，才可以做日图级别的行情，如果是60分30分出现盘整，那基本就是<br>不做单的休息信号，可以离开电脑去做点别的事。很多人甚至很多高手都无法提前预判盘整的出现，在<br>震荡行情中不断下单，不断止损，之前赚取的利润碰到一次盘整震荡就会亏得所剩无几。<br>因为我有完善的交易系统，进过无数次市场验证是有效的，可以在爆发点进场<br>举例<br>今天刚才的黄金（6月13日）<br>————————————————————————————<br>关于选择适合自己的技术组成交易系统的问题，我会告诉大家什么是伪技术，什么是真技术。<br>现在的金融市场，充斥着各种伪技术，伪专家，伪高手。先看看什么是伪技术。<br>所谓的伪技术，就是复盘，也就是行情走出来之后回头去看会非常有效，看起来非常牛逼，感觉掌<br>握了这个技术就掌握了通往稳定盈利的金钥匙一般，但是在实盘操作的时候却毫无指导作用，只是让人<br>意淫行情会怎么走的技术。复盘无敌，实盘无效。<br>举个例子，很多教技术分析的书上会教这样一个技术，当布林带开口的时候是单边，收口的时候是<br>盘整。然后配上这样一副图。<br>对于这个技术，我有两个问题，第一，我如何判断布林什么时候开口？第二开口之后方向往哪边<br>走？当年我试着用这个技术来做单，结果我相信跟大多数用这个技术的朋友一样，亏多，几乎不赚。也<br>许有其他高手能解决我上面这两个问题的，那这个技术不失为一个好技术。<br>现在有一个实盘布林图是这样。<br>请问后市如何发展。<br>如果根据布林开口是单边来看这里要做多。可后市的结果却是：<br>跟这样的伪技术类似的还有形态，什么头肩，双顶，双底，旗形，蝴蝶。都是事后来看非常牛逼，<br>但是事前却很难预判到，以最简单的双顶为例，我上面那个受阻100的例子，双顶只是可能性的一种，走<br>出来就是双顶，如果走出是双顶形态，事后来看双顶就是个很牛逼的形态技术，但如果没有顶住呢？没<br>走出双顶就是别的形态了，那一开始就预判双顶不是猜测又是什么呢？<br>我在这里并不是批判这些指标或者技术，而是各位在选择的时候，一定要选择那些可以提前预判后<br>市的技术，或者把本来不能预判的改进成可以预判，而不是沉浸在马后炮的技术中不可自拔。自认为掌<br>握了厉害的东西，其实一文不值。话说老远我现在也还在用布林带，只是用法跟市面上的书上教的用法<br>不太一样罢了。<br>——————————————————————————<br>今天在继续更新帖子内容之前，我发现好多回帖的朋友都没有看懂我这篇帖子所表述的内容，所以<br>看起来云里雾里，不知所云，甚至觉得老杨我废话连篇，就是没有说到点子上，其实老杨句句到点，只<br>是你没有理解，所以在这里先解释一下。<br>我们常听到一句话，叫授人以鱼不如授人以渔，说的是给别人鱼不如教授打渔的方法，这句话放在<br>金融市场上可以这么理解，如果我喊单，荐股，那就是授人以鱼。而接受鱼的人，今天有鱼今天就有得<br>吃，明天人家不给，那明天就得挨饿，甚至万一给的是条臭鱼，毒鱼也因为分不清楚，傻傻的吃了下<br>去。<br>而授人以渔则是教授打渔的方法，好比给了你一张网，然后你可以用这张网去捕捞属于你自己的<br>鱼，不再跟在别人屁股后面吃嗟来之食，这也是大多数人所期望的，只是殊不知别人的网不一定适合<br>你，即使你拿到了也不一定能用好。“纸上得来终觉浅绝知此事要躬行”别人的交易技巧永远没有自己研究<br>出来的记忆深刻，运用熟练。<br>所以这就是我的帖子讲的内容，我不是给你鱼，甚至也不是给你渔网，而是教你如何编织属于你自<br>己渔网，在你编织自己的渔网时，应该要注意的地方，毕竟细节不同，大道相通。<br>如果你觉得自己编网费时费力，那老杨的这篇帖子您就权当废话，不看也罢。<br>———————————————————————————<br>假专家？真专家！<br>PN我记得前几年看过一档CCTV－2的股评栏目，当时已经到了节目的末尾，主持人请网友发表对股<br>票走势的看法，网友A出来说看涨，网友B说看跌。然后主持人请教专家的意见，专家说，股票会涨，但<br>也有跌的可能性。股评到此结束，谢谢各位收看……<br>当时我一口水直接喷在了电视机上……在中国金融界存在着这样一批人，他们谈起国际经济形式，<br>国家经济政策来滔滔不绝，似乎这些事就是他拍板决定的一样，一大堆尔等凡人没听过的专业术语，让<br>人摸不着头脑却又觉得无比厉害。但是……<br>只要到给出具体建议，如何操作的时候，这些人就集体哑了，这还算好的，怕就怕那种自己明明没<br>有带着别人赚钱的能力，还喜欢时不时出来说两句，让本来的亏损继续奔腾的建议……<br>说这是假专家，只是针对于金融市场的交易而言，这些人的话，对实际的操作并无太大的指导作<br>用。<br>其实照中国这国情，这些才是真专家吧。我不多说，大家都懂的……<br>等会来更新伪高手。<br>————————————————————————————<br>boll是常用指标，我帖子里也提到了我现在依然在用，只是用法不是单纯的依靠boll来判断行情的单<br>边和盘整，还是那句话，没有100％正确的指标或技术，但可以通过配合提高正确率。<br>因为我是纯技术派，所以只要是能用K线表示的都可以用，我也并没有只做黄金，前面有外汇的晒<br>单，偶尔还帮别人看看股票。<br>————————————————————————————<br>伪高手？真高手<br>各大论坛，QQ群里不乏各路高手，但其中隐含了不少伪高手，甚至是骗子。通过短时间高额利润做<br>诱饵，骗取交易者的信任。这类人通常有一个特点，就是会把自己捧得跟神一般，动不动就号称超越索<br>罗斯，超越巴菲特。似乎只要跟着他们做，就能永远摆脱亏损，实现利润的奔腾。<br>可事实却并不是让人设想的那么完美，大多数人依然在这个市场上亏钱，然后曝光一个又一个的骗<br>子。<br>真正的高手，不说技术如何，态度一定是谦和的，谦逊的。因为高手之所以是高手，是因为他们经<br>历过市场的风风雨雨，勇于承认自己的错误，并且顺着市场的趋势来操作，我们所有人都是市场的学<br>生。<br>老杨今天能在此与各位朋友交流，实在是人生一大快事，很多人尊称我为高手，如果PN我是高手，<br>那我也是一个亏钱的高手，我前面提到那些不能违反的纪律其实我都曾经违反过，犯错不可怕，可怕的<br>认识不到自己的错误，无法改正错误。金融是一个充分暴露人性的地方，贪婪，恐惧，倔强，死要面<br>子。这些情绪作为一个成功的交易者而言都是需要摒弃的。<br>大道至简，当你顺应了市场之后，交易其实是很简单的事，简单到只有进场和出场而已。<br>—————————————————————————————<br>把出场点讲完吧～<br>出场的把握，其实在进场的那一刻就应该要有一个预判，也就是前面提到的周期问题，日图发起的<br>单边肯定不是一两天就结束了，至少也能看到日图的支撑阻力位。当60分受阻的时候，其实可以无视小<br>周期的停顿，这也是为什么有些人拿的住单，在回调和盘整到来的时候可以很淡定的继续持有头寸，因<br>为他们会判断行情的大小（同样是跟周期有关）。<br>至于具体的出场点把握，如果你的进场把握得很好，那么支撑阻力位，均线支撑阻力出场，就已经<br>可以让你做到稳定盈利了！下面的内容你可以不用看，但是，如果你的目标不是赚钱，而是交易本身，<br>希望成为一个交易高手的话……<br>你需要解决这么一个问题，当看不到支撑阻力（比如突破了前高前低），或者在两个支撑阻力之<br>间，如何判断出场，我们在实盘的时候很多时候都会发现在原来没有出现支撑阻力的地方形成了新的支<br>撑阻力。因为还没到下一个阻力，所以继续持有应该出掉的头寸，结果盈利变成平保，甚至亏损。这个<br>问题曾经在很长的一段时间内困扰着我，直到我解决了这个问题。<br>虽然有些核心的内容非入门的学生是不教的，但这里就当给大家发个福利好了。我用到K线的反转形<br>态。用反转形态足以在绝大多数情况下解决这个问题了。<br>——————————————————————————————<br>今天讲下正确的交易心态，在讲正确的交易心态或者说讲到交易心态，我们有一个前提，这堂课更<br>多是针对做金融多年的老手，有些可能新手听起来不能马上体会，但是对你后期交易是有帮助的<br>很多人做了很久交易，就是无法稳定盈利，很对单子也作对了，就是拿不住，很多机会自己看出来<br>了，就是没有做进去，最后遗憾，很多单子明明自己预感到是要平仓的就是没有去平仓最由盈变亏，很<br>多时候自己知道不是好的机会，就是忍不住去交易不是机会的“机会”这些都是老手们存在的问题<br>能影响心态的还有一个原因就是你的仓位，你下大了这是一个，另外一个是没有止损<br>或者止损过大，资金管理不完善一样会影响心态，唯一要做的事把那些影响你心态的做法改掉，回<br>归到正常的做法<br>昨天我一个群里的朋友说到，同样是做外汇的，怎么人与人之间差距怎么这么大呢<br>这种心态是一种不平衡的心态，因为你起了攀比之心，还有很多人做交易进去之后老是去盯住价<br>格，价格波动一下血压就高一下，这些都会影响你心态<br>你们可能会问，那怎么做呢？我讲东西喜欢讲根本核心，解决问题如果不解决核心，真正的问题都<br>得不到解决，什么是核心？是我们的交易理念！<br>记住，你不是在做外汇，根不是在做那个货币，也不是在做交易。<br>你会问那做什么？做机会！交易市场从来都不缺少机会，缺少的是淡定地能把握机会的人，每天都<br>有很多机会是送钱的交易机会，捉住了吗？<br>回到核心根本，如果你的交易技术系统确保是可以盈利，为什么还是没有做到稳定盈利，那应该就<br>是在这些方面出了问题，是什么影响了你不能平静淡定去面对市场<br>一个是你有很多做法需要改掉，另外一个是心态里的东西，不欲则刚。<br>举个例子，你是一个单身男生，你去泡MM，你和她在一起的时候整天想要接吻牵手上床，这些都是<br>你的欲望反而让你自己紧张，你还是把那些抛在脑后，所有老子说后其身而身先，外其身而身存。<br>交易也是一样。<br>你老是想我要赚多少多少，或者我不能亏，又或者我不能错，这些都不是不欲则刚，你要进入无我<br>的状态<br>交易之路也是修行之路，这些需要你自己慢慢提升，前提是先要知道自己的提升方向，你要对盈亏<br>对错没有任何情绪“小钱靠累，中钱靠智，大钱靠玩”你是在玩，有规则地玩，我们知道交易就是交战，市<br>场就是战场，你一旦还有盈亏对错，就是还有战心。<br>孙子讲的“百战百胜都不是最高明” ，鬼谷子也是一样的观点，不战而屈人之兵才是最高明的。<br>你会想，我们一旦做了交易就是战啊，如何不战？不做交易？对！你已经没有了交易的心态，你的<br>心至少要这样，老子讲的：无为才可以无不为，为者必失，执着必败，是以圣人无为故而无败，无执故<br>而无失，你没有了牵绊那些概念去战，才能做到旁观者清。<br>你会问，怎么样才算是没有战的概念来左右自己，还是刚才说到的，你做交易的似乎已经放下了盈<br>亏对错，达到真正的无我，你用自己的意念去意淫市场就是为，你还有盈亏和对错的概念去交易就是<br>执，很多人把老子想简单了其实是他自己简单，多数人理解的无为就是什么都不做。<br>真正无为的意思是顺势而为，而不加自己的意愿进去。<br>你强加自己意愿进去猜测就是老子说的为者必败。<br>对盈亏对错麻木吧。<br>需要时间。<br>交易稳定盈利很难。<br>是难。<br>但是成功本来就不是一件简单的事，如果谁都能简简单单做到，那就无所谓成功了。<br>————————————————————————————————<br>先谢谢各位朋友的支持，交易系统的创建不是一朝一夕的事情，只希望老杨的这点浅见能对各位有<br>所帮助。<br>前面有朋友回帖说希望能更多的结合实盘讲述一下交易的技巧，那么今天就来讲述一下，如何让利<br>润奔腾。<br>以前天（2013年6月18日）的黄金行情为例，当天的预判是看空，然后等待空单确认信号的出现，<br>目标位在1360附近。附上当天的实盘图（15分）和我的交割单。<br>这是一个典型的日内单边行情，从最高点1386开始下跌，在1382也就是第一个绿色箭头处出现第一<br>个进场信号，于是下第一个空单，到后面出现一波小幅上涨，因为预判的目标是1360，可以判断上涨只<br>是回调，应该继续进空，根据信号，在第二个和第三个箭头处下了2个空单，然后行情如预判继续下跌，<br>在第四个箭头处再次出现进场信号，加仓做空，第五个箭头处也出现了进场信号，但是我没有加仓，因<br>为仓位已经比较重，一直拿到目标位就好。除第二个单有些许浮亏之外，其他的单子都是进在爆发点。<br>这就是我加仓的方法，站在利润的基础上，依然是根据进场信号选择爆发点来加仓，很多我认识的<br>朋友，对于加仓没有一个正确的认识，随心所欲，想加就加，殊不知，加仓也是有规矩可循的。对于我<br>而言，长线短线在我眼里是一码事，只是时间周期的不同（参看前面关于周期的讲授）信号都是一样<br>的。<br>以中长线为例，现在发起一轮中长线行情，预判要维持1个月。那么在自己的长线目标位到达之前，<br>选择日内顺势信号进行加仓，直到自己的目标到位，或者出现了足以让你把所有头寸都出掉的信号。完<br>成获利目标。<br>其实对于技术不太熟练的朋友，也可以选择分段操作，一段一段的吃利润，落袋为安，见势不妙就<br>马上止损。再提一下仓位的控制，针对双向交易的，如果在一波长线上涨趋势中，出现了日内的看跌信<br>号，顺势的多单如果是正常仓位，逆市的就减半，以控制风险。<br>真正的长线，是站在利润基础之上的，这里来一个假设，假设我第一个单出现了浮亏状态，但是又<br>没有打我的止损，出现了第二个进场信号，这里，我的选择是不进，因为手上已经有了浮亏的单子，证<br>明我前面的爆发点没有确认对，再加仓风险也会增加，不如持有原有的头寸，毕竟我追求的是稳定盈<br>利，稳字为先，少赚，不赚也要比亏损好。后面加的仓位也要按照严格止损的要求带好止损，如果加仓<br>被止损，比如亏损30点，那么我会把第一个已经获利的单子止损放在获利30点的位置，这样即使行情出<br>现大逆转，我也不亏。该止损的，就严格止损，该赚的，就要狠狠的赚。<br>————————————————————————————<br>像下午波动这么快的行情，要抓爆发点，我也只有去看1分图甚至30秒的图。贴下1分图的进场点。<br>——————————————————————————————————<br>今天来系统的讲讲风控管理意识和资金管理<br>我讲东西喜欢先讲本质再讲表面，因为如果是只讲表面的东西对各位成长作用不大，所以在个人成<br>长上的三部曲，第一步是改变观念，第二步是改变行为，第三步才到改变结果。比如穷人的观念是钱很<br>少，单身挫男的观念是女孩子很少，而富人的观念是钱很多，觉得女孩子很多很多。心里贫穷的人无法<br>富有，有什么样的观念就会有什么样的行为。行为又导致结果的好坏。<br>举个例子。先来聊一个轻松的话题，做这个行业应该多数都是男生，就聊一个男生的话题，你们是<br>不是见到美女都喜欢看人家，你在看美女的时候，美女回看过来的时候你会不由自主地把你的眼神移开<br>看别的地方，不敢再看美女，你们回想一下自己是不是这样，多数人绝对是这样。为什么呢，因为在你<br>的意识观念中，你会觉得这样看别人会显得自己很好色猥琐，会让别人觉得你不礼貌。你不能让美女发<br>现你在偷偷地看她，这些意识观念是你的老师你的父母和整个社会潜移默化输入给你的。我今天想告诉<br>你一个新的正确观念，先站在女人的角度，一个美女可能花了几十分钟打扮自己如果无人欣赏，她心里<br>肯定是不好受的，你用欣赏的眼神大方地欣赏她告诉她的美，你很绅士地欣赏她的美她心里是高兴的，<br>就好像一个男人，即使是一个你不喜欢的女生用同样的眼神来欣赏你的帅，你心里也是高兴的，你想的<br>是我还是有人欣赏的嘛。这是女人的角度，再站在男人的角度看看这个问题，我们首先确认一个点，任<br>何正常的男人都喜欢看美女，包括你的爸爸我的爸爸，你的爷爷我的爷爷，包括秦始皇，曹操，李世<br>民。只要他是一个正常的男人都喜欢看美女，也就是说，你喜欢看美女证明了你是一个正常的男人，你<br>为什么要压抑自己不去看呢，你要做一个坦荡的人，站在美女的角度，因为男人看她的时候当她回看男<br>生的时候99％都是把眼神移开看别的地方，你不敢继续看她，她回想你不够自信，不够强大，当然你肯<br>定不能色迷迷地盯着人家的乳沟或者屁股看。你如果自信微笑大方地去欣赏她的美，坚定地欣赏她，看<br>到她自己不好意思看你。你再移开，这时候美女想的是，这个男人够强大，这个能人够男人，这个男人<br>很特别。要明白，成功人士的眼神都是很坚定的，因为成功人士他们目标坚定，决心坚定，眼神才能坚<br>定。而多数人的眼神都是游移零散的。当然，如何才能练就一双有魅力的眼神，如何认识更多美女，到<br>建立吸引，牵手，拥抱，接吻，解开扣子，推到，让她爽，到建立长期吸引。当然，这些不是在这里教<br>大家的重点，只是从这个例子，告诉我们，不同观念就会造就不同行为，我相信你知道了我今天告诉你<br>的这个观念，你以后会大方地欣赏美女的美，你以后你会活得更加坦荡，你的眼神也会更加自信和有魅<br>力。观念改变了，你的行为才会跟着改变。行为改变了你的命运结果才会改变。<br>通过这个例子大家意识到了观念意识的重要性，我们回到今天的课程主题，风控管理意识和资金管<br>理方案，说到风控管理意识，首先我们来做交易时是来做投资的而不是来做赌博的，这里说下投资和赌<br>博的区别，区别在于，投资是掌握了一定胜算的情况下才去承担一定的风险，赌博是在没有掌握任何胜<br>算的情况下希望通过侥幸成功而盲目地去承担风险，就拿开公司来说，一个对开公司的流程熟悉，发展<br>规划做足准备，在掌握胜算下去承担一定的风险，这叫投资，但是一个既不懂公司运作流程，也没有做<br>什么准备，没有掌握任何可见胜算就来开公司就是在赌博，我们交易也是一样，你如果不懂里面的游戏<br>规则，技术也不行，系统也没有，理念也不懂，毫无胜算带着侥幸来做交易你就是在赌博。但是你如果<br>学好了技术，有了自己可以稳定盈利的交易系统，掌握胜算做交易，你就是在投资。<br>说到风险，首先说一下风险这两个字是怎么来的，古代人们出海打渔是没有天气预报的所以如果一<br>旦遇到大风暴就会有翻船的危险，风险来于不可控和未知，这就是风险的由来，但是现在的这个风险是<br>可控的，因为有天气预报了。我们交易讲的风控就是把风险降到最低，我们先要有风控意识。<br>再讲到管理，一个国家管理不力或者没有管理就会乱。一支军队管理不力或者没有管理就会散掉，<br>一个公司管理不力就会垮掉，一个个人不善管理他的人生和生活也就一塌糊涂，我们的账户如果没有合<br>理管理就会亏和不稳定，你首先要有这个管理意识。<br>你有了风险控制意识，你也有了资金管理意识，那下面讲的就是怎么做。一个一个讲。<br>先讲我认为不对的做法，第一个是对冲锁单，为什么不对，第一，因为你有停损为什么要锁单，第<br>二，锁单只能证明你的技术不过关判断分析需要提升，第三，锁单会影响你正常交易的心态。第二个是<br>挂单，为什么挂单我不支持，第一挂单和猜对没什么区别，第二挂单没有等验证信号，第三你人在看行<br>情为什么要挂单不直接手动交易，人不在为什么非要去做单。所以我自己包括我的学生是不允许这样做<br>的。<br>再说到进场的仓位，其实这个是根据个人胜算而论，高手肯定下大点，新手肯定是先小仓开始做，<br>一万美金的仓位，正常是下法，单个货币建议新手下0。1或者0。2。你的胜算越高下的仓位跟着提高，<br>如果你已经可以稳定盈利了，一万美金的仓位你可以下单边货币0。5或者1手2手。这个是正常的做法。<br>还有一种做法是根据行情而定，举例，你是做日内交易的，拿黄金交易来说，如果黄金的中线看涨，那<br>你日内交易的时候多单属于顺势单下1手，空单的日内信号属于逆中线趋势就下0。5手。你要稳定盈利你<br>的仓位也一定要稳定，没有节奏地忽大忽小就是没有管理的表现。<br>再说到止损，首先我们先认识一个观念，有止损亏了也对，没有止损抗单抗赚了也错。也就是说我<br>们无论如何都要上止损，这是游戏规则，你要是不遵循这个游戏规则只能自讨苦吃。止损是保证你还有<br>下一次参与的筹码，不伤元气，也是亏小赚大的关键。那怎么放止损，放在哪，我的做法是放在进场波<br>段的前高点或者前低点，空单就放前高，多单就放前低。主要是看你是根据那个时段进场的就看哪个时<br>段里图的波段。<br>再说到止盈，这个需要技术含量，看到哪里需要综合分析，如果是日内交易者的话，除了看支撑阻<br>力位以外一般都是睡前都会把仓位平掉第二天再从新开始，如果做中短线的主要是看支撑阻力为去定。<br>再说到加仓，加仓是本身你已经有一个方向的单子赚钱了，然后站在利润至上顺势继续放大利润，<br>但是新手会容易犯一个错，会在亏损的时候继续加仓，这有赌博的心态成分了。最后结果决然是悲剧<br>的。<br>你想要稳定盈利你的资金管理的规则一定要定好，而不是随心所欲，我的核心理念是先稳定盈利，<br>再稳定暴利，所以我的盈利理念是稳健地步步蚕食，多数新手都是想一下子暴利，急功近利只会让自己<br>倒退。今天就讲到这里，希望大家都有收获。<br>——————————————————————————<br>前段时间跟朋友聊天，讨论什么样的交易系统才是最有效的。我来说说我的看法。<br>其实不管你是用道氏理论，均线系统，macd，还是波浪理论。有一个前提是必须认清的，那就是每<br>天赚钱的人和亏钱的人，所面对的是同样的行情。我喜欢用钓鱼来比喻做交易，池塘里的鱼那么多，每<br>人用的钓竿和鱼饵可能不一样，但只要你用正确的方法，总会钓到属于你的那条鱼，钓鱼，难免会出现<br>鱼漂动了但没钓上来，鱼饵却被吃掉的情况，和止损何其相似，这时作为一个捕鱼人，只有镇定下来，<br>重新上好鱼饵，等待机会继续下钩，如果气急败坏的把自己当作鱼饵跳下池塘想捞一条大鱼，能不能捞<br>到大鱼我不知道，但是被淹死的风险是非常大的……<br>作为一个钓鱼人，池塘的鱼不可能全都能上你的钩，也就是说，不是所有的行情都会符合你的交易<br>系统，这就谈到一个心态问题，当一波大行情启动，但是不符合你的交易系统时，你能淡定的看着么？<br>曾经有过一次操盘的比赛，参赛者都是各大交易团队的高手，一个星期之后，所有的参赛者都出现了亏<br>损，最后拿到冠军的人是账面平保，而他获胜的原因是他一个星期都没有参与交易，发表获奖感言时，<br>他说他不交易的原因是这一个星期都没有出现他做单的信号，于是他选择观望……我第一听到这个事的<br>时候觉得挺搞笑，但是里面包含的做单思想又有几个人能够理解，“只做自己看得懂的行情”这意味这你把<br>眼光放在了交易这件事本身上，而不是赚钱上，我前面也提到过，只有当你把这件事做好，财富才会自<br>然而然来到你的身边。<br>虽然我当年研究交易技巧时，是以解决100％的行情为目标的，但是到了今天，依然有我看不懂的行<br>情，市场复杂变化多端，没有人能做到100％准确，但是当你有了稳定盈利的交易系统，再加上“只做自<br>己看得懂的行情”的良好心态，我相信稳定盈利会自然而然的来到你身边。<br>享受交易，享受交易的过程，希望大家能从交易中收获快乐。<br>——————————————————————————<br>今天来讲讲行情的级别递进问题，先上图一张<br>这是上周的黄金60分图，这波下跌 是前面一大波上涨之后没有经历过等长的横盘开始下跌的，也就<br>是所谓的急变，发现了这波下跌的特点没？下跌的横盘时间越来越长，横盘时间越长，启动的单边行情<br>也就相应的增长。结合我之前讲的下跌级别来判断。一波大涨之后，在下面存在N个支撑位，如果要下<br>跌，也是一个一个破。先从小周期的破起，而突破支撑阻力，有两种方式，一种是慢慢横盘，一种是回<br>调之后，蓄力冲刺。这两种，显然前一种更好把握，也就是横盘之后的爆发点。蓄力冲刺，存在两个方<br>向，相当于要撞破一堵墙，需要先往后退几步。这对于操盘的要求就比较高了，进场没选好，可能就被<br>蓄力的那一波套了进去。突破支撑位，从小周期开始，5分的支撑不需要太多的时间，然后随着周期的增<br>大，横盘时间也开始增长。<br>但是，周期不可能无限增大，那么到哪个周期为止呢。结合具体的例子来回答，上面的黄金横盘<br>图，有4个框框，分别是5分 15分 30分 60分级别的横盘。但是，日图级别依然是看多的，所以，黄金应<br>该在日图，或者比日图小一点的级别止跌，然后重新开启上涨行情。这就是所谓的，小周期的反转不会<br>扭转大势。<br>这个理论，放到周图也可以。第一个框框，是蓄力，其他几个都是横盘。如果在最高的转折点开<br>空。必然要经历来回震荡横盘的心理压力。而如果在横盘区域内部做单，拿个十几点就要跑，风险太<br>大，属于快枪手的做法。我属于慢热持久型。<br>我们讲道法术，我的爆发点进场也只是术的一种，很多人推崇缠论，睡论，道氏理论，其实都是术<br>不同而已，本人对缠对睡研究得不深，爆发点进场也只是属于我自己研究的野路子，如果要取个名字，<br>叫什么好呢，P论还是爆论，呵呵。还是前面说的，不管用什么方法，每天的行情就在那里，只是你如何<br>去解读的问题，有人只看到涨跌，我眼里最多的是横盘，很多人无视横盘的存在，殊不知大行情都是在<br>横盘中酝酿爆发的。<br>今天就先讲到这，如果你对老杨上面的言论表示赞同，希望能有更多的交流，可以来找我。（不知<br>道怎么找？你连我都找不到，还想找到市场的运行规律？）下次再聊。<br>————————————————————————<br>关于固定盈亏比的反驳与见解<br>在我交易的学习过程中，时常会看到或听到这样的论述，我们的交易盈亏比需要达到1：2或者1：3<br>甚至以上才可以赚钱，就是说，当我的止损预设为50点时，我的预期盈利应该是100甚至150点。也就是<br>说，我盈利的一笔单子可以扛住2到3单的止损单。很多交易书籍上都把这个作为重点内容讲述，其中不<br>乏交易大师们的著作。<br>能做到这样的盈亏比固然很好。<br>但是事实果真是如此么？<br>是不是我一个单子做进去，没有达到我的盈亏比我就不出单，一定要到盈利点数才出？是不是到了<br>我的盈利点数我就一定要出，剩下的行情与我无关？答案当然是否定的，任何一个真正做过交易的人都<br>知道，行情瞬息万变，不可能每一次都按照我们的主观意愿来波动。所以给自己定下一个固定的盈亏比<br>无异于削足适履。我喜欢用很简单的举例来说明问题，如果说把我们的交易学习之路比作在驾校学开<br>车，而真正的做交易是上路行驶。驾校的练习路线都是固定的，他们教导学员在什么位置转弯，什么位<br>置停车，什么位置启动……一切都规规矩矩，学员只要遵照执行就可以通过考试。但真正上路行驶又是<br>什么样子？没有一个固定的车况提前让你知道，如果碰上了塞车（盘整行情）那就只能一步一刹，缓慢<br>前行。而如果上了高速（单边趋势）则必须一路加油到底。这才是我们的交易市场！如果在盘整的时候<br>依然坚持固定的盈亏比，不到自己的目标点位绝不出单，就好比在塞车的时候依然坚持以常速行驶，结<br>果一定是出车祸。而在单边行情上坚持固定盈亏比，到了自己的目标点位就出单，就好比在高速路上跑<br>了一小段就停车了，结果也一定是没有把握机会赚取大额的利润。<br>行情瞬息万变，路况也瞬息万变。一个优秀的操盘手好比一个有经验的老司机，会根据实时的盘面<br>来调整自己的策略，如果发现是塞车行情，那么就缩小目标点位，看到前方有阻碍就踩下刹车（平<br>仓），上了一马平川的高速，那就大胆的加上油门往前开（顺势加仓）。，<br>大家可以来讨论讨论<br>所以我的看法是，抛弃固定盈亏比的概念，而把关注的重点放在实时的盘面上来，通过图表来辨明<br>当前的形势，让K线图来告诉你什么时候该进，什么时候该出。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/08/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E9%A2%86%E5%9F%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8410%E6%9C%AC%E5%8F%82%E8%80%83%E4%B9%A6%E6%8E%A8%E8%8D%90%EF%BC%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E9%A2%86%E5%9F%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8410%E6%9C%AC%E5%8F%82%E8%80%83%E4%B9%A6%E6%8E%A8%E8%8D%90%EF%BC%81/" class="post-title-link" itemprop="url">量化交易领域最重要的10本参考书推荐！</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-20 14:17:12" itemprop="dateCreated datePublished" datetime="2018-08-20T14:17:12+00:00">2018-08-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/08/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E9%A2%86%E5%9F%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8410%E6%9C%AC%E5%8F%82%E8%80%83%E4%B9%A6%E6%8E%A8%E8%8D%90%EF%BC%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/08/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E9%A2%86%E5%9F%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8410%E6%9C%AC%E5%8F%82%E8%80%83%E4%B9%A6%E6%8E%A8%E8%8D%90%EF%BC%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>2 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol start="0">
-<li>《期权、期货及其他衍生产品》</li>
-</ol>
-<ol>
-<li>《打开量化投资的黑箱》</li>
-</ol>
-<p>这本书的作者里什·纳兰（Rishi K. Narang）是华尔街顶级数量金融专家，资深对冲基金经理，自1996年开始，他就开始从事对冲基金事业，专注于量化交易策略。目前是特勒西斯资本有限责任公司（Telesis Capital LLC）的主要合伙人。在书中他站在一个非纯粹技术的视角介绍了量化交易策略，用生动的文笔带领读者游历整个“黑箱”。</p>
-<p>《打开量化投资的黑箱》的写作涉及很多金融界丰富的真实案例和市场趣闻，富于智慧地描绘了华尔街的数量金融奇才们是如何工作的。可是说阅读《打开量化投资的黑箱》的过程，就是一个慢慢理解数量金融大师及其投资策略的过程，从而揭开量化交易的神秘面纱。</p>
-<ol start="2">
-<li>《量化投资策略：如何实现超额收益Alpha》</li>
-</ol>
-<p>本书作者Richard Tortoriello是任职于S&amp;P 标准普尔公司的证券分析师，他的日常工作就是建立一系列的数量选股模型。书中的模型类型覆盖面广，可以说作者是在对所有能够获得超额收益的策略进行了地毯式的搜索，并且提供了超过20种常胜投资idea的详细回测情况，充分展示了经验丰富的Quant是如何通过自己的想法来改进模型的。顺便提一句，本书的译者们也都是浸淫证券市场多年的大咖，其中陈工孟更是深圳国泰君安的董事长和上海交通大学金融工程研究中心的执行主任。值得一看。</p>
-<ol start="3">
-<li>《解读量化投资：西蒙斯用公式打败市场的故事》</li>
-</ol>
-<p>这本书的作者是以为在伦敦卖身瑞银十年，曾就任瑞银投资银行的外汇部和资本市场部，负责金融工程并且现任法国巴黎银行资产管理部外汇重置业务亚太区主管、董事总经理的传奇华人忻海，现居香港。</p>
-<p>本书的人物主角詹姆斯·西蒙斯，拓扑学大腕，陈省身论文的合作者，虽然不是一个家喻户晓的名字，但他在投资界却因量化型投资的独门套路掀起层层热浪。大“数”底下好乘凉，西蒙斯的布阵和诸葛亮的布阵有所不同。西蒙斯靠的是概率：大量的统计套利操作，外加华尔街之外的数学教授来助阵，西蒙斯的“黑箱投资’’方法靠电脑编程和自动交易，在和市场的较量中稳操胜券。</p>
-<ol start="4">
-<li>《利用Python进行数据分析》</li>
-</ol>
-<p>如何利用各种Python库（包括NumPy、pandas、matplotlib以及IPython等）高效地解决各式各样的数据分析问题。由于作者Wes McKinney是Python pandas库的主要作者，所以本书也可以作为利用Python实现数据密集型应用的科学计算实践指南。本书适合刚刚接触Python的分析人员以及刚刚接触科学计算的Python程序员。</p>
-<ol start="5">
-<li>《集体智慧编程》</li>
-</ol>
-<p>这本书选择的是Python语言，以机器学习和统计学方法为背景，专门讲述如何挖掘、分析数据，适合做决策树、支持向量机（SVM）、神经网络的初学者 quant们使用。可以说它成功地将机器学习算法这一复杂议题拆分成实用易懂的例子，能够让初学者少走弯路。可以作为上一本书《利用Python进行数据分析》的高阶版进行阅读。</p>
-<ol start="6">
-<li>《量化投资: 以matlab为工具》</li>
-</ol>
-<p>这本书分为基础篇和高级篇两大部分。基础篇部分通过Q&amp;A的方式介绍了MATLAB的主要功能、基本命令、数据处理等内容，使读者对MATLAB有基本的了解。高级篇部分分为14章，包括MATLAB处理优化问题和数据交互、绘制交易图形、构建行情软件和交易模型等内容，通过丰富实例和图形帮助读者理解和运用MATLAB作为量化投资的工具。这本书的特色在于不仅仅满足理论学习的需要，更帮助读者边学边练，将理论和实践并重。</p>
-<ol start="7">
-<li>《宽客 Quants》</li>
-</ol>
-<p>《宽客》是一本讲述华尔街顶级数量金融大师的另类人生的书。2007年金融危机爆发以来，作者采访了大量加州抵押贷款违约业主、对冲基金经理和顶尖经济学及金融学学者，在《华尔街日报》上对危机做了全方位、多角度的报道。本书对华尔街新兴的主宰者“宽客”进行了前所未有的深入描述，其中既有宽客新锐中的佼佼者：穆勒、格里芬、阿斯内斯和魏因斯坦，又有隐士般的詹姆斯·西蒙斯，史上最成功对冲基金的创始人艾伦·布朗，以及多位宽客中的异类。这群数学天才就像闯进华尔街糖果店的小孩——他们从华尔街的最底层开始一步步登上最高峰，又造成了一次又一次的市场崩溃。书的第一章“从赌博开始”，更是揭示了众多概率论中复杂体系形成的起点，引人入胜。更推荐把这本书和 《对冲基金风云录二》、《高盛帝国下》一起比较起来看，可能收获更多。</p>
-<ol start="8">
-<li>《宽客人生》</li>
-</ol>
-<p>本书作者Emanuel Derman 是华尔街的顶级宽客，至今仍享盛名。目前是哥伦比亚大学金融工程教学项目的负责人。</p>
-<p>自资本资产定价模型和Black-Scholes模型被发明之后，宽客成为华尔街的新宠，因为投资银行和基金公司必须采用日益复杂的数量交易策略和衍生产品。本书作者是首批转战华尔街的高能实验物理学家之一，在十几年中创建了对今天影响深远的众多金融交易模型。本书精彩纷呈，分析了物理学与金融学之间的关联和不同，讲述了许多物理学巨匠和金融学大师的故事。与上一本《宽客》不同的是，本书更适合理工科专业背景的金融从业人员阅读。</p>
-<ol start="9">
-<li>《对冲基金风云录 三部曲》</li>
-</ol>
-<p>本书主要描述了美国对冲基金行业里的众生相，生动细致真切，中间夹杂了作者自己的思考，还有一些行业常识的介绍内容。基本功效：开阔眼界，增长见识，引发同感。但是对于集中精力做国内产品量化交易的研究人员，这本书可能就是茶余饭后的消遣读物了。但是众多书友都极力推荐这个系列的第二本《对冲基金风云录2》，可见还是有它的可取之处。</p>
-<p>本书作者巴顿·比格斯在摩根士丹利工作了30年，曾任该公司的首席战略官。在此期间，他创立了摩根士丹利的研究部，并使之成为世界上最优秀的投行研究部门。他还曾一手创办公司的投资管理业务部，并担任其主席达30年之久。到20世纪90年代中期，摩根士丹利投资管理部每年赢得的新客户超过任何竞争对手。</p>
-<ol start="10">
-<li>《证券混沌操作法》</li>
-</ol>
-<p>比尔·威廉姆于90年代出版的一本投资理念性质的书，全书讲述的就是如何用混沌的理念解释股价，但还是运用了一系列股票传统的技术指标，所以也适合初步接触股票的人翻看。不过也正如豆瓣上一位资深股民所说，“如果只是把它当成交易方法来看，有点可惜。 如果只是把他当成人生哲学，似乎不够通透。 这是一本需要一读再读的书。 想起了这句话：上士闻道，勤而行之；中士闻道，若隐若无；下士闻道，大笑之。不笑不足以为道。” 作者在2002年左右出版了第二版，目前大陆地区未发行，台湾地区翻译并出版了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://blog.hory-ai.com/2018/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%87%8F%E5%8C%96%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hory Skone">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Horysk 宏睿时空">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%87%8F%E5%8C%96%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">机器学习量化多因子选股策略</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-07-09 14:17:16" itemprop="dateCreated datePublished" datetime="2018-07-09T14:17:16+00:00">2018-07-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/quant/" itemprop="url" rel="index"><span itemprop="name">quant</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine: </span>
-    
-    <a title="valine" href="/2018/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%87%8F%E5%8C%96%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2018/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%87%8F%E5%8C%96%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.5k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>多因子选股策略是一种应用十分广泛的选股策略，其基本思构想就是找到某些和收益率最相关的指标，找出股票收益率与各种指标之间的“关系”，借此“关系”建立股票组合，并期望该组合可以跑赢指数。</p>
-<p>多因子回归是多因子选股策略最常用的方法，它用过去的股票的收益率对多因子进行回归，得到一个回归方程，然后把当下的因子数值代入回归方程得到未来股票的预期收益，最后以此为依据进行选股。</p>
-<p>机器学习和多因子选股策略的结合，从实践的角度来看，机器学习所做的工作是在现有因子的数据集上建立模型，对股票收益率进行拟合，然后对模型进行评估和优化。</p>
-<p>用机器学习做模型预测有一套基本流程：数据获取、数据预处理、模型训练、模型评估和模型预测。接下来本文沿着这套流程用python中的机器学习库sklearn完成一个简单的多因子回归的选股模型。</p>
-<h2 id="二、获取数据"><a href="#二、获取数据" class="headerlink" title="二、获取数据"></a>二、获取数据</h2><p>机器学习所需数据主要有两个来源：网络爬虫和专业数据库，这里我们使用的数据为A股股票的历史数据，因此数据来源取自wind数据库。</p>
-<p>原始数据包含了所有A股股票——以2018/06/30当日的股票为准，时间段选取1998/04/30至2018/06/30，每个月度每只股票取数十个不同的指标，以月末最后一日的数据作为截面数据保存。</p>
-<p>由于数据过于冗杂，我们先对数据进行结构化降维，使用csv格式进行存储，每个月度的截面数据保存在一个csv文件中，文件名有序排列。每个csv文件中包含了该月份最后一日所有股票的部分基本信息、下一个月的收益率、和数十个指标因子的值。</p>
-<h2 id="三、数据预处理"><a href="#三、数据预处理" class="headerlink" title="三、数据预处理"></a>三、数据预处理</h2><p>首先是特征提取，特征提取这一步主要基于人的经验，对于指导股票投资的模型，则选取作出投资决策中经常考虑的一些数据指标。这里，我们选取以下几类指标进行考量：</p>
-<p>估值指标：营业收入、净利润、净资产等</p>
-<p>成长指标：营收同比增速、净利润同比增速等</p>
-<p>财务指标：毛利率、资产周转率、经营性现金流等</p>
-<p>杠杆指标：流动比率、现金比率等</p>
-<p>流动性指标：N日日均换手率等</p>
-<p>其他绝对指标：市值、股价、股东数、beta 等</p>
-<p>情绪指标：wind评级、wind一直目标价等</p>
-<p>技术指标：MACD、RSI、动量反转……</p>
-<p>特征因子的选取对于模型的拟合结果和预测准确度有很大影响，因此特征因子要精挑细选。以上指标都是市场中各类投资者经常考虑的指标的总结，有效性有待商议，现在先从wind中提取出这些指标。</p>
-<p>接下来是数据清洗，数据清洗需要做的是缺失值填充、数据标准化、数据降维等等。</p>
-<p>由于从wind中所取得的指标有限，而且原始数据因为未上市、停牌、涨跌停等多种原因产生了很多空值、不可使用的数据，这部分因子的数值需要进行缺失值填充；部分指标属于绝对值类指标，不同公司间差异性较大，类似营业收入、净利润、现金流等因子，换做与其市值的比值后横向可比性更强；其他有些数据也因为各种原因存在着去极值、标准化和降维等需要。</p>
-<p>下表为自1998年4月起的第244个月的csv文件部分截图，文件的列结构如下：</p>
-<p>第1列：当前文件所属月份</p>
-<p>第2列：wind股票代码</p>
-<p>第3列：交易状态，1为正常交易，0为ST/停牌/次新股</p>
-<p>第4列：下一个月超额收益率（相对于沪深300）</p>
-<p>5列后：已完成数据预处理的特征因子70个</p>
-<h2 id="四、模型训练"><a href="#四、模型训练" class="headerlink" title="四、模型训练"></a>四、模型训练</h2><h3 id="1-、模块导入"><a href="#1-、模块导入" class="headerlink" title="1 、模块导入"></a>1 、模块导入</h3><p>该模型依赖的模块主要有：numpy，pandas和sklearn。</p>
-<p>其中numpy是Python做数据处理常用的扩充程序库，主要用于支持高维数组与矩阵运算，同时针对数组运算提供大量的数学函数库；而pandas是基于numpy的高效数据模型库，由于为面板数据分析和时间序列分析提供了很好的支持，因此常备用作金融数据分析的基础工具包。</p>
-<p>sklearn全称是scikit-learn，是谷歌开发的一个机器学习框架，是python重要的机器学习库。sklearn支持包括分类、回归、降维和聚类四大机器学习算法，还包含了特征提取、数据处理和模型评估三大模块。sklearn建立在NumPy和matplotlib库的基础上，利用这几大模块的优势，大大提高机器学习的效率，是机器学习领域最知名的python模块之一。</p>
-<p>sklearn支持的机器学习方式：</p>
-<p>1.Classification 监督学习-分类（预测未来变化方向）</p>
-<p>2.Regression 监督学习-回归（预测未来变化幅度）</p>
-<p>3.Clustering 非监督学习-聚类（选取相近的样本）</p>
-<p>4.Dimensionality reduction 非监督学习-降维（选取有代表性的因子）</p>
-<p>5.Model Selection 模型选择（选择更好的模型）</p>
-<p>6.Preprocessing 数据预处理（如何选择特征，做预处理）</p>
-<h3 id="2-、参数设置"><a href="#2-、参数设置" class="headerlink" title="2 、参数设置"></a>2 、参数设置</h3><p>模型中所有参数都在这一部分进行定义，其中包含样本内数据集、样本外数据集、正反数据比例、验证集比例、随机数种子点、置信度、特征因子序列等等。具体参数如下：</p>
-<p>1.month_in_sample = range(1,141+1)    # 样本内数据月份范围</p>
-<p>2.month_test = range(142,243+1)        # 样本外数据月份范围</p>
-<p>3.percent_select = [0.2,0.2]            # 正例和反例数据的比例</p>
-<p>4.percent_cv = 0.1                       # 验证集比例</p>
-<p>5.seed = 45                             # 随机数种子点</p>
-<p>6.logi_C = 0.0005                        # 置信度</p>
-<p>7.n_stock = 3625                         # 现今股票数</p>
-<p>8.n_stock_select = 10                   # 选出股票数</p>
-<p>9.parameters = (‘EP’：’bias’)   # 模型所使用的特征因子</p>
-<p>这里的参数后期都可以根据不同需要进行调整，以获得更有效的模型。</p>
-<h3 id="3-、数据处理"><a href="#3-、数据处理" class="headerlink" title="3 、数据处理"></a>3 、数据处理</h3><p>对于数据，使用经典的内外划分方式，将整体数据集244个月的A股月数据分为两部分：</p>
-<p>样本内数据，通过设定month_in_sample参数的值，选取1998年4月~2009年12月的数据，用于模型训练</p>
-<p>样本外数据，通过设定month_test参数的值，选取2010年1月~2018年6月的数据，用于模型预测</p>
-<p>对于样本内的数据，先进行数据的进一步清洗和整理，循环读取每一期的csv表：</p>
-<p>1.根据parameters参数，从csv文件中读取相关因子数据，并保存在临时表</p>
-<p>2.删除单元格有空值的股票</p>
-<p>3.加入标签项，根据次月超额收益对个股打标签</p>
-<p>4.根据percent_select的参数留下收益最高和最低的部分股票</p>
-<p>5.将收益最好的股票打标签1，收益最差的股票打标签0</p>
-<p>最终，得到的数据集data_in_sample为处理好的样本内数据集，可以用来进行模型训练，该数据集的部分截图展示如下。</p>
-<h3 id="4-、模型训练"><a href="#4-、模型训练" class="headerlink" title="4 、模型训练"></a>4 、模型训练</h3><p>模型训练前，先将样本内数据集再一次进行拆分，拆分为训练集和验证集，验证集的比例根据percent_cv参数确定，集合的拆分由train_test_split完成，因此具有随机性。</p>
-<p>根据拆分出的训练集，对模型进行训练，模型训练使用sklearn中的函数model.fit。这里可用的模型很多，包括线性回归模型、支持向量机模型、SGD模型等等。这里以线性回归模型为例，在置信度为logi_C的水平下进行线性回归，经过机器学习得到拟合后的model。</p>
-<h2 id="五、模型评估"><a href="#五、模型评估" class="headerlink" title="五、模型评估"></a>五、模型评估</h2><p>用此model对样本内数据集的训练集和验证集进行预测，sklearn中有专门的函数predict和decision_function对模型进行预测。</p>
-<p>这样可以得到预测的涨跌标签值以及涨跌的概率，通过将预测数据和真实数据进行比较，metrics中有专门的函数accuracy_score可以进行矩阵直接的比较，最终得到两矩阵的相似性，可以理解为模型预测的准确率。</p>
-<p>因此，若参数按上文中进行设置，可以得到的模型训练集的预测准确率为59%，验证集的预测准确度为58%，系统输出结果如下：</p>
-<p>training set: accuracy = 0.59</p>
-<p>cv set: accuracy = 0.58</p>
-<h2 id="六、策略构建"><a href="#六、策略构建" class="headerlink" title="六、策略构建"></a>六、策略构建</h2><p>使用该model构建多因子选股策略：对于所有A股股票，以月度为频率，取parameters中定义的特征因子进行拟合，给出预测涨跌的概率，对预测涨跌概率进行排序，选取前n_stock_select个股票构建等权组合，进行买入。</p>
-<h2 id="七、策略预测"><a href="#七、策略预测" class="headerlink" title="七、策略预测"></a>七、策略预测</h2><p>有了通过对训练集机器学习后确定的model，就可以对样本外的数据进行回测。在回测之前同样需要对样本外数据进行清洗和整理，然后按月循环带入model，给出每个月每只个股的涨跌预测以及涨跌概率的预测，并根据策略构建投资组合进行轮动。</p>
-<p>回测部分需要有以下输出内容：</p>
-<p>1.将预测涨跌概率的矩阵输出到PredResult.csv，</p>
-<p>2.将股票组合的月收益率序列记录到return_test表，该表的部分展示如下图，</p>
-<p>3.计算出投资组合在样本外预测月份的净值序列，输出到Value.csv。</p>
-<h2 id="八、策略评价"><a href="#八、策略评价" class="headerlink" title="八、策略评价"></a>八、策略评价</h2><p>根据回测中得到的组合月度超额收益率return_test表，以及组合净值Value.csv，可以计算出该策略的超额年化收益、波动率和信息比率。本策略中，按上文设定的参数给出的投资组合各项指标，输出如下：</p>
-<p>annualized excess return = 0.28</p>
-<p>annualized excess volatility = 0.19</p>
-<p>information ratio = 1.44</p>
-<p>该策略组合的平均超额年化收益率为28%，平均年化收益波动率为0.19，信息比率IR为1.44，每承担1单位波动风险获得1.44的超额收益。</p>
-<p>最后，绘制出回测时间段内，2010年1月~2018年6月，该选股策略下的投资组合净值曲线，输出如：</p>
-<h2 id="九、其他改进"><a href="#九、其他改进" class="headerlink" title="九、其他改进"></a>九、其他改进</h2><h3 id="1-、因子原因"><a href="#1-、因子原因" class="headerlink" title="1 、因子原因"></a>1 、因子原因</h3><p>特征因子的选择对于限行回归模型的有效性有着较大影响，本文的实例中将70个不同层面的特征因子一起放入了sklearn的线性模型中进行拟合，后续可以考虑有选择性的对模型进行带入，或许会有更好的拟合效果。</p>
-<p>例如，在原模型的基础上，去掉技术指标类的特征因子，只保留基本面的特征因子，模型的预测能力和回测评价输出如下：</p>
-<p>training set: accuracy = 0.57</p>
-<p>cv set: accuracy = 0.57</p>
-<p>annualized excess return = 0.25</p>
-<p>annualized excess volatility = 0.17</p>
-<p>information ratio = 1.46</p>
-<p>反之，若只使用技术指标类的特征因子，完全不考虑基本面的指标，模型的预测能力和回测评价输出如下：</p>
-<p>training set: accuracy = 0.58</p>
-<p>cv set: accuracy = 0.57</p>
-<p>annualized excess return = 0.10</p>
-<p>annualized excess volatility = 0.29</p>
-<p>information ratio = 0.33</p>
-<h3 id="2-、变量调参"><a href="#2-、变量调参" class="headerlink" title="2 、变量调参"></a>2 、变量调参</h3><p>可以根据model拟合后的预测准确率指标进行适当的参数调整，将下述输出指标进行优化。</p>
-<p>trainingset: accuracy = 0.59</p>
-<p>cv set: accuracy = 0.58</p>
-<p>例如，将percent_select参数调整为[0.3,0.3]，即选择前30%的股票作为正例，后30%的股票作为反例，对模型进行训练，模型的预测能力和回测评价输出如下：</p>
-<p>training set: accuracy = 0.57</p>
-<p>cv set: accuracy = 0.57</p>
-<p>annualized excess return = 0.27</p>
-<p>annualized excess volatility = 0.20</p>
-<p>information ratio = 1.33</p>
-<p>或者，将n_stock_select参数调整为50，即每一期使用model进行预测时选取前50只股票买入，模型的预测能力不会改变，但是回测评价输出如下：</p>
-<p>annualized excess return = 0.24</p>
-<p>annualized excess volatility = 0.18</p>
-<p>information ratio = 1.34</p>
-<p>再或者，将logi_C参数调整为0.005，即对拟合的置信度进行放宽，对模型进行训练，模型的预测能力和回测评价输出如下：</p>
-<p>training set: accuracy = 0.59</p>
-<p>cv set: accuracy = 0.57</p>
-<p>annualized excess return = 0.29</p>
-<p>annualized excess volatility = 0.21</p>
-<p>information ratio = 1.41</p>
-<h3 id="3-、模型改进"><a href="#3-、模型改进" class="headerlink" title="3 、模型改进"></a>3 、模型改进</h3><p>线性回归模型虽然简单、对特征因子选取的依赖性较强，但也是可解释性、可控性较强的模型。除此之外，我们也可以引入其他模型，sklearn中包含了很多机器学习模块可供使用：</p>
-<p>1.逻辑回归（可解释性更强，训练速度更快）：</p>
-<p>fromsklearn.linear_model import LogisticRegression</p>
-<p>2.随机森林模型：from sklearn import tree</p>
-<p>3.支持向量机模型（高维非线性拟合，训练速度慢）：</p>
-<p>fromsklearn.svm import SVC</p>
-<p>4.K近邻算法：from sklearn import neighbors</p>
-<p>5.多层神经网络（高频海量数据的机器学习，小题大做）：</p>
-<p>fromsklearn.neural_network import MLPClassifier</p>
-<p>另一方面，模型的训练和检验方式，也有多种选择，除了交叉验证外，还有滚动训练回测、检验曲线等等。都可以作为后期模型改进可以尝试的方向。</p>
-<p>来源：西藏信托</p>
-<p>拓展阅读：</p>
-<p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/u011078141/article/details/89453203">一个量化策略师的自白（好文强烈推荐）</a></p>
-<p>2.<a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/1587">学习Python量化有哪些书籍？这里有一份书单送给你</a></p>
-<p>3.<a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/649/2">学了那么多技术指标为什么还不赚钱?从量化角度告诉你</a></p>
-<p>4.<a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/679">最科学的仓位管理利器-凯利公式，从方法上胜过99%散户</a></p>
-<p>5.<a target="_blank" rel="noopener" href="https://www.myquant.cn/community/topic/548/2">网格交易法，一个不容易亏钱的投资策略（附源码）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42219751/article/details/105813212">link</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Hory Skone</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">67</span>
-          <span class="site-state-item-name">posts</span>
+            Ubuntu系统CPU、内存、网络、进程监控工具
         </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">30</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">35</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/horysk" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;horysk" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:admin@horysk.com" title="E-Mail → mailto:admin@horysk.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="http://www.hory-ai.com/" title="HoryAI → http:&#x2F;&#x2F;www.hory-ai.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>HoryAI</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/sirobot" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;sirobot" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>CSDN</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.zhihu.com/people/AI_HH" title="ZhiHu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;AI_HH" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>ZhiHu</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://www.kaggle.com/" title="Kaggle → https:&#x2F;&#x2F;www.kaggle.com&#x2F;" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>Kaggle</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://tianchi.aliyun.com/competition/gameList/activeList" title="TianChi → https:&#x2F;&#x2F;tianchi.aliyun.com&#x2F;competition&#x2F;gameList&#x2F;activeList" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>TianChi</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://works.yangerxiao.com/honeyed-words-generator" title="土情话 → https:&#x2F;&#x2F;works.yangerxiao.com&#x2F;honeyed-words-generator" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>土情话</a>
-      </span>
-  </div>
-
-
-
-      </div>
-
-      
-      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
-      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
-      <div class="widget-wrap">
-          <h3 class="widget-title">Tag Cloud</h3>
-          <div id="myCanvasContainer" class="widget tagcloud">
-              <canvas width="250" height="250" id="resCanvas" style="width:100%">
-                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BI/" rel="tag">BI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/" rel="tag">Centos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNS/" rel="tag">DNS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapp/" rel="tag">Dapp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag">Hack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag">HyperLedger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag">Hyperledger Fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag">Iftop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag">ML</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag">MTProxy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag">Mongo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Network/" rel="tag">Network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag">Pyppeteer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/" rel="tag">Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag">VPN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vnc/" rel="tag">Vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag">baostock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag">block chain</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos-xfce-vnc/" rel="tag">centos-xfce-vnc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fabric/" rel="tag">fabric</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/horysk/" rel="tag">horysk</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag">mongo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag">pyppeteer</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag">quant</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag">stock</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag">tushare</a><span class="tag-list-count">1</span></li></ul>
-              </canvas>
-          </div>
-      </div>
-      
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Linux/">Linux</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月22日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月22日</p>
+        </div>
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a></li></ul>
   </div>
 
-<div class="copyright">
-  
-  &copy; 2015 – 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hory Skone</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
-    </span>
-    <span title="Symbols count total">275k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-    <span title="Reading time total">4:10</span>
+
 </div>
 
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2020/07/22/Hexo%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E7%B3%BB%E5%88%97%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%96%B0%E5%BB%BA%E6%96%87%E7%AB%A0%E5%B9%B6%E5%8F%91%E5%B8%83/" class="shake shake-little" title="Hexo博客使用系列（一）——新建文章并发布">
+            
+            Hexo博客使用系列（一）——新建文章并发布
+        </a>
+    </h2>
+    <div class="meta_box">
+    
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="Total Visitors">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="Total Views">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Hexo/">Hexo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月22日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月22日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hexo</a></li></ul>
   </div>
 
-  
-  
-  <script color='255,255,255' opacity='0.6' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script src="/js/utils.js"></script>
+</div>
 
-<script src="/js/motion.js"></script>
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2019/09/18/hexo%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/" class="shake shake-little" title="hexo修改默认端口">
+            
+            hexo修改默认端口
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2019年09月18日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2019年09月18日</p>
+        </div>
+    </div>
+    
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2019/06/18/%E8%82%A1%E7%A5%A8%E4%BD%9C%E6%89%8B%E5%9B%9E%E5%BF%86%E5%BD%95--%E6%9D%B0%E8%A5%BF%C2%B7%E5%88%A9%E5%BC%97%E8%8E%AB%E5%B0%94%E5%B0%94%E6%93%8D%E7%9B%98%E6%9C%AF%20%E7%AC%94%E8%AE%B0/" class="shake shake-little" title="股票作手回忆录--杰西·利弗莫尔尔操盘术 笔记">
+            
+            股票作手回忆录--杰西·利弗莫尔尔操盘术 笔记
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2019年06月18日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2019年06月18日</p>
+        </div>
+    </div>
+    
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2019/04/08/tushare%E5%92%8Cbaostock%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/" class="shake shake-little" title="tushare和baostock有什么区别？">
+            
+            tushare和baostock有什么区别？
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/quant/">quant</a>►<a class="article-category-link" href="/categories/quant/tushare/">tushare</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2019年04月08日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2019年04月08日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/baostock/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>baostock</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tushare/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>tushare</a></li></ul>
+  </div>
 
 
-<script src="/js/schemes/pisces.js"></script>
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2019/03/08/%E9%AB%98%E9%A2%91%E4%BA%A4%E6%98%93%E5%9B%9B%E5%A4%A7%E6%B4%BE%E7%B3%BB%E5%A4%A7%E6%8F%AD%E7%A7%98/" class="shake shake-little" title="高频交易四大派系大揭秘">
+            
+            高频交易四大派系大揭秘
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/quant/">quant</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2019年03月08日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2019年03月08日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li></ul>
+  </div>
 
 
-<script src="/js/next-boot.js"></script>
+</div>
 
-<script src="/js/bookmark.js"></script>
+        </article>
+    </div>
 
-
-  <script defer src="/lib/three/three.min.js"></script>
-    <script defer src="/lib/three/three-waves.min.js"></script>
-    <script defer src="/lib/three/canvas_lines.min.js"></script>
-    <script defer src="/lib/three/canvas_sphere.min.js"></script>
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/10/11/%E8%82%A1%E5%B8%82%E7%A5%9E%E5%A5%87%E7%9A%84%E2%80%9C%E4%BA%94%E4%B8%AA%E6%95%B0%E5%AD%97%E2%80%9D/" class="shake shake-little" title="股市神奇的“五个数字”">
+            
+            股市神奇的“五个数字”
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/stock/">stock</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年10月11日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年10月11日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/stock/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>stock</a></li></ul>
+  </div>
 
 
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/09/13/%E4%B8%80%E5%A5%97%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BA%A4%E6%98%93%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" class="shake shake-little" title="一套完整的交易系统操作学习心得">
+            
+            一套完整的交易系统操作学习心得
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/quant/">quant</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年09月13日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年09月13日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/08/20/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93%E9%A2%86%E5%9F%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%8410%E6%9C%AC%E5%8F%82%E8%80%83%E4%B9%A6%E6%8E%A8%E8%8D%90%EF%BC%81/" class="shake shake-little" title="量化交易领域最重要的10本参考书推荐！">
+            
+            量化交易领域最重要的10本参考书推荐！
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/quant/">quant</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年08月20日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年08月20日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
+
+    <div class="post-wrapper">
+        <article>
+            <div class="article-title">
+    <h2>
+        <a href="/2018/07/09/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%87%8F%E5%8C%96%E5%A4%9A%E5%9B%A0%E5%AD%90%E9%80%89%E8%82%A1%E7%AD%96%E7%95%A5/" class="shake shake-little" title="机器学习量化多因子选股策略">
+            
+            机器学习量化多因子选股策略
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/quant/">quant</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2018年07月09日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2018年07月09日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>ML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quant/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>quant</a></li></ul>
+  </div>
+
+
+</div>
+
+        </article>
+    </div>
 
 
 
 
 
-  
-
-  
 
 
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : '2ASH47v4VIRijd91HeEi3pws-gzGzoHsz',
-      appKey     : 'ojRfR89cSV614pgJFT36lFFB',
-      placeholder: "昵称填写qq可以显示qq头像和昵称哦~",
-      avatar     : 'monsterid',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : true,
-      serverURLs : '',
-      requiredFields: ['nick','mail'] 
-    });
-  }, window.Valine);
-});
-</script>
 
-  <!-- 页面点击特效 -->
-  <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-  <script type="text/javascript" src="/js/click-word.js"></script>
-  
-  <script type="text/javascript"
-  color="255,255,255" opacity='0.7' zIndex="-2" count="500" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-  
+
+
+<div class="turn_page">
+    
+
+
+    
+        <a href="/page/7">7</a>
+    
+
+    
+        <a href="/page/6">6</a>
+    
+
+    
+        <a class="page_current">5</a>
+    
+
+    
+        <a href="/page/4">4</a>
+    
+
+    
+        <a href="/page/3">3</a>
+    
+
+
+    
+        <div><a class="page_more">...</a></div>
+    
+</div></section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
 </html>

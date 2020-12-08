@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>186606598926</title>
-    <url>/2017/07/09/186606598926/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>16个有用的带宽监控工具，用于分析Linux中的网络使用情况</title>
     <url>/2018/06/09/16%E4%B8%AA%E6%9C%89%E7%94%A8%E7%9A%84%E5%B8%A6%E5%AE%BD%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90Linux%E4%B8%AD%E7%9A%84%E7%BD%91%E7%BB%9C%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5/</url>
     <content><![CDATA[<p>在本文中，我们将回顾16个有用的系统和网络带宽监控工具，以分析Linux系统上的网络流量使用情况。<br>您是否在监控Linux网络带宽使用方面遇到问题？ 你需要帮助吗？ 重要的是，您能够可视化网络中发生的事情，以便了解和解决导致网络运行缓慢的任何问题，或者只是密切关注您的网络。</p>
@@ -133,6 +128,11 @@
       </tags>
   </entry>
   <entry>
+    <title>186606598926</title>
+    <url>/2017/07/09/186606598926/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>195640956464</title>
     <url>/2017/09/18/195640956464/</url>
     <content><![CDATA[]]></content>
@@ -141,6 +141,15 @@
     <title>1956409564654</title>
     <url>/2017/11/02/1956409564654/</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>解决 gitee page 无法自动更新</title>
+    <url>/2020/12/04/6546465465/</url>
+    <content><![CDATA[<p>众所周知，国内 GitHub 的加载速度不太理想，而大多数开发者会使用 Github 的 Github Page 功能搭建博客，因此博客的访问速度也会受到影响。为了解决访问速度的问题，我们将博客转移到了 gitee 中（ OSChina 旗下 git 平台）</p>
+<h2 id="1-问题：使用-hexo-部署到-gitee-后，博客页面并没有更新"><a href="#1-问题：使用-hexo-部署到-gitee-后，博客页面并没有更新" class="headerlink" title="1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新"></a>1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新</h2><p>原因： gitee page 只有付费版才能自动更新，免费版只能手动点击 “设置” 中的更新按钮</p>
+<h2 id="2-自动化解决方案"><a href="#2-自动化解决方案" class="headerlink" title="2. 自动化解决方案"></a>2. 自动化解决方案</h2><p>使用 puppeteer 操作浏览器进行更新按钮点击。</p>
+<h2 id="3-源码如下"><a href="#3-源码如下" class="headerlink" title="3. 源码如下:"></a>3. 源码如下:</h2><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 此处安装版本为 1.8.0</span><br><span class="line">const puppeteer = require(<span class="string">&#x27;puppeteer&#x27;</span>); </span><br><span class="line"></span><br><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">giteeUpdate</span></span>() &#123;</span><br><span class="line">    const browser = await puppeteer.launch(&#123;</span><br><span class="line">        // 此处可以使用 <span class="literal">false</span> 有头模式进行调试, 调试完注释即可</span><br><span class="line">          headless: <span class="literal">false</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    const page = await browser.newPage();</span><br><span class="line">    await page.goto(<span class="string">&#x27;https://gitee.com/login&#x27;</span>);</span><br><span class="line">    // 1. 选中账号控件</span><br><span class="line">    <span class="built_in">let</span> accountElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_login&quot;]&#x27;</span>) // 此处使用 xpath 寻找控件，下同</span><br><span class="line">    // 2. 填入账号</span><br><span class="line">    await accountElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 账户&#x27;</span>)</span><br><span class="line">    // 3. 选中密码控件</span><br><span class="line">    <span class="built_in">let</span> pwdElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_password&quot;]&#x27;</span>)</span><br><span class="line">    // 4. 填入密码</span><br><span class="line">    await pwdElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 密码&#x27;</span>)</span><br><span class="line">    // 5. 点击登录</span><br><span class="line">    <span class="built_in">let</span> loginButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;new_user&quot;]/div[2]/div/div/div[4]/input&#x27;</span>)</span><br><span class="line">    await loginButtons[0].click()</span><br><span class="line">    // 6. 等待登录成功</span><br><span class="line">    await page.waitFor(1000)</span><br><span class="line">    await page.goto(<span class="string">&#x27;你的 gitee page 更新按钮页面&#x27;</span>); // 比如： https://gitee.com/yang0033/hexo-blog/pages</span><br><span class="line">    // 7.1. 监听步骤 7 中触发的确认弹框，并点击确认</span><br><span class="line">    await page.on(<span class="string">&#x27;dialog&#x27;</span>, async dialog =&gt; &#123;</span><br><span class="line">        console.log(<span class="string">&#x27;确认更新&#x27;</span>)</span><br><span class="line">        dialog.accept();</span><br><span class="line">    &#125;)</span><br><span class="line">    // 7. 点击更新按钮，并弹出确认弹窗</span><br><span class="line">    <span class="built_in">let</span> updateButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages-branch&quot;]/div[7]&#x27;</span>)</span><br><span class="line">    await updateButtons[0].click()</span><br><span class="line">    // 8. 轮询并确认是否更新完毕</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        await page.waitFor(2000)</span><br><span class="line">        try &#123;</span><br><span class="line">            // 8.1 获取更新状态标签</span><br><span class="line">            deploying = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages_deploying&quot;]&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> (deploying.length &gt; 0) &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新中...&#x27;</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新完毕&#x27;</span>)</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (error) &#123;</span><br><span class="line">            <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    await page.waitFor(500);</span><br><span class="line">    // 10.更新完毕，关闭浏览器</span><br><span class="line">    browser.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">giteeUpdate();</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>5款超级简单的IP流量监控工具</title>
@@ -161,15 +170,6 @@
       <tags>
         <tag>Linux</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>解决 gitee page 无法自动更新</title>
-    <url>/2020/12/04/6546465465/</url>
-    <content><![CDATA[<p>众所周知，国内 GitHub 的加载速度不太理想，而大多数开发者会使用 Github 的 Github Page 功能搭建博客，因此博客的访问速度也会受到影响。为了解决访问速度的问题，我们将博客转移到了 gitee 中（ OSChina 旗下 git 平台）</p>
-<h2 id="1-问题：使用-hexo-部署到-gitee-后，博客页面并没有更新"><a href="#1-问题：使用-hexo-部署到-gitee-后，博客页面并没有更新" class="headerlink" title="1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新"></a>1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新</h2><p>原因： gitee page 只有付费版才能自动更新，免费版只能手动点击 “设置” 中的更新按钮</p>
-<h2 id="2-自动化解决方案"><a href="#2-自动化解决方案" class="headerlink" title="2. 自动化解决方案"></a>2. 自动化解决方案</h2><p>使用 puppeteer 操作浏览器进行更新按钮点击。</p>
-<h2 id="3-源码如下"><a href="#3-源码如下" class="headerlink" title="3. 源码如下:"></a>3. 源码如下:</h2><a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// 此处安装版本为 1.8.0</span><br><span class="line">const puppeteer = require(<span class="string">&#x27;puppeteer&#x27;</span>); </span><br><span class="line"></span><br><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">giteeUpdate</span></span>() &#123;</span><br><span class="line">    const browser = await puppeteer.launch(&#123;</span><br><span class="line">        // 此处可以使用 <span class="literal">false</span> 有头模式进行调试, 调试完注释即可</span><br><span class="line">          headless: <span class="literal">false</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    const page = await browser.newPage();</span><br><span class="line">    await page.goto(<span class="string">&#x27;https://gitee.com/login&#x27;</span>);</span><br><span class="line">    // 1. 选中账号控件</span><br><span class="line">    <span class="built_in">let</span> accountElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_login&quot;]&#x27;</span>) // 此处使用 xpath 寻找控件，下同</span><br><span class="line">    // 2. 填入账号</span><br><span class="line">    await accountElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 账户&#x27;</span>)</span><br><span class="line">    // 3. 选中密码控件</span><br><span class="line">    <span class="built_in">let</span> pwdElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_password&quot;]&#x27;</span>)</span><br><span class="line">    // 4. 填入密码</span><br><span class="line">    await pwdElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 密码&#x27;</span>)</span><br><span class="line">    // 5. 点击登录</span><br><span class="line">    <span class="built_in">let</span> loginButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;new_user&quot;]/div[2]/div/div/div[4]/input&#x27;</span>)</span><br><span class="line">    await loginButtons[0].click()</span><br><span class="line">    // 6. 等待登录成功</span><br><span class="line">    await page.waitFor(1000)</span><br><span class="line">    await page.goto(<span class="string">&#x27;你的 gitee page 更新按钮页面&#x27;</span>); // 比如： https://gitee.com/yang0033/hexo-blog/pages</span><br><span class="line">    // 7.1. 监听步骤 7 中触发的确认弹框，并点击确认</span><br><span class="line">    await page.on(<span class="string">&#x27;dialog&#x27;</span>, async dialog =&gt; &#123;</span><br><span class="line">        console.log(<span class="string">&#x27;确认更新&#x27;</span>)</span><br><span class="line">        dialog.accept();</span><br><span class="line">    &#125;)</span><br><span class="line">    // 7. 点击更新按钮，并弹出确认弹窗</span><br><span class="line">    <span class="built_in">let</span> updateButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages-branch&quot;]/div[7]&#x27;</span>)</span><br><span class="line">    await updateButtons[0].click()</span><br><span class="line">    // 8. 轮询并确认是否更新完毕</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        await page.waitFor(2000)</span><br><span class="line">        try &#123;</span><br><span class="line">            // 8.1 获取更新状态标签</span><br><span class="line">            deploying = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages_deploying&quot;]&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> (deploying.length &gt; 0) &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新中...&#x27;</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新完毕&#x27;</span>)</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (error) &#123;</span><br><span class="line">            <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    await page.waitFor(500);</span><br><span class="line">    // 10.更新完毕，关闭浏览器</span><br><span class="line">    browser.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">giteeUpdate();</span><br></pre></td></tr></table></figure>]]></content>
   </entry>
   <entry>
     <title>Docker 本地导入镜像/保存镜像/载入镜像/删除镜像</title>
@@ -872,6 +872,44 @@ getIndexSpecs()方法查看集合各索引的详细信息
       </tags>
   </entry>
   <entry>
+    <title>Pyppeteer库之二：Pyppeteer的浏览器对象</title>
+    <url>/2020/07/27/Pyppeteer%E5%BA%93%E4%B9%8B%E4%BA%8C%EF%BC%9APyppeteer%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<p>启动器Launcher<br>启动方式：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"> launch :启动链接一个新的浏览器</span><br><span class="line"> content :链接已打开的浏览器，便于崩溃后重链</span><br><span class="line"></span><br><span class="line">launch()</span><br><span class="line">pyppeteer.launch(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
+<p>启动一个新的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
+<p>常用参数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headless(<span class="built_in">bool</span>): 是否启用<span class="string">&quot;无头模式&quot;</span>(隐藏浏览器界面)，默认为 <span class="literal">True</span> 。</span><br><span class="line">executablePath(<span class="built_in">str</span>): 指定 Chromium.exe 文件的路径(不使用内置的chromium)。</span><br><span class="line">slowMo（<span class="built_in">int</span>|<span class="built_in">float</span>）:按指定的毫秒数减慢 pyppeteer 的速度。</span><br><span class="line">args(List[<span class="built_in">str</span>]): 启动 Chromium 的参数。</span><br><span class="line">dumpio(<span class="built_in">bool</span>):是否将浏览器进程标准输出和标准错误输入到 process.stdout 和 process.stderr中。默认是 <span class="literal">False</span>。</span><br><span class="line">userDataDir(<span class="built_in">str</span>): 设置用户数据目录。</span><br><span class="line">devtools(<span class="built_in">bool</span>): 是否为每个选项卡自动打开 DevTools 面板， 这个选项只有当 headless 设置为 <span class="literal">False</span>的时候有效。</span><br></pre></td></tr></table></figure>
+<p>args—&gt;启动chrome的参数：<br><a href="https://peter.sh/experiments/chromium-command-line-switches/">pyppeteer官网</a></p>
+<p>launch常用参数配置:</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">kwargs = &#123;</span><br><span class="line">    <span class="comment"># 启用浏览器界面</span></span><br><span class="line">    <span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="comment"># 多开页面，解决卡死</span></span><br><span class="line">    <span class="string">&#x27;dumpio&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 设置浏览器全屏</span></span><br><span class="line">    <span class="string">&#x27;args&#x27;</span>: [<span class="string">&#x27;--start-maximized&#x27;</span>,</span><br><span class="line">             <span class="comment"># 取消沙盒模式，沙盒模式下权限太小</span></span><br><span class="line">             <span class="string">&#x27;--no-sandbox&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置浏览器界面大小</span></span><br><span class="line">             <span class="string">&#x27;--window-size=1366,768&#x27;</span>,</span><br><span class="line">             <span class="comment"># 关闭受控制提示：比如，Chrome正在受到自动测试软件的控制...</span></span><br><span class="line">             <span class="string">&#x27;--disable-infobars&#x27;</span>,</span><br><span class="line">             <span class="comment"># 允许跨域</span></span><br><span class="line">             <span class="string">&#x27;--disable-web-security&#x27;</span>,</span><br><span class="line">             <span class="comment"># 使用代理</span></span><br><span class="line">             <span class="string">&#x27;--proxy-server=127.0.0.1:80&#x27;</span>,</span><br><span class="line">             <span class="comment"># 不走代理的链接</span></span><br><span class="line">             <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span>,</span><br><span class="line">             <span class="comment"># 忽略证书错误</span></span><br><span class="line">             <span class="string">&#x27;--ignore-certificate-errors&#x27;</span>,</span><br><span class="line">             <span class="comment"># log 等级设置，如果出现一大堆warning，可以不使用默认的日志等级</span></span><br><span class="line">             <span class="string">&#x27;--log-level=3&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置ua</span></span><br><span class="line">             <span class="string">&#x27;--user-agent=Mozilla/5.0&#x27;</span></span><br><span class="line">             ],</span><br><span class="line">    <span class="string">&#x27;userDataDir&#x27;</span>: <span class="string">r&#x27;D:\Temporary&#x27;</span>,</span><br><span class="line">    <span class="comment"># 用户数据保存目录，这个最好指定一个，</span></span><br><span class="line">    <span class="comment"># 如果不指定，Chrome会自动创建一个临时目录使用，在退出浏览器时自动删除，</span></span><br><span class="line">    <span class="comment"># 在删除的时候可能会删除失败(不知道为什么出现权限问题，我用Windows)导致浏览器退出失败</span></span><br><span class="line">    <span class="comment"># 删除失败时出现报错：OSError: Unable to remove Temporary User Data</span></span><br><span class="line">    <span class="comment"># 或者Chrome进程没有退出，cpu狂飙到99%</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content()</span><br><span class="line">pyppeteer.connect(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
+<p>链接已打开的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
+<p>参数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">browserWSEndpoint（<span class="built_in">str</span>）：要连接的浏览器 websocket 端点。（必填）</span><br><span class="line">ignoreHTTPSErrors（<span class="built_in">bool</span>）：是否忽略 HTTPS 错误。默认为 <span class="literal">False</span>。</span><br><span class="line">slowMo（<span class="built_in">int</span> | <span class="built_in">float</span>）：按指定的毫秒数减慢pyppeteer的速度。</span><br><span class="line">logLevel（<span class="built_in">int</span> | <span class="built_in">str</span>）：用于打印日志的日志级别。默认值与根记录器相同。</span><br><span class="line">loop（asyncio.AbstractEventLoop）：事件循环（实验）。</span><br><span class="line"></span><br><span class="line">browserWSEndpoint 的值获取：Browser.wsEndpoint</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> pyppeteer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> pyppeteer.launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.setViewport(&#123;<span class="string">&#x27;width&#x27;</span>: <span class="number">1366</span>, <span class="string">&#x27;height&#x27;</span>: <span class="number">768</span>&#125;)</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    ws = browser.wsEndpoint</span><br><span class="line">    print(ws)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> browser.disconnect()  <span class="comment"># 断开链接</span></span><br><span class="line">    browser2 = <span class="keyword">await</span> pyppeteer.connect(&#123;<span class="string">&#x27;browserWSEndpoint&#x27;</span>: ws&#125;)</span><br><span class="line">    <span class="keyword">await</span> browser2.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
+
+<p>浏览器Browser</p>
+<p>常用属性和方法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">process：返回浏览器进程，如果浏览器实例是由 connect 方法创建的则返回 null。</span><br><span class="line">browserContexts：返回一个包含所有打开的浏览器上下文的列表。在新创建的浏览器中，这将返回 [BrowserContext]的单个实例。</span><br><span class="line">wsEndpoint: 返回 websocket 端点 url，用于connect 方法重链。</span><br><span class="line">pages()：获取所有可见的标签页。</span><br><span class="line">newPage()：新建标签页。</span><br><span class="line">close():关闭 Chromium 及其所有页面。Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">disconnect()：断开 Pyppeteer 和浏览器的连接，但 Chromium 进程仍然在运行。在调用 disconnect 之后，Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">createIncognitoBrowserContext()：创建一个新的隐身浏览器上下文。这不会与其他浏览器上下文共享 cookie / 缓存。</span><br><span class="line">userAgent():返回浏览器原始的 user-agent。页面可以使用 page.setUserAgent 覆盖浏览器的 user-agent。</span><br><span class="line"></span><br><span class="line">注：被 <span class="keyword">async</span> 关键字修饰的方法是异步方法，调用的时候也必须 <span class="keyword">await</span> 关键字修饰。</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    print(browser.process)     <span class="comment"># 属性不被 async 关键字修饰</span></span><br><span class="line">    print(browser.wsEndpoint)</span><br><span class="line">    print(browser.browserContexts)</span><br><span class="line">    print(<span class="keyword">await</span> browser.userAgent())</span><br><span class="line">    print(<span class="keyword">await</span> browser.pages())</span><br><span class="line">    print(<span class="keyword">await</span> browser.version())</span><br><span class="line">    print(browser.targets())  <span class="comment"># 这个方法在源码中不被 async 关键字修饰</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BrowserContext</span><br></pre></td></tr></table></figure>
+<p>启动浏览器时，默认情况下使用单个 BrowserContext。<br>方法 browser.newPage() 在默认浏览器中创建页面背景。</p>
+<p>Pyppeteer允许创建隐身浏览器(无痕模式)上下文。如下方法：<br>browser.createInnamitoBrowserContext()</p>
+<p>隐身浏览器上下文不会将任何浏览器数据写入磁盘。</p>
+<p>无痕模式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment"># 创建浏览器实例</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    <span class="comment"># 启动无痕模式</span></span><br><span class="line">    context = <span class="keyword">await</span> browser.createIncognitoBrowserContext()</span><br><span class="line">    <span class="comment"># 新建标签页</span></span><br><span class="line">    page = <span class="keyword">await</span> context.newPage()</span><br><span class="line">    <span class="comment"># 打开目标 url</span></span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    <span class="comment"># 打印是否无痕模式</span></span><br><span class="line">    print(context.isIncognito())</span><br><span class="line">    <span class="comment"># 关闭无痕模式</span></span><br><span class="line">    <span class="keyword">await</span> context.close()</span><br><span class="line">    <span class="comment"># 关闭浏览器</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/weizhen11/java/article/details/102496875">原文链接</a><br><a href="https://blog.csdn.net/weizhen11/article/details/102497647?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">pyppeteer页面操作</a></p>
+]]></content>
+      <categories>
+        <category>Pyppeteer</category>
+      </categories>
+      <tags>
+        <tag>Pyppeteer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mongodb性能压测</title>
     <url>/2020/07/24/Mongodb%E6%80%A7%E8%83%BD%E5%8E%8B%E6%B5%8B/</url>
     <content><![CDATA[<h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>这几天对所有的基础组件做一个摸底的基准压力测试，目前我们所有的开源基础组件都没有做过性能测试，经常有开发人员问，我们的RDS、MongoDB集群能抗多大量呀，这个时候我是没办法回复的，因为我自己也不知道，虽然一个数据库集群能抗多大量，在软件、硬件配置固定的情况下，和业务场景有很大的关系，如果数据量小，查询SQL简单那吞吐量自然很高，如果数据量特别大并且都是复杂SQL，那吞吐量自然上不去；但是既然人家问了，肯定是希望有一个答案，如果你说不知道，那会给人一种不靠谱的感觉，所以做一次基准压力测试，我们知道在特定的场景下我们的集群能有多大的吞吐量，做到自己心里有数，才给别人信心。这周在压测MongoDB，谷歌了一番，MongoDB的压测工具很少，有几篇是介绍通过YCSB压测MongoDB的，找（逻辑思维首席DBA）推荐一款MongoDB的压测工具，也推荐YCSB，好吧，那就它吧，开整。</p>
@@ -998,44 +1036,6 @@ recordcount: 加载到数据库的纪录条数 (default: 0)</code></pre>
       </categories>
       <tags>
         <tag>Mongo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pyppeteer库之二：Pyppeteer的浏览器对象</title>
-    <url>/2020/07/27/Pyppeteer%E5%BA%93%E4%B9%8B%E4%BA%8C%EF%BC%9APyppeteer%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1/</url>
-    <content><![CDATA[<p>启动器Launcher<br>启动方式：</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line"> launch :启动链接一个新的浏览器</span><br><span class="line"> content :链接已打开的浏览器，便于崩溃后重链</span><br><span class="line"></span><br><span class="line">launch()</span><br><span class="line">pyppeteer.launch(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
-<p>启动一个新的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
-<p>常用参数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">headless(<span class="built_in">bool</span>): 是否启用<span class="string">&quot;无头模式&quot;</span>(隐藏浏览器界面)，默认为 <span class="literal">True</span> 。</span><br><span class="line">executablePath(<span class="built_in">str</span>): 指定 Chromium.exe 文件的路径(不使用内置的chromium)。</span><br><span class="line">slowMo（<span class="built_in">int</span>|<span class="built_in">float</span>）:按指定的毫秒数减慢 pyppeteer 的速度。</span><br><span class="line">args(List[<span class="built_in">str</span>]): 启动 Chromium 的参数。</span><br><span class="line">dumpio(<span class="built_in">bool</span>):是否将浏览器进程标准输出和标准错误输入到 process.stdout 和 process.stderr中。默认是 <span class="literal">False</span>。</span><br><span class="line">userDataDir(<span class="built_in">str</span>): 设置用户数据目录。</span><br><span class="line">devtools(<span class="built_in">bool</span>): 是否为每个选项卡自动打开 DevTools 面板， 这个选项只有当 headless 设置为 <span class="literal">False</span>的时候有效。</span><br></pre></td></tr></table></figure>
-<p>args—&gt;启动chrome的参数：<br><a href="https://peter.sh/experiments/chromium-command-line-switches/">pyppeteer官网</a></p>
-<p>launch常用参数配置:</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">kwargs = &#123;</span><br><span class="line">    <span class="comment"># 启用浏览器界面</span></span><br><span class="line">    <span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="comment"># 多开页面，解决卡死</span></span><br><span class="line">    <span class="string">&#x27;dumpio&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 设置浏览器全屏</span></span><br><span class="line">    <span class="string">&#x27;args&#x27;</span>: [<span class="string">&#x27;--start-maximized&#x27;</span>,</span><br><span class="line">             <span class="comment"># 取消沙盒模式，沙盒模式下权限太小</span></span><br><span class="line">             <span class="string">&#x27;--no-sandbox&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置浏览器界面大小</span></span><br><span class="line">             <span class="string">&#x27;--window-size=1366,768&#x27;</span>,</span><br><span class="line">             <span class="comment"># 关闭受控制提示：比如，Chrome正在受到自动测试软件的控制...</span></span><br><span class="line">             <span class="string">&#x27;--disable-infobars&#x27;</span>,</span><br><span class="line">             <span class="comment"># 允许跨域</span></span><br><span class="line">             <span class="string">&#x27;--disable-web-security&#x27;</span>,</span><br><span class="line">             <span class="comment"># 使用代理</span></span><br><span class="line">             <span class="string">&#x27;--proxy-server=127.0.0.1:80&#x27;</span>,</span><br><span class="line">             <span class="comment"># 不走代理的链接</span></span><br><span class="line">             <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span>,</span><br><span class="line">             <span class="comment"># 忽略证书错误</span></span><br><span class="line">             <span class="string">&#x27;--ignore-certificate-errors&#x27;</span>,</span><br><span class="line">             <span class="comment"># log 等级设置，如果出现一大堆warning，可以不使用默认的日志等级</span></span><br><span class="line">             <span class="string">&#x27;--log-level=3&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置ua</span></span><br><span class="line">             <span class="string">&#x27;--user-agent=Mozilla/5.0&#x27;</span></span><br><span class="line">             ],</span><br><span class="line">    <span class="string">&#x27;userDataDir&#x27;</span>: <span class="string">r&#x27;D:\Temporary&#x27;</span>,</span><br><span class="line">    <span class="comment"># 用户数据保存目录，这个最好指定一个，</span></span><br><span class="line">    <span class="comment"># 如果不指定，Chrome会自动创建一个临时目录使用，在退出浏览器时自动删除，</span></span><br><span class="line">    <span class="comment"># 在删除的时候可能会删除失败(不知道为什么出现权限问题，我用Windows)导致浏览器退出失败</span></span><br><span class="line">    <span class="comment"># 删除失败时出现报错：OSError: Unable to remove Temporary User Data</span></span><br><span class="line">    <span class="comment"># 或者Chrome进程没有退出，cpu狂飙到99%</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content()</span><br><span class="line">pyppeteer.connect(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
-<p>链接已打开的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
-<p>参数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">browserWSEndpoint（<span class="built_in">str</span>）：要连接的浏览器 websocket 端点。（必填）</span><br><span class="line">ignoreHTTPSErrors（<span class="built_in">bool</span>）：是否忽略 HTTPS 错误。默认为 <span class="literal">False</span>。</span><br><span class="line">slowMo（<span class="built_in">int</span> | <span class="built_in">float</span>）：按指定的毫秒数减慢pyppeteer的速度。</span><br><span class="line">logLevel（<span class="built_in">int</span> | <span class="built_in">str</span>）：用于打印日志的日志级别。默认值与根记录器相同。</span><br><span class="line">loop（asyncio.AbstractEventLoop）：事件循环（实验）。</span><br><span class="line"></span><br><span class="line">browserWSEndpoint 的值获取：Browser.wsEndpoint</span><br></pre></td></tr></table></figure>
-
-<p>例子：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> pyppeteer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> pyppeteer.launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.setViewport(&#123;<span class="string">&#x27;width&#x27;</span>: <span class="number">1366</span>, <span class="string">&#x27;height&#x27;</span>: <span class="number">768</span>&#125;)</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    ws = browser.wsEndpoint</span><br><span class="line">    print(ws)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> browser.disconnect()  <span class="comment"># 断开链接</span></span><br><span class="line">    browser2 = <span class="keyword">await</span> pyppeteer.connect(&#123;<span class="string">&#x27;browserWSEndpoint&#x27;</span>: ws&#125;)</span><br><span class="line">    <span class="keyword">await</span> browser2.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
-
-<p>浏览器Browser</p>
-<p>常用属性和方法：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">process：返回浏览器进程，如果浏览器实例是由 connect 方法创建的则返回 null。</span><br><span class="line">browserContexts：返回一个包含所有打开的浏览器上下文的列表。在新创建的浏览器中，这将返回 [BrowserContext]的单个实例。</span><br><span class="line">wsEndpoint: 返回 websocket 端点 url，用于connect 方法重链。</span><br><span class="line">pages()：获取所有可见的标签页。</span><br><span class="line">newPage()：新建标签页。</span><br><span class="line">close():关闭 Chromium 及其所有页面。Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">disconnect()：断开 Pyppeteer 和浏览器的连接，但 Chromium 进程仍然在运行。在调用 disconnect 之后，Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">createIncognitoBrowserContext()：创建一个新的隐身浏览器上下文。这不会与其他浏览器上下文共享 cookie / 缓存。</span><br><span class="line">userAgent():返回浏览器原始的 user-agent。页面可以使用 page.setUserAgent 覆盖浏览器的 user-agent。</span><br><span class="line"></span><br><span class="line">注：被 <span class="keyword">async</span> 关键字修饰的方法是异步方法，调用的时候也必须 <span class="keyword">await</span> 关键字修饰。</span><br></pre></td></tr></table></figure>
-
-<p>示例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    print(browser.process)     <span class="comment"># 属性不被 async 关键字修饰</span></span><br><span class="line">    print(browser.wsEndpoint)</span><br><span class="line">    print(browser.browserContexts)</span><br><span class="line">    print(<span class="keyword">await</span> browser.userAgent())</span><br><span class="line">    print(<span class="keyword">await</span> browser.pages())</span><br><span class="line">    print(<span class="keyword">await</span> browser.version())</span><br><span class="line">    print(browser.targets())  <span class="comment"># 这个方法在源码中不被 async 关键字修饰</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BrowserContext</span><br></pre></td></tr></table></figure>
-<p>启动浏览器时，默认情况下使用单个 BrowserContext。<br>方法 browser.newPage() 在默认浏览器中创建页面背景。</p>
-<p>Pyppeteer允许创建隐身浏览器(无痕模式)上下文。如下方法：<br>browser.createInnamitoBrowserContext()</p>
-<p>隐身浏览器上下文不会将任何浏览器数据写入磁盘。</p>
-<p>无痕模式：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment"># 创建浏览器实例</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    <span class="comment"># 启动无痕模式</span></span><br><span class="line">    context = <span class="keyword">await</span> browser.createIncognitoBrowserContext()</span><br><span class="line">    <span class="comment"># 新建标签页</span></span><br><span class="line">    page = <span class="keyword">await</span> context.newPage()</span><br><span class="line">    <span class="comment"># 打开目标 url</span></span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    <span class="comment"># 打印是否无痕模式</span></span><br><span class="line">    print(context.isIncognito())</span><br><span class="line">    <span class="comment"># 关闭无痕模式</span></span><br><span class="line">    <span class="keyword">await</span> context.close()</span><br><span class="line">    <span class="comment"># 关闭浏览器</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
-<p><a href="https://blog.csdn.net/weizhen11/java/article/details/102496875">原文链接</a><br><a href="https://blog.csdn.net/weizhen11/article/details/102497647?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">pyppeteer页面操作</a></p>
-]]></content>
-      <categories>
-        <category>Pyppeteer</category>
-      </categories>
-      <tags>
-        <tag>Pyppeteer</tag>
       </tags>
   </entry>
   <entry>
@@ -1271,7 +1271,8 @@ this.$store.state.contractInstance().methods.getMemberInfo()
   <entry>
     <title>about me</title>
     <url>/2020/07/22/about-me/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>about me</p>
+]]></content>
       <categories>
         <category>horysk</category>
       </categories>
@@ -1327,6 +1328,28 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       </tags>
   </entry>
   <entry>
+    <title>搭建博客使用hexo的next主题如何添加动态背景</title>
+    <url>/2020/12/07/hello-world/</url>
+    <content><![CDATA[<p>修改_layout.swig<br>打开 next/layout/_layout.swig  在 &lt; /body&gt;之前添加代码(注意不要放在&lt; /head&gt;的后面)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> theme.canvas_nest %&#125;</span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>修改配置文件</p>
+<a id="more"></a>
+
+<p>打开 /next/_config.yml,在里面添加如下代码：(可以放在最后面)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># --------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># background settings</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># add canvas-nest effect</span></span><br><span class="line"><span class="comment"># see detail from https://github.com/hustcc/canvas-nest.js</span></span><br><span class="line">canvas_nest: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>到此就结束了，运行 hexo clean，然后运行 hexo g,然后运行 hexo s，最后打开浏览器在浏览器的地址栏输入 localhost:4000 就能看到效果了\（￣︶￣）/</p>
+<p>如果你感觉默认的线条太多的话<br>可以这么设置====&gt;<br>在上一步修改 _layout.swig中，把刚才的这些代码：</p>
+<pre><code class="bash">&#123;% if theme.canvas_nest %&#125;
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+&#123;% endif %&#125;</code></pre>
+<p>改为</p>
+<pre><code class="bash">&#123;% if theme.canvas_nest %&#125;
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+&#123;% endif %&#125;</code></pre>
+<p>配置项说明<br>color ：线条颜色, 默认: ‘0,0,0’；三个数字分别为(R,G,B)<br>opacity: 线条透明度（0~1）, 默认: 0.5<br>count: 线条的总数量, 默认: 150<br>zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1</p>
+]]></content>
+  </entry>
+  <entry>
     <title>hello world</title>
     <url>/2015/07/01/hello%20world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -1358,28 +1381,6 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       <tags>
         <tag>horysk</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>搭建博客使用hexo的next主题如何添加动态背景</title>
-    <url>/2020/12/07/hello-world/</url>
-    <content><![CDATA[<p>修改_layout.swig<br>打开 next/layout/_layout.swig  在 &lt; /body&gt;之前添加代码(注意不要放在&lt; /head&gt;的后面)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> theme.canvas_nest %&#125;</span><br><span class="line">&lt;script <span class="built_in">type</span>=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
-<p>修改配置文件</p>
-<a id="more"></a>
-
-<p>打开 /next/_config.yml,在里面添加如下代码：(可以放在最后面)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># --------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># background settings</span></span><br><span class="line"><span class="comment"># --------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># add canvas-nest effect</span></span><br><span class="line"><span class="comment"># see detail from https://github.com/hustcc/canvas-nest.js</span></span><br><span class="line">canvas_nest: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>到此就结束了，运行 hexo clean，然后运行 hexo g,然后运行 hexo s，最后打开浏览器在浏览器的地址栏输入 localhost:4000 就能看到效果了\（￣︶￣）/</p>
-<p>如果你感觉默认的线条太多的话<br>可以这么设置====&gt;<br>在上一步修改 _layout.swig中，把刚才的这些代码：</p>
-<pre><code class="bash">&#123;% if theme.canvas_nest %&#125;
-<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-&#123;% endif %&#125;</code></pre>
-<p>改为</p>
-<pre><code class="bash">&#123;% if theme.canvas_nest %&#125;
-<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-&#123;% endif %&#125;</code></pre>
-<p>配置项说明<br>color ：线条颜色, 默认: ‘0,0,0’；三个数字分别为(R,G,B)<br>opacity: 线条透明度（0~1）, 默认: 0.5<br>count: 线条的总数量, 默认: 150<br>zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1</p>
-]]></content>
   </entry>
   <entry>
     <title>hexo 添加 hexo-admin 插件</title>
@@ -1572,48 +1573,22 @@ this.$store.state.contractInstance().methods.getMemberInfo()
       </tags>
   </entry>
   <entry>
+    <title>Hexo主题增加鼠标点击效果</title>
+    <url>/2020/07/25/test/</url>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="faa9820ddf1cc1035e96d796eaa308dfb21a7b1e3fda6db9bf50d13932c6a59b">43d9b36f64d418976ead0e7716c814ff6021a170898182c2b928f48d0c93c71cd516be5ceeacd466be7aefcc53fa74a601abce10af36e07be232fd6b3d43a82433400c7e27477b6e915554f744cbc60d5d4a0d980641bcc68c69d5deb00ad73adee25419fe55585adec2b9636e2173626df970f3b8a61e04a819800c2ab8532dbfe89388ffd4cefb1fd27019f848237720bccf11ac9598a2a1c9f200cf81177bb5e4193c1aaddb156d79432c73f2ed5485e357ade1558aec470bc852e9524bd719d3aca905c4102c6bed6a5c14244ed2243c3eaa94771438860a2bce90ff7118a9a7cc0d32730b0221ac4b1233c61cabc7183c64e86ad38fe4bb11a534a71fe61f279571312acb863a249a58b51c635e36fbd5174528329eb95a1240de3543b42c6ed8883672a59c09a05d4aceb51dc25f47e9c0bd05b47d56206f80149a0483c6420eed66ccf2916a07552094a7fbfa25576ea43abb4f380524939f2297f06603c901826daccc7d67cca7aee753475a582709c1adc581d258484ba8f3db358019eb16b212452b43d6a5b7d88a7638aaa3689877478c8af3a405265b3350259592b0c3588331a5aa82b343e241cd461ac0bc6edc5b4cb7f76fbf05ff8dfd446f9424ec4876ae6d70d79c041cee580e94a3960e1452ddfefdd1934777d3d14d301a9bcd7c206d1c45784a1f66a56268afd96933e5b06493467dc711861d2dab19cea895285af518b220a0aaf9b28ff65f787f77b74146ec2c8c893072bbf942998f5393a42a2f9a4ebb6eaad768fcf6b8990b377ba98e66edf294498095f07dc85223c58828f3a80de695d2b33a8759c4c6f1c5f93f49cbc96fc29807777ef3868a700ff43e63bec429f9c22769f6c41cbc5483295208b83aa7bc83be830a6a7d1c3d47041058223ae1257cbe4377ac68f2d951d844823f9aefefbb66c2c6eeb195da96ce04a039225c1bd78bde0d982fc009c9591995385a3bcb83d18b5fa1ef17f95844afb007a6d866b6466931f9ddf12685926d50916b4b489f20ea09b0cd147efa70c2e77a3c62eb33c57cb320f13417808d25baf791f5155dd576f5eea8837e5ab1b5c90c3e14741015f3047e01e6cd24d5a9bccff35baccfa97f2543c250a67260203c63020262e510b2971ec7d9d953cee1c5ad5a8288586e5516ce9e7e10d74b38b4fe8e05fa72f3915162b56c3919f34df8314ce3c8bcb5cb19dee3774151182040928a40624b52439b21a7d7468662a3f077b9746b53a35f696162f66285fb81ff1996d549af9d87cea50a0ec5a7bf63013ff647673a6a4b5d11cb3daebf7daeef30e238e1a7b6c56738e485825e3263abff9292d57e27109e1182987f9c831c832a3afc6b9c946e40c3fd29582134dab1eafd53ef2e2f74c4ebc8e0865e80b6d1f7bf48880574383fb6fa6b9cdb4700eeb8b822749dcb60daad74cc6233100f29e0ae5b2148d1923e5973e9cd2864be2e90066cf759113a2d94c5e7ce24314e70a156b9f9c2d8bf0b4b13afb47a1f9af1566690056254cf41dbe2b01fa8c05237331747188ea6e81aebe4119b45e42fede87f2fd4ebd9c228ce33faf52e5ceb3bd4bb12c11dcbc90e03f3b6fbf07876bf73cecc6b8bce40f4719b1cd815a76aeb08e9d3e1f2ac179e01a25db1a04d31c19bcbde45cbe6608c7077a4e89afb98bb8ad91f981fd0a95b56bd0c69d3b16782d92223e01e7b69782dfa7588e06f3c1a925d66d594e5594e944e1ca6e6fcef617bb4002ef868c71d2a35b9187f1a4d4a39c30419f9e3c6b0119b919172d2352cf1bc9570f82093f6c417b9253c81325c0529e83d373ecdf47b6734974f1c92e25ec3b0ed5d49eae3ca07f43bfa68e103862b777b860d41c24b464495f2ab37fcab4d0537485edf3925370e5138ac8f23fd7b06e304f6615dc491804afe8805739a6dad8eea523cba066111ccf4fcaf05f1aa74479a5abac22dab43ea0fe5e9c84ec9de08dbfe7c3a51c3a60d4f4c5380a775d45558253c098c3f8a355f1933b4c9e2adca89a8e78cc473672e4a7fb66163aeeb1c88dc33238b78398a17e7b5f8e6a700af43ab2a0e41dc0c7ecdc59ef292d5829dc1e01846aa43b1e0911b11f339e639a3d828da6485fe9d3c005a0022127830f845ac1acc62d7e2f28e471c29ebf262b6809ec7f140a759b6a0b5caaa0bc0467e408f1cc5e01d5f267a337db2216aeb87a9a388d47f7617d5533f616d1788e398feb9b8b807527082ba0086a5b61b12ee0b781d842011128a1008766cd8da04bbabaa1d4e3719a6ae30338b3dc717ffb06fd969c54705b7d9f387e59465bf7c36b204ec617cf5c3db47bc335d86f5df02202a424aed1ffc06f34d8260856c1f8a0049e57a542dc3d3debe4cc1ebdf5a8ffc4fe19f3d72d227bd0c20ed90f87c79fa1157f71748c0eef62b540465a15b5aa496777e1ebe104509000a472ecf805ba85756e717d5e1f8f7acd9068975ecf953555abb37859d0cddf41179424aa8f2867640ac57ec0174c402ba7e70f8ac01e178cddbbb9a3189fdcb01d32d73f687bf954e4b1d447fefa1ddf5ae78f97b9237af5aafc6bd8e03a97789cb29e32eb6291e056210cb90d8cce65a3bc912203bee9985c523750a68cae2a649a8bba77f9f9444d8902a335ea57364d3b7840ddb253a780118455eb568fcbecde734a476369cfb2cffd8ba8c11694cef9ee2db2844e82e94be90</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
+  </entry>
+  <entry>
     <title>tesks</title>
     <url>/2015/08/01/tesks/</url>
     <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hexo主题增加鼠标点击效果</title>
-    <url>/2020/07/25/test/</url>
-    <content><![CDATA[<p>流程<br>将以下代码放到主题源文件目录下，如 /themes/yilia/source/js/ 下新建文件 click-word.js，代码见下文。<br>下载jquery文件<a href="https://code.jquery.com/jquery-3.3.1.min.js">（目前最新版本）</a>，放到同一目录下（个人喜好）。<br>修改布局文件，/themes/next/layout/_layout.ejs，在末尾body中添加</p>
-<a id="more"></a>
-<pre><code class="bash">&lt;!-- 页面点击特效 --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;/js/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;/js/click-word.js&quot;&gt;&lt;/script&gt;</code></pre>
-<p>保存后重新生成即可</p>
-<p>js代码</p>
-<pre><code class="bash">var a_idx = 0;
-jQuery(document).ready(function($) &#123;
-    $(&quot;body&quot;).click(function(e) &#123;
-        var a = new Array(&quot;富强&quot;, &quot;民主&quot;, &quot;文明&quot;, &quot;和谐&quot;, &quot;自由&quot;, &quot;平等&quot;, &quot;公正&quot; ,&quot;法治&quot;, &quot;爱国&quot;, &quot;敬业&quot;, &quot;诚信&quot;, &quot;友善&quot;);
-        var $i = $(&quot;&lt;span /&gt;&quot;).text(a[a_idx]);
-        a_idx = (a_idx + 1) % a.length;
-        var x = e.pageX,
-        y = e.pageY;
-        $i.css(&#123;
-            &quot;z-index&quot;: 999999999999999999999999999999999999999999999999999999999999999999999,
-            &quot;top&quot;: y - 20,
-            &quot;left&quot;: x,
-            &quot;position&quot;: &quot;absolute&quot;,
-            &quot;font-weight&quot;: &quot;bold&quot;,
-            &quot;color&quot;: &quot;#ff6651&quot;
-        &#125;);
-        $(&quot;body&quot;).append($i);
-        $i.animate(&#123;
-            &quot;top&quot;: y - 180,
-            &quot;opacity&quot;: 0
-        &#125;,
-        1500,
-        function() &#123;
-            $i.remove();
-        &#125;);
-    &#125;);
-&#125;);</code></pre>
-]]></content>
   </entry>
   <entry>
     <title>hello world</title>
@@ -2161,7 +2136,7 @@ sudo systemctl start vncserver@1.service
 sudo systemctl status vncserver@1.service
 
 </code></pre>
-<p>● <a href="mailto:&#x76;&#110;&#x63;&#115;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#115;&#101;&#x72;&#118;&#105;&#99;&#101;">&#x76;&#110;&#x63;&#115;&#101;&#x72;&#x76;&#x65;&#114;&#64;&#x31;&#46;&#115;&#101;&#x72;&#118;&#105;&#99;&#101;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
+<p>● <a href="mailto:&#118;&#x6e;&#x63;&#115;&#101;&#x72;&#x76;&#101;&#114;&#x40;&#49;&#x2e;&#115;&#x65;&#x72;&#x76;&#105;&#x63;&#x65;">&#118;&#x6e;&#x63;&#115;&#101;&#x72;&#x76;&#101;&#114;&#x40;&#49;&#x2e;&#115;&#x65;&#x72;&#x76;&#105;&#x63;&#x65;</a> - Remote desktop service (VNC)<br>   Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)<br>   Active: active (running) since Thu 2018-08-16 19:05:54 UTC; 4s ago<br>  Process: 9893 ExecStartPre=/bin/sh -c /usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 || : (code=exited, status=0/SUCCESS)<br> Main PID: 9900 (vncserver)<br>    Tasks: 0 (limit: 507)<br>   CGroup: /system.slice/system-vncserver.slice/vncserver@1.service<br>           ‣ 9900 /usr/bin/perl /usr/bin/vncserver :1 -geometry 1440x900 -alwaysshared -fg</p>
 <p>连接到 VNC 服务器</p>
 <p>VNC 不是加密协议，可以进行数据包嗅探。建议的方法是创建一个 SSH 隧道，该隧道将安全地将来自本地计算机的端口 5901 上的流量转发到同一端口上的服务器。</p>
 <p>在 Linux 和 macOS 上设置 SSH 隧道</p>
@@ -2476,36 +2451,6 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
       </tags>
   </entry>
   <entry>
-    <title>使用 Docker 搭建 MTProxy TG 专用代理</title>
-    <url>/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<p>Telegram 是一款开源且跨平台的 IM 工具（类似 Whatsapp、Messenger、微信），是我用过所有同类软件中用户体验最好的一个，同时我也是 Telegram 重度用户和开发者。当然，这么好用的工具在天朝是难以访问的。 —李钊同学</p>
-<p>由于你知道的原因，Telegram 在天朝默认情况下是无法使用的，当然你可以先打开 Shadowsocks 或是 V2Ray 等代理软件正常访问国际互联网，然后才可以正常使用 Telegram 但是这样就让 IM软件失去了一部分使用体验。</p>
-<p>前段时间 俄罗斯🇷🇺当局因 Telegram 公司不提供通讯加密密钥(为了信息审查)为由决定屏蔽 Telegram 服务，但最终没有获得成功为此 俄罗斯当局还屏蔽了 Google Microsoft 等公司的云服务器 IP段 可谓是用心良苦。Telegram 为了对抗封锁开发了 MTProxy Telegram 专用代理；对于处于同样情况的天朝来说也可以通过它正常使用 Telegram 服务</p>
-<p>MTProxy</p>
-<p>MTProxy 是在新版本 Telegram 中内置的代理程序</p>
-<p>MTProxy的命名，大概和MTProto有关<br>Telegram 团队使用自己设计的加密协议 MTProto ，并以 30 万美金的高价奖赏漏洞的提交者。Telegram 使用基于 MTProto 的通讯协议。</p>
-<p>在新版的 Telegram 中 Proxy 设置已经新增了 MTProxy 支持，我们只需要把相应的地址和密钥填入就能愉快的玩耍了</p>
-<p>下面说一下如何使用 Docker 快速部署</p>
-<p>安装 Docker<br>使用官方简化命令安装:</p>
-<h2 id="适用于-Linux"><a href="#适用于-Linux" class="headerlink" title="适用于 Linux"></a>适用于 Linux</h2><p>$ curl -fsSL get.docker.com -o get-docker.sh<br>$ sudo sh get-docker.sh –mirror Aliyun //使用阿里云镜像源加速</p>
-<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </port></p>
-<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</port></h2><p>$ docker logs mtproto-proxy</p>
-<h2 id="查看你的链接信息"><a href="#查看你的链接信息" class="headerlink" title="查看你的链接信息"></a>查看你的链接信息</h2><h2 id="会输出如下信息"><a href="#会输出如下信息" class="headerlink" title="会输出如下信息"></a>会输出如下信息</h2><p>####</p>
-<h4 id="Telegram-Proxy"><a href="#Telegram-Proxy" class="headerlink" title="Telegram Proxy"></a>Telegram Proxy</h4><p>####</p>
-<p>[+] Using the secret in /data/secret: ‘xxxxxxxxxxxxxxxxxxxxxxxx’.<br>[<em>] Final configuration:<br>[</em>]   Secret 1: xxxxxxxxxxxxxxxxxxxxxxxx<br>[<em>]   tg:// link for secret 1 auto configuration: tg://proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx<br>[</em>]   t.me link for secret 1: <a href="https://t.me/proxy?server=%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%806&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx">https://t.me/proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx</a><br>[<em>]   Tag: no tag<br>[</em>]   External IP: 你的服务器地址<br>[*]   Make sure to fix the links in case you run the proxy on a different port.<br>PS:<br>使用 docker logs mtproto-proxy 查询到的链接<br>其中的端口是默认的请根据你使用的端口酌情修改</p>
-<p>使用 macOS Telegram 客户端作示例</p>
-<p>参考：<br><a href="https://yeasy.gitbook.io/docker_practice/install/">Docker 从入门到实践 | 安装 Docker</a><br><a href="https://hub.docker.com/r/telegrammessenger/proxy/">telegrammessenger/proxy</a><br>本文链接： <a href="https://cloverkits.github.io/2018/08/18/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA-MTProxy-TG-%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/">https://cloverkits.github.io/2018/08/18/使用-Docker-搭建-MTProxy-TG-专用代理/</a></p>
-]]></content>
-      <categories>
-        <category>docker</category>
-        <category>proxy</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-        <tag>MTProxy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>单机版——docker搭建MongoDB分片集群</title>
     <url>/2020/07/30/%E5%8D%95%E6%9C%BA%E7%89%88%E2%80%94%E2%80%94docker%E6%90%AD%E5%BB%BAMongoDB%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4/</url>
     <content><![CDATA[<p>记录了在如何利用docker搭建MongoDB的分片集群。这里使用1个mongos、3个config server和2组分片副本集，每组分片副本集1主2从。</p>
@@ -2552,6 +2497,36 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 ]]></content>
   </entry>
   <entry>
+    <title>使用 Docker 搭建 MTProxy TG 专用代理</title>
+    <url>/2016/09/16/%E4%BD%BF%E7%94%A8%20Docker%20%E6%90%AD%E5%BB%BA%20MTProxy%20TG%20%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<p>Telegram 是一款开源且跨平台的 IM 工具（类似 Whatsapp、Messenger、微信），是我用过所有同类软件中用户体验最好的一个，同时我也是 Telegram 重度用户和开发者。当然，这么好用的工具在天朝是难以访问的。 —李钊同学</p>
+<p>由于你知道的原因，Telegram 在天朝默认情况下是无法使用的，当然你可以先打开 Shadowsocks 或是 V2Ray 等代理软件正常访问国际互联网，然后才可以正常使用 Telegram 但是这样就让 IM软件失去了一部分使用体验。</p>
+<p>前段时间 俄罗斯🇷🇺当局因 Telegram 公司不提供通讯加密密钥(为了信息审查)为由决定屏蔽 Telegram 服务，但最终没有获得成功为此 俄罗斯当局还屏蔽了 Google Microsoft 等公司的云服务器 IP段 可谓是用心良苦。Telegram 为了对抗封锁开发了 MTProxy Telegram 专用代理；对于处于同样情况的天朝来说也可以通过它正常使用 Telegram 服务</p>
+<p>MTProxy</p>
+<p>MTProxy 是在新版本 Telegram 中内置的代理程序</p>
+<p>MTProxy的命名，大概和MTProto有关<br>Telegram 团队使用自己设计的加密协议 MTProto ，并以 30 万美金的高价奖赏漏洞的提交者。Telegram 使用基于 MTProto 的通讯协议。</p>
+<p>在新版的 Telegram 中 Proxy 设置已经新增了 MTProxy 支持，我们只需要把相应的地址和密钥填入就能愉快的玩耍了</p>
+<p>下面说一下如何使用 Docker 快速部署</p>
+<p>安装 Docker<br>使用官方简化命令安装:</p>
+<h2 id="适用于-Linux"><a href="#适用于-Linux" class="headerlink" title="适用于 Linux"></a>适用于 Linux</h2><p>$ curl -fsSL get.docker.com -o get-docker.sh<br>$ sudo sh get-docker.sh –mirror Aliyun //使用阿里云镜像源加速</p>
+<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </port></p>
+<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</port></h2><p>$ docker logs mtproto-proxy</p>
+<h2 id="查看你的链接信息"><a href="#查看你的链接信息" class="headerlink" title="查看你的链接信息"></a>查看你的链接信息</h2><h2 id="会输出如下信息"><a href="#会输出如下信息" class="headerlink" title="会输出如下信息"></a>会输出如下信息</h2><p>####</p>
+<h4 id="Telegram-Proxy"><a href="#Telegram-Proxy" class="headerlink" title="Telegram Proxy"></a>Telegram Proxy</h4><p>####</p>
+<p>[+] Using the secret in /data/secret: ‘xxxxxxxxxxxxxxxxxxxxxxxx’.<br>[<em>] Final configuration:<br>[</em>]   Secret 1: xxxxxxxxxxxxxxxxxxxxxxxx<br>[<em>]   tg:// link for secret 1 auto configuration: tg://proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx<br>[</em>]   t.me link for secret 1: <a href="https://t.me/proxy?server=%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%806&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx">https://t.me/proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx</a><br>[<em>]   Tag: no tag<br>[</em>]   External IP: 你的服务器地址<br>[*]   Make sure to fix the links in case you run the proxy on a different port.<br>PS:<br>使用 docker logs mtproto-proxy 查询到的链接<br>其中的端口是默认的请根据你使用的端口酌情修改</p>
+<p>使用 macOS Telegram 客户端作示例</p>
+<p>参考：<br><a href="https://yeasy.gitbook.io/docker_practice/install/">Docker 从入门到实践 | 安装 Docker</a><br><a href="https://hub.docker.com/r/telegrammessenger/proxy/">telegrammessenger/proxy</a><br>本文链接： <a href="https://cloverkits.github.io/2018/08/18/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA-MTProxy-TG-%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/">https://cloverkits.github.io/2018/08/18/使用-Docker-搭建-MTProxy-TG-专用代理/</a></p>
+]]></content>
+      <categories>
+        <category>docker</category>
+        <category>proxy</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+        <tag>MTProxy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>可直接用浏览器打开的无头计算机docker images，包含 Chrome 与 Firefox，支持 VNC、RDP 协议</title>
     <url>/2018/03/09/%E5%8F%AF%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%9A%84%E6%97%A0%E5%A4%B4%E8%AE%A1%E7%AE%97%E6%9C%BAdocker%20images%EF%BC%8C%E5%8C%85%E5%90%AB%20Chrome%20%E4%B8%8E%20Firefox%EF%BC%8C%E6%94%AF%E6%8C%81%20VNC%E3%80%81RDP%20%E5%8D%8F%E8%AE%AE/</url>
     <content><![CDATA[<p>可直接用浏览器打开的无头计算机，包含 Chrome 与 Firefox，支持 VNC、RDP 协议[Docker]</p>
@@ -2573,29 +2548,6 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
       <tags>
         <tag>docker</tag>
         <tag>centos-xfce-vnc</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在Hexo博客中插入图片的各种方式</title>
-    <url>/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<p>在文章中插入图片<br><a href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/">Hexo博客搭建之在文章中插入图片</a></p>
-<h2 id="绝对路径本地引用"><a href="#绝对路径本地引用" class="headerlink" title="绝对路径本地引用"></a>绝对路径本地引用</h2><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">![](/images/image.jpg)</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">图片既可以在首页内容中访问到，也可以在文章正文中访问到。</span><br><span class="line"><span class="comment">## 相对路径本地引用</span></span><br><span class="line">图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过站点配置文件_config.yml来生成。</span><br><span class="line">``` bash</span><br><span class="line">post_asset_folder: <span class="literal">true</span></span><br><span class="line">``` </span><br><span class="line">将_config.yml文件中的配置项post_asset_folder设为<span class="literal">true</span>后，执行命令$ hexo new post_name，在<span class="built_in">source</span>/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</span><br><span class="line">``` bash</span><br><span class="line">![](image.jpg)</span><br><span class="line">``` </span><br><span class="line">[vi-vim-cheat-sheet.gif](vi-vim-cheat-sheet.gif)</span><br><span class="line"><span class="comment">## 标签插件语法引用</span></span><br><span class="line">这种相对路径的图片显示方法在博文详情页面显示没有问题，但是在首页预览页面图片将显示不出来。如果希望图片在文章和首页中同时显示，可以使用标签插件语法。</span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># 本地图片资源，不限制图片尺寸</span></span><br><span class="line">&#123;% asset_img image.jpg This is an image %&#125;</span><br><span class="line"><span class="comment"># 网络图片资源，限制图片显示尺寸</span></span><br><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 200 400 vi-vim-cheat-sheet %&#125;</span><br><span class="line">HTML语法引用</span><br><span class="line">&lt;img src=<span class="string">&quot;SpellCheck.png&quot;</span> width=<span class="string">&quot;50%&quot;</span> height=<span class="string">&quot;50%&quot;</span> title=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span> alt=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>直接将<img src="/.com//image.jpg">替换上面的语法即可。</p>
-<p>启用fancybox：点击查看图片大图<br>我这里使用的是Hexo的NexT主题，NexT主题中提供了fancybox的方便接口。</p>
-<p>Usage：<a href="https://github.com/theme-next/theme-next-fancybox3">https://github.com/theme-next/theme-next-fancybox3</a><br>markdown用法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 600 600 <span class="string">&quot;点击查看大图:vi/vim-cheat-sheet&quot;</span> %&#125;</span><br></pre></td></tr></table></figure>
-<p>Hexo部分图片禁用fancybox</p>
-<p>hexo在使用fancybox插件时，图片的效果还是很可观的，但是我们往往是不需要所有的图片都用fancybox；<br>例如：hexo next主题下，添加某些图片的时候，有些事不需要可点击的<br>修改theme\next\source\js\src\utils.js 红色字体部分；</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff --git a/<span class="built_in">source</span>/js/src/utils.js b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">index 0f3704e..8516665 100644</span><br><span class="line">--- a/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">+++ b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">@@ -11,6 +11,7 @@ NexT.utils = NexT.<span class="variable">$u</span> = &#123;</span><br><span class="line">       .not(<span class="string">&#x27;.group-picture img, .post-gallery img&#x27;</span>)</span><br><span class="line">       .each(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">         var <span class="variable">$image</span> = $(this);</span><br><span class="line">+        <span class="keyword">if</span> ($(this).hasClass(<span class="string">&#x27;nofancybox&#x27;</span>)) <span class="built_in">return</span>;</span><br><span class="line">         var imageTitle = <span class="variable">$image</span>.attr(<span class="string">&#x27;title&#x27;</span>);</span><br><span class="line">         var <span class="variable">$imageWrapLink</span> = <span class="variable">$image</span>.parent(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>在img标签使用的时候加上class=”nofancybox”即可。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;http://www.viemu.com/vi-vim-cheat-sheet.gif&quot;</span> class=<span class="string">&quot;nofancybox&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
-<img src="http://www.viemu.com/vi-vim-cheat-sheet.gif" class width="600" height="600" title="点击查看大图:vi&#x2F;vim-cheat-sheet">]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2638,6 +2590,29 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 <p>道理，就是这些道理。看起来每个人都知道，但是从结果就能看得出谁是”混子“。</p>
 <p>仅处于知道的地步，还远远不够。</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>在Hexo博客中插入图片的各种方式</title>
+    <url>/2020/12/07/%E5%9C%A8Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>在文章中插入图片<br><a href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/">Hexo博客搭建之在文章中插入图片</a></p>
+<h2 id="绝对路径本地引用"><a href="#绝对路径本地引用" class="headerlink" title="绝对路径本地引用"></a>绝对路径本地引用</h2><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">![](/images/image.jpg)</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">图片既可以在首页内容中访问到，也可以在文章正文中访问到。</span><br><span class="line"><span class="comment">## 相对路径本地引用</span></span><br><span class="line">图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过站点配置文件_config.yml来生成。</span><br><span class="line">``` bash</span><br><span class="line">post_asset_folder: <span class="literal">true</span></span><br><span class="line">``` </span><br><span class="line">将_config.yml文件中的配置项post_asset_folder设为<span class="literal">true</span>后，执行命令$ hexo new post_name，在<span class="built_in">source</span>/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</span><br><span class="line">``` bash</span><br><span class="line">![](image.jpg)</span><br><span class="line">``` </span><br><span class="line">[vi-vim-cheat-sheet.gif](vi-vim-cheat-sheet.gif)</span><br><span class="line"><span class="comment">## 标签插件语法引用</span></span><br><span class="line">这种相对路径的图片显示方法在博文详情页面显示没有问题，但是在首页预览页面图片将显示不出来。如果希望图片在文章和首页中同时显示，可以使用标签插件语法。</span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># 本地图片资源，不限制图片尺寸</span></span><br><span class="line">&#123;% asset_img image.jpg This is an image %&#125;</span><br><span class="line"><span class="comment"># 网络图片资源，限制图片显示尺寸</span></span><br><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 200 400 vi-vim-cheat-sheet %&#125;</span><br><span class="line">HTML语法引用</span><br><span class="line">&lt;img src=<span class="string">&quot;SpellCheck.png&quot;</span> width=<span class="string">&quot;50%&quot;</span> height=<span class="string">&quot;50%&quot;</span> title=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span> alt=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>直接将<img src="/.com//image.jpg">替换上面的语法即可。</p>
+<p>启用fancybox：点击查看图片大图<br>我这里使用的是Hexo的NexT主题，NexT主题中提供了fancybox的方便接口。</p>
+<p>Usage：<a href="https://github.com/theme-next/theme-next-fancybox3">https://github.com/theme-next/theme-next-fancybox3</a><br>markdown用法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 600 600 <span class="string">&quot;点击查看大图:vi/vim-cheat-sheet&quot;</span> %&#125;</span><br></pre></td></tr></table></figure>
+<p>Hexo部分图片禁用fancybox</p>
+<p>hexo在使用fancybox插件时，图片的效果还是很可观的，但是我们往往是不需要所有的图片都用fancybox；<br>例如：hexo next主题下，添加某些图片的时候，有些事不需要可点击的<br>修改theme\next\source\js\src\utils.js 红色字体部分；</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">diff --git a/<span class="built_in">source</span>/js/src/utils.js b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">index 0f3704e..8516665 100644</span><br><span class="line">--- a/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">+++ b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">@@ -11,6 +11,7 @@ NexT.utils = NexT.<span class="variable">$u</span> = &#123;</span><br><span class="line">       .not(<span class="string">&#x27;.group-picture img, .post-gallery img&#x27;</span>)</span><br><span class="line">       .each(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">         var <span class="variable">$image</span> = $(this);</span><br><span class="line">+        <span class="keyword">if</span> ($(this).hasClass(<span class="string">&#x27;nofancybox&#x27;</span>)) <span class="built_in">return</span>;</span><br><span class="line">         var imageTitle = <span class="variable">$image</span>.attr(<span class="string">&#x27;title&#x27;</span>);</span><br><span class="line">         var <span class="variable">$imageWrapLink</span> = <span class="variable">$image</span>.parent(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>在img标签使用的时候加上class=”nofancybox”即可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;http://www.viemu.com/vi-vim-cheat-sheet.gif&quot;</span> class=<span class="string">&quot;nofancybox&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<img src="http://www.viemu.com/vi-vim-cheat-sheet.gif" class width="600" height="600" title="点击查看大图:vi&#x2F;vim-cheat-sheet">]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>多机版———docker-compose搭建MongoDB 3.4 分片集群详细步骤</title>
@@ -2938,12 +2913,15 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
   <entry>
     <title>个人资料-horysk</title>
     <url>/2015/09/10/%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90/</url>
-    <content><![CDATA[<p><a href="http://www.hory-ai.com/">horysk</a><br><a href="http://blog.csdn.net/sirobot">hory-csdn</a><br><a href="https://www.zhihu.com/people/AI_HH">hory-zhihu</a><br><a href="https://www.kaggle.com/skhory">kaggle</a><br><a href="https://www.kingname.info/about/">高级数据挖掘工程师-谢乾坤</a><br><a href="http://www.scutmath.com/ubuntu_vnc.html">清风的技术小屋</a><br><a href="https://blog.fullstackpentest.com/">python CTF</a><br><a href="https://www.cnblogs.com/llongst/p/9482038.html">HyperLedger Fabric 1.4 基础环境搭建</a><br><a href="https://www.dazhuanlan.com/2019/08/21/5d5c524f315e1/">大专栏</a><br><a href="https://yuehuaxw.com/2019/03/07/Gitlab%E5%AE%9E%E7%8E%B0CI-CD/">广华</a><br><a href="https://blog.stanley.wang/">k8s</a><br><a href="https://www.mls-tech.info/docker/k8s-installation-on-ubuntu1804/">utuntu k8s 梅老师</a><br><a href="https://jimmysong.io/kubernetes-handbook/practice/install-kubernetes-on-ubuntu-server-16.04-with-kubeadm.html">云原生 k8s</a><br><a href="https://blog.piaoruiqing.com/2019/09/17/kubernetes-1-installation/">centos  k8s</a><br><a href="https://github.com/KubeOperator">KubeOperator </a><br><a href="https://kuboard.cn/install/sealos/#%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%E7%89%B9%E6%80%A7">kuboard  离线</a><br><a href="https://yeasy.gitbook.io/docker_practice/setup/kubeadm">docker k8s  从入门到实战</a></p>
-<h1 id="AI"><a href="#AI" class="headerlink" title="AI"></a>AI</h1><p><a href="https://danieljyc.github.io/page/2/">ML</a><br><a href="https://morvanzhou.github.io/">莫烦python</a><br><a href="https://support.minitab.com/zh-cn/minitab/18/getting-started/graphing-data/">Minitab </a><br><a href="http://dblab.xmu.edu.cn/blog/1709-2/">python spark</a><br><a href="https://zhuanlan.zhihu.com/p/64413000">power BI</a><br><a href="https://www.quantinfo.com/Source">宽客在线</a></p>
-<h1 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h1><p><a href="https://www.fanqiangzhe.com/post/free-vpn-guide/">fanqiangzhe</a><br><a href="https://hide.me/en/promotion/vpnmentor/?free=1&friend=vpnMentor&banner=3622e812&chan=orgfr&data1=eyJwaWQiOiJLRzY3M1RaUUJFVDkwIiwiY2lkIjoiS0c2NzNVMVcyT0NZQiJ9_cor147230774&data2=D202010120213_o">hide.me</a><br><a href="https://protonvpn.com/?url_id=0&utm_campaign=ww-all-2a-vpn-gro_aff-tune&utm_medium=link&utm_source=aid-1005&utm_content=6">protonvpn</a><br><a href="https://www.opera.com/features/free-vpn">opera</a><br><a href="https://www.tunnelbear.com/account/signup">tunnelbear</a><br><a href="https://www.hotspotshield.com/free-vpn/">hotspotshield</a><br><a href="https://www.expressvpn.com/?oid=0">expressvpn</a><br><a href="https://windscribe.com/upgrade">windscribe</a><br><a href="https://free-vpn.en.softonic.com/">free-vpn</a><br><a href="https://protonvpn.com/download">protovpn</a><br><a href="https://akawa.ink/2019/01/11/docker-pptp-vpn-l2tp-ipsec-vpn">Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN</a><br><a href="http://www.yangfan.cc/stock/1570.html">程序化交易量化资源资源</a><br><a href="https://zhuanlan.zhihu.com/p/102154074">vnpy源码解析</a><br><a href="http://www.snailtoday.com/archives/15501">vnpy源码阅读</a></p>
-<h1 id="PDF"><a href="#PDF" class="headerlink" title="PDF"></a>PDF</h1><p><a href="http://so.tushugu.com/">pdf 搜书</a><br><a href="http://www.xwood.net/_site_domain_/_root/5870/5930/5932/t_c265768.html">集体智慧编程</a><br><a href="https://wizardforcel.gitbooks.io/python-quant-uqer/content/16.html">python 量化分析师手册</a><br><a href="https://www.guhai.com.cn/search.html">股海网</a><br><a href="http://www.7help.net/826.html">金融pdf</a></p>
-<h1 id="QUANT"><a href="#QUANT" class="headerlink" title="QUANT"></a>QUANT</h1><p><a href="http://www.taokmao.com/">交易日记</a></p>
-]]></content>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="78b15fbd1e4f3b6449da46b1fd39d5c1255218146a8d77eab1eb4d44944ae0a1">ab50b7f891432fa331df5696cfdf298323fd03a653ca92bc7d72ed13d21d986cfebd53e386d9f8d1d582cc9366eee7f260aac92a4080eb5eed4e9a19754e82755dc9b3d4be68d48dd93763784dd281403b73e347a05165d527d3e8fc8b0ddf4317ce0c92f1fd3aeffba5b30c56fd381e65606404446ec28be8c89bd17a9df6643309c1b1f7f7c3162135f08a2b0000066296cae5a3e58e3de9a6c067c0bbe00109ee34439a815c9b6784a4913685ea0b42d7d7d6e3e0b6e88249aa17f7982c3966f3b2cfabbb454ac8441bc5ac0e71a342b62d3f39ad39cb826b27f692275f5e6016ce93e32c39254f8c5b650b7294411571a552f7efcdd38355243396f4eaeebae8d925f6bb23ac362bddf5f5fe23eb0ec38d76ab92ef5586d62d374468e61807a87dda4bf56e41af0dcaa4673421bb517a3587025b6670a0318d8601de6d57fd288b9184bc0bf74014dcdefc0b704b205c061f1cca40432d1a7cc5707c18ca42266ea33fec8e0b503061ff46887f79cd76087fc994927d4983890ca33accb859c3aaf8f4f748760d2bff05c22d7acce9c47ba4f698616080802410b9bb7fa7916602720b60f3d8c79ed48ac2b8ab2ded50c695f0530cc9198c58ed2f2cb6ddc11f9078eb9491cbb7526eb78e8741e3f808164c4f72d0a752d161e821f376ad53287d017347a3ca266fb22268f952601632846454a9d6478f387622c54060422f09c493a5ae5adc392b45cd701de5f25e96b7f4c5826492d150cf7de0d8396f3daa45ca30c202c391df6456718ddb7d9d1dba08688fdb11516f038d963fe8def25b05fa8691fbe0bcd086c066a1717144c856f08f4001f4279a681363188567eca99c94781b51748052ddaf745c8f9aba0fe56fecaa04e4679c4051b0afb4805fa6eaf446b74c1ec62f3559fee1189a4b376a49d420ad1a4e66a1fea254dce5692b314cc400cdc2b8754ed2a988f6d59afe2c34ca83a74b0443c107d7b30179b407c3e9073e4895e8cab2a622f5096d792537ed1ed517664a12560aa7d4e94eefcdaa6171203aadbf017a6c48bdcd1701340884dd6cb82e65e0b3ada08fe05335f4fb7d5db515edd7c67852b10af4a434de42a1d9e551362c9b25cac1253c601833f9cb45a778ce7de81d17df113147959b8cec0ebb5356edacc1b77283d8747be0fa6496ccd2610f4e6d0bc837c491974370dea097e03d3ee0b995d250b6e333b6e1168b49a36eba2708eb8bba21be963d894f7662792911f335c03cef085cf629cd09acc90d8a662f715140413120ae854bbd978b69fabae0419fe0f6f0f79899b300be9204551c014da09240a39b05334577a3bef6387227603c1660c5e10cb1700693c5cb668b8f822331965a5e2fbe75e25cb5b74249def49800b766e7a90b059cf8ba33da82c6363a3b742f13466e429d62395b9a730ef122aa0da18de99d00d160a206c17ea0c0b050ee886b759e66071a3f3edc47193c01bbfa9909bf25e6a14aad5a1c1559ef8abf2b93f288c5579708cb97850eef0f3fb906a027b49dce1e07a29c7d0d3b89ab14528308d9af6da1ceae76063eebe44a0c0b5cc52fbfbfa1fd3009bae9af9f8b587f348e1d453e03201c85fea580952f44269ca0cdae1f3334f2efb18e3e06a6c4cecf2493f7673274c06a00e6881a66889f41b83ea7f9ea072d6dbe69d63c703939ea01ef8ceb73b59fa8337e544d7fcae4a7c372fb7ddca91d00a7231c1b0bb63221ecb3e4eb0bd4d06076479843ffcf682b6c64cace2fbfce8f47b6baa26b7247ef4f64f65bdc47db849585ff7d9179b2e6d8a7a800575769a32c00f2a1472f8bdd094935bd941bcdb6cbf2c25fe7ec79764675c0d963a3a5035602bf58fc3724b06b3fea11558193e7a9b15cfd2e409b2ad47c52f307068b5cfbdba3bf5a033ee9db0571c536608ac103f5955a1f79c5bd1ff3b4ce1ffc9b3fd9c9893e5f6e40517e4c76443b9ed0db689a029dd9091987fb9327f3431179cca2a7b9ad8ba76a3a1c9914edc778bbbf178babb10c0a769c4853907e8d84c7ff10fba456de399bed2ca5a66a9d7dfca49e1fb83c16fe31ecd13a99aaba4deedcff612fac72316ef1e593db2e7c243066ef508b2327be94efa045a160c92bc454c509e60662da408b5739845f16692a681602e1c84a78902684270fbc3601aaa4e28da2fbfab496a8bdf1a7fdd975e83a63831de2c8b75b4523db73e7a0e7d8937a922907256f21691d5a75163589758e42aff455af705e2589fc6e956c2aebeea845931f61e5d6ba282726f0be4c26d191dff7a47e287600cf1f6d802403896e7ce32e60353d339d7aed295e18e7b8c76c2a85fb162ff53e1e083bf7c846d6a39ed5bbb275eac8c582150db90882b703a10e86b46470a9cebb7cda8924a8488a2639c6b299ac12cdeaefb20af865d9cbb34357cc2613edf2701b5914196d988a63525d922672edc137c358f663ccc5f0aa57f97fbcf4c6085dce7cad82daaaae7d7bb234144df4cb425d68ff3ce01908bc761ae8912e93db915a448fb59bda4d7ff76cab225cb327cb70cbba5e4bb698b8a72b15b6807698a9cfaf3ff1efb87f0f7f1d2f0abf1787cd57d8f3ebf722a8c5b41bcc88f9f7e9afb5a32854005f152ec15448ae90b86f566f4df7f03d65b7d8f834212388a1a185d21363826bf0b77fb1ee3d4d34179eb04b9c7f52ed21c3ca713fa9552e118624dbc69a13075070638c785086111cf529d30bd636a87db4c26e228e73f52b0f1b27ff31fab38ce881804656d8112c8e157ca15060e7eb2f7939307ea1b80bf170314b4a9e0e4f0b0a295d0b5a1380c6655f2f3a383beafc094c6e825907e7c1ac97938c6ca4c0537cd8f89749dc4500483a694e300d7ec816e5935cab33381ce7595ede6bfa7ce5b366ea47c27085e3f174faee0552741b2ffb48637b907aa55ecb1f6d1cdbaaf8127e61aea679f71f2304d65daaa3987baee7b94b5670e105526ad328de6b5baab48524ad69848ca8607559f95b194a352c7eb721a41b155047be5339f350c4130e3c436f2a4243fe9c5dd56e94aff39a89d4ab48826f973dace69330ea881a0da604c546625ed51d1514f86b1aed4d35a65e377f503efd3b01a072d7bb9b0efcb537dcd5c11173582b7235504d1fb841f101f8f9b65fe9a943b50c01d27093be3ee2cb16fb8b8d2df30368275a24ab829dfb96bfcddc80d8702dc5ff8785958304545c81ef5904d35fd00bbdd826d50a5d71084c9e672d500341236d3354c6fa942df15806fc7ebfba027981d9c39824ca7274c86f8480188dc0411e0d7967042bcea05dfcb402c7919602791d651f6501a527ed7383ec0af83b3f3efcbb5335f1547537413a09dd84af2161d68ef5fc72228ad15c4b8fb3745ccdd84af32f76a1199daa52812641f38a8ad879ee1a9a6c214a5200b09fa2bb5c0931dc68de964f92118e73bde9743aa1821cb6665349845bab7468f85dbc5c8969c9ceecefdd7ad96d417b66b163e9ccc549c66bd08bb2c9326ee50f8192a9ae7a6223474b1d299778f4461bb31cae4484589ba441eb07bb4283f11ecd534e15bd31eb1a8d9279fc1eb20b6cb98d8a6a60a666cb2f4dcb37bb49e0c81acdacffdcd7c4155dd1a4e491c06ee130b8cf956991989479b02e8387780a36ba3eac611a91c46a7a6318e6ad436c54468eb0265dbe03c051d0626e3996f35ed2bacb09ecd8589f29408f359c0b1e7ecb42eac7875b7b2b8dfc40fa2ea02c18a63067b7440877761a6be4a8e5cdb927f5c9ed59edd941a232f9dc7e91fd58e80460dd2ecfeec002f2baf87cc23b52e4829ff37e152a39b4044fb25c69e6796bec491247a175b5851acd045296d5e74a165567d6ae83bc53d326608cc91220b2715b02d5cf71f927c125de98a747d33d6eb86678220388e84999242dc458981c247216caa1550723f98fc4298362d40fd7508266661071af299821db8a62bacc7ce884f1991f4f73995678b5d05e93b9551320064aa5dcf54aa0f9020536207f67a9e0b5c273be38b1613aead3aec5e8b7e91158e062edbda662ddf9ddccf8805fadb9e29c30a5df121779031408d20c9fdc56fb90c69ea030202bb11d1b59d52747252550061a089e942ac9c26a6d7ee3453a71abaf39f0bd003ef9eccccdc7e9b472ec7d2f775ba56e72a633790910e8c6818af33af423fd6a882d76cdb655438d7fea54197669c1c7ff7a2a8f6926622b20d4f833e3634d69d9d2040f17c43cc0917a71fe76977f25890322dd5035bd6b5ff40000e13962f16ce8a1380e4b5fe27d346b7836359e0b95cc842ad73af8e80db930d6c156e4f31bc0dad6f6e0d89a6db8c9b5d3ce03e6fd48821c94ef0272e79a600aa715ab1cdec42fdf75a7bebd28d207dd66e1beb43f5202f11fdbfbc732f18637ccc61775d22899f7906daac49845cd002f096276a53d52cc612e00717efe592c3639d081fecdbd42f6e1e5a281cef44837e94354f12499b452b6e5d9ede851ecfc0c6c67a6a40c618a3e26ef0bcf6f430a87268c56c219a7c67b32d27851776855a6e4897b474a5e51ad3cd863e21e2db79f7d9f63b1c97acf1717ed3eb3ae68e54b473357feb771d017d1be2b0037fe0291ac764a9319865c5c9c331c42c3f2d6fca5c40732ad79bb06e3d7069d6bde5778b082ac607ea1a0965f7b411d52226cb56554138532a40622ef947423c23f0afbc8ba2ec425ff9ceabbb9f0661aa1a7b7786bfe49b67d663c06a43c30309f793cf3b3ed293bdf35cee4d59a4d0417ef912a6a827bfd9eb11ea1ad0acfe312076d422ef7cec820575ffb82e1b13e5d998967cdc32127f99e45dffb6119dded7432e4253637e1bc6b9f9d7280260b89673a8265d93b8261072add4df45319d00e7cb4bebdecb0ffd8b3a73bc44c98f4bb90a232c40219749b581f390a3a893e5569a0a330f5e73cd472a7e8055e0479474238fde96f5052ebc767caae5e82d5c6324a05416d269e3404eec0eb2598636065583ef2142a86630a0dee6bce36348c44ddcae7cf0e4adeabfce81a0ecad802770dd8ba262b62feca33196c6e30980eb0adcdc7e059d7fcc6fbfe9c8a2866e34d8a38af315131cfc17aa4c2b26a5994b504422f4229699048d202920497f08ec1464957ce930213c1bae6aea8a5dc2fbdd8407431b933b211e1746338f2af9f787bb756db1c586c13d399a2999f4657275fb29b694af10cc6d8ba1077b2ad848b5fa1d79b4da475faf70a5e5f25e188a0e7f17963b3ef4755994c40b49790e4adaf5cbee9f4c32e462b2bebc95fb304f63e77abb6c65138f153851b8564bc3236938c0106b995eb88f8865fc6a4ca6c207bd252d8dee01bb75bcde5e8f64b52eededad48642e522642ef886c19906f50eacc04dd30dd8d62df3a6ff6b456779437cc2166c6fe85da9583c7b</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>horysk</category>
       </categories>
@@ -2985,89 +2963,6 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l username server_ip_address
 <h2 id="9-【Chapter-24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润"><a href="#9-【Chapter-24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润" class="headerlink" title="9. 【Chapter 24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润"></a>9. 【Chapter 24】大众应该始终记住股票交易的要素一支股票上涨时，不需要花精神去解释它为什么会上涨利润</h2><p>市场永远领先于实际状况，在交易时，不必过于追究行情波动的原因与理由，而应及时作出相应应对；</p>
 <h2 id="10-【其它】"><a href="#10-【其它】" class="headerlink" title="10.【其它】"></a>10.【其它】</h2><p>利弗莫尔的交易能力强于绝大多数人，也曾在交易中赚取极多的利润，但最终依然破产，一贫如洗；<br>在交易世界里，生存比盈利更重要，只有将良好的资金管理与风险控制永远放在第一位，才能避免类似利弗莫尔的结局；<br>永远不要让自己破产，更不可让自己因交易而负债；<br>如果因为资金不够而无法获得更多的利润，那只能说明这些可能获得的额外利润并不是目前所应当得到的，不可因过分贪婪而急于冒进，承担额外的风险；</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>试用了5款BI分析工具</title>
-    <url>/2020/07/27/%E8%AF%95%E7%94%A8%E4%BA%865%E6%AC%BEBI%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<p>前几天，领导甩给我一个任务，考察几个BI工具，下季度立项用。</p>
-<p>潜心做ETL的我，对BI只是略懂。之前上的BO，由于开发模式不适应、人员用不惯，再加上负责这块的同事走的走，一直被搁置。所以这次目标很明确，急需上手简单，维护要少，能快速反应数据结果的BI。</p>
-<p>于是我花了4天时间，全网百度、翻遍各大BI产品官网，也翻遍了知乎和科技网站的口碑推荐，列选了工具测评清单：Tableau、PowerBI、MicroStrategy、Qlikview、FineBI。</p>
-<p>每个工具都亲自下载使用，也悉心问了报价。由于是企业选型，考虑的因素较多，除功能和使用感受，还会注重数据整合能力、数据处理性能以及安全性方面的因素，所以大家看着参考。</p>
-<p>从以下几个角度考量：</p>
-<p>部署安装<br>学习教程<br>使用体验（上手难度）和需求符合度<br>产品功能<br>报价和服务</p>
-<h2 id="Tableau"><a href="#Tableau" class="headerlink" title="Tableau"></a><a href="http://www.tableau.com/">Tableau</a></h2><p>从网络上找到一个10.4的Desktop破解版，替换一个注册文件即可，或者淘宝上找…（咳咳）。Tableau还有一个Server版，Server版需要请求tableau的服务器进行交互，网上找到一个代理，给发了一点资料后就没理，主要看desktop版。</p>
-<h3 id="1、-下载安装"><a href="#1、-下载安装" class="headerlink" title="1、 下载安装"></a>1、 下载安装</h3><p>百度或者官网上直接下载，类似装office一样，试用版有15天的试用期，过后会提示输入密钥，安装就和一般软件安装一样，解压压缩包，按照提示一步步做。</p>
-<h3 id="2、-学习教程"><a href="#2、-学习教程" class="headerlink" title="2、 学习教程"></a>2、 学习教程</h3><p>官网有教学视频，貌似没翻译完，学到一半发现后面的还都是英文的，脑壳疼。不过视频能基本带你熟悉这个工具并入门。</p>
-<p>官方貌似还出了一本书叫《人人都是数据分析师：Tableau应用实战》，就是软件教程，还提供数据源供练习，学习Tableau的必备工具书吧。</p>
-<p>Tableau有个在线的可视化实例库，都是学员们的作品，这个挺好，可视化作品大家可以互相参考，可以学习人家的分析思路。</p>
-<h3 id="3、-产品使用体验和需求符合度"><a href="#3、-产品使用体验和需求符合度" class="headerlink" title="3、 产品使用体验和需求符合度"></a>3、 产品使用体验和需求符合度</h3><p>Tableau可以连接数据库，或者导入excel文件数据。</p>
-<p>通过拖拽数据的维度和度量到工作区，来形成可视化图表，可以改变颜色，图表类型，以及其他各种细节。很多功能都是可以拖放到工作区，通过鼠标的几下点击和拖放来实现，很简单，基本不需要代码，还会自动推荐合适的图表。</p>
-<p>可视化方面个人认为Tableau还是很强大的，操作也很简单。分析这块，分组、筛选、下钻、新建数据字段需要写公式…这些还是有点难度，一般软件深入的功能都比较难，需要研究一番。</p>
-<h3 id="4、-产品功能"><a href="#4、-产品功能" class="headerlink" title="4、 产品功能"></a>4、 产品功能</h3><p>此次选型重点。</p>
-<p>Tableau是直接连接数据库（相当于ROLAP），以关系数据库为核心，以关系型结构进行多维数据的表示和存储，维表和事实表通过主关键字和外关键字联系在一起，形成”星型模式”。</p>
-<p>好处是小数据量非常快，大数据量影响性能。取数性能依赖于机器，且Tableau在构建多张有数据关联关系的表时，需要将多张数据表拼接成一张大的宽表，复杂统计时容易产生冗余数据，直接造成性能下降。</p>
-<p>数据更新</p>
-<p>BI很重要的一个功能是数据更新，它是报表自动化的基础。Tableau支持增量更新，不支持定时更新。Tableau抽取的数据均保存到制作的仪表板中，增量更新不能精确到某张表，必须是对全部数据的更新，报表多了，就很麻烦。</p>
-<p>银行业十分注重数据安全。感叹Tableau美中不足缺少流程和数据管理功能。</p>
-<p>Tableau Desktop（桌面版） 是用来创建分析，进行数据分析的，是分析工具。tableau 的server 是用来发布分析的，发布给企业有相关权限的人，是服务器。将工作簿发布到 Tableau Server。Tableau Server 会提供基于浏览器的分析。将工作簿发布到 Tableau Server 后，其他拥有帐户的人就可以登录查看发布的工作簿。</p>
-<h3 id="5、-关于选型价格"><a href="#5、-关于选型价格" class="headerlink" title="5、 关于选型价格"></a>5、 关于选型价格</h3><p>官网报价：</p>
-<p>代理商也给了我一个大致的价格：</p>
-<p>光产品，Desktop+Sever，一套一人加税后是11万多，每增加一人多买一个桌面版，就是15000左右，我们公司估计是3、40套，预计得7、80万，不含定制实施和维护服务。</p>
-<h2 id="PowerBI"><a href="#PowerBI" class="headerlink" title="PowerBI"></a><a href="http://powerbi.microsoft.com/">PowerBI</a></h2><p>Power BI是微软家的。如果大家熟悉Excel，应该会知道微软推出的Power Query、Power Pivot、Power View和Power Map，是Excel上非常强大的四个插件。Power BI则是微软将它们作为集合推出。如果大家熟练掌握以上四个插件，那么在Excel上也能实现部分BI，毕竟Excel是企业中人手一款的工具。</p>
-<h3 id="1、下载安装"><a href="#1、下载安装" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>Power BI的工作流是在Power BI Desktop中创建报表，将其发布到Power BI 服务，然后与其他人进行共享，让他们可以在服务中或在移动应用上查看到。</p>
-<p>Desktop很简单，免费的，官网下载即可，过程同tableau。Power BI报表服务器需要另外安装。需要先安装SQL Server，然后安装报表服务器。报表服务器免费版有180天是试用期，正式版需要购买密钥。</p>
-<h3 id="2、-学习教程-1"><a href="#2、-学习教程-1" class="headerlink" title="2、 学习教程"></a>2、 学习教程</h3><p>官网上只找到了学习文档，没有手把手教授的视频。</p>
-<p>微信上倒是搜到很多Excel牛人组织的学习课程，可惜要钱呐~</p>
-<h3 id="3、产品使用体验和需求符合度"><a href="#3、产品使用体验和需求符合度" class="headerlink" title="3、产品使用体验和需求符合度"></a>3、产品使用体验和需求符合度</h3><p>Power BI的界面很office，上面是操作工具项，左侧栏是导航栏。神似Access，所以寻找功能的时候轻车熟路。侧导航栏对应三个模块：仪表板、报表和数据集。整体流程实用流程就是读取数据集—数据清洗—数据关联—表制作—Dashboard整合仪表板。</p>
-<p>可视化方面，相比Tableau，Power BI给人的感觉像是IT出身，没有特别惊艳的感觉，做出来的图表中规中矩、实用性也不错。其实真正好的数据分析，可视化只需要实用就够了。</p>
-<h3 id="4、-产品功能-1"><a href="#4、-产品功能-1" class="headerlink" title="4、 产品功能"></a>4、 产品功能</h3><p>数据源</p>
-<p>Power BI支持各类数据源（市面上绝大部分BI都支持，只是读取方式略有差异），除了Excel和CSV 文件，它还支持Acess、SQL数据库、Hadoop／HDFS、Spark、第三方API等。</p>
-<p>数据清洗</p>
-<p>Power BI有一个高级功能叫DAX（Data Analysis Expressions），是整个 Power BI 使用的公式语言。DAX近似Excel函数（大多数第三方BI，函数均接近Excel），故它针对新手非常友好。如果大家已经熟悉Excel函数，上手速度会很快，基本上函数名字都一样。</p>
-<p>数据关联</p>
-<p>建立表间联系这个很重要，在Excel中，大家一般用写Vlookup函数实现，Power BI则用拖拽关联数据，确实更加方便。</p>
-<p>数据更新</p>
-<p>BI很重要的一个功能是数据更新，它是报表自动化的基础，它通常和SQL关联。我们使用CSV，只能往里面黏贴数据更新，还是繁琐了些，只属于半自动化。</p>
-<h3 id="5、-关于选型价格-1"><a href="#5、-关于选型价格-1" class="headerlink" title="5、 关于选型价格"></a>5、 关于选型价格</h3><p>官网价格（个人参考）：</p>
-<p>企业部署：</p>
-<p>它是按设计用户和节点卖的，按年/按月收费。估计了一下，假设200个用户的企业，40个设计用户，1年收费是45万左右，也就是每年要付出这么多，还是比较贵的。</p>
-<h2 id="FineBI"><a href="#FineBI" class="headerlink" title="FineBI"></a><a href="http://www.finebi.com/">FineBI</a></h2><p>国产BI里口碑好的就挑了这么一家，是帆软的。他家还有一个报表工具finereport，貌似做得更成熟更好，毕竟报表BI也不分家。</p>
-<h3 id="1、下载安装-1"><a href="#1、下载安装-1" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>下载和安装很简单，官网上直接下载。启动软件时会加载数据日志，但是所有操作都在web端。最初用的4.1版，后来对方工作人员给我发来了最新的5.0，说这几天会上线。</p>
-<h3 id="2、学习教程"><a href="#2、学习教程" class="headerlink" title="2、学习教程"></a>2、学习教程</h3><p>激活时会发送一个学习资料包，上面有大概10多节功能教学视频。</p>
-<p>还有学习帮助文档，下载激活时大家留心，记得收藏。</p>
-<p>除此之外，还有个学习交流的论坛，水了几天，加了学习交流群，怪怪好多人，提问回答好积极，对像我这样的技术宅来讲是极好的。</p>
-<h3 id="3、产品使用体验和需求符合度-1"><a href="#3、产品使用体验和需求符合度-1" class="headerlink" title="3、产品使用体验和需求符合度"></a>3、产品使用体验和需求符合度</h3><p>使用的过程是先配置数据源，然后建立一个所谓的业务包，应该就是数据表暂存到业务包内管理，可以按照业务分类。后面就是数据清洗、数据表关联，然后可视化分析了。</p>
-<p>界面风格是清爽商务的，比较符合中国人使用门户软件、使用互联网产品的感觉，看了一遍教程基本上就可以上手了。</p>
-<p>分析过程，交互啊操作思路，类似Tableau，都是维度和度量的拖拽，自动推荐合适的图表，可以更改颜色、图表类型，以及其他各种细节。</p>
-<p>数据配置时有个业务包，这个和其他BI工具大不同，暂时不太了解其用处，能把数据分门别类分好。</p>
-<h3 id="4、产品功能"><a href="#4、产品功能" class="headerlink" title="4、产品功能"></a>4、产品功能</h3><p>说其特有的吧。有权限管理有权限管理，有点像OA。tableau、PowerBI这个功能都要装sever版，但貌似功能也局限于分享，没有部门、人员、数据权限的设置。所以相对来讲，finebi更适合企业级使用。</p>
-<p>可视化和分析功能基本同tableau，虽然我没有使用太深入，但是整体的分析操作，拖拽数据字段——生成图表——编辑dashboard，这个过程都是很像的。</p>
-<p>支持进行数据抽取和数据索引建模，可显著提高数据的计算速度，可实现离线查询；支持用户进行所有数据表的数据更新；支持对数据表进行增量增加、增量删除、增量修改更新。</p>
-<p>数据挖掘</p>
-<p>支持对数据进行时序预测、数据聚类、数据分类（神经网络、决策树算法）三类挖掘模型算法。</p>
-<p>最后，还有一个移动端，手机可查看分析。</p>
-<p>###　关于选型价格</p>
-<p>个人使用免费，不限功能，限并发。</p>
-<p>企业部署是按照功能来售卖，一次买断。问了对方销售，报价没说太明白，需要依据功能和项目来定，产品价格在小几十万不等。送一年技术服务，一年内免费升级。</p>
-<p>还有两个工具MicroStrategy和PowerBI，简单试了下，网上内容不多，且篇幅有限，就大致评价一下。</p>
-<h2 id="MicroStrategy"><a href="#MicroStrategy" class="headerlink" title="MicroStrategy"></a><a href="http://www.microstrategy.cn/cn">MicroStrategy</a></h2><p>网上下的10.11版。也是一个偏向于企业级的BI分析产品。</p>
-<p>国外产品，很多资料都还是英文版，看着很吃力。使用上是先配置数据，然后选择图表，可视化展现，数据字段可以ctrl多选拖拽。</p>
-<p>可视化风格和Tableau差不多，该支持的数据都能支持，就是对国内一些ERP等业务系统的数据连接并不支持。功能的话，性能我没有那么多数据也跑不起来，这块打算到现场POC再说。移动端、平板的适应做的挺好的，看他们也在大肆宣传，应该是优势之一。</p>
-<p>产品拥有行业型及业务模块的方案，不过案例多是国外的，在国外用的不错。</p>
-<p>报价包含产品licence费用以及服务费。产品费用按功能和用户来算，一个设计用户在16W，分析用户3~4W，web报表用户2.3W……总之价格还是蛮高的。</p>
-<h2 id="Qlikview"><a href="#Qlikview" class="headerlink" title="Qlikview"></a><a href="http://www.qlik.com/zh-cn">Qlikview</a></h2><p>不得不吐槽，国外产品在国内的网站真的是…费了老大劲找到并下载了。</p>
-<p>Qlikview个人是没觉得好用，也没看出优势来，更像是一个可视化工具。像tableau、finebi可以做探索性的数据分析。qlikview比如你想拖一些数据看看结论与猜想是否正确，有时候可能要做20多个仪表盘才能验证自己的猜想，它比较适合一开始就知道怎么分析展现。</p>
-<p>Qlikview也是内存型的BI，同Tableau，通病是数据处理速度很大程度上依赖内存大小，对硬件要求较高，一般企业的配置，数据处理起来较慢。</p>
-<p>关于报价，国内的报价不清楚，官网也没有展示，填了表单，代理商也没有回应。</p>
-<p>最后<br>个人青睐于前三个，上手都比较简单，tableau可视化最佳，powerbi可以和excel结合，finebi最符合选型需求，上手也最简单。具体的还涉及数据读取性能、集群等等，还有乙方项目这块的时间和经济成本。</p>
-]]></content>
-      <categories>
-        <category>BI</category>
-      </categories>
-      <tags>
-        <tag>BI</tag>
-        <tag>Tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>读写CSV数据</title>
@@ -3181,6 +3076,89 @@ with open(&#39;stocks.csv&#39;) as f:
       </categories>
       <tags>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>试用了5款BI分析工具</title>
+    <url>/2020/07/27/%E8%AF%95%E7%94%A8%E4%BA%865%E6%AC%BEBI%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p>前几天，领导甩给我一个任务，考察几个BI工具，下季度立项用。</p>
+<p>潜心做ETL的我，对BI只是略懂。之前上的BO，由于开发模式不适应、人员用不惯，再加上负责这块的同事走的走，一直被搁置。所以这次目标很明确，急需上手简单，维护要少，能快速反应数据结果的BI。</p>
+<p>于是我花了4天时间，全网百度、翻遍各大BI产品官网，也翻遍了知乎和科技网站的口碑推荐，列选了工具测评清单：Tableau、PowerBI、MicroStrategy、Qlikview、FineBI。</p>
+<p>每个工具都亲自下载使用，也悉心问了报价。由于是企业选型，考虑的因素较多，除功能和使用感受，还会注重数据整合能力、数据处理性能以及安全性方面的因素，所以大家看着参考。</p>
+<p>从以下几个角度考量：</p>
+<p>部署安装<br>学习教程<br>使用体验（上手难度）和需求符合度<br>产品功能<br>报价和服务</p>
+<h2 id="Tableau"><a href="#Tableau" class="headerlink" title="Tableau"></a><a href="http://www.tableau.com/">Tableau</a></h2><p>从网络上找到一个10.4的Desktop破解版，替换一个注册文件即可，或者淘宝上找…（咳咳）。Tableau还有一个Server版，Server版需要请求tableau的服务器进行交互，网上找到一个代理，给发了一点资料后就没理，主要看desktop版。</p>
+<h3 id="1、-下载安装"><a href="#1、-下载安装" class="headerlink" title="1、 下载安装"></a>1、 下载安装</h3><p>百度或者官网上直接下载，类似装office一样，试用版有15天的试用期，过后会提示输入密钥，安装就和一般软件安装一样，解压压缩包，按照提示一步步做。</p>
+<h3 id="2、-学习教程"><a href="#2、-学习教程" class="headerlink" title="2、 学习教程"></a>2、 学习教程</h3><p>官网有教学视频，貌似没翻译完，学到一半发现后面的还都是英文的，脑壳疼。不过视频能基本带你熟悉这个工具并入门。</p>
+<p>官方貌似还出了一本书叫《人人都是数据分析师：Tableau应用实战》，就是软件教程，还提供数据源供练习，学习Tableau的必备工具书吧。</p>
+<p>Tableau有个在线的可视化实例库，都是学员们的作品，这个挺好，可视化作品大家可以互相参考，可以学习人家的分析思路。</p>
+<h3 id="3、-产品使用体验和需求符合度"><a href="#3、-产品使用体验和需求符合度" class="headerlink" title="3、 产品使用体验和需求符合度"></a>3、 产品使用体验和需求符合度</h3><p>Tableau可以连接数据库，或者导入excel文件数据。</p>
+<p>通过拖拽数据的维度和度量到工作区，来形成可视化图表，可以改变颜色，图表类型，以及其他各种细节。很多功能都是可以拖放到工作区，通过鼠标的几下点击和拖放来实现，很简单，基本不需要代码，还会自动推荐合适的图表。</p>
+<p>可视化方面个人认为Tableau还是很强大的，操作也很简单。分析这块，分组、筛选、下钻、新建数据字段需要写公式…这些还是有点难度，一般软件深入的功能都比较难，需要研究一番。</p>
+<h3 id="4、-产品功能"><a href="#4、-产品功能" class="headerlink" title="4、 产品功能"></a>4、 产品功能</h3><p>此次选型重点。</p>
+<p>Tableau是直接连接数据库（相当于ROLAP），以关系数据库为核心，以关系型结构进行多维数据的表示和存储，维表和事实表通过主关键字和外关键字联系在一起，形成”星型模式”。</p>
+<p>好处是小数据量非常快，大数据量影响性能。取数性能依赖于机器，且Tableau在构建多张有数据关联关系的表时，需要将多张数据表拼接成一张大的宽表，复杂统计时容易产生冗余数据，直接造成性能下降。</p>
+<p>数据更新</p>
+<p>BI很重要的一个功能是数据更新，它是报表自动化的基础。Tableau支持增量更新，不支持定时更新。Tableau抽取的数据均保存到制作的仪表板中，增量更新不能精确到某张表，必须是对全部数据的更新，报表多了，就很麻烦。</p>
+<p>银行业十分注重数据安全。感叹Tableau美中不足缺少流程和数据管理功能。</p>
+<p>Tableau Desktop（桌面版） 是用来创建分析，进行数据分析的，是分析工具。tableau 的server 是用来发布分析的，发布给企业有相关权限的人，是服务器。将工作簿发布到 Tableau Server。Tableau Server 会提供基于浏览器的分析。将工作簿发布到 Tableau Server 后，其他拥有帐户的人就可以登录查看发布的工作簿。</p>
+<h3 id="5、-关于选型价格"><a href="#5、-关于选型价格" class="headerlink" title="5、 关于选型价格"></a>5、 关于选型价格</h3><p>官网报价：</p>
+<p>代理商也给了我一个大致的价格：</p>
+<p>光产品，Desktop+Sever，一套一人加税后是11万多，每增加一人多买一个桌面版，就是15000左右，我们公司估计是3、40套，预计得7、80万，不含定制实施和维护服务。</p>
+<h2 id="PowerBI"><a href="#PowerBI" class="headerlink" title="PowerBI"></a><a href="http://powerbi.microsoft.com/">PowerBI</a></h2><p>Power BI是微软家的。如果大家熟悉Excel，应该会知道微软推出的Power Query、Power Pivot、Power View和Power Map，是Excel上非常强大的四个插件。Power BI则是微软将它们作为集合推出。如果大家熟练掌握以上四个插件，那么在Excel上也能实现部分BI，毕竟Excel是企业中人手一款的工具。</p>
+<h3 id="1、下载安装"><a href="#1、下载安装" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>Power BI的工作流是在Power BI Desktop中创建报表，将其发布到Power BI 服务，然后与其他人进行共享，让他们可以在服务中或在移动应用上查看到。</p>
+<p>Desktop很简单，免费的，官网下载即可，过程同tableau。Power BI报表服务器需要另外安装。需要先安装SQL Server，然后安装报表服务器。报表服务器免费版有180天是试用期，正式版需要购买密钥。</p>
+<h3 id="2、-学习教程-1"><a href="#2、-学习教程-1" class="headerlink" title="2、 学习教程"></a>2、 学习教程</h3><p>官网上只找到了学习文档，没有手把手教授的视频。</p>
+<p>微信上倒是搜到很多Excel牛人组织的学习课程，可惜要钱呐~</p>
+<h3 id="3、产品使用体验和需求符合度"><a href="#3、产品使用体验和需求符合度" class="headerlink" title="3、产品使用体验和需求符合度"></a>3、产品使用体验和需求符合度</h3><p>Power BI的界面很office，上面是操作工具项，左侧栏是导航栏。神似Access，所以寻找功能的时候轻车熟路。侧导航栏对应三个模块：仪表板、报表和数据集。整体流程实用流程就是读取数据集—数据清洗—数据关联—表制作—Dashboard整合仪表板。</p>
+<p>可视化方面，相比Tableau，Power BI给人的感觉像是IT出身，没有特别惊艳的感觉，做出来的图表中规中矩、实用性也不错。其实真正好的数据分析，可视化只需要实用就够了。</p>
+<h3 id="4、-产品功能-1"><a href="#4、-产品功能-1" class="headerlink" title="4、 产品功能"></a>4、 产品功能</h3><p>数据源</p>
+<p>Power BI支持各类数据源（市面上绝大部分BI都支持，只是读取方式略有差异），除了Excel和CSV 文件，它还支持Acess、SQL数据库、Hadoop／HDFS、Spark、第三方API等。</p>
+<p>数据清洗</p>
+<p>Power BI有一个高级功能叫DAX（Data Analysis Expressions），是整个 Power BI 使用的公式语言。DAX近似Excel函数（大多数第三方BI，函数均接近Excel），故它针对新手非常友好。如果大家已经熟悉Excel函数，上手速度会很快，基本上函数名字都一样。</p>
+<p>数据关联</p>
+<p>建立表间联系这个很重要，在Excel中，大家一般用写Vlookup函数实现，Power BI则用拖拽关联数据，确实更加方便。</p>
+<p>数据更新</p>
+<p>BI很重要的一个功能是数据更新，它是报表自动化的基础，它通常和SQL关联。我们使用CSV，只能往里面黏贴数据更新，还是繁琐了些，只属于半自动化。</p>
+<h3 id="5、-关于选型价格-1"><a href="#5、-关于选型价格-1" class="headerlink" title="5、 关于选型价格"></a>5、 关于选型价格</h3><p>官网价格（个人参考）：</p>
+<p>企业部署：</p>
+<p>它是按设计用户和节点卖的，按年/按月收费。估计了一下，假设200个用户的企业，40个设计用户，1年收费是45万左右，也就是每年要付出这么多，还是比较贵的。</p>
+<h2 id="FineBI"><a href="#FineBI" class="headerlink" title="FineBI"></a><a href="http://www.finebi.com/">FineBI</a></h2><p>国产BI里口碑好的就挑了这么一家，是帆软的。他家还有一个报表工具finereport，貌似做得更成熟更好，毕竟报表BI也不分家。</p>
+<h3 id="1、下载安装-1"><a href="#1、下载安装-1" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p>下载和安装很简单，官网上直接下载。启动软件时会加载数据日志，但是所有操作都在web端。最初用的4.1版，后来对方工作人员给我发来了最新的5.0，说这几天会上线。</p>
+<h3 id="2、学习教程"><a href="#2、学习教程" class="headerlink" title="2、学习教程"></a>2、学习教程</h3><p>激活时会发送一个学习资料包，上面有大概10多节功能教学视频。</p>
+<p>还有学习帮助文档，下载激活时大家留心，记得收藏。</p>
+<p>除此之外，还有个学习交流的论坛，水了几天，加了学习交流群，怪怪好多人，提问回答好积极，对像我这样的技术宅来讲是极好的。</p>
+<h3 id="3、产品使用体验和需求符合度-1"><a href="#3、产品使用体验和需求符合度-1" class="headerlink" title="3、产品使用体验和需求符合度"></a>3、产品使用体验和需求符合度</h3><p>使用的过程是先配置数据源，然后建立一个所谓的业务包，应该就是数据表暂存到业务包内管理，可以按照业务分类。后面就是数据清洗、数据表关联，然后可视化分析了。</p>
+<p>界面风格是清爽商务的，比较符合中国人使用门户软件、使用互联网产品的感觉，看了一遍教程基本上就可以上手了。</p>
+<p>分析过程，交互啊操作思路，类似Tableau，都是维度和度量的拖拽，自动推荐合适的图表，可以更改颜色、图表类型，以及其他各种细节。</p>
+<p>数据配置时有个业务包，这个和其他BI工具大不同，暂时不太了解其用处，能把数据分门别类分好。</p>
+<h3 id="4、产品功能"><a href="#4、产品功能" class="headerlink" title="4、产品功能"></a>4、产品功能</h3><p>说其特有的吧。有权限管理有权限管理，有点像OA。tableau、PowerBI这个功能都要装sever版，但貌似功能也局限于分享，没有部门、人员、数据权限的设置。所以相对来讲，finebi更适合企业级使用。</p>
+<p>可视化和分析功能基本同tableau，虽然我没有使用太深入，但是整体的分析操作，拖拽数据字段——生成图表——编辑dashboard，这个过程都是很像的。</p>
+<p>支持进行数据抽取和数据索引建模，可显著提高数据的计算速度，可实现离线查询；支持用户进行所有数据表的数据更新；支持对数据表进行增量增加、增量删除、增量修改更新。</p>
+<p>数据挖掘</p>
+<p>支持对数据进行时序预测、数据聚类、数据分类（神经网络、决策树算法）三类挖掘模型算法。</p>
+<p>最后，还有一个移动端，手机可查看分析。</p>
+<p>###　关于选型价格</p>
+<p>个人使用免费，不限功能，限并发。</p>
+<p>企业部署是按照功能来售卖，一次买断。问了对方销售，报价没说太明白，需要依据功能和项目来定，产品价格在小几十万不等。送一年技术服务，一年内免费升级。</p>
+<p>还有两个工具MicroStrategy和PowerBI，简单试了下，网上内容不多，且篇幅有限，就大致评价一下。</p>
+<h2 id="MicroStrategy"><a href="#MicroStrategy" class="headerlink" title="MicroStrategy"></a><a href="http://www.microstrategy.cn/cn">MicroStrategy</a></h2><p>网上下的10.11版。也是一个偏向于企业级的BI分析产品。</p>
+<p>国外产品，很多资料都还是英文版，看着很吃力。使用上是先配置数据，然后选择图表，可视化展现，数据字段可以ctrl多选拖拽。</p>
+<p>可视化风格和Tableau差不多，该支持的数据都能支持，就是对国内一些ERP等业务系统的数据连接并不支持。功能的话，性能我没有那么多数据也跑不起来，这块打算到现场POC再说。移动端、平板的适应做的挺好的，看他们也在大肆宣传，应该是优势之一。</p>
+<p>产品拥有行业型及业务模块的方案，不过案例多是国外的，在国外用的不错。</p>
+<p>报价包含产品licence费用以及服务费。产品费用按功能和用户来算，一个设计用户在16W，分析用户3~4W，web报表用户2.3W……总之价格还是蛮高的。</p>
+<h2 id="Qlikview"><a href="#Qlikview" class="headerlink" title="Qlikview"></a><a href="http://www.qlik.com/zh-cn">Qlikview</a></h2><p>不得不吐槽，国外产品在国内的网站真的是…费了老大劲找到并下载了。</p>
+<p>Qlikview个人是没觉得好用，也没看出优势来，更像是一个可视化工具。像tableau、finebi可以做探索性的数据分析。qlikview比如你想拖一些数据看看结论与猜想是否正确，有时候可能要做20多个仪表盘才能验证自己的猜想，它比较适合一开始就知道怎么分析展现。</p>
+<p>Qlikview也是内存型的BI，同Tableau，通病是数据处理速度很大程度上依赖内存大小，对硬件要求较高，一般企业的配置，数据处理起来较慢。</p>
+<p>关于报价，国内的报价不清楚，官网也没有展示，填了表单，代理商也没有回应。</p>
+<p>最后<br>个人青睐于前三个，上手都比较简单，tableau可视化最佳，powerbi可以和excel结合，finebi最符合选型需求，上手也最简单。具体的还涉及数据读取性能、集群等等，还有乙方项目这块的时间和经济成本。</p>
+]]></content>
+      <categories>
+        <category>BI</category>
+      </categories>
+      <tags>
+        <tag>BI</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -3385,16 +3363,16 @@ with open(&#39;stocks.csv&#39;) as f:
 <p>生成业务网络定义（Business Network Definition – BND）<br>$ yo hyperledger-composer:businessnetwork</p>
 <p>显示更多<br>参数 businessnetwork 来自于之前安装的 generator-hyperledger-composer，表示了一组对应的模板文件。可以在 ~/.nvm/versions/node/v8.11.1/lib/node_modules/generator-hyperledger-composer/generators/businessnetwork/templates/ 下找到即将生成的内容的模板。</p>
 <p>运行会提示输入相关信息，为方便学习，建议 Business network name 定义为：tutorial-network；Namespace 定义为：org.example.biznet，其他信息可以自行决定内容。将定义的内容如下：</p>
-<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#108;&#105;&#99;&#101;&#x40;&#111;&#x72;&#x67;&#x2e;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x62;&#105;&#122;&#110;&#x65;&#116;">&#97;&#108;&#105;&#99;&#101;&#x40;&#111;&#x72;&#x67;&#x2e;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x62;&#105;&#122;&#110;&#x65;&#116;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
+<p>Business network name: tutorial-network<br>Description: The first blockchain network<br>Author name: Alice<br>Author email: <a href="mailto:&#97;&#x6c;&#105;&#x63;&#x65;&#64;&#111;&#114;&#103;&#46;&#x65;&#120;&#x61;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x62;&#x69;&#x7a;&#x6e;&#101;&#x74;">&#97;&#x6c;&#105;&#x63;&#x65;&#64;&#111;&#114;&#103;&#46;&#x65;&#120;&#x61;&#x6d;&#112;&#x6c;&#x65;&#x2e;&#x62;&#x69;&#x7a;&#x6e;&#101;&#x74;</a><br>License: Apache-2.0<br>Namespace: org.example.biznet</p>
 <p>显示更多<br>执行成功后，在当前 ~/fabric-tools/ 目录下，新增了一个目录 tutorial-network, 里面有 index.js, package.json 等文件，以及 lib, models 两个目录，这就是将要部署的区块链业务网络定义。</p>
 <p>进入 tutorial-network 目录<br>$ cd ~/fabric-tools/tutorial-network</p>
 <p>显示更多<br>后续的操作基本都在此目录下完成。</p>
 <p>生成 .bna 文件<br>$ composer archive create -t dir -n .</p>
-<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#x74;&#117;&#x74;&#111;&#x72;&#105;&#97;&#108;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#97;">&#x74;&#117;&#x74;&#111;&#x72;&#105;&#97;&#108;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#x31;&#46;&#x62;&#x6e;&#97;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
+<p>显示更多<br>执行成功后，在当前目录下会产生一个新文件 <a href="mailto:&#116;&#117;&#x74;&#x6f;&#x72;&#x69;&#x61;&#x6c;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#107;&#64;&#48;&#46;&#48;&#46;&#x31;&#x2e;&#x62;&#110;&#x61;">&#116;&#117;&#x74;&#x6f;&#x72;&#x69;&#x61;&#x6c;&#45;&#x6e;&#x65;&#x74;&#119;&#111;&#114;&#107;&#64;&#48;&#46;&#48;&#46;&#x31;&#x2e;&#x62;&#110;&#x61;</a>，即是 tutorial-network 目录下文件的压缩包。解压后发现其中主要有文件及目录：lib/，models/，package.json，permissions.acl。我们会在以后详细解释、操作这些文件。</p>
 <p>部署及启动业务网络<br>这是第一个示例区块链网络安装部署的最后一部分内容了。</p>
-<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#x75;&#116;&#111;&#114;&#x69;&#97;&#108;&#x2d;&#110;&#101;&#116;&#119;&#x6f;&#114;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#49;&#46;&#98;&#x6e;&#x61;">&#116;&#x75;&#116;&#111;&#114;&#x69;&#97;&#108;&#x2d;&#110;&#101;&#116;&#119;&#x6f;&#114;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#49;&#46;&#98;&#x6e;&#x61;</a></p>
+<p>部署示例业务网络 tutorial-network<br>$ composer network install –card PeerAdmin@hlfv1 –archiveFile <a href="mailto:&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#97;&#x6c;&#45;&#110;&#x65;&#x74;&#119;&#111;&#x72;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#110;&#x61;">&#116;&#x75;&#116;&#x6f;&#x72;&#105;&#97;&#x6c;&#45;&#110;&#x65;&#x74;&#119;&#111;&#x72;&#107;&#x40;&#x30;&#x2e;&#x30;&#46;&#x31;&#46;&#98;&#110;&#x61;</a></p>
 <p>显示更多<br>或者</p>
-<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#116;&#117;&#116;&#111;&#x72;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#x74;&#x77;&#111;&#x72;&#x6b;&#64;&#48;&#46;&#48;&#46;&#x31;&#x2e;&#x62;&#x6e;&#x61;">&#116;&#117;&#116;&#111;&#x72;&#105;&#x61;&#x6c;&#x2d;&#110;&#x65;&#x74;&#x77;&#111;&#x72;&#x6b;&#64;&#48;&#46;&#48;&#46;&#x31;&#x2e;&#x62;&#x6e;&#x61;</a></p>
+<p>$ composer network install –c PeerAdmin@hlfv1 –a <a href="mailto:&#x74;&#x75;&#116;&#x6f;&#x72;&#105;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#x77;&#111;&#114;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#49;&#x2e;&#x62;&#110;&#x61;">&#x74;&#x75;&#116;&#x6f;&#x72;&#105;&#x61;&#108;&#x2d;&#110;&#x65;&#x74;&#x77;&#111;&#114;&#107;&#64;&#x30;&#x2e;&#48;&#46;&#49;&#x2e;&#x62;&#110;&#x61;</a></p>
 <p>显示更多<br>“composer network install” 命令会部署指定的 .bna 文件到 Fabric 网络。.bna 文件包括了这个业务网络的 Assets 模型、交易事务逻辑、访问控制规则等定义，但它并不能直接在 Fabric 上运行。.bna 文件是由 Composer 生成的，它是用 Composer 提供支持的一系列建模语言、规范定义的业务网络定义，我们必须将它先安装在 Fabric Peer 节点上。然后才可以在这个节点上启动运行这个业务网络。</p>
 <p>参数 -c (–card) 应指定为在上一步骤中生成 PeerAdmin Card 文件。</p>
 <p>参数 -a (–archiveFile) 应指定为将要部署的业务网络文件包。</p>
