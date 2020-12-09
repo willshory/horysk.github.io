@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>解决 gitee page 无法自动更新 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/12/04/32250/" class="shake shake-little" title="解决 gitee page 无法自动更新">
+            
+            解决 gitee page 无法自动更新
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+        
+            
+        
+        
+        <div class="meta meta_auth">
+            <img src="/" alt="head" />
+            <p>Hory Skone</p>
+        </div>
+    
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年12月04日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年12月04日</p>
+        </div>
+    </div>
+    
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p>众所周知，国内 GitHub 的加载速度不太理想，而大多数开发者会使用 Github 的 Github Page 功能搭建博客，因此博客的访问速度也会受到影响。为了解决访问速度的问题，我们将博客转移到了 gitee 中（ OSChina 旗下 git 平台）</p>
+<h2 id="1-问题：使用-hexo-部署到-gitee-后，博客页面并没有更新"><a href="#1-问题：使用-hexo-部署到-gitee-后，博客页面并没有更新" class="headerlink" title="1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新"></a>1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新</h2><p>原因： gitee page 只有付费版才能自动更新，免费版只能手动点击 “设置” 中的更新按钮</p>
+<h2 id="2-自动化解决方案"><a href="#2-自动化解决方案" class="headerlink" title="2. 自动化解决方案"></a>2. 自动化解决方案</h2><p>使用 puppeteer 操作浏览器进行更新按钮点击。</p>
+<h2 id="3-源码如下"><a href="#3-源码如下" class="headerlink" title="3. 源码如下:"></a>3. 源码如下:</h2><a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">// 此处安装版本为 1.8.0</span><br><span class="line">const puppeteer = require(<span class="string">&#x27;puppeteer&#x27;</span>); </span><br><span class="line"></span><br><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">giteeUpdate</span></span>() &#123;</span><br><span class="line">    const browser = await puppeteer.launch(&#123;</span><br><span class="line">        // 此处可以使用 <span class="literal">false</span> 有头模式进行调试, 调试完注释即可</span><br><span class="line">          headless: <span class="literal">false</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    const page = await browser.newPage();</span><br><span class="line">    await page.goto(<span class="string">&#x27;https://gitee.com/login&#x27;</span>);</span><br><span class="line">    // 1. 选中账号控件</span><br><span class="line">    <span class="built_in">let</span> accountElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_login&quot;]&#x27;</span>) // 此处使用 xpath 寻找控件，下同</span><br><span class="line">    // 2. 填入账号</span><br><span class="line">    await accountElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 账户&#x27;</span>)</span><br><span class="line">    // 3. 选中密码控件</span><br><span class="line">    <span class="built_in">let</span> pwdElements = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;user_password&quot;]&#x27;</span>)</span><br><span class="line">    // 4. 填入密码</span><br><span class="line">    await pwdElements[0].<span class="built_in">type</span>(<span class="string">&#x27;你的 gitee 密码&#x27;</span>)</span><br><span class="line">    // 5. 点击登录</span><br><span class="line">    <span class="built_in">let</span> loginButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;new_user&quot;]/div[2]/div/div/div[4]/input&#x27;</span>)</span><br><span class="line">    await loginButtons[0].click()</span><br><span class="line">    // 6. 等待登录成功</span><br><span class="line">    await page.waitFor(1000)</span><br><span class="line">    await page.goto(<span class="string">&#x27;你的 gitee page 更新按钮页面&#x27;</span>); // 比如： https://gitee.com/yang0033/hexo-blog/pages</span><br><span class="line">    // 7.1. 监听步骤 7 中触发的确认弹框，并点击确认</span><br><span class="line">    await page.on(<span class="string">&#x27;dialog&#x27;</span>, async dialog =&gt; &#123;</span><br><span class="line">        console.log(<span class="string">&#x27;确认更新&#x27;</span>)</span><br><span class="line">        dialog.accept();</span><br><span class="line">    &#125;)</span><br><span class="line">    // 7. 点击更新按钮，并弹出确认弹窗</span><br><span class="line">    <span class="built_in">let</span> updateButtons = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages-branch&quot;]/div[7]&#x27;</span>)</span><br><span class="line">    await updateButtons[0].click()</span><br><span class="line">    // 8. 轮询并确认是否更新完毕</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        await page.waitFor(2000)</span><br><span class="line">        try &#123;</span><br><span class="line">            // 8.1 获取更新状态标签</span><br><span class="line">            deploying = await page.<span class="variable">$x</span>(<span class="string">&#x27;//*[@id=&quot;pages_deploying&quot;]&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> (deploying.length &gt; 0) &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新中...&#x27;</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                console.log(<span class="string">&#x27;更新完毕&#x27;</span>)</span><br><span class="line">                <span class="built_in">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; catch (error) &#123;</span><br><span class="line">            <span class="built_in">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    await page.waitFor(500);</span><br><span class="line">    // 10.更新完毕，关闭浏览器</span><br><span class="line">    browser.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">giteeUpdate();</span><br></pre></td></tr></table></figure>
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/12/04/32250/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BD%BF%E7%94%A8-hexo-%E9%83%A8%E7%BD%B2%E5%88%B0-gitee-%E5%90%8E%EF%BC%8C%E5%8D%9A%E5%AE%A2%E9%A1%B5%E9%9D%A2%E5%B9%B6%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0"><span class="toc-text">1. 问题：使用 hexo 部署到 gitee 后，博客页面并没有更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%87%AA%E5%8A%A8%E5%8C%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">2. 自动化解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%BA%90%E7%A0%81%E5%A6%82%E4%B8%8B"><span class="toc-text">3. 源码如下:</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

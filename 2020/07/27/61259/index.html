@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口） | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/27/61259/" class="shake shake-little" title="从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口）">
+            
+            从零开始学习iftop流量监控（找出服务器耗费流量最多的ip和端口）
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Linux/">Linux</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月27日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月27日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Iftop/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Iftop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h2 id="一、iftop是什么"><a href="#一、iftop是什么" class="headerlink" title="一、iftop是什么"></a>一、iftop是什么</h2><p>iftop是类似于top的实时流量监控工具。</p>
+<p>作用：监控网卡的实时流量（可以指定网段）、反向解析IP、显示端口信息等</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://www.ex-parrot.com/~pdw/iftop/">http://www.ex-parrot.com/~pdw/iftop/</a></p>
+<h2 id="二、界面说明"><a href="#二、界面说明" class="headerlink" title="二、界面说明"></a>二、界面说明</h2><p>=&gt;代表发送数据，&lt;= 代表接收数据<br>TX：发送流量<br>RX：接收流量<br>TOTAL：总流量<br>Cumm：运行iftop到目前时间的总流量<br>peak：流量峰值<br>rates：分别表示过去 2s 10s 40s 的平均流量<br>##　三、常用参数<br>-i 指定需要检测的网卡， 如果有多个网络接口，则需要注意网络接口的选择，如：# iftop -i eth1<br>-B 将输出以byte为单位显示网卡流量，默认是bit<br>-n 将输出的主机信息都通过IP显示，不进行DNS解析<br>-N 只显示连接端口号，不显示端口对应的服务名称<br>-F 显示特定网段的网卡进出流量  如iftop -F 192.168.85.0/24<br>-h 帮助，显示参数信息<br>-p 以混杂模式运行iftop，此时iftop可以用作网络嗅探器 ;<br>-P 显示主机以及端口信息<br>-m 设置输出界面中最上面的流量刻度最大值，流量刻度分5个大段显示  如：# iftop -m 100M<br>-f 使用筛选码选择数据包来计数  如iftop -f filter code<br>-b 不显示流量图形条<br>-c 指定可选的配置文件   如iftop  -c config file<br>-t 使用不带ncurses的文本界面，<br>    以下两个是只和-t一起用的：<br>    -s num num秒后打印一次文本输出然后退出，-t -s 60组合使用，表示取60秒网络流量输出到终端<br>    -L num 打印的行数<br>-f 参数支持tcpdump的语法，可以使用各种过滤条件。</p>
+<h2 id="四、进入界面后的操作"><a href="#四、进入界面后的操作" class="headerlink" title="四、进入界面后的操作"></a>四、进入界面后的操作</h2><p>一般参数<br>P      切换暂停/继续显示<br>h      在交互界面/状态输出界面之间切换<br>b      切换是否显示平均流量图形条<br>B      切换显示2s 10s和40s内的平均流量<br>T      切换是否显示每个连接的总流量<br>j/k    向上或向下滚动屏幕显示当前的连接信息<br>f      编辑筛选码<br>l      打开iftop输出过滤功能 ，如输入要显示的IP按回车键后屏幕就只显示与这个IP相关的流量信息<br>L      切换显示流量刻度范围，刻度不同，流量图形条也会不同<br>q      退出iftop<br>主机参数<br>n      使iftop输出结果以IP或主机名的方式显示<br>s      切换是否显示源主机信息<br>d      切换是否显示远端目标主机信息<br>t      切换输出模式,一行或多行<br>端口显示参数<br>N      切换显示端口号/端口号对应服务名称<br>S      切换是否显示本地源主机的端口信息<br>D      切换是否显示远端目标主机的端口信息<br>p      切换是否显示端口信息<br>输出排序参数<br>1/2/3  通过第一列/第二列/第三列排序<br>&lt;      根据左边的本地主机名或IP地址进行排序</p>
+<blockquote>
+<pre><code> 根据远端目标主机的主机名或IP地址进行排序</code></pre>
+<p>o      切换是否固定显示当前的连接</p>
+</blockquote>
+<h2 id="五、使用示例"><a href="#五、使用示例" class="headerlink" title="五、使用示例"></a>五、使用示例</h2><p>1.显示网卡eth0的信息，主机通过ip显示<br>iftop -i eth0 -n<br>2.显示端口号（添加-P参数，进入界面可通过p参数关闭）<br>iftop -i eth0 -n -P<br>3.显示将输出以byte为单位显示网卡流量,默认是bit<br>iftop -i eth0 -n -B<br>4.显示流量进度条<br>iftop -i eth0 -n(进入界面后按下L)<br>5.显示每个连接的总流量<br>iftop -i eth0 -n(进入界面后按下T)<br>6.显示指定ip 172.17.1.158的流量<br>iftop -i eth0 -n(进入界面后按下l,输入172.17.1.158回车)</p>
+<h2 id="六、实战-找出最费流量的ip和端口号"><a href="#六、实战-找出最费流量的ip和端口号" class="headerlink" title="六、实战-找出最费流量的ip和端口号"></a>六、实战-找出最费流量的ip和端口号</h2><p>网上找了一圈，全是粘贴复制的iftop命令使用，没说到点上</p>
+<p>接下，请欣赏真正的表演</p>
+<p>1.进入界面<br>iftop -i eth0 -nNB -m 10M<br>-i 指定网卡，<br>-n 代表主机通过ip显示不走DNS<br>-N 只显示连接端口号，不显示端口对应的服务名称(不加会显示如ssh这样的服务名称，不便于排查)<br>-B 指定显示单位为Kb，默认是bit，太小！<br>-m 设置输出界面中最上面的流量刻度最大值，流量刻度分5个大段显示<br>进入后界面如下</p>
+<p>2.按下L显示流量刻度<br>L参数直接显示进度条，方便人类阅读，别说你能直接通过数字感知，小心被砍死</p>
+<p>3.按下T显示总量<br>总得有个总数统计，看着方便！</p>
+<p>4.按下3，根据最近40s统计排序<br>用平均值来统计最权威点</p>
+<p>5.按下t，发送和接受合成一行<br>显示两行没什么意思，一行就够了！</p>
+<p>6.多按几次B，查看最近2s、10s、40s的统计</p>
+<p>没错，图中的172.17.1.158就是我们找到的流量用得最多的IP</p>
+<p>7.筛选指定IP 172.17.1.158<br>按下l, 输入172.17.1.158，出现如下</p>
+<p>回车，生效</p>
+<p>这下就只看到这个ip的流量监控了</p>
+<p>8.找到这个ip哪个端口流量用得最多<br>按下p,根据端口号显示</p>
+<p>到这里，我们就学会了如何找出流量用得最多的ip和端口号，这么好干货你不high起来对不起哥这么用心的截图！</p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/27/61259/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81iftop%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">一、iftop是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%95%8C%E9%9D%A2%E8%AF%B4%E6%98%8E"><span class="toc-text">二、界面说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E8%BF%9B%E5%85%A5%E7%95%8C%E9%9D%A2%E5%90%8E%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">四、进入界面后的操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">五、使用示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%9E%E6%88%98-%E6%89%BE%E5%87%BA%E6%9C%80%E8%B4%B9%E6%B5%81%E9%87%8F%E7%9A%84ip%E5%92%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-text">六、实战-找出最费流量的ip和端口号</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

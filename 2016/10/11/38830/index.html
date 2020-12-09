@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2016/10/11/38830/" class="shake shake-little" title="用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN">
+            
+            用 Docker 快速部署 PPTP VPN 和 L2TP + IPSEC VPN
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/VPN/">VPN</a>►<a class="article-category-link" href="/categories/VPN/docker/">docker</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2016年10月11日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2016年10月11日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/VPN/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p>虽然平时主要用 Shadowsocks，但是架不住有时候没法安装 Shadowsocks 的客户端，那么就还是需要 PPTP VPN 或者 L2TP VPN。</p>
+<p>最早的时候，是使用的各种一键安装脚本，但是由于系统版本差异，每次需要安装的时候，都要现找可用的一键脚本，太费劲了。于是从网上找了别人封装好的 Docker 镜像，这篇文章总结下，基本上就是一条语句就搞定了。</p>
+<p>PPTP VPN<br>使用的镜像是 mobtitude/vpn-pptp，首先需要把用户名和密码配置一下，打开 /etc/ppp/chap-secrets，</p>
+<h1 id="Secrets-for-authentication-using-CHAP"><a href="#Secrets-for-authentication-using-CHAP" class="headerlink" title="Secrets for authentication using CHAP"></a>Secrets for authentication using CHAP</h1><h1 id="client-server-secret-IP-addresses"><a href="#client-server-secret-IP-addresses" class="headerlink" title="client        server  secret                  IP addresses"></a>client        server  secret                  IP addresses</h1><p>ety001         *          123456              *<br>上面的就是配置了一个用户名 ety001 和 密码 123456 的用户，然后执行下面的命令就可以了，</p>
+<p>docker run -d –name pptp –restart always  –privileged -p 1723:1723 -v /etc/ppp/chap-secrets:/etc/ppp/chap-secrets mobtitude/vpn-pptp<br>最后检查下 tcp 1723 端口在防火墙上是否打开就可以了。</p>
+<p>L2TP + IPSEC VPN<br>使用的镜像是 hwdsl2/ipsec-vpn-server，需要先配置下用户名、密码和PSK，新建一个环境变量的文件 /etc/l2tp-env，内容如下</p>
+<p>VPN_IPSEC_PSK=abcdef<br>VPN_USER=ety001<br>VPN_PASSWORD=123456<br>上面的就是配置了一个用户名 ety001，密码 123456，PSK 为 abcdef 的用户，然后执行下面的命令就可以了，</p>
+<p>docker run –name ipsec-vpn-server –env-file /etc/l2tp-env –restart=always -p 500:500/udp -p 4500:4500/udp -v /lib/modules:/lib/modules:ro -d –privileged hwdsl2/ipsec-vpn-server<br>最后检查下 udp 500 和 udp 4500 端口在防火墙上是否打开就可以了。</p>
+<p>Shadowsocks<br>最后再附带上一个一句话部署 Shadowsocks 的命令，先创建个配置文件 /etc/shadowsocks.json，内容如下</p>
+<p>{<br>    “server”:”0.0.0.0”,<br>    “server_port”: 10000,<br>    “local_address”:”127.0.0.1”,<br>    “local_port”:1080,<br>    “password”:”ety001”,<br>    “timeout”:60,<br>    “method”:”aes-256-cfb”<br>}<br>然后执行下面的命令部署</p>
+<p>$ docker run -d -p 10000:10000 -v /etc/shadowsocks.json:/conf/shadowsocks.json –restart=always –name ss ety001/ss</p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2016/10/11/38830/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Secrets-for-authentication-using-CHAP"><span class="toc-text">Secrets for authentication using CHAP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#client-server-secret-IP-addresses"><span class="toc-text">client        server  secret                  IP addresses</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

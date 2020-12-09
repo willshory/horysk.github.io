@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title> Hyperledger Fabric 1.4 快速环境搭建 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/29/62761/" class="shake shake-little" title=" Hyperledger Fabric 1.4 快速环境搭建">
+            
+             Hyperledger Fabric 1.4 快速环境搭建
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/block-chain/">block chain</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月29日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月29日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hyperledger-Fabric/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hyperledger Fabric</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>block chain</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p>自己的硕士研究方向和区块链有关，工程上一直以IBM的Hyperledger Fabric为基础进行开发，对该项目关注也有两年了。目前迎来了Hyperledger Fabric v1.4，这也是Fabric的第一个长期支持版本，因此也比较有代表性，故在此和大家分享一下自己的环境搭建过程。</p>
+<p>附上v1.4的官方文档：<a target="_blank" rel="noopener" href="https://hyperledger-fabric.readthedocs.io/en/release-1.4/%E3%80%82">https://hyperledger-fabric.readthedocs.io/en/release-1.4/。</a></p>
+<p>环境说明:</p>
+<p>　　本人测试环境为腾讯云学生机（1Core/RAM 2G/ROM 50G），CentOS 7.5 64位。</p>
+<h2 id="Golang-安装配置（非必须）"><a href="#Golang-安装配置（非必须）" class="headerlink" title="Golang 安装配置（非必须）"></a>Golang 安装配置（非必须）</h2><p>下载安装包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">mkdir download</span><br><span class="line">cd download</span><br><span class="line"><span class="comment"># 从国内站点下载合适的安装包</span></span><br><span class="line">wget https://studygolang.com/dl/golang/go1<span class="number">.12</span><span class="number">.4</span>.linux-amd64.tar.gz </span><br><span class="line">解压</span><br><span class="line"></span><br><span class="line">tar -C /usr/local/ -xzvf go1<span class="number">.12</span><span class="number">.4</span>.linux-amd64.tar.gz  <span class="comment">#解压到/usr/local/go目录下</span></span><br><span class="line">配置</span><br><span class="line"></span><br><span class="line">vim /etc/profile  <span class="comment"># 配置系统环境变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在最下方插入</span></span><br><span class="line"><span class="comment"># Golang 环境变量</span></span><br><span class="line">export GOROOT=/usr/local/go</span><br><span class="line">export GOPATH=/root/go</span><br><span class="line">export GOBIN=$GOPATH/<span class="built_in">bin</span></span><br><span class="line">export PATH=$PATH:$GOROOT/<span class="built_in">bin</span></span><br><span class="line">export PATH=$PATH:$GOPATH/<span class="built_in">bin</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使配置的环境变量生效</span></span><br><span class="line">source /etc/profile </span><br><span class="line"><span class="comment">#检查是否配置正确</span></span><br><span class="line">go version</span><br></pre></td></tr></table></figure>
+<p>说明：Go的环境并非运行的必须条件，但后期调试智能合约可能会用到，而且官网安装说明也提到了需要安装Go。</p>
+<h2 id="Node-js-安装配置（非必须）"><a href="#Node-js-安装配置（非必须）" class="headerlink" title="Node.js 安装配置（非必须）"></a>Node.js 安装配置（非必须）</h2><p>通过nvm安装Node.js和npm，该步骤也不是运行的必须条件，但后期如果需要node-sdk来开发应用程序的话就需要node环境。（npm源切换可参考npm 淘宝源切换教程）</p>
+<p>安装nvm（官方文档：<a target="_blank" rel="noopener" href="https://github.com/nvm-sh/nvm%EF%BC%89">https://github.com/nvm-sh/nvm）</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装后重启该会话或重新开一个会话即可生效</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0<span class="number">.34</span><span class="number">.0</span>/install.sh | bash</span><br><span class="line">通过nvm安装Node.js和npm</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前支持的版本，fabricv1.4要求只支持8.x</span></span><br><span class="line">nvm ls-remote</span><br><span class="line"><span class="comment"># 安装当前8.x LTS的最新版本（会同时安装npm）</span></span><br><span class="line">nvm install <span class="number">8.16</span><span class="number">.0</span></span><br><span class="line"><span class="comment"># 检查node.js安装版本</span></span><br><span class="line">node -v</span><br><span class="line"><span class="comment"># 检查npm的安装版本</span></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h2 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h2><p>Docker安装社区版的就可以，参考官方文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/install/linux/docker-ce/centos/">https://docs.docker.com/install/linux/docker-ce/centos/</a></p>
+<p>参考官方文档的第一种通过仓库安装的方式（傻瓜操作的话第三种直接脚本安装更简单）。</p>
+<p>p.s. 由于docker-hub镜像仓库在国外，可能会被墙或者很慢，建议大家参考daocloud加速器配置一下仓库，或者用云服务器的可以参考各家的docker仓库源（阿里Docker镜像库、腾讯Docker镜像库等）。</p>
+<p>卸载旧版本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br><span class="line"></span><br><span class="line">安装docker-ce的必需条件</span><br><span class="line"></span><br><span class="line">sudo yum install -y yum-utils \</span><br><span class="line">  device-mapper-persistent-data \</span><br><span class="line">  lvm2</span><br><span class="line">设置稳定版的仓库</span><br><span class="line"></span><br><span class="line">sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line">安装docker-ce</span><br><span class="line"></span><br><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line">启动docker</span><br><span class="line"></span><br><span class="line">sudo systemctl start docker</span><br><span class="line">测试docker是否安装成功</span><br><span class="line"></span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+<h2 id="Docker-Compose-安装"><a href="#Docker-Compose-安装" class="headerlink" title="Docker Compose 安装"></a>Docker Compose 安装</h2><p>Fabric中节点容器编排使用的使docker-compose，故需要安装docker-compose。官方文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a></p>
+<p>下载docker-compose</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)&quot;</span> -o /usr/local/<span class="built_in">bin</span>/docker-compose</span><br><span class="line">为docker-compose配置执行权限</span><br><span class="line"></span><br><span class="line">sudo chmod +x /usr/local/<span class="built_in">bin</span>/docker-compose</span><br><span class="line">检查是否安装成功</span><br><span class="line"></span><br><span class="line">docker-compose -v</span><br></pre></td></tr></table></figure>
+<h2 id="源码获取"><a href="#源码获取" class="headerlink" title="源码获取"></a>源码获取</h2><p>通过go get 的方式获取源码，配合git切换分支</p>
+<p>获取fabric源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取fabric源码</span></span><br><span class="line">go get -u github.com/hyperledger/fabric</span><br><span class="line"><span class="comment"># 进入目录 切换分支</span></span><br><span class="line">cd go/src/github.com/hyperledger/fabric</span><br><span class="line">git checkout v1<span class="number">.4</span><span class="number">.1</span></span><br><span class="line">获取fabric-sample源码</span><br><span class="line"></span><br><span class="line">go get github.com/hyperledger/fabric-samples</span><br><span class="line"><span class="comment"># 进入目录，切换分支</span></span><br><span class="line">cd go/src/github.com/hyperledger/fabric-samples/</span><br><span class="line">git checkout v1<span class="number">.4</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<h2 id="获取镜像和二进制文件"><a href="#获取镜像和二进制文件" class="headerlink" title="获取镜像和二进制文件"></a>获取镜像和二进制文件</h2><p>我们通过fabric-sample测试</p>
+<p>通过脚本获取docker镜像和可执行文件（建议事先配置好docker仓库）</p>
+<p>cd go/src/github.com/hyperledger/fabric-samples/scripts/<br>#此处可能因为网络问题执行时间比较久<br>bash bootstrap.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">## 运行测试</span><br><span class="line">通过fabric-sample中first-network示例测试，执行了一个A和B转账，中间多次查询余额的一个过程。</span><br><span class="line"></span><br><span class="line">docker运行需要权限，最好用root身份运行。</span><br><span class="line"></span><br><span class="line">找到first-network示例</span><br><span class="line">&#96;&#96;&#96;python</span><br><span class="line">cd go&#x2F;src&#x2F;github.com&#x2F;hyperledger&#x2F;fabric-samples&#x2F;first-network</span><br><span class="line">生成密钥文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@VM_0_39_centos first-network]# bash byfn.sh generate</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="启动示例"><a href="#启动示例" class="headerlink" title="启动示例"></a>启动示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_39_centos first-network]<span class="comment"># bash byfn.sh up</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="number">90</span></span><br><span class="line">===================== Query successful on peer1.org2 on channel <span class="string">&#x27;mychannel&#x27;</span> ===================== </span><br><span class="line"></span><br><span class="line">========= All GOOD, BYFN execution completed =========== </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> _____   _   _   ____   </span><br><span class="line">| ____| | \ | | |  _ \  </span><br><span class="line">|  _|   |  \| | | | | | </span><br><span class="line">| |___  | |\  | | |_| | </span><br><span class="line">|_____| |_| \_| |____/  </span><br></pre></td></tr></table></figure>
+<h2 id="清除示例"><a href="#清除示例" class="headerlink" title="清除示例"></a>清除示例</h2><p>执行删除密钥文件，停止并删除容器等操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_39_centos first-network]<span class="comment"># bash byfn.sh down</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaoxt/p/10806720.html">link</a><br><a target="_blank" rel="noopener" href="https://juejin.im/post/5da738f851882505ca647153">link</a><br><a target="_blank" rel="noopener" href="https://developer.ibm.com/zh/tutorials/cl-lo-hyperledger-fabric-study-notes1/">IMB hyperledger-fabric</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/29/62761/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Golang-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88%E9%9D%9E%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="toc-text">Golang 安装配置（非必须）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88%E9%9D%9E%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="toc-text">Node.js 安装配置（非必须）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%E5%AE%89%E8%A3%85"><span class="toc-text">Docker 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-Compose-%E5%AE%89%E8%A3%85"><span class="toc-text">Docker Compose 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E8%8E%B7%E5%8F%96"><span class="toc-text">源码获取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6"><span class="toc-text">获取镜像和二进制文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E7%A4%BA%E4%BE%8B"><span class="toc-text">启动示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E7%A4%BA%E4%BE%8B"><span class="toc-text">清除示例</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

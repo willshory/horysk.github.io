@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>如何破解并访问Hexo Blog已加密的文章 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/29/61636/" class="shake shake-little" title="如何破解并访问Hexo Blog已加密的文章">
+            
+            如何破解并访问Hexo Blog已加密的文章
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Hack/">Hack</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月29日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月29日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hack/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hexo</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h1 id="How-to-crack-hexo-simple-encrypted-blog？"><a href="#How-to-crack-hexo-simple-encrypted-blog？" class="headerlink" title="How to crack hexo simple encrypted blog？"></a>How to crack hexo simple encrypted blog？</h1><h2 id="事发"><a href="#事发" class="headerlink" title="事发"></a>事发</h2><p>下午一起加班的小伙伴在折腾blog，然后问我的blog文章是怎么加密的，然后，就是惨案的开始（orz…）</p>
+<p>我直接发了一个截图，并友情提示，这段代码大概不安全。然后成功激发小伙伴的兴趣，开始尝试越过密码。大概1-2分钟后，blog加密文章形同虚设。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>我的blog现在是用额hexo的the next主题加各种自定义特效，因为搭建时间其实很早，所以当时使用了一种简单的js逻辑来加密blog。下面我们来看下这段有安全问题的代码：<br>代码位置： yourblog/themes/next/layout/custom/head.swig</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (function()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">&#x27;请输入密码&#x27;</span>) !== <span class="string">&#x27;&#123;&#123; page.password &#125;&#125;&#x27;</span>)&#123;</span><br><span class="line">                alert(<span class="string">&#x27;密码错误&#x27;</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>乍看是否觉得除了逻辑简单没什么问题，然而眼尖的小伙伴分析出了第一个隐患：history.back(); ，而我已知静态页面的安全隐患。接下来我们逐个分析。</p>
+<h2 id="istory-back"><a href="#istory-back" class="headerlink" title="istory.back()"></a>istory.back()</h2><p>back() 方法可加载历史列表中的前一个 URL（如果存在）。如果你的前一个URL就是这个文章的URL，那么恭喜，第一种破解方法get。（不理解，看下一条）</p>
+<h2 id="静态页面"><a href="#静态页面" class="headerlink" title="静态页面"></a>静态页面</h2><p>hexo g 会根据blog相关文件在public目录下生成blog的所有静态文件。既然是已经生成好的静态页面，实际上html中包含了那段js代码的。因为需要获得html了之后才会触发那个页面访问加密的js，而理论上当我们获取到html页面之后，就可以停止当前页的js操作了。<br>That is to say, 你的blog word就是直接写在页面中的，虽然直接url去访问会弹alert，但是用curl直接获取这个页面的html，可以直接搜索到文章的访问密码, 分分钟攻破此种博文加密方式。上面利用history.back()的访问破解方式，归根结底也是这个问题引起的。</p>
+<p>另外补充一点：因为用hexo的blog的人大多喜欢直接部署到github上利用github.io来展示，这样就要求使用Github的公开仓库，所以代码基本没有保密性可言。坊间流传直接看md文件我持疑，因为hexo d只会把public目录里生成的静态文件上传到github的仓库，除非是直接上传了blog项目的所有代码到github的仓库中。</p>
+<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2><p>其实修复问题很好解决，既然简单的js加密不够安全，那我们就换一个安全的加密方式。<br>不知道怎么写？不慌，早已有大佬开发了插件hexo-blog-encrypt</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">安装hexo-blog-encrypt(安装方式<span class="number">2</span>选<span class="number">1</span>)</span><br><span class="line"><span class="number">1.</span>npm维护安装包</span><br><span class="line"></span><br><span class="line">npm install --save hexo-blog-encrypt (需要安装 npm)</span><br><span class="line"><span class="number">2.</span>yarn维护</span><br><span class="line"></span><br><span class="line">yarn add hexo-blog-encrypt (需要安装 Yarn)</span><br><span class="line">站点设置修改</span><br><span class="line">在 站点配置文件 _config.yml 中启用该插件</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encrypt plugin</span></span><br><span class="line">encrypt:</span><br><span class="line">  enable: true</span><br><span class="line">  default_abstract: 这是一篇加密文章，内容可能是个人日常吐槽或者特殊技术分享。如果你确实想看，请与我联系。非亲友团勿扰。</span><br><span class="line">  default_message: 输入密码，查看文章。</span><br></pre></td></tr></table></figure>
+<h2 id="使用hexo-blog-encrypt加密blog"><a href="#使用hexo-blog-encrypt加密blog" class="headerlink" title="使用hexo-blog-encrypt加密blog"></a>使用hexo-blog-encrypt加密blog</h2><h3 id="使用-hexo-new-“yourblog”-后在页面添加password字段即可"><a href="#使用-hexo-new-“yourblog”-后在页面添加password字段即可" class="headerlink" title="使用 hexo new  “yourblog”  后在页面添加password字段即可"></a>使用 hexo new  “yourblog”  后在页面添加password字段即可</h3><p>在你的博文头部添加上相应字段，如 password, abstract, message。因为 abstract, message 在站点配置中设置了默认值，如果这里不想自定义 abstract, message，不用专门设置。<br>password: 代表blog的访问密码<br>abstract: 这篇博文的摘要，会显示在博客的列表页<br>message: 当查看加密博文时，密码输入框上面的提示性文字。建议使用中文，英文提示默认字体不好看，可以看我下面的截图。</p>
+<p>visit_password</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 测试新文章加密</span><br><span class="line">date: </span><br><span class="line">category: hexo</span><br><span class="line">keywords: 博客文章密码</span><br><span class="line">password: yourpassword</span><br><span class="line">abstract: hexo密码测试</span><br><span class="line">message:  输入密码，查看文章</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<h2 id="反省总结"><a href="#反省总结" class="headerlink" title="反省总结"></a>反省总结</h2><p>这个事件，其实属于网络安全中最常见的问题“人的安全意识”，比如这个blog加密方案有访问漏洞，我是知道的，但是拖延症导致我没有足够重视这个问题（因为自己总是想着加密过的东西其实被看到也无妨，毕竟正要保密也不会发出来了balabala），结果一直没去修复（即使实际修复这个问题只需要10分钟），直到被小伙伴测试到bug才动手修复。</p>
+<p>延伸到实际生产环境的安全问题，0 day漏洞被利用姑且还能辩解说是吃了信息不对等的亏。但也不乏一些有年头的机构的网站依然存在N day漏洞可利用，即使修复方案网上10s可能就能找到（例如：简单的打个补丁或者改几个配置项），这就真的是维护人员安全意识的问题了。所以在网络安全中，人的安全意识尤为重要，对于安全从业者更是如此，绝对不能有一丝松懈。<br><a target="_blank" rel="noopener" href="https://blog.fullstackpentest.com/how-to-crack-hexo-simple-encrypted-blog.html">link</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/29/61636/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#How-to-crack-hexo-simple-encrypted-blog%EF%BC%9F"><span class="toc-text">How to crack hexo simple encrypted blog？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8F%91"><span class="toc-text">事发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#istory-back"><span class="toc-text">istory.back()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E9%A1%B5%E9%9D%A2"><span class="toc-text">静态页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D"><span class="toc-text">修复</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8hexo-blog-encrypt%E5%8A%A0%E5%AF%86blog"><span class="toc-text">使用hexo-blog-encrypt加密blog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-hexo-new-%E2%80%9Cyourblog%E2%80%9D-%E5%90%8E%E5%9C%A8%E9%A1%B5%E9%9D%A2%E6%B7%BB%E5%8A%A0password%E5%AD%97%E6%AE%B5%E5%8D%B3%E5%8F%AF"><span class="toc-text">使用 hexo new  “yourblog”  后在页面添加password字段即可</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E7%9C%81%E6%80%BB%E7%BB%93"><span class="toc-text">反省总结</span></a></li></ol></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

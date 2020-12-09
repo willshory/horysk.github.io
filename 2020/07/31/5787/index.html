@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>ubuntu20.04 安装 k8s | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/31/5787/" class="shake shake-little" title="ubuntu20.04 安装 k8s">
+            
+            ubuntu20.04 安装 k8s
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/docker/">docker</a>►<a class="article-category-link" href="/categories/docker/k8s/">k8s</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月31日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月31日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>k8s</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文介绍如何在ubuntu20.04 上部署k8s集群，大致可以分为如下几个步骤：</p>
+<h3 id="修改ubuntu配置"><a href="#修改ubuntu配置" class="headerlink" title="修改ubuntu配置"></a>修改ubuntu配置</h3><p>###　安装docker</p>
+<h3 id="安装kubeadm、kubectl以及kubelet"><a href="#安装kubeadm、kubectl以及kubelet" class="headerlink" title="安装kubeadm、kubectl以及kubelet"></a>安装kubeadm、kubectl以及kubelet</h3><h3 id="初始化master节点"><a href="#初始化master节点" class="headerlink" title="初始化master节点"></a>初始化master节点</h3><h3 id="将slave节点加入网络"><a href="#将slave节点加入网络" class="headerlink" title="将slave节点加入网络"></a>将slave节点加入网络</h3><p>如果你对上面的某些名字感到陌生，没关系，下文会一一进行讲解，如果你想先了解一下 docker 和 k8s，可以参考 10分钟看懂Docker和K8S。好了，在正式开始之前，首先看一下我们都有哪些服务器，如果你对如何组建如下虚拟机网络感兴趣的话，可以参考 virtualbox 虚拟机组网：</p>
+<a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">主机名	主机ip	版本	CPU	内存</span><br><span class="line">master1	<span class="number">192.168</span><span class="number">.56</span><span class="number">.11</span>	Ubuntu server <span class="number">18.04</span>	<span class="number">2</span>核	1G</span><br><span class="line">worker1	<span class="number">192.168</span><span class="number">.56</span><span class="number">.21</span>	Ubuntu server <span class="number">18.04</span>	<span class="number">2</span>核	1G</span><br></pre></td></tr></table></figure>
+<p>因为k8s分为管理节点和工作节点，所以我们将要 在master1上部署管理节点，在worker1上部署工作节点。如果想了解如何创建这两个节点，可以参考 virtualbox 虚拟机组网 。服务器配置上，k8s 要求 CPU 最低为 2 核，不然在安装过程中会报错，虽然这个错误可以避免，但是为了稳定起见还是把虚拟机的配置成它想要的，至于内存 k8s 没有硬性要求，所以我就按我电脑的性能来分配了。</p>
+<p>注意，本文的 docker、k8s 等软件安装均未指定具体版本，在本文完成时2019/6/27，下载到的版本如下，如有特殊版本需要请自行指定版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">软件名	版本</span><br><span class="line">docker	<span class="number">18.09</span><span class="number">.5</span></span><br><span class="line">kubectl	<span class="number">1.15</span><span class="number">.0</span>-<span class="number">00</span> amd64</span><br><span class="line">kubeadm	<span class="number">1.15</span><span class="number">.0</span>-<span class="number">00</span> amd64</span><br><span class="line">kubelet	<span class="number">1.15</span><span class="number">.0</span>-<span class="number">00</span> amd64</span><br></pre></td></tr></table></figure>
+<h2 id="一-修改-ubuntu-配置"><a href="#一-修改-ubuntu-配置" class="headerlink" title="一. 修改 ubuntu 配置"></a>一. 修改 ubuntu 配置</h2><p>首先，k8s 要求我们的 ubuntu 进行一些符合它要求的配置。很简单，包括以下两步：关闭 Swap 内存 以及 配置免密登录，这一步两台主机都需要进行配置。</p>
+<h2 id="关闭-swap-内存"><a href="#关闭-swap-内存" class="headerlink" title="关闭 swap 内存"></a>关闭 swap 内存</h2><p>这个swap其实可以类比成 windows 上的虚拟内存，它可以让服务器在内存吃满的情况下可以保持低效运行，而不是直接卡死。但是 k8s 的较新版本都要求关闭swap。所以咱们直接动手，修改/etc/fstab文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/fstab</span><br></pre></td></tr></table></figure>
+<p>你应该可以看到如下内容，把第二条用#注释掉就好了，注意第一条别注释了，不然重启之后系统有可能会报file system read-only错误。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UUID=e2048966-750b-<span class="number">4795</span>-a9a2-7b477d6681bf /   ext4    errors=remount-ro <span class="number">0</span>    <span class="number">1</span></span><br><span class="line"><span class="comment"># /dev/fd0        /media/floppy0  auto    rw,user,noauto,exec,utf8 0       0</span></span><br></pre></td></tr></table></figure>
+<p>然后输入reboot重启即可，重启后使用top命令查看任务管理器，如果看到如下KiB Swap后均为 0 就说明关闭成功了。</p>
+<p>关闭swap之后的任务管理器<br>上面说的是永久关闭swap内存，其实也可以暂时关闭，使用swapoff -a命令即可，效果会在重启后消失。</p>
+<h2 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h2><p>k8s 要求 管理节点可以直接免密登录工作节点 的原因是：在集群搭建完成后，管理节点的 kubelet 需要登陆工作节点进行操作。而至于怎么操作很简单，这里就不详提了，可以参见文章 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e6684182471b">virtualbox 虚拟机组网</a> 的最后一个章节 免密钥登录 。</p>
+<h2 id="二-安装-docker"><a href="#二-安装-docker" class="headerlink" title="二. 安装 docker"></a>二. 安装 docker</h2><p>docker 是 k8s 的基础，在安装完成之后也需要修改一些配置来适配 k8s ，所以本章分为 docker 的安装 与 docker 的配置 两部分。如果你已经安装并使用了一段时间的 docker 了话，建议使用docker -v查看已安装的 docker 版本，并在 k8s 官网上查询适合该版本的 k8s 进行安装。这一步两台主机都需要进行安装。</p>
+<p>docker 的安装<br>docker 在 ubuntu 的安装上真是再简单不过了，执行如下命令即可，在安装之前请记得把镜像源切换到国内。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker.io</span><br></pre></td></tr></table></figure>
+<p>等安装完成之后使用docker -v来验证 docker是否可用。</p>
+<h2 id="docker-的配置"><a href="#docker-的配置" class="headerlink" title="docker 的配置"></a>docker 的配置</h2><p>安装完成之后需要进行一些配置，包括 切换docker下载源为国内镜像站 以及 修改cgroups。</p>
+<p>这个cgroups是啥呢，你可以把它理解成一个进程隔离工具，docker就是用它来实现容器的隔离的。docker 默认使用的是cgroupfs，而 k8s 也用到了一个进程隔离工具systemd，如果使用两个隔离组的话可能会引起异常，所以我们要把 docker 的也改成systemd。</p>
+<p>这两者都是在/etc/docker/daemon.json里修改的，所以我们一起配置了就好了，首先执行下述命令编辑daemon.json：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<p>打开后输入以下内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;https://dockerhub.azk8s.cn&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://reg-mirror.qiniu.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;https://quay-mirror.qiniu.com&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;exec-opts&quot;</span>: [ <span class="string">&quot;native.cgroupdriver=systemd&quot;</span> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后:wq保存后重启 docker：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<p>然后就可以通过docker info | grep Cgroup来查看修改后的 docker cgroup 状态，发现变为systemd即为修改成功。</p>
+<h2 id="三-安装-k8s"><a href="#三-安装-k8s" class="headerlink" title="三. 安装 k8s"></a>三. 安装 k8s</h2><p>安装完了 docker 就可以下载 k8s 的三个主要组件kubelet、kubeadm以及kubectl了。这一步两台主机都需要进行安装。先来简单介绍一下这三者：</p>
+<p>kubelet: k8s 的核心服务<br>kubeadm: 这个是用于快速安装 k8s 的一个集成工具，我们在master1和worker1上的 k8s 部署都将使用它来完成。<br>kubectl: k8s 的命令行工具，部署完成之后后续的操作都要用它来执行<br>其实这三个的下载很简单，直接用apt-get就好了，但是因为某些原因，它们的下载地址不存在了。所以我们需要用国内的镜像站来下载，也很简单，依次执行下面五条命令即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使得 apt 支持 ssl 传输</span></span><br><span class="line">apt-get update &amp;&amp; apt-get install -y apt-transport-https</span><br><span class="line"><span class="comment"># 下载 gpg 密钥</span></span><br><span class="line">curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add - </span><br><span class="line"><span class="comment"># 添加 k8s 镜像源</span></span><br><span class="line">cat &lt;&lt;EOF &gt;/etc/apt/sources.<span class="built_in">list</span>.d/kubernetes.<span class="built_in">list</span></span><br><span class="line">deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main</span><br><span class="line">EOF</span><br><span class="line"><span class="comment"># 更新源列表</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="comment"># 下载 kubectl，kubeadm以及 kubelet</span></span><br><span class="line">apt-get install -y kubelet kubeadm kubectl</span><br></pre></td></tr></table></figure>
+<p>直接在/etc/apt/sources.list里添加<a target="_blank" rel="noopener" href="https://mirrors.aliyun.com/kubernetes/apt/%E6%98%AF%E4%B8%8D%E8%A1%8C%E7%9A%84%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%BF%99%E4%B8%AA%E9%98%BF%E9%87%8C%E9%95%9C%E5%83%8F%E7%AB%99%E4%BD%BF%E7%94%A8%E7%9A%84ssl%E8%BF%9B%E8%A1%8C%E4%BC%A0%E8%BE%93%E7%9A%84%EF%BC%8C%E6%89%80%E4%BB%A5%E8%A6%81%E5%85%88%E5%AE%89%E8%A3%85apt-transport-https%E5%B9%B6%E4%B8%8B%E8%BD%BD%E9%95%9C%E5%83%8F%E7%AB%99%E7%9A%84%E5%AF%86%E9%92%A5%E6%89%8D%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%E3%80%82">https://mirrors.aliyun.com/kubernetes/apt/是不行的，因为这个阿里镜像站使用的ssl进行传输的，所以要先安装apt-transport-https并下载镜像站的密钥才可以进行下载。</a></p>
+<h2 id="四-安装-master-节点"><a href="#四-安装-master-节点" class="headerlink" title="四. 安装 master 节点"></a>四. 安装 master 节点</h2><p>下载完成后就要迎来重头戏了，初始化master节点，这一章节只需要在管理节点上配置即可，大致可以分为如下几步：</p>
+<p>初始化master节点<br>部署flannel网络<br>配置kubectl工具</p>
+<h3 id="初始化-master-节点-这一步会卡-是因为docker源-可以参考link"><a href="#初始化-master-节点-这一步会卡-是因为docker源-可以参考link" class="headerlink" title="初始化 master 节点  这一步会卡 是因为docker源 可以参考link"></a>初始化 master 节点  这一步会卡 是因为docker源 可以参考<a target="_blank" rel="noopener" href="http://mls-tech.info/microservice/k8s/k8s-download-images/">link</a></h3><h2 id="获取镜像文件"><a href="#获取镜像文件" class="headerlink" title="获取镜像文件"></a>获取镜像文件</h2><p>查看需要的镜像</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm config images <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
+<p>系统输出:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">k8s.gcr.io/kube-apiserver:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">k8s.gcr.io/kube-controller-manager:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">k8s.gcr.io/kube-scheduler:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">k8s.gcr.io/kube-proxy:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">k8s.gcr.io/pause:<span class="number">3.1</span></span><br><span class="line">k8s.gcr.io/etcd:<span class="number">3.3</span><span class="number">.10</span></span><br><span class="line">k8s.gcr.io/coredns:<span class="number">1.3</span><span class="number">.1</span></span><br></pre></td></tr></table></figure>
+<p>编辑一个文件, 命名为： install_k8s_images.sh</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /bin/bash</span></span><br><span class="line">images=(</span><br><span class="line">    kube-apiserver:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">    kube-controller-manager:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">    kube-scheduler:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">    kube-proxy:v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">    pause:<span class="number">3.1</span></span><br><span class="line">    etcd:<span class="number">3.3</span><span class="number">.10</span></span><br><span class="line">    coredns:<span class="number">1.3</span><span class="number">.1</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> imageName <span class="keyword">in</span> $&#123;images[@]&#125; ; do</span><br><span class="line">    docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/$imageName  <span class="comment">#  如果失败,改为docker pull $imageName</span></span><br><span class="line">    docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/$imageName k8s.gcr.io/$imageName  <span class="comment"># 如果失败改为 docker tag $imageName k8s.gcr.io/$imageName</span></span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>将文件设置为可运行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x install_k8s_images.sh</span><br></pre></td></tr></table></figure>
+<p>运行 install_k8s_images.sh 安装所需要的镜像</p>
+<p>./install_k8s_images.sh<br>更新：以上需要的镜像我已经打包成一个文件，可以直接加载到 docker 中，参考 从本地上传安装 kubernetes 所需要的镜像</p>
+<p>注意：以上步骤需要在Master和Node机器完成</p>
+<p>配置Master节点<br>修改主节点的 hostname 为: master-node</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl <span class="built_in">set</span>-hostname master-node</span><br></pre></td></tr></table></figure>
+<p>初始化 Kubernetes:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm init --pod-network-cidr=<span class="number">10.244</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>系统显示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">W0907 <span class="number">16</span>:<span class="number">17</span>:<span class="number">44.359105</span>    <span class="number">1998</span> version.go:<span class="number">98</span>] could <span class="keyword">not</span> fetch a Kubernetes version <span class="keyword">from</span> the internet: unable to get URL <span class="string">&quot;https://dl.k8s.io/release/stable-1.txt&quot;</span>: Get https://dl.k8s.io/release/stable-<span class="number">1.</span>txt: net/http: request canceled <span class="keyword">while</span> waiting <span class="keyword">for</span> connection (Client.Timeout exceeded <span class="keyword">while</span> awaiting headers)</span><br><span class="line">W0907 <span class="number">16</span>:<span class="number">17</span>:<span class="number">44.359172</span>    <span class="number">1998</span> version.go:<span class="number">99</span>] falling back to the local client version: v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">[init] Using Kubernetes version: v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">[preflight] Running pre-flight checks</span><br><span class="line">	[WARNING IsDockerSystemdCheck]: detected <span class="string">&quot;cgroupfs&quot;</span> <span class="keyword">as</span> the Docker cgroup driver. The recommended driver <span class="keyword">is</span> <span class="string">&quot;systemd&quot;</span>. Please follow the guide at https://kubernetes.io/docs/setup/cri/</span><br><span class="line">	[WARNING SystemVerification]: this Docker version <span class="keyword">is</span> <span class="keyword">not</span> on the <span class="built_in">list</span> of validated versions: <span class="number">19.03</span><span class="number">.1</span>. Latest validated version: <span class="number">18.09</span></span><br><span class="line">[preflight] Pulling images required <span class="keyword">for</span> setting up a Kubernetes cluster</span><br><span class="line">[preflight] This might take a minute <span class="keyword">or</span> two, depending on the speed of your internet connection</span><br><span class="line">[preflight] You can also perform this action <span class="keyword">in</span> beforehand using <span class="string">&#x27;kubeadm config images pull&#x27;</span></span><br><span class="line">[kubelet-start] Writing kubelet environment file <span class="keyword">with</span> flags to file <span class="string">&quot;/var/lib/kubelet/kubeadm-flags.env&quot;</span></span><br><span class="line">[kubelet-start] Writing kubelet configuration to file <span class="string">&quot;/var/lib/kubelet/config.yaml&quot;</span></span><br><span class="line">[kubelet-start] Activating the kubelet service</span><br><span class="line">[certs] Using certificateDir folder <span class="string">&quot;/etc/kubernetes/pki&quot;</span></span><br><span class="line">[certs] Generating <span class="string">&quot;etcd/ca&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;etcd/healthcheck-client&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;apiserver-etcd-client&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;etcd/server&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] etcd/server serving cert <span class="keyword">is</span> signed <span class="keyword">for</span> DNS names [master-node localhost] <span class="keyword">and</span> IPs [<span class="number">192.168</span><span class="number">.43</span><span class="number">.10</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> ::<span class="number">1</span>]</span><br><span class="line">[certs] Generating <span class="string">&quot;etcd/peer&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] etcd/peer serving cert <span class="keyword">is</span> signed <span class="keyword">for</span> DNS names [master-node localhost] <span class="keyword">and</span> IPs [<span class="number">192.168</span><span class="number">.43</span><span class="number">.10</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> ::<span class="number">1</span>]</span><br><span class="line">[certs] Generating <span class="string">&quot;ca&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;apiserver&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] apiserver serving cert <span class="keyword">is</span> signed <span class="keyword">for</span> DNS names [master-node kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] <span class="keyword">and</span> IPs [<span class="number">10.96</span><span class="number">.0</span><span class="number">.1</span> <span class="number">192.168</span><span class="number">.43</span><span class="number">.10</span>]</span><br><span class="line">[certs] Generating <span class="string">&quot;apiserver-kubelet-client&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;front-proxy-ca&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;front-proxy-client&quot;</span> certificate <span class="keyword">and</span> key</span><br><span class="line">[certs] Generating <span class="string">&quot;sa&quot;</span> key <span class="keyword">and</span> public key</span><br><span class="line">[kubeconfig] Using kubeconfig folder <span class="string">&quot;/etc/kubernetes&quot;</span></span><br><span class="line">[kubeconfig] Writing <span class="string">&quot;admin.conf&quot;</span> kubeconfig file</span><br><span class="line">[kubeconfig] Writing <span class="string">&quot;kubelet.conf&quot;</span> kubeconfig file</span><br><span class="line">[kubeconfig] Writing <span class="string">&quot;controller-manager.conf&quot;</span> kubeconfig file</span><br><span class="line">[kubeconfig] Writing <span class="string">&quot;scheduler.conf&quot;</span> kubeconfig file</span><br><span class="line">[control-plane] Using manifest folder <span class="string">&quot;/etc/kubernetes/manifests&quot;</span></span><br><span class="line">[control-plane] Creating static Pod manifest <span class="keyword">for</span> <span class="string">&quot;kube-apiserver&quot;</span></span><br><span class="line">[control-plane] Creating static Pod manifest <span class="keyword">for</span> <span class="string">&quot;kube-controller-manager&quot;</span></span><br><span class="line">[control-plane] Creating static Pod manifest <span class="keyword">for</span> <span class="string">&quot;kube-scheduler&quot;</span></span><br><span class="line">[etcd] Creating static Pod manifest <span class="keyword">for</span> local etcd <span class="keyword">in</span> <span class="string">&quot;/etc/kubernetes/manifests&quot;</span></span><br><span class="line">[wait-control-plane] Waiting <span class="keyword">for</span> the kubelet to boot up the control plane <span class="keyword">as</span> static Pods <span class="keyword">from</span> directory <span class="string">&quot;/etc/kubernetes/manifests&quot;</span>. This can take up to 4m0s</span><br><span class="line">[kubelet-check] Initial timeout of 40s passed.</span><br><span class="line">[apiclient] All control plane components are healthy after <span class="number">61.555344</span> seconds</span><br><span class="line">[upload-config] Storing the configuration used <span class="keyword">in</span> ConfigMap <span class="string">&quot;kubeadm-config&quot;</span> <span class="keyword">in</span> the <span class="string">&quot;kube-system&quot;</span> Namespace</span><br><span class="line">[kubelet] Creating a ConfigMap <span class="string">&quot;kubelet-config-1.15&quot;</span> <span class="keyword">in</span> namespace kube-system <span class="keyword">with</span> the configuration <span class="keyword">for</span> the kubelets <span class="keyword">in</span> the cluster</span><br><span class="line">[upload-certs] Skipping phase. Please see --upload-certs</span><br><span class="line">[mark-control-plane] Marking the node master-node <span class="keyword">as</span> control-plane by adding the label <span class="string">&quot;node-role.kubernetes.io/master=&#x27;&#x27;&quot;</span></span><br><span class="line">[mark-control-plane] Marking the node master-node <span class="keyword">as</span> control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule]</span><br><span class="line">[bootstrap-token] Using token: mg39mb.hmfz2bao1t90fcdc</span><br><span class="line">[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles</span><br><span class="line">[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs <span class="keyword">in</span> order <span class="keyword">for</span> nodes to get long term certificate credentials</span><br><span class="line">[bootstrap-token] configured RBAC rules to allow the csrapprover controller automatically approve CSRs <span class="keyword">from</span> a Node Bootstrap Token</span><br><span class="line">[bootstrap-token] configured RBAC rules to allow certificate rotation <span class="keyword">for</span> <span class="built_in">all</span> node client certificates <span class="keyword">in</span> the cluster</span><br><span class="line">[bootstrap-token] Creating the <span class="string">&quot;cluster-info&quot;</span> ConfigMap <span class="keyword">in</span> the <span class="string">&quot;kube-public&quot;</span> namespace</span><br><span class="line">[addons] Applied essential addon: CoreDNS</span><br><span class="line">[addons] Applied essential addon: kube-proxy</span><br><span class="line"></span><br><span class="line">Your Kubernetes control-plane has initialized successfully!</span><br><span class="line"></span><br><span class="line">To start using your cluster, you need to run the following <span class="keyword">as</span> a regular user:</span><br><span class="line"></span><br><span class="line">  mkdir -p $HOME/.kube</span><br><span class="line">  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">  sudo chown $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) $HOME/.kube/config</span><br><span class="line"></span><br><span class="line">You should now deploy a pod network to the cluster.</span><br><span class="line">Run <span class="string">&quot;kubectl apply -f [podnetwork].yaml&quot;</span> <span class="keyword">with</span> one of the options listed at:</span><br><span class="line">  https://kubernetes.io/docs/concepts/cluster-administration/addons/</span><br><span class="line"></span><br><span class="line">Then you can join <span class="built_in">any</span> number of worker nodes by running the following on each <span class="keyword">as</span> root:</span><br><span class="line"></span><br><span class="line">kubeadm join <span class="number">192.168</span><span class="number">.43</span><span class="number">.10</span>:<span class="number">6443</span> --token mg39mb.hmfz2bao1t90fcdc \</span><br><span class="line">    --discovery-token-ca-cert-<span class="built_in">hash</span> sha256:4343f8637818221cc153a4c556a6a29606f5a14ea040b3e9ee1e5e29af6e7381</span><br></pre></td></tr></table></figure>
+<p>##　为当前用户保存 kubernetes 配置信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">sudo chown $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
+<p>现在，你可以使用以下命令，加入新的节点(node):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join <span class="number">192.168</span><span class="number">.43</span><span class="number">.10</span>:<span class="number">6443</span> --token mg39mb.hmfz2bao1t90fcdc </span><br><span class="line">    --discovery-token-ca-cert-<span class="built_in">hash</span> sha256:4343f8637818221cc153a4c556a6a29606f5a14ea040b3e9ee1e5e29af6e7381</span><br></pre></td></tr></table></figure>
+<p>现在，我们可以通过 kubetl 命令查看状态</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br></pre></td></tr></table></figure>
+<p>得到如下结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME          STATUS     ROLES    AGE     VERSION</span><br><span class="line">master-node   NotReady   master   3h44m   v1<span class="number">.15</span><span class="number">.3</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，当前只有一个节点，并且状态是:”NotReady”, 因为现在还没有配置任何Pod网络。</p>
+<p>在Master上部署一个Pod网络<br>在本教程中，我们部署一个 Flannel pod network。在Master节点机器上执行以下命令:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<p>系统显示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">podsecuritypolicy.policy/psp.flannel.unprivileged created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/flannel created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/flannel created</span><br><span class="line">serviceaccount/flannel created</span><br><span class="line">configmap/kube-flannel-cfg created</span><br><span class="line">daemonset.apps/kube-flannel-ds-amd64 created</span><br><span class="line">daemonset.apps/kube-flannel-ds-arm64 created</span><br><span class="line">daemonset.apps/kube-flannel-ds-arm created</span><br><span class="line">daemonset.apps/kube-flannel-ds-ppc64le created</span><br><span class="line">daemonset.apps/kube-flannel-ds-s390x created</span><br></pre></td></tr></table></figure>
+<p>执行后，查看pod网络的状态:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods --<span class="built_in">all</span>-namespaces</span><br></pre></td></tr></table></figure>
+<p>系统显示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NAMESPACE     NAME                                  READY   STATUS     RESTARTS   AGE</span><br><span class="line">kube-system   coredns-5c98db65d4-fl5fs              <span class="number">0</span>/<span class="number">1</span>     Pending    <span class="number">0</span>          3h50m</span><br><span class="line">kube-system   coredns-5c98db65d4-nrsq7              <span class="number">0</span>/<span class="number">1</span>     Pending    <span class="number">0</span>          3h50m</span><br><span class="line">kube-system   etcd-master-node                      <span class="number">1</span>/<span class="number">1</span>     Running    <span class="number">0</span>          3h50m</span><br><span class="line">kube-system   kube-apiserver-master-node            <span class="number">1</span>/<span class="number">1</span>     Running    <span class="number">0</span>          3h50m</span><br><span class="line">kube-system   kube-controller-manager-master-node   <span class="number">1</span>/<span class="number">1</span>     Running    <span class="number">0</span>          3h50m</span><br><span class="line">kube-system   kube-flannel-ds-amd64-fkzck           <span class="number">0</span>/<span class="number">1</span>     Init:<span class="number">0</span>/<span class="number">1</span>   <span class="number">0</span>          80s</span><br><span class="line">kube-system   kube-proxy-vm9jj                      <span class="number">1</span>/<span class="number">1</span>     Running    <span class="number">0</span>          3h50m</span><br><span class="line">kube-system   kube-scheduler-master-node            <span class="number">1</span>/<span class="number">1</span>     Running    <span class="number">0</span>          3h50m</span><br></pre></td></tr></table></figure>
+<p>整个过程需要花费一定的时间，知道所有服务都已经启动:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NAMESPACE     NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">kube-system   coredns-5c98db65d4-fl5fs              <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br><span class="line">kube-system   coredns-5c98db65d4-nrsq7              <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br><span class="line">kube-system   etcd-master-node                      <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br><span class="line">kube-system   kube-apiserver-master-node            <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br><span class="line">kube-system   kube-controller-manager-master-node   <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br><span class="line">kube-system   kube-flannel-ds-amd64-fkzck           <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          4m4s</span><br><span class="line">kube-system   kube-proxy-vm9jj                      <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br><span class="line">kube-system   kube-scheduler-master-node            <span class="number">1</span>/<span class="number">1</span>     Running   <span class="number">0</span>          3h53m</span><br></pre></td></tr></table></figure>
+<p>这时，再查看节点状态:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line">NAME          STATUS   ROLES    AGE     VERSION</span><br><span class="line">master-node   Ready    master   3h54m   v1<span class="number">.15</span><span class="number">.3</span></span><br></pre></td></tr></table></figure>
+<p>可以看到， master节点已经准备就绪。</p>
+<h2 id="准备工作节点"><a href="#准备工作节点" class="headerlink" title="准备工作节点"></a>准备工作节点</h2><h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><p>修改主节点的 hostname 为: worker-node01</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo hostnamectl <span class="built_in">set</span>-hostname worker-node01</span><br></pre></td></tr></table></figure>
+<h2 id="设置admin配置文件"><a href="#设置admin配置文件" class="headerlink" title="设置admin配置文件"></a>设置admin配置文件</h2><p>将主节点中的 /etc/kubernetes/admin.conf 文件拷贝到从节点相同目录下。</p>
+<p>拷贝以后，在从节点执行:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo <span class="string">&quot;export KUBECONFIG=/etc/kubernetes/admin.conf&quot;</span> &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>是改动立即生效</p>
+<h2 id="将节点加入Pod网络"><a href="#将节点加入Pod网络" class="headerlink" title="将节点加入Pod网络"></a>将节点加入Pod网络</h2><p>现在，你可以使用以下命令，加入新的节点(node):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubeadm join <span class="number">192.168</span><span class="number">.43</span><span class="number">.10</span>:<span class="number">6443</span> --token mg39mb.hmfz2bao1t90fcdc --discovery-token-ca-cert-<span class="built_in">hash</span> sha256:4343f8637818221cc153a4c556a6a29606f5a14ea040b3e9ee1e5e29af6e7381</span><br></pre></td></tr></table></figure>
+<p>系统显示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[preflight] Running pre-flight checks</span><br><span class="line">	[WARNING IsDockerSystemdCheck]: detected <span class="string">&quot;cgroupfs&quot;</span> <span class="keyword">as</span> the Docker cgroup driver. The recommended driver <span class="keyword">is</span> <span class="string">&quot;systemd&quot;</span>. Please follow the guide at https://kubernetes.io/docs/setup/cri/</span><br><span class="line">	[WARNING SystemVerification]: this Docker version <span class="keyword">is</span> <span class="keyword">not</span> on the <span class="built_in">list</span> of validated versions: <span class="number">19.03</span><span class="number">.1</span>. Latest validated version: <span class="number">18.09</span></span><br><span class="line">[preflight] Reading configuration <span class="keyword">from</span> the cluster...</span><br><span class="line">[preflight] FYI: You can look at this config file <span class="keyword">with</span> <span class="string">&#x27;kubectl -n kube-system get cm kubeadm-config -oyaml&#x27;</span></span><br><span class="line">[kubelet-start] Downloading configuration <span class="keyword">for</span> the kubelet <span class="keyword">from</span> the <span class="string">&quot;kubelet-config-1.15&quot;</span> ConfigMap <span class="keyword">in</span> the kube-system namespace</span><br><span class="line">[kubelet-start] Writing kubelet configuration to file <span class="string">&quot;/var/lib/kubelet/config.yaml&quot;</span></span><br><span class="line">[kubelet-start] Writing kubelet environment file <span class="keyword">with</span> flags to file <span class="string">&quot;/var/lib/kubelet/kubeadm-flags.env&quot;</span></span><br><span class="line">[kubelet-start] Activating the kubelet service</span><br><span class="line">[kubelet-start] Waiting <span class="keyword">for</span> the kubelet to perform the TLS Bootstrap...</span><br><span class="line"></span><br><span class="line">This node has joined the cluster:</span><br><span class="line">* Certificate signing request was sent to apiserver <span class="keyword">and</span> a response was received.</span><br><span class="line">* The Kubelet was informed of the new secure connection details.</span><br><span class="line"></span><br><span class="line">Run <span class="string">&#x27;kubectl get nodes&#x27;</span> on the control-plane to see this node join the cluster.</span><br></pre></td></tr></table></figure>
+<p>再运行 get nodes 查看:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br></pre></td></tr></table></figure>
+<p>系统显示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NAME          STATUS   ROLES    AGE    VERSION</span><br><span class="line">kube-master   Ready    master   106m   v1<span class="number">.15</span><span class="number">.3</span></span><br><span class="line">kube-node01   Ready    &lt;none&gt;   96m    v1<span class="number">.15</span><span class="number">.3</span></span><br></pre></td></tr></table></figure>
+<p>标明已经安装成功过。</p>
+<h2 id="以下为第二种方案-测试失败"><a href="#以下为第二种方案-测试失败" class="headerlink" title="以下为第二种方案 (测试失败)"></a>以下为第二种方案 (测试失败)</h2><p>使用kubeadm的init命令就可以轻松的完成初始化，不过需要携带几个参数，如下。先不要直接复制执行，将赋值给–apiserver-advertise-address参数的 ip 地址修改为自己的master主机地址，然后再执行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init </span><br><span class="line">--apiserver-advertise-address=<span class="number">192.168</span><span class="number">.56</span><span class="number">.11</span> </span><br><span class="line">--image-repository registry.aliyuncs.com/google_containers  <span class="comment"># 如果失败可以改为 --image-repository </span></span><br><span class="line">--pod-network-cidr=<span class="number">10.244</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>这里介绍一下一些常用参数的含义：</p>
+<p>–apiserver-advertise-address: k8s 中的主要服务apiserver的部署地址，填自己的管理节点 ip<br>–image-repository: 拉取的 docker 镜像源，因为初始化的时候kubeadm会去拉 k8s 的很多组件来进行部署，所以需要指定国内镜像源，下不然会拉取不到镜像。<br>–pod-network-cidr: 这个是 k8s 采用的节点网络，因为我们将要使用flannel作为 k8s 的网络，所以这里填10.244.0.0/16就好<br>–kubernetes-version: 这个是用来指定你要部署的 k8s 版本的，一般不用填，不过如果初始化过程中出现了因为版本不对导致的安装错误的话，可以用这个参数手动指定。<br>–ignore-preflight-errors: 忽略初始化时遇到的错误，比如说我想忽略 cpu 数量不够 2 核引起的错误，就可以用–ignore-preflight-errors=CpuNum。错误名称在初始化错误时会给出来。<br>当你看到如下字样是，就说明初始化成功了，</p>
+<h2 id="请把最后那行以kubeadm-join开头的命令复制下来，之后安装工作节点时要用到的，如果你不慎遗失了该命令，可以在master节点上使用kubeadm-token-create-–print-join-command命令来重新生成一条。"><a href="#请把最后那行以kubeadm-join开头的命令复制下来，之后安装工作节点时要用到的，如果你不慎遗失了该命令，可以在master节点上使用kubeadm-token-create-–print-join-command命令来重新生成一条。" class="headerlink" title="请把最后那行以kubeadm join开头的命令复制下来，之后安装工作节点时要用到的，如果你不慎遗失了该命令，可以在master节点上使用kubeadm token create –print-join-command命令来重新生成一条。"></a>请把最后那行以kubeadm join开头的命令复制下来，之后安装工作节点时要用到的，如果你不慎遗失了该命令，可以在master节点上使用kubeadm token create –print-join-command命令来重新生成一条。</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Your Kubernetes master has initialized successfully!</span><br><span class="line"> </span><br><span class="line">To start using your cluster, you need to run the following <span class="keyword">as</span> a regular user:</span><br><span class="line"> </span><br><span class="line">  mkdir -p $HOME/.kube</span><br><span class="line">  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">  sudo chown $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) $HOME/.kube/config</span><br><span class="line"> </span><br><span class="line">You should now deploy a pod network to the cluster.</span><br><span class="line">Run <span class="string">&quot;kubectl apply -f [podnetwork].yaml&quot;</span> <span class="keyword">with</span> one of the options listed at:</span><br><span class="line">  https://kubernetes.io/docs/concepts/cluster-administration/addons/</span><br><span class="line"> </span><br><span class="line">You can now join <span class="built_in">any</span> number of machines by running the following on each node</span><br><span class="line"><span class="keyword">as</span> root:</span><br><span class="line"> </span><br><span class="line">kubeadm join <span class="number">192.168</span><span class="number">.56</span><span class="number">.11</span>:<span class="number">6443</span> --token wbryr0.am1n476fgjsno6wa --discovery-token-ca-cert-<span class="built_in">hash</span> sha256:7640582747efefe7c2d537655e428faa6275dbaff631de37822eb8fd4c054807</span><br></pre></td></tr></table></figure>
+<p>如果在初始化过程中出现了任何Error导致初始化终止了，使用kubeadm reset重置之后再重新进行初始化。</p>
+<h2 id="配置-kubectl-工具"><a href="#配置-kubectl-工具" class="headerlink" title="配置 kubectl 工具"></a>配置 kubectl 工具</h2><p>这一步就比较简单了，直接执行如下命令即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /root/.kube &amp;&amp; </span><br><span class="line">cp /etc/kubernetes/admin.conf /root/.kube/config</span><br></pre></td></tr></table></figure>
+<p>执行完成后并不会刷新出什么信息，可以通过下面两条命令测试 kubectl是否可用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看已加入的节点</span></span><br><span class="line">kubectl get nodes</span><br><span class="line"><span class="comment"># 查看集群状态</span></span><br><span class="line">kubectl get cs</span><br></pre></td></tr></table></figure>
+<h2 id="部署-flannel-网络"><a href="#部署-flannel-网络" class="headerlink" title="部署 flannel 网络"></a>部署 flannel 网络</h2><p>flannel是什么？它是一个专门为 k8s 设置的网络规划服务，可以让集群中的不同节点主机创建的 docker 容器都具有全集群唯一的虚拟IP地址。想要部署flannel的话直接执行下述命令即可：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/a70459be0084506e4ec919aa1c114638878db11b/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+<p>输出如下内容即为安装完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">clusterrole.rbac.authorization.k8s.io/flannel created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/flannel created</span><br><span class="line">serviceaccount/flannel created</span><br><span class="line">configmap/kube-flannel-cfg created</span><br><span class="line">daemonset.extensions/kube-flannel-ds-amd64 created</span><br><span class="line">daemonset.extensions/kube-flannel-ds-arm64 created</span><br><span class="line">daemonset.extensions/kube-flannel-ds-arm created</span><br><span class="line">daemonset.extensions/kube-flannel-ds-ppc64le created</span><br><span class="line">daemonset.extensions/kube-flannel-ds-s390x created</span><br></pre></td></tr></table></figure>
+<p>至此，k8s 管理节点部署完成。</p>
+<h2 id="五-将-slave-节点加入网络"><a href="#五-将-slave-节点加入网络" class="headerlink" title="五. 将 slave 节点加入网络"></a>五. 将 slave 节点加入网络</h2><p>首先需要重复步骤 1 ~ 3 来安装 docker 、k8s 以及修改服务器配置，之后执行从步骤 4 中保存的命令即可完成加入，注意，这条命令每个人的都不一样，不要直接复制执行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm join <span class="number">192.168</span><span class="number">.56</span><span class="number">.11</span>:<span class="number">6443</span> --token wbryr0.am1n476fgjsno6wa --discovery-token-ca-cert-<span class="built_in">hash</span> sha256:7640582747efefe7c2d537655e428faa6275dbaff631de37822eb8fd4c054807</span><br></pre></td></tr></table></figure>
+<p>待控制台中输出以下内容后即为加入成功：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">This node has joined the cluster:</span><br><span class="line">* Certificate signing request was sent to apiserver <span class="keyword">and</span> a response was received.</span><br><span class="line">* The Kubelet was informed of the new secure connection details.</span><br><span class="line">Run <span class="string">&#x27;kubectl get nodes&#x27;</span> on the master to see this node join the cluster.</span><br></pre></td></tr></table></figure>
+<p>随后登录master1查看已加入节点状态，可以看到worker1已加入，并且状态均为就绪。至此，k8s 搭建完成：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@master1:~<span class="comment"># kubectl get nodes</span></span><br><span class="line">NAME      STATUS   ROLES    AGE    VERSION</span><br><span class="line">master1   Ready    master   145m   v1<span class="number">.15</span><span class="number">.0</span></span><br><span class="line">worker1   Ready    &lt;none&gt;   87m    v1<span class="number">.15</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="默认网卡问题修复"><a href="#默认网卡问题修复" class="headerlink" title="默认网卡问题修复"></a>默认网卡问题修复</h2><p>如果你是使用virtualBox部署的虚拟机，并且虚拟机直接无法使用网卡1的 ip 地址互相访问的话（例如组建双网卡，网卡1为 NAT 地址转换用来上网，网卡2为Host-only，用于虚拟机之间访问）。就需要执行本节的内容来修改 k8s 的默认网卡。不然会出现一些命令无法使用的问题。如果你的默认网卡可以进行虚拟机之间的相互访问，则没有该问题。</p>
+<p>##修改 kubelet 默认地址<br>访问kubelet配置文件：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/systemd/system/kubelet.service.d/<span class="number">10</span>-kubeadm.conf</span><br></pre></td></tr></table></figure>
+<p>在最后一行ExecStart 之前 添加如下内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Environment=<span class="string">&quot;KUBELET_EXTRA_ARGS=--node-ip=192.168.56.21&quot;</span></span><br></pre></td></tr></table></figure>
+<p>重启kubelet：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop kubelet.service &amp;&amp; \</span><br><span class="line">systemctl daemon-reload &amp;&amp; \</span><br><span class="line">systemctl start kubelet.service</span><br></pre></td></tr></table></figure>
+<p>至此修改完成，更多信息详见 kubectl logs、exec、port-forward 执行失败问题解决 。</p>
+<p>＃＃　修改 flannel 的默认网卡<br>编辑flannel配置文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo kubectl edit daemonset kube-flannel-ds-amd64 -n kube-system</span><br></pre></td></tr></table></figure>
+<p>找到spec.template.spec.containers.args字段并添加–iface=网卡名，例如我的网卡是enp0s8：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- args:</span><br><span class="line">  - --ip-masq</span><br><span class="line">  - --kube-subnet-mgr</span><br><span class="line">  <span class="comment"># 添加到这里</span></span><br><span class="line">  - --iface=enp0s8</span><br></pre></td></tr></table></figure>
+<p>:wq保存修改后输入以下内容删除所有 flannel，k8s 会自动重建：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete pod -n kube-system -l app=flannel</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fd9941c21e55">至此修改完成，更多内容请见 解决k8s无法通过svc访问其他节点pod的问题</a></p>
+<p>总结<br>至此你应该已经搭建好了一个完整可用的双节点 k8s 集群了。接下来你可以通过如下内容继续深入 k8s，排名分先后，推荐依次阅读：</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/80c88ae38396">让你的 k8s 使用更简单</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d60ce1587e1">k8s 基本使用</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/132319e795ae">k8s 如何让你的应用活的更久</a><br>参考<br><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://www.kubernetes.org.cn/5462.html">kubeadm安装Kubernetes 1.14最佳实践</a><br><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://www.cnblogs.com/hongdada/p/9771857.html">Docker中的Cgroup Driver:Cgroupfs 与 Systemd</a><br><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://blog.csdn.net/qq_14845119/article/details/83349471">Ubuntu16.04搭建Kubernetes</a><br><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://blog.csdn.net/huwh_/article/details/77899108">Flannel介绍</a><br><a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://kubernetes.io/docs/home/">k8s 官方文档</a><br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f2d4dd4d1fb1">https://www.jianshu.com/p/f2d4dd4d1fb1</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/31/5787/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9ubuntu%E9%85%8D%E7%BD%AE"><span class="toc-text">修改ubuntu配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85kubeadm%E3%80%81kubectl%E4%BB%A5%E5%8F%8Akubelet"><span class="toc-text">安装kubeadm、kubectl以及kubelet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96master%E8%8A%82%E7%82%B9"><span class="toc-text">初始化master节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86slave%E8%8A%82%E7%82%B9%E5%8A%A0%E5%85%A5%E7%BD%91%E7%BB%9C"><span class="toc-text">将slave节点加入网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E4%BF%AE%E6%94%B9-ubuntu-%E9%85%8D%E7%BD%AE"><span class="toc-text">一. 修改 ubuntu 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%97%AD-swap-%E5%86%85%E5%AD%98"><span class="toc-text">关闭 swap 内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-text">配置免密登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E5%AE%89%E8%A3%85-docker"><span class="toc-text">二. 安装 docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-text">docker 的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E5%AE%89%E8%A3%85-k8s"><span class="toc-text">三. 安装 k8s</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E5%AE%89%E8%A3%85-master-%E8%8A%82%E7%82%B9"><span class="toc-text">四. 安装 master 节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-master-%E8%8A%82%E7%82%B9-%E8%BF%99%E4%B8%80%E6%AD%A5%E4%BC%9A%E5%8D%A1-%E6%98%AF%E5%9B%A0%E4%B8%BAdocker%E6%BA%90-%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83link"><span class="toc-text">初始化 master 节点  这一步会卡 是因为docker源 可以参考link</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-text">获取镜像文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C%E8%8A%82%E7%82%B9"><span class="toc-text">准备工作节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-text">修改主机名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEadmin%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">设置admin配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E8%8A%82%E7%82%B9%E5%8A%A0%E5%85%A5Pod%E7%BD%91%E7%BB%9C"><span class="toc-text">将节点加入Pod网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E4%B8%8B%E4%B8%BA%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%96%B9%E6%A1%88-%E6%B5%8B%E8%AF%95%E5%A4%B1%E8%B4%A5"><span class="toc-text">以下为第二种方案 (测试失败)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%8A%8A%E6%9C%80%E5%90%8E%E9%82%A3%E8%A1%8C%E4%BB%A5kubeadm-join%E5%BC%80%E5%A4%B4%E7%9A%84%E5%91%BD%E4%BB%A4%E5%A4%8D%E5%88%B6%E4%B8%8B%E6%9D%A5%EF%BC%8C%E4%B9%8B%E5%90%8E%E5%AE%89%E8%A3%85%E5%B7%A5%E4%BD%9C%E8%8A%82%E7%82%B9%E6%97%B6%E8%A6%81%E7%94%A8%E5%88%B0%E7%9A%84%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E4%B8%8D%E6%85%8E%E9%81%97%E5%A4%B1%E4%BA%86%E8%AF%A5%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8master%E8%8A%82%E7%82%B9%E4%B8%8A%E4%BD%BF%E7%94%A8kubeadm-token-create-%E2%80%93print-join-command%E5%91%BD%E4%BB%A4%E6%9D%A5%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90%E4%B8%80%E6%9D%A1%E3%80%82"><span class="toc-text">请把最后那行以kubeadm join开头的命令复制下来，之后安装工作节点时要用到的，如果你不慎遗失了该命令，可以在master节点上使用kubeadm token create –print-join-command命令来重新生成一条。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-kubectl-%E5%B7%A5%E5%85%B7"><span class="toc-text">配置 kubectl 工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2-flannel-%E7%BD%91%E7%BB%9C"><span class="toc-text">部署 flannel 网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%B0%86-slave-%E8%8A%82%E7%82%B9%E5%8A%A0%E5%85%A5%E7%BD%91%E7%BB%9C"><span class="toc-text">五. 将 slave 节点加入网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%BD%91%E5%8D%A1%E9%97%AE%E9%A2%98%E4%BF%AE%E5%A4%8D"><span class="toc-text">默认网卡问题修复</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

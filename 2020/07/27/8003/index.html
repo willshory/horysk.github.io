@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Pyppeteer库之二：Pyppeteer的浏览器对象 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/27/8003/" class="shake shake-little" title="Pyppeteer库之二：Pyppeteer的浏览器对象">
+            
+            Pyppeteer库之二：Pyppeteer的浏览器对象
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Pyppeteer/">Pyppeteer</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月27日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月27日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pyppeteer/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Pyppeteer</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p>启动器Launcher<br>启动方式：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> launch :启动链接一个新的浏览器</span><br><span class="line"> content :链接已打开的浏览器，便于崩溃后重链</span><br><span class="line"></span><br><span class="line">launch()</span><br><span class="line">pyppeteer.launch(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
+<p>启动一个新的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
+<p>常用参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">headless(<span class="built_in">bool</span>): 是否启用<span class="string">&quot;无头模式&quot;</span>(隐藏浏览器界面)，默认为 <span class="literal">True</span> 。</span><br><span class="line">executablePath(<span class="built_in">str</span>): 指定 Chromium.exe 文件的路径(不使用内置的chromium)。</span><br><span class="line">slowMo（<span class="built_in">int</span>|<span class="built_in">float</span>）:按指定的毫秒数减慢 pyppeteer 的速度。</span><br><span class="line">args(List[<span class="built_in">str</span>]): 启动 Chromium 的参数。</span><br><span class="line">dumpio(<span class="built_in">bool</span>):是否将浏览器进程标准输出和标准错误输入到 process.stdout 和 process.stderr中。默认是 <span class="literal">False</span>。</span><br><span class="line">userDataDir(<span class="built_in">str</span>): 设置用户数据目录。</span><br><span class="line">devtools(<span class="built_in">bool</span>): 是否为每个选项卡自动打开 DevTools 面板， 这个选项只有当 headless 设置为 <span class="literal">False</span>的时候有效。</span><br></pre></td></tr></table></figure>
+<p>args—&gt;启动chrome的参数：<br><a target="_blank" rel="noopener" href="https://peter.sh/experiments/chromium-command-line-switches/">pyppeteer官网</a></p>
+<p>launch常用参数配置:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">kwargs = &#123;</span><br><span class="line">    <span class="comment"># 启用浏览器界面</span></span><br><span class="line">    <span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>,</span><br><span class="line">    <span class="comment"># 多开页面，解决卡死</span></span><br><span class="line">    <span class="string">&#x27;dumpio&#x27;</span>: <span class="literal">True</span>,</span><br><span class="line">    <span class="comment"># 设置浏览器全屏</span></span><br><span class="line">    <span class="string">&#x27;args&#x27;</span>: [<span class="string">&#x27;--start-maximized&#x27;</span>,</span><br><span class="line">             <span class="comment"># 取消沙盒模式，沙盒模式下权限太小</span></span><br><span class="line">             <span class="string">&#x27;--no-sandbox&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置浏览器界面大小</span></span><br><span class="line">             <span class="string">&#x27;--window-size=1366,768&#x27;</span>,</span><br><span class="line">             <span class="comment"># 关闭受控制提示：比如，Chrome正在受到自动测试软件的控制...</span></span><br><span class="line">             <span class="string">&#x27;--disable-infobars&#x27;</span>,</span><br><span class="line">             <span class="comment"># 允许跨域</span></span><br><span class="line">             <span class="string">&#x27;--disable-web-security&#x27;</span>,</span><br><span class="line">             <span class="comment"># 使用代理</span></span><br><span class="line">             <span class="string">&#x27;--proxy-server=127.0.0.1:80&#x27;</span>,</span><br><span class="line">             <span class="comment"># 不走代理的链接</span></span><br><span class="line">             <span class="string">&#x27;--proxy-bypass-list=*&#x27;</span>,</span><br><span class="line">             <span class="comment"># 忽略证书错误</span></span><br><span class="line">             <span class="string">&#x27;--ignore-certificate-errors&#x27;</span>,</span><br><span class="line">             <span class="comment"># log 等级设置，如果出现一大堆warning，可以不使用默认的日志等级</span></span><br><span class="line">             <span class="string">&#x27;--log-level=3&#x27;</span>,</span><br><span class="line">             <span class="comment"># 设置ua</span></span><br><span class="line">             <span class="string">&#x27;--user-agent=Mozilla/5.0&#x27;</span></span><br><span class="line">             ],</span><br><span class="line">    <span class="string">&#x27;userDataDir&#x27;</span>: <span class="string">r&#x27;D:\Temporary&#x27;</span>,</span><br><span class="line">    <span class="comment"># 用户数据保存目录，这个最好指定一个，</span></span><br><span class="line">    <span class="comment"># 如果不指定，Chrome会自动创建一个临时目录使用，在退出浏览器时自动删除，</span></span><br><span class="line">    <span class="comment"># 在删除的时候可能会删除失败(不知道为什么出现权限问题，我用Windows)导致浏览器退出失败</span></span><br><span class="line">    <span class="comment"># 删除失败时出现报错：OSError: Unable to remove Temporary User Data</span></span><br><span class="line">    <span class="comment"># 或者Chrome进程没有退出，cpu狂飙到99%</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content()</span><br><span class="line">pyppeteer.connect(options: dict = None, **kwargs: Any) -&gt; Browser</span><br></pre></td></tr></table></figure>
+<p>链接已打开的浏览器，返回 Browser 类。接受字典或键值对的关键字配置参数。</p>
+<p>参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">browserWSEndpoint（<span class="built_in">str</span>）：要连接的浏览器 websocket 端点。（必填）</span><br><span class="line">ignoreHTTPSErrors（<span class="built_in">bool</span>）：是否忽略 HTTPS 错误。默认为 <span class="literal">False</span>。</span><br><span class="line">slowMo（<span class="built_in">int</span> | <span class="built_in">float</span>）：按指定的毫秒数减慢pyppeteer的速度。</span><br><span class="line">logLevel（<span class="built_in">int</span> | <span class="built_in">str</span>）：用于打印日志的日志级别。默认值与根记录器相同。</span><br><span class="line">loop（asyncio.AbstractEventLoop）：事件循环（实验）。</span><br><span class="line"></span><br><span class="line">browserWSEndpoint 的值获取：Browser.wsEndpoint</span><br></pre></td></tr></table></figure>
+
+<p>例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> pyppeteer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> pyppeteer.launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.setViewport(&#123;<span class="string">&#x27;width&#x27;</span>: <span class="number">1366</span>, <span class="string">&#x27;height&#x27;</span>: <span class="number">768</span>&#125;)</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    ws = browser.wsEndpoint</span><br><span class="line">    print(ws)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> browser.disconnect()  <span class="comment"># 断开链接</span></span><br><span class="line">    browser2 = <span class="keyword">await</span> pyppeteer.connect(&#123;<span class="string">&#x27;browserWSEndpoint&#x27;</span>: ws&#125;)</span><br><span class="line">    <span class="keyword">await</span> browser2.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
+
+<p>浏览器Browser</p>
+<p>常用属性和方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">process：返回浏览器进程，如果浏览器实例是由 connect 方法创建的则返回 null。</span><br><span class="line">browserContexts：返回一个包含所有打开的浏览器上下文的列表。在新创建的浏览器中，这将返回 [BrowserContext]的单个实例。</span><br><span class="line">wsEndpoint: 返回 websocket 端点 url，用于connect 方法重链。</span><br><span class="line">pages()：获取所有可见的标签页。</span><br><span class="line">newPage()：新建标签页。</span><br><span class="line">close():关闭 Chromium 及其所有页面。Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">disconnect()：断开 Pyppeteer 和浏览器的连接，但 Chromium 进程仍然在运行。在调用 disconnect 之后，Browser 对象本身被认为是处理过的并不能再被使用。</span><br><span class="line">createIncognitoBrowserContext()：创建一个新的隐身浏览器上下文。这不会与其他浏览器上下文共享 cookie / 缓存。</span><br><span class="line">userAgent():返回浏览器原始的 user-agent。页面可以使用 page.setUserAgent 覆盖浏览器的 user-agent。</span><br><span class="line"></span><br><span class="line">注：被 <span class="keyword">async</span> 关键字修饰的方法是异步方法，调用的时候也必须 <span class="keyword">await</span> 关键字修饰。</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()</span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    print(browser.process)     <span class="comment"># 属性不被 async 关键字修饰</span></span><br><span class="line">    print(browser.wsEndpoint)</span><br><span class="line">    print(browser.browserContexts)</span><br><span class="line">    print(<span class="keyword">await</span> browser.userAgent())</span><br><span class="line">    print(<span class="keyword">await</span> browser.pages())</span><br><span class="line">    print(<span class="keyword">await</span> browser.version())</span><br><span class="line">    print(browser.targets())  <span class="comment"># 这个方法在源码中不被 async 关键字修饰</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BrowserContext</span><br></pre></td></tr></table></figure>
+<p>启动浏览器时，默认情况下使用单个 BrowserContext。<br>方法 browser.newPage() 在默认浏览器中创建页面背景。</p>
+<p>Pyppeteer允许创建隐身浏览器(无痕模式)上下文。如下方法：<br>browser.createInnamitoBrowserContext()</p>
+<p>隐身浏览器上下文不会将任何浏览器数据写入磁盘。</p>
+<p>无痕模式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">from</span> pyppeteer <span class="keyword">import</span> launch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="comment"># 创建浏览器实例</span></span><br><span class="line">    browser = <span class="keyword">await</span> launch(&#123;<span class="string">&#x27;headless&#x27;</span>: <span class="literal">False</span>&#125;)</span><br><span class="line">    <span class="comment"># 启动无痕模式</span></span><br><span class="line">    context = <span class="keyword">await</span> browser.createIncognitoBrowserContext()</span><br><span class="line">    <span class="comment"># 新建标签页</span></span><br><span class="line">    page = <span class="keyword">await</span> context.newPage()</span><br><span class="line">    <span class="comment"># 打开目标 url</span></span><br><span class="line">    <span class="keyword">await</span> page.goto(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line">    <span class="comment"># 打印是否无痕模式</span></span><br><span class="line">    print(context.isIncognito())</span><br><span class="line">    <span class="comment"># 关闭无痕模式</span></span><br><span class="line">    <span class="keyword">await</span> context.close()</span><br><span class="line">    <span class="comment"># 关闭浏览器</span></span><br><span class="line">    <span class="keyword">await</span> browser.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.get_event_loop().run_until_complete(main())</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weizhen11/java/article/details/102496875">原文链接</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weizhen11/article/details/102497647?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">pyppeteer页面操作</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/27/8003/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>MongoDB索引管理——创建索引，查看索引，删除索引，重建索引 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/38321/" class="shake shake-little" title="MongoDB索引管理——创建索引，查看索引，删除索引，重建索引">
+            
+            MongoDB索引管理——创建索引，查看索引，删除索引，重建索引
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Mongo/">Mongo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Mongo</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p><a target="_blank" rel="noopener" href="https://blog.51cto.com/navyaijm/2421973?source=drh">Mongodb性能压测</a></p>
+<h3 id="先给users集合插入两条记录，然后用users集合来进行索引管理的演示："><a href="#先给users集合插入两条记录，然后用users集合来进行索引管理的演示：" class="headerlink" title="先给users集合插入两条记录，然后用users集合来进行索引管理的演示："></a>先给users集合插入两条记录，然后用users集合来进行索引管理的演示：</h3><pre><code class="bash">&gt; user1=&#123;&quot;name&quot;:&quot;liming&quot;,&quot;age&quot;:20,&quot;gender&quot;:&quot;F&quot;&#125;
+&#123; &quot;name&quot; : &quot;liming&quot;, &quot;age&quot; : 20, &quot;gender&quot; : &quot;F&quot; &#125;
+&gt; db.users.insert(user1)
+WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)
+&gt; user2=&#123;&quot;name&quot;:&quot;zhangsan&quot;,&quot;age&quot;:25,&quot;gender&quot;:&quot;F&quot;&#125;
+&#123; &quot;name&quot; : &quot;zhangsan&quot;, &quot;age&quot; : 25, &quot;gender&quot; : &quot;F&quot; &#125;
+&gt; db.users.insert(user1)
+WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)
+&gt; db.users.count()</code></pre>
+<h2 id="2-创建索引："><a href="#2-创建索引：" class="headerlink" title="2 创建索引："></a>2 创建索引：</h2><p>mongodb使用createIndex()和ensureIndex()方法来创建索引，前者用于3.0及以上版本，后者用于3.0以下版本。<br>语法：<br>db.COLLECTION_NAME.ensureIndex(keys[,options])<br>keys:要建立索引的参数列表。如：{KEY:1}，其中key表示字段名，1表示升序排序，也可使用使用数字-1降序。<br>options:可选参数，表示建立索引的设置。可选值如下：<br>background，Boolean，在后台建立索引，以便建立索引时不阻止其他数据库活动。默认值为false。<br>unique，Boolean，创建唯一索引。默认值 false。<br>name，String，指定索引的名称。如果未指定，MongoDB会生成一个索引字段的名称和排序顺序串联。<br>partialFilterExpression, document.如果指定,MongoDB只会给满足过滤表达式的记录建立索引.<br>sparse，Boolean，对文档中不存在的字段数据不启用索引。默认值是 false。<br>expireAfterSeconds,integer,指定索引的过期时间<br>storageEngine,document,允许用户配置索引的存储引擎</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 1,
+    &quot;numIndexesAfter&quot; : 2,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<p>例2：给name字段创建倒序索引</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:-1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 2,
+    &quot;numIndexesAfter&quot; : 3,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<p>例3：给name，age字段创建组合索引</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;&quot;name&quot;:1,&quot;age&quot;:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 3,
+    &quot;numIndexesAfter&quot; : 4,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<p>例4：在后台给age字段创建索引</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;age:1&#125;,&#123;background:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 4,
+    &quot;numIndexesAfter&quot; : 5,
+    &quot;ok&quot; : 1
+&#125;``` 
+### 在后台创建索引的原因：
+在前台创建索引期间会锁定数据库，会导致其它操作无法进行数据读写，在后台创建索引是，会定期释放写锁，从而保证其它操作的运行，但是后台操作会在耗时更长，尤其是在频繁进行写入的服务器上。
+
+##　查看索引：
+MongoDB提供的查看索引信息的方法：
+getIndexes()方法可以用来查看集合的所有索引，
+getIndexKeys()方法查看索引键。
+totalIndexSize()查看集合索引的总大小，
+getIndexSpecs()方法查看集合各索引的详细信息
+例1： getIndexes()的用法
+``` bash
+&gt; db.users.getIndexes()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : -1
+        &#125;,
+        &quot;name&quot; : &quot;name_-1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1,
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1_age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;,
+        &quot;background&quot; : 1
+    &#125;
+]</code></pre>
+<p>例2：getIndexKeys()的用法</p>
+<pre><code class="bash">&gt; db.users.getIndexKeys()
+[
+    &#123;
+        &quot;_id&quot; : 1
+    &#125;,
+    &#123;
+        &quot;name&quot; : 1
+    &#125;,
+    &#123;
+        &quot;name&quot; : -1
+    &#125;,
+    &#123;
+        &quot;name&quot; : 1,
+        &quot;age&quot; : 1
+    &#125;,
+    &#123;
+        &quot;age&quot; : 1
+    &#125;
+]</code></pre>
+<p>例3：totalIndexSize()的用法</p>
+<blockquote>
+<p>db.users.totalIndexSize()<br>81920<br>例4：getIndexSpecs()的用法</p>
+</blockquote>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : -1
+        &#125;,
+        &quot;name&quot; : &quot;name_-1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1,
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1_age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;,
+        &quot;background&quot; : 1
+    &#125;
+]</code></pre>
+<h2 id="删除索引："><a href="#删除索引：" class="headerlink" title="删除索引："></a>删除索引：</h2><p>不再需要的索引，我们可以将其删除，mongodb提供两种删除索引的方法：<br>dropIndex()方法用于删除指定的索引<br>dropIndexes()方法用于删除全部的索引<br>例1:dropIndex()的用法</p>
+<pre><code class="bash">&gt; db.users.dropIndex(&quot;name_1&quot;)
+&#123; &quot;nIndexesWas&quot; : 5, &quot;ok&quot; : 1 &#125;
+&gt; db.users.dropIndex(&quot;name_1_age_1&quot;)
+&#123; &quot;nIndexesWas&quot; : 4, &quot;ok&quot; : 1 &#125;
+&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : -1
+        &#125;,
+        &quot;name&quot; : &quot;name_-1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;age&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;age_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;,
+        &quot;background&quot; : 1
+    &#125;
+]</code></pre>
+<p>我们可以看到,name字段的索引和name与age字段的组合索引皆被删除</p>
+<p>例2:dropIndexes()的用法</p>
+<pre><code class="bash">&gt; db.users.dropIndexes()
+&#123;
+    &quot;nIndexesWas&quot; : 3,
+    &quot;msg&quot; : &quot;non-_id indexes dropped for collection&quot;,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;
+]</code></pre>
+<p>在使用了dropIndexes()方法后,我们之前建的所有索引都被删除掉了</p>
+<h2 id="索引重建"><a href="#索引重建" class="headerlink" title="索引重建:"></a>索引重建:</h2><p>我们之前把users的索引全部删除了,现在在name字段上建立一个正序索引,然后在name字段上重建倒序索引,可以看到重建索引是把之前name字段的索引删掉再新建一个索引的,重建之前name字段还是只有一个索引.</p>
+<pre><code class="bash">&gt; db.users.createIndex(&#123;name:1&#125;)
+&#123;
+    &quot;createdCollectionAutomatically&quot; : false,
+    &quot;numIndexesBefore&quot; : 1,
+    &quot;numIndexesAfter&quot; : 2,
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;
+]</code></pre>
+<pre><code class="bash">&gt; db.users.reIndex(&#123;name:-1&#125;)
+&#123;
+    &quot;nIndexesWas&quot; : 2,
+    &quot;nIndexes&quot; : 2,
+    &quot;indexes&quot; : [
+        &#123;
+            &quot;key&quot; : &#123;
+                &quot;_id&quot; : 1
+            &#125;,
+            &quot;name&quot; : &quot;_id_&quot;,
+            &quot;ns&quot; : &quot;test1.users&quot;
+        &#125;,
+        &#123;
+            &quot;key&quot; : &#123;
+                &quot;name&quot; : 1
+            &#125;,
+            &quot;name&quot; : &quot;name_1&quot;,
+            &quot;ns&quot; : &quot;test1.users&quot;
+        &#125;
+    ],
+    &quot;ok&quot; : 1
+&#125;</code></pre>
+<pre><code class="bash">&gt; db.users.getIndexSpecs()
+[
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;_id&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;_id_&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;,
+    &#123;
+        &quot;v&quot; : 1,
+        &quot;key&quot; : &#123;
+            &quot;name&quot; : 1
+        &#125;,
+        &quot;name&quot; : &quot;name_1&quot;,
+        &quot;ns&quot; : &quot;test1.users&quot;
+    &#125;
+]</code></pre>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/24/38321/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E7%BB%99users%E9%9B%86%E5%90%88%E6%8F%92%E5%85%A5%E4%B8%A4%E6%9D%A1%E8%AE%B0%E5%BD%95%EF%BC%8C%E7%84%B6%E5%90%8E%E7%94%A8users%E9%9B%86%E5%90%88%E6%9D%A5%E8%BF%9B%E8%A1%8C%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86%E7%9A%84%E6%BC%94%E7%A4%BA%EF%BC%9A"><span class="toc-text">先给users集合插入两条记录，然后用users集合来进行索引管理的演示：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95%EF%BC%9A"><span class="toc-text">2 创建索引：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95%EF%BC%9A"><span class="toc-text">删除索引：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E9%87%8D%E5%BB%BA"><span class="toc-text">索引重建:</span></a>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

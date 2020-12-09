@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Mongodb 笔记07 分片、配置分片、选择片键、分片管理 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/08/03/45008/" class="shake shake-little" title="Mongodb 笔记07 分片、配置分片、选择片键、分片管理">
+            
+            Mongodb 笔记07 分片、配置分片、选择片键、分片管理
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/mongo/">mongo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年08月03日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年08月03日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>mongo</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><ol>
+<li><p>分片(sharding)是指将数据拆分，将其分散存放在不同的机器上的过程。有时也用分区(partitioning)来表示这个概念。将数据分散到不同的机器上，不需要功能强大的大型计算机就可以</p>
+<p> 存储更多的数据，处理更大的负载。</p>
+</li>
+<li><p>MongoDB支持自动分片(autosharding)，可以使数据库架构对应用程序不可见，也可以简化系统管理。对应用程序而言，好像始终在使用一个单机的MongoDB服务器一样。另一方面，</p>
+<p> mongoDB自动处理数据在分片上的分布，也更容易添加和删除分片技术。</p>
+<a id="more"></a></li>
+<li><p>复制与分片的区别：复制时让多台服务器都拥有同样的数据副本，每一台服务器都是其他服务器的镜像，而每一个分片都和其他分片拥有不同的数据子集。</p>
+</li>
+<li><p>路由服务器：为了对应用程序隐藏数据库架构的细节，在分片之前要先执行mongos进行一次路由过程。这个路由服务器维护这一个”内容列表”，指明了每个分片包含什么数据内容。应用</p>
+<p> 程序只需要连接路由服务器，就可以像使用单机一样进行正常的请求了。</p>
+</li>
+<li><p>运行sh.status()可以看到集群的状态：分片摘要信心、数据库摘要信息、集合摘要信息。</p>
+</li>
+<li><p>要对一个集合分片，首先你要对这个集合的数据库启用分片，执行如下命令：sh.enableSharding(“test”)</p>
+</li>
+<li><p>片键：片键是集合的一个键，MongoDB根据这个键拆分数据。例如：username 。在启用分片之前，先在希望作为片键的键上创建索引：db.users.ensureIndex({“username”:1})</p>
+</li>
+<li><p>对集合分片：sh.shardCollection(“test.users”,{“username”:1})</p>
+</li>
+<li><p>集合被拆分为多个数据块，每个数据块都是集合的一个数据子集。这是按照片键的范围排列的({“username”:minValue}–&gt;&gt;{“username”:maxValue}指出了每个数据块的范围)。</p>
+</li>
+<li><p>包含片键的查询能够直接被发送到目标分片或者是集群分片的一个子集。这样的查询叫做定向查询(targetd query)。有些查询必须被发送到所有分片，这样的查询叫做分散-聚合查询(</p>
+<p>  scatter-gather query);mongos将查询分散到所有的分片上，然后经各个分片的查询结果聚集起来。</p>
+</li>
+<li><p>cluster.stop() 关闭整个集群。</p>
+</li>
+</ol>
+<h2 id="BSON类型"><a href="#BSON类型" class="headerlink" title="BSON类型"></a>BSON类型</h2><h2 id="配置分片："><a href="#配置分片：" class="headerlink" title="配置分片："></a>配置分片：</h2><ol>
+<li><p>何时进行分片：决定何时分片是一个值得权衡的问题。通常不必太早分片，因为分片不仅会增加部署的操作复杂度，还要求做出设计决策，而改决策以后很难再改。另外最好也不要在系统</p>
+<p> 运行太久之后再分片，因为在一个过载的系统上不停机进行分配是很困难的。</p>
+</li>
+<li><p>分片的目的：增加可用的RAM，增加可用磁盘空间，减轻单台服务器的负载，处理单个mongod无法承受的吞吐量。</p>
+</li>
+<li><p>一般情况下至少应该创建3个或者以上的分片。</p>
+</li>
+<li><p>启动服务器：</p>
+<p> 1). 配置服务器：配置服务器相当于集群的大脑，保存着集群和分片的元数据，即各分片包含哪些数据的信息。因此，应该首先建立配置服务器，鉴于它所包含的的数据极端重要性，必须启用</p>
+<pre><code>  其日志功能，并确保其数据保存在非易失性驱动器上。每个配置服务器都应该位于单独的物理机上，最好是分布在不同地址位置的机器上。
+
+  a. 启动配置服务器：mongod --configsvr --dbpath  /var/lib/mongodb -f  /var/lib/config/mognd.conf  。需要启动三台配置服务器，且都是可写的。
+
+      为什么是3台配置服务器？因为我们需要考虑不时之需。但是，也不需要过多的配置服务器，因为配置服务器上的确认操作比较耗时。另外，如果有服务器宕机了，集群源数据就会变成只读的。
+
+      --configsvr 选项指定mongod为新配置服务器。该选项并非必选项，因为它所做的不过是将mongod的默认监听端口改为27019，并大默认的数据目录改为/data/configdb而已(可以使用
+
+      --port 和 --dbpath 选项修改这两项配置)。但建议使用--configsvr选项，因为它比价直白地说明了这些配置服务器的用途。
+
+      配置服务器的1KB相当于200MB知识数据，它保存的真实数据的分布表。由于配置服务器并不需要太多的资源，因此可以将其部署在运行着其他程序的服务器上。 </code></pre>
+<p> 2). mongos进程：三个配置服务器均处于运行状态后，启动一个mongos进程供应用程序连接。mongos进程需要配置服务器的地址，所以必须使用–configdb选项启动mongos:</p>
+<pre><code>   mongos --configdb config-1:27019,config-2:27019,config-3:27019 -f /var/lib/mongos.conf
+
+   默认情况下，mongos运行在27017端口。mongos本身不保存数据，它会在启动时从配置服务器加载集群数据。
+
+   可以启动任意数量的mongos进程。通常的设置时每个应用程序服务器使用一个mongos进程(与应用服务器运行在同一台机器上)
+
+   每个mongos进程必须按照列表排序，使用相同的配置服务器列表。</code></pre>
+<p> 3). 将副本集转换为分片：有两种可能性：已经有一个副本集，或者从零开始建立集群。下例假设我们已经拥有了一个副本集。如果是从零开始的话，可先初始化一个空的副本集，然后按照本例操作。</p>
+<pre><code>  a. 告知mongos副本集名称和副本集成员列表：sh.addShard(&quot;spock/server-1:27017,server-2:27017,server-4:27017&quot;)  mongos能够自动检测到没有包含在副本集成员表中的成员。
+
+  b. 副本集作为分片添加到集群后，就可以将应用程序设置从连接到副本集改为连接到mongos。
+
+  c. 副本集名称spokc被作为分片名称。如果之后希望移除这个分片或者是向这个分片迁移数据，可以使用spock来标志这个分片。
+
+  d. 配置完分片后，必须将客户端设置为将所有请求发送到mongos，而不是副本集。同时配置防火墙规则，以确保客户端不能直接将请求发送到分片。
+
+  e. 有一个--shardsvr选项，与前面介绍的--configsvr选项类似，它也没什么实用性(只是将默认端口改为27018)，但在操作中建议使用该选项。
+
+  f. 不建议创建单mongod服务器分片(而不是副本集分片)，将单一服务器分片转换为副本集需要停机操作。</code></pre>
+<p> 4). 增加集群容量：通过增加分片来增加集群容量。</p>
+<p> 5). 数据分片：除非明确指定规则，否则MongoDB不会自动对数据进行拆分。如果有必要，必须明确告知数据库和集合。加入对music数据库中的artists集合按照name进行分片，</p>
+<pre><code>   db.enableSharding(&quot;music&quot;)         对数据库分片是对集合分片的先决条件
+
+   sh.shardCollection(&quot;music.artists&quot;,&#123;&quot;name&quot;:1&#125;)   对集合分片，集合会按照name键进行分片。如果是对已存在的集合分片，那么name键上必须有索引，否则会返回错误。
+
+   shardCollection()命令会经集合拆分为多个数据块，这是MongoDB迁移数据的基本单元。命令执行后，MongoDB会均衡的将数据分散到集群的分片上。</code></pre>
+</li>
+<li><p>MongoDB如何追踪集群数据</p>
+<p> 1). MongoDB将文档分组为块(chunk)，每个块由给定片键特定范围内的文档组成。一个块只存在于一个分片上，所以MongoDB用一个比较小的表就能够维护跟分片的映射。</p>
+<p> 2). 当一个块增长到特定大小时，MongoDB会自动将其拆分为两个较小的块。</p>
+<p> 3). 一个常见的误解释同一个块内的数据保存在磁盘的同一片区域。这是不正确的，块并不影响mongod保存集合数据的方式。</p>
+<p> 4). 块信息保存在config.chunks集合中。左闭右开。</p>
+<p> 5). 可以使用复合片键，工作方式与使用复合索引进行排序一样。</p>
+<p> 6). 拆分块：mongos会记录在每个块中插入了多少数据，一旦达到某个阈值，就会检查是否需要对块进行拆分。mongos就会在配置服务器更新这个块的源信息。块拆分中只需要改变块源数据即可，</p>
+<pre><code>  而无需进行数据移动。进行拆分时，配置服务器会创建新的块文档，同时修改旧的块范围，拆分完成以后，mongos会重置对原始块的追踪器，同时为新的块创建新的追踪器。</code></pre>
+<p> 7). 分片有时可能会找不到任何可用的拆分点，因为合法拆分块方法有限。具有相同片键的文档必须保存在相同的块中。</p>
+<p> 8). 如果mongos试图进行拆分时有一个服务器挂了，那么mongos就无法更新源数据。mongos不断重复发起拆分请求却无法进行拆分的过程，叫做拆分风暴。防止拆分风暴的唯一方法是尽可能保证</p>
+<pre><code>  配置服务器的可用和健康。也可以重启mongos，重置引入计数器，这样他就不会再处于拆分阈值点了。</code></pre>
+<p> 9). 如果mongos进程不断重启，它们的计数器可能永远也不会到达阈值点，因此块的增加不存在最大值，也就无法到达阈值点。</p>
+<p> 10). 防止无法拆分的两种方法：一是减少mongos进程的波动，二是使块的大小比实际预期小一些，这样就更容易达到拆分阈值点。</p>
+<p> 11). 可以在mongos启动时指定–nosplit选项，从而关闭块的拆分。</p>
+</li>
+<li><p>均衡器：均衡器负责数据的迁移。它会周期性地检查分片间是否存在不均衡，如果存在，则会开始块的迁移。虽然均衡器通常被看成单一的实体，但每个mongos有时也会扮演均衡器的角色。</p>
+<p> 每隔几秒，mongos就会尝试变身均衡器。如果没有其他可用的均衡器，mongos就会对整个集群加锁，以防止配置服务器对整个集群进行修改，然后做一次均衡。</p>
+<p> mongos成为均衡器后，就会检查每个集合的分块表，从而查看是否有分片达到了均衡阈值。</p>
+</li>
+</ol>
+<p>选择片键</p>
+<ol>
+<li><p>对集合进行分片时，要选择一或两个字段用于拆分数据，这个键就叫做片键。</p>
+</li>
+<li><p>拆分数据最常用的数据分发方式有三种：升序片键、随机分发的片键和基于位置的片键。</p>
+<p> 1). 升序片键：升序片键通常有点类似于”date”字段或者是ObjectId，是一种随着时间稳定增长的字段。缺点：例如ObjectId可能会导致接下来的所有的写入操作都在同一块分片上。</p>
+<p> 2). 随机分发的片键：随机分发的片键可以是用户名，邮件地址，UDID，MD5散列值或者数据集中其他一些没有规律的键。缺点：MongoDB在随机访问超出RAM大小的数据时效率不高。</p>
+<p> 3). 基于位置的片键：基于位置的片键可以是用户的IP、经纬度、或者地址。这里的”位置”比较抽象，不必与实际的物理位置字段相关。</p>
+<pre><code>  如果希望特定范围内的块出现在特定的分片中，可以为分片添加tag，然后为块指定相应的tag</code></pre>
+</li>
+<li><p>片键策略：</p>
+<p> 1). 散列片键：如果追求的是数据加载速度的极致，那么散列片键是最佳选择。散列片键可使其他任何键随机分发，因此，如果打算在大量查询中使用使用升序键，但同时又希望写入数据随机分发的话，</p>
+<pre><code>  散列片键会是一个非常好的选择。缺点：无法使用散列片键做指定目标的范围查找。  
+
+  创建步骤： db.users.ensureIndex(&#123;&quot;username&quot;:&quot;hashed&quot;&#125;)   ,   sh.shardCollection(&quot;app.users&quot;,&#123;&quot;username&quot;:&quot;hashed&quot;&#125;)</code></pre>
+<p> 2). GridFS的散列片键</p>
+<p> 3). 流水策略：如果有一些服务器比其他服务器更强大，我们可能希望让这些强大的服务器处理更多的负载。比如说：加入有一个使用SSD的分片能够处理10倍于其他机器的负载。我们可以强制将所有新数据</p>
+<pre><code>  插入到SSD，然后让均衡器将旧的块移动到其他分片上。
+
+  a. 为SSD指定一个标签：sh.addShardTag(&quot;shard-name&quot;,&quot;ssd&quot;)
+
+  b. 将升序键的当前值一直到正无穷范围的块都指定分布在SSD分片上：sh.addTagRange(&quot;dbName.collName&quot;,&#123;&quot;_id&quot;:ObjectId()&#125;,...&#123;&quot;_id&quot;:MaxKey&#125;,&quot;ssd&quot;) 
+
+      所有插入请求均会路由到这个块上，这个块始终位于标签的ssd的分片上。
+
+  c. 除非修改标签范围，否则从升序键的当前值一直到正无穷都被固定在这个分片上。可以创建一个定时任务每天更新一次标签范围：
+
+      use config
+
+      var tag =db.tags.findOne(&#123;&quot;ns&quot;:&quot;dbName.collName&quot;,...&quot;max&quot;:&#123;&quot;shardKey&quot;:MaxKey&#125;&#125;)
+
+      tag.min.shardKey = ObjectId()
+
+      db.tags.save(tag)
+
+      这样前一天的数据就会被移动到其他分片上了。
+
+      此策略的另一个缺点：需要修改才能进行扩展。如果写请求超出了SSD的处理能力，无法进行负载均衡。
+
+ 4). 多热点：写请求分布在集群中时，分片是最高效的。这种技术会创建多个热点(最好在每个分片上都创建几个热点)，写请求于是会均衡地分布在集群内，而在单个分片上则是以升序分布的。
+
+                 为了实现这种方式，需使用复合片键。复合片键中的第一个值只是比较粗略的随机值，势也比较低。</code></pre>
+</li>
+<li><p>片键规则和指导方针：</p>
+<p> 1). 片键限制：片键不可以是数组。文档一旦插入，其片键就无法修改了。要修改文档的片键值，就必须先删除文档。</p>
+<p> 2). 片键的势：选择一个值会变化的的键非常重要，即值很多，随着数据量的增大可以分出更多的片键。分片在势比较高的字段上性能更佳。</p>
+</li>
+<li><p>控制数据分发</p>
+<p> 1). 对多个数据库和集合使用一个集群：通过tag标记，将重要的数据放到性能更好的服务器上，将不重要的数据放在性能一般的服务器上。</p>
+<p> 2). 手动分片：如果不希望数据被自动分发，可以关闭均衡器，使用moveChunk命令手动对数据进行迁移。</p>
+</li>
+</ol>
+<p>分片管理</p>
+<ol>
+<li><p>检查集群状态：</p>
+<p> 1). 使用sh.status查看集群摘要信息: 块的数量比较多时，sh.status()命令会概述块的状态，而非打印出每个块的相关信息。如需查看所有的块，可使用sh.status(true)命令。</p>
+<pre><code>  sh.status()显示的所有信息都来自config数据库。运行sh.status()命令，使用MapReduce获取这一数据。因此，如果启动数据库时指定--noscripting选项，则无法运行sh.status()命令。</code></pre>
+<p> 2). 检查配置信息：</p>
+<pre><code>  a. 集群相关的所有配置信息都保存在配置服务器上config数据库的集合中。可以直接访问该数据库，不过shell提供了一些辅助函数。
+
+  b. 永远不要直接连接到配置服务器，以防止配置服务器数据被不小心修改或删除。应该先连接到mongos，然后通过config数据库来查询相关信息：use config
+
+      如果通过mongos操作配置数据，mongos会保证将修改同步到所有配置服务器，也会防止危险的操作发生，如意外删除config数据库等。
+
+  c. 总的来说，不应直接修改config数据库中的任何数据。如果确实修改了某些数据，通常需要重启所有的mongos服务器，才能看到效果。
+
+  d. config中几个关键集合：
+
+      shards : 跟踪记录集群中所有分片的信息。
+
+      databases: 跟踪记录集群中所有数据库的信息，不管数据库有没有分片。
+
+      collections: 跟踪记录所有分片集合的信息(非分片集合信息除外)
+
+      chunks: 记录集合中所有块的信息。
+
+      changelog: 跟踪记录集群的操作，因为该集合会记录所有拆分和迁移的操作。
+
+      tags: 该集合的创建是在为系统配置分片标签时发生的。每个标签都与一个块范围相关联。
+
+      settings: 该集合含有当前的均衡器设置和块大小的文档信息。通过修改该集合的文档，可开启和关闭均衡器，也可以修改块的大小。注意，应总是连接到mongos修改该集合的值。</code></pre>
+</li>
+<li><p>查看网络连接：</p>
+<p> 1). 查看连接统计：可以使用connPoolStats命令，查看mongos和mongod之间的连接信息：db.adminCommand({“connPoolStats”:1})</p>
+<pre><code>                     在一个分片上执行connPoolStats，输出信息中可以看到该分片与其他分片间的连接，包括连接到其他分片做数据迁移的连接。</code></pre>
+<p> 2). 限制连接数量： 可在mongos的命令行配置中使用maxConns选项，这样可以限制mongos能够创建的连接数量。可以使用下面公式计算分片能够处理的来自单一mongos连接数量：</p>
+<pre><code>                       maxConns = 20000 - (mongos进程的数量 * 3 ) - (每个副本集的成员数量 * 3 ) - (其他/mongos进程的数量)
+
+                       MongoDB如果没有安全退出，那些已经打开的套接字很可能没有被关闭。
+
+                       在出现大量重新连接时，除了重启进程，没有其他特殊有效的方法。</code></pre>
+</li>
+<li><p>服务器管理</p>
+<p> 1). 添加服务器：使用addShard命令，向集群中添加新的分片</p>
+<p> 2). 修改分片的服务器：要修改分片的成员，需直接连接到分片的主服务器上，然后对副本集进行重新配置。集群配置会自动检测更改，并将其更新到config.shards上。</p>
+<p> 3). 通常来说，不应从集群中删除分片。执行removeShard命令排除数据和查看排出进度。</p>
+<p> 4). 修改配置服务器：修改配置服务器非常困难，而且有风险，通常还需要停机。注意，修改配置服务器前，应做好备份。</p>
+<pre><code>                         首先必须关闭所有mongos进程，然后使用新的--configdb参数重启所有mongos进程。</code></pre>
+</li>
+<li><p>数据均衡：</p>
+<p> 1). 均衡器：均衡器只使用块的数量，而非数据大小，作为衡量分片间是否均衡的指标。自动均衡总是根据数据集的当前状态来决定数据迁移，而不考虑数据集历史状态。我们可以手动均衡数据集块的数量。</p>
+<p> 2). 修改块的大小：块的大小默认为64M，这个大小的块既易于迁移，又不至于导致过多的流失。使用shell连接到mongos，修改config.setting集合，从而完成块大小的修改。</p>
+<pre><code>   该设置的有效范围是整个集群：它会影响所有集合的数据库。因此，如需对一个集合使用较小的块，而对另一个集合使用较大的块，比较好的解决方式是取一个折中值(或者将这两个值放到不同的集合中)。
+
+   如果MongoDB频繁进行数据迁移或文档增大，则可能需要增加块的大小。</code></pre>
+<p> 3). 迁移块：同一块内的所有数据都位于同一分片上。如该分片的块数量比其他分片多，则MongoDB会将其中的一部分块迁移到其他块数量较少的分片上。移动快的过程叫迁移，MongoDB就是这样在集群中</p>
+<pre><code>  实现数据均衡的。可在shell中使用moveChunk辅助函数，手动移动块。
+
+  如果某个块的大小超出了系统指定的最大值，mongos则会拒绝移动这个块。移动之前必须先手动拆分这个块，可以使用splitAt命令对块进行拆分。特大块，无法被拆分。</code></pre>
+<p> 4). 特大块：某些片键，值比较少，例如：日期等。可能会形成超出设置的最大块大小的块，这种块成为特大块.</p>
+<pre><code>  出现特大块的表现之一是，某个分片的大小增长速度要比其他分片块的多。也可使用sh.status()来检查是否出现了特大块；特大块会存在一个jumbo属性。
+
+  a. 分发特大块，一个复杂的过程
+
+  b. 防止特大块的出现：修改片键，细化片键的粒度</code></pre>
+<p> 5). mongos有时无法从配置服务器正确更新配置。如果发现配置有误，mongos的配置过旧或无法找到应有的数据，可以使用flushRouterConfig命令手动刷新所有缓存：db.adminCommand({“flushRouterConfig”:1})</p>
+<pre><code>  如flushRouterConfig命令没能解决问题，则应重启所有的mongos或者mongod进程，以便清除所有可能的缓存。     </code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jtianlin/p/5128977.html">link</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1451897">mongodb分片模式分片键的选择</a></p>
+</li>
+</ol>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/08/03/45008/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%89%87"><span class="toc-text">分片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BSON%E7%B1%BB%E5%9E%8B"><span class="toc-text">BSON类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%88%86%E7%89%87%EF%BC%9A"><span class="toc-text">配置分片：</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>HyperLedger Fabric 2.0-release测试网络部署 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/29/51980/" class="shake shake-little" title="HyperLedger Fabric 2.0-release测试网络部署">
+            
+            HyperLedger Fabric 2.0-release测试网络部署
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/block-chain/">block chain</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月29日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月29日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HyperLedger-Fabric/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>HyperLedger Fabric</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/block-chain/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>block chain</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h2><p>CentOS 7<br>Docker 18.09.4<br>Docker-compose 1.32.2<br>GO 1.13.4</p>
+<h2 id="2-下载源码"><a href="#2-下载源码" class="headerlink" title="2.下载源码"></a>2.下载源码</h2><h3 id="1-创建go工作目录"><a href="#1-创建go工作目录" class="headerlink" title="1.创建go工作目录"></a>1.创建go工作目录</h3><p>mkdir go<br>mkdir go/src<br>mkdir go/pkg<br>mkdir go/bin<br>export GOPATH=xx/go<br>复制代码2.创建hyperledger目录<br>mkdir go/src/github.com/hyperledger<br>复制代码3.下载fabric release-2.0源码<br>cd go/src/github.com/hyperledger<br>git clone <a target="_blank" rel="noopener" href="https://github.com/hyperledger/fabric.git">https://github.com/hyperledger/fabric.git</a><br>cd fabric &amp;&amp; git checkout release-2.0<br>复制代码假如觉得git clone慢可参考 如何快速clone github代码库</p>
+<h2 id="3-编译二进制文件以及docker镜像"><a href="#3-编译二进制文件以及docker镜像" class="headerlink" title="3. 编译二进制文件以及docker镜像"></a>3. 编译二进制文件以及docker镜像</h2><p>当前在fabric目录<br>打开控制台进入fabric目录，执行以下命令<br>make all<br>复制代码中间可能提示没有安装gcc，此时只需要安装即可<br>yum install gcc<br>复制代码执行完成后，查看编译二进制文件如下：<br>ll build/bin<br>复制代码控制台输出如下：</p>
+<p>执行完成后，查看编译Docker镜像如下：<br>docker images |grep 2.0|grep fabric<br>复制代码控制台输出如下：</p>
+<h2 id="4-运行测试网络"><a href="#4-运行测试网络" class="headerlink" title="4.运行测试网络"></a>4.运行测试网络</h2><p>1.将编译完成的二进制文件复制到 fabric-samples 目录<br>cp -r build/bin fabric-samples<br>复制代码2.网络准备<br>cd  fabric-samples/first-network<br>./byfn.sh generate<br>复制代码生成证书文件以及通道文件如下</p>
+<p>3.运行测试网络<br>./byfn.sh up<br>复制代码控制台输出如下提示即运行成功</p>
+<p>查看docker状态如下：<br>docker ps |grep fabric<br>复制代码执行结果如下：</p>
+<h2 id="5-END"><a href="#5-END" class="headerlink" title="5.END"></a>5.END</h2><p>官方测试网络运行结束，接下来将对2.0的部署配置、合约以及raft共识进行继续学习，请持续关注。<br>推荐阅读： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28540443/article/details/104282768">Fabric2.0 first-network</a> 生成配置说明</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://juejin.im/post/5e440073518825490d124c92">https://juejin.im/post/5e440073518825490d124c92</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/29/51980/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">1.环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81"><span class="toc-text">2.下载源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BAgo%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-text">1.创建go工作目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BC%96%E8%AF%91%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8Adocker%E9%95%9C%E5%83%8F"><span class="toc-text">3. 编译二进制文件以及docker镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C"><span class="toc-text">4.运行测试网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-END"><span class="toc-text">5.END</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

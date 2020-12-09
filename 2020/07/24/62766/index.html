@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Docker 本地导入镜像/保存镜像/载入镜像/删除镜像 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/62766/" class="shake shake-little" title="Docker 本地导入镜像/保存镜像/载入镜像/删除镜像">
+            
+            Docker 本地导入镜像/保存镜像/载入镜像/删除镜像
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Docker/">Docker</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Docker</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h1 id="1、Docker导入本地镜像"><a href="#1、Docker导入本地镜像" class="headerlink" title="1、Docker导入本地镜像"></a>1、Docker导入本地镜像</h1><p>有时候我们自己在本地或者其它小伙伴电脑上拷贝了一份镜像，有了这个镜像之后，我们可以把本地的镜像导入，使用docker import 命令。</p>
+<p>例如这里下载了一个 alibaba-rocketmq-3.2.6.tar.gz 镜像文件，使用下列命令导入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># cat alibaba-rocketmq-3.2.6.tar.gz | docker import - rocketmq:3.2.6(镜像名自己定义)</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker images</span></span><br><span class="line">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">rocketmq                     <span class="number">3.2</span><span class="number">.6</span>               53925d1cf9f0        <span class="number">23</span> seconds ago      14MB</span><br><span class="line">my/python                    v1                  36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/centos_width_python       v1<span class="number">.0</span><span class="number">.1</span>              36b6e288656c        <span class="number">2</span> days ago          281MB</span><br><span class="line">my/sinatra                   v2                  8ba1d6a3ce4e        <span class="number">2</span> days ago          453MB</span><br><span class="line">hello-world                  latest              725dcfab7d63        <span class="number">4</span> months ago        <span class="number">1.84</span>kB</span><br></pre></td></tr></table></figure>
+<p>​<br>可以看到导入完成后，docker为我们生成了一个镜像ID，使用docker images也可以看到我们刚刚从本地导入的镜像。</p>
+<p>注意镜像文件必须是tar.gz类型的文件。</p>
+<h1 id="2、保存镜像"><a href="#2、保存镜像" class="headerlink" title="2、保存镜像"></a>2、保存镜像</h1><p>先根据已有的这个容器来提交一个新的镜像，提交时需要用到容器ID。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit –m “rocketmq” –a “zmc” d8990fec2141 rocketmq</span><br></pre></td></tr></table></figure>
+<p>我们的镜像做好之后，我们要保存起来，以供备份使用，该怎么做？使用docker save命令，保存镜像到本地。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># docker save -o rocketmq.tar rocketmq ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过&quot;docker images&quot;查看</span></span><br><span class="line">[root@rocketmq-nameserver4 dev]<span class="comment"># ll </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>rocketmq.tar为刚保存的镜像</p>
+<h1 id="3、载入镜像"><a href="#3、载入镜像" class="headerlink" title="3、载入镜像"></a>3、载入镜像</h1><p>我们有了本地的镜像文件，在需要的时候可以使用docker load将本地保存的镜像再次导入docker中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load --<span class="built_in">input</span> rocketmq.tar 或 docker load &lt; rocketmq.tar</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="4、删除镜像"><a href="#4、删除镜像" class="headerlink" title="4、删除镜像"></a>4、删除镜像</h1><p>有些镜像过时了，我们需要删除。使用如下的命令：docker rmi -f image_id ##-f：表示强制删除镜像；image_id：镜像id</p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/24/62766/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81Docker%E5%AF%BC%E5%85%A5%E6%9C%AC%E5%9C%B0%E9%95%9C%E5%83%8F"><span class="toc-text">1、Docker导入本地镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E4%BF%9D%E5%AD%98%E9%95%9C%E5%83%8F"><span class="toc-text">2、保存镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E8%BD%BD%E5%85%A5%E9%95%9C%E5%83%8F"><span class="toc-text">3、载入镜像</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E5%88%A0%E9%99%A4%E9%95%9C%E5%83%8F"><span class="toc-text">4、删除镜像</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

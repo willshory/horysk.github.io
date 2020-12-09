@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Mongodb性能压测 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/48737/" class="shake shake-little" title="Mongodb性能压测">
+            
+            Mongodb性能压测
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Mongo/">Mongo</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mongo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Mongo</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>这几天对所有的基础组件做一个摸底的基准压力测试，目前我们所有的开源基础组件都没有做过性能测试，经常有开发人员问，我们的RDS、MongoDB集群能抗多大量呀，这个时候我是没办法回复的，因为我自己也不知道，虽然一个数据库集群能抗多大量，在软件、硬件配置固定的情况下，和业务场景有很大的关系，如果数据量小，查询SQL简单那吞吐量自然很高，如果数据量特别大并且都是复杂SQL，那吞吐量自然上不去；但是既然人家问了，肯定是希望有一个答案，如果你说不知道，那会给人一种不靠谱的感觉，所以做一次基准压力测试，我们知道在特定的场景下我们的集群能有多大的吞吐量，做到自己心里有数，才给别人信心。这周在压测MongoDB，谷歌了一番，MongoDB的压测工具很少，有几篇是介绍通过YCSB压测MongoDB的，找（逻辑思维首席DBA）推荐一款MongoDB的压测工具，也推荐YCSB，好吧，那就它吧，开整。</p>
+<h2 id="二、环境说明"><a href="#二、环境说明" class="headerlink" title="二、环境说明"></a>二、环境说明</h2><pre><code class="bash">1、MongoDB集群配置（一个分片的shard集群）
+Mongodb性能压测
+
+2、MongoDB版本
+4.0.4-62-g7e345a7
+4、系统及内核版本
+
+
+CentOS Linux release 7.5.1804 (Core)
+3.10.0-862.14.4.el7.x86_64
+3、YCSB版本
+YCSB-0.16.0-RC1.
+
+4、测试说明
+Mongodb性能压测</code></pre>
+<h2 id="三、安装"><a href="#三、安装" class="headerlink" title="三、安装"></a>三、安装</h2><p>1、jdk及maven安装参考官方<br><a target="_blank" rel="noopener" href="https://github.com/brianfrankcooper/YCSB/tree/master/mongodb">https://github.com/brianfrankcooper/YCSB/tree/master/mongodb</a></p>
+<p>2、安装YCSB<br>wget <a target="_blank" rel="noopener" href="https://github.com/brianfrankcooper/YCSB/archive/0.16.0-RC1.tar.gz">https://github.com/brianfrankcooper/YCSB/archive/0.16.0-RC1.tar.gz</a><br>tar -zxvf YCSB-0.16.0-RC1.tar.gz<br>cd YCSB-0.16.0-RC1/<br>mvn clean package -Dmaven.test.skip=true<br>PS：<br>安装过程中maven下载依赖需要×××，如果有安装失败的包，需要在能×××的服务器上下载手动安装，比如mongodb-async-driver-2.0.1.jar就需要×××，下面是手动安装方法<br>A、手动下载jar包<br>wget <a target="_blank" rel="noopener" href="http://www.allanbank.com/repo/com/allanbank/mongodb-async-driver/2.0.1/mongodb-async-driver-2.0.1.jar">http://www.allanbank.com/repo/com/allanbank/mongodb-async-driver/2.0.1/mongodb-async-driver-2.0.1.jar</a><br>B、加压包，从pom.xml 文件里面查看groupId、artifactId、version<br>C、手动安装</p>
+<pre><code class="bash">mvn install:install-file -Dfile=/tmp/mongodb-async-driver-2.0.1.jar  -DgroupId=com.allanbank -DartifactId=mongodb-async-driver -Dversion=2.0.1 -Dpackaging=jar
+mvn -pl com.yahoo.ycsb:mongodb-binding -am clean package</code></pre>
+<h2 id="四、压测"><a href="#四、压测" class="headerlink" title="四、压测"></a>四、压测</h2><p>1、编写压测文件</p>
+<h1 id="YCSB-测试需要python2-7环境-可以使用conda-create-n-venv-python-2-7-创建-link"><a href="#YCSB-测试需要python2-7环境-可以使用conda-create-n-venv-python-2-7-创建-link" class="headerlink" title="YCSB  测试需要python2.7环境  可以使用conda create -n venv python=2.7 创建  link"></a>YCSB  测试需要python2.7环境  可以使用conda create -n venv python=2.7 创建  <a target="_blank" rel="noopener" href="https://blog.csdn.net/sirobot/article/details/107067577">link</a></h1><p>在workloads目录下有很多压测文件用到的文件，我们从其中一个copy一份，编辑添加我们自己定义的内容</p>
+<pre><code class="bash">vim workloads/2000w
+
+ongodb.url=mongodb://root:123456@172.21.244.101:27000
+mongodb.writeConcern=normal
+table=chj_2000w
+recordcount=20000000
+operationcount=50000000
+readallfields=true
+readproportion=0
+updateproportion=0
+scanproportion=0
+insertproportion=1
+requestdistribution=zipfian
+workload=com.yahoo.ycsb.workloads.CoreWorkload</code></pre>
+<pre><code class="bash">关于YCSB的压测文件的每个参数的解释如下：
+
+fieldcount: 每条记录字段个数 (default: 10)
+fieldlength: 每个字段长度 (default: 100)
+readallfields: 是否读取所有字段true或者读取一个字段false (default: true)
+readproportion: 读取作业比例 (default: 0.95)
+updateproportion: 更新作业比例 (default: 0.05)
+insertproportion: 插入作业比例 (default: 0)
+scanproportion: 扫描作业比例 (default: 0)
+readmodifywriteproportion: 读取一条记录修改它并写回的比例 (default: 0)
+requestdistribution: 请求的分布规则 uniform, zipfian or latest (default: uniform)
+maxscanlength: 扫描作业最大记录数 (default: 1000)
+scanlengthdistribution: 在1和最大扫描记录数的之间的分布规则 (default: uniform)
+insertorder: 记录被插入的规则ordered或者hashed (default: hashed)
+operationcount: 执行的操作数.
+maxexecutiontime: 执行操作的最长时间，当然如果没有超过这个时间以运行时间为主。
+table: 测试表的名称 (default: usertable)
+recordcount: 加载到数据库的纪录条数 (default: 0)</code></pre>
+<p>2、造数据，也是测写入性能</p>
+<pre><code class="bash">./bin/ycsb load mongodb -threads 100 -P workloads/2000w</code></pre>
+<p>输出结果说明</p>
+<pre><code class="bash">[OVERALL], RunTime(ms), 37182  #数据加载所用时间(毫秒)
+[OVERALL], Throughput(ops/sec), 13447.367005540314  #加载操作的吞吐量(ops/sec)
+[TOTAL_GCS_PS_Scavenge], Count, 37
+[TOTAL_GC_TIME_PS_Scavenge], Time(ms), 146
+[TOTAL_GC_TIME_%_PS_Scavenge], Time(%), 0.3926631165617772
+[TOTAL_GCS_PS_MarkSweep], Count, 0
+[TOTAL_GC_TIME_PS_MarkSweep], Time(ms), 0
+[TOTAL_GC_TIME_%_PS_MarkSweep], Time(%), 0.0
+[TOTAL_GCs], Count, 37
+[TOTAL_GC_TIME], Time(ms), 146
+[TOTAL_GC_TIME_%], Time(%), 0.3926631165617772
+[CLEANUP], Operations, 64
+[CLEANUP], AverageLatency(us), 422.09375
+[CLEANUP], MinLatency(us), 0
+[CLEANUP], MaxLatency(us), 26911
+[CLEANUP], 95thPercentileLatency(us), 3
+[CLEANUP], 99thPercentileLatency(us), 30
+[INSERT], Operations, 500000  # 执行insert操作的总数
+[INSERT], AverageLatency(us), 4658.931652  # 每次insert操作的平均延时(微秒)
+[INSERT], MinLatency(us), 831 # 所有insert操作的最小延时(微秒)
+[INSERT], MaxLatency(us), 1784831 # 所有insert操作的最大延时(微秒)
+[INSERT], 95thPercentileLatency(us), 9711  # 95%的insert操作延时在9毫秒以内
+[INSERT], 99thPercentileLatency(us), 17903 # 99%的insert操作延时在17毫秒以内
+[INSERT], Return=OK, 500000</code></pre>
+<p>3、压测<br>通过调整压测文件中read和update的比例，模拟只读和读写混合的操作</p>
+<pre><code class="bash">./bin/ycsb run mongodb -threads 100 -P workloads/2000w
+
+[OVERALL], RunTime(ms), 1735408
+[OVERALL], Throughput(ops/sec), 2881.1668495247227
+[TOTAL_GCS_PS_Scavenge], Count, 3975
+[TOTAL_GC_TIME_PS_Scavenge], Time(ms), 6180
+[TOTAL_GC_TIME_%_PS_Scavenge], Time(%), 0.3561122226012557
+[TOTAL_GCS_PS_MarkSweep], Count, 0
+[TOTAL_GC_TIME_PS_MarkSweep], Time(ms), 0
+[TOTAL_GC_TIME_%_PS_MarkSweep], Time(%), 0.0
+[TOTAL_GCs], Count, 3975
+[TOTAL_GC_TIME], Time(ms), 6180
+[TOTAL_GC_TIME_%], Time(%), 0.3561122226012557
+[READ], Operations, 500346
+[READ], AverageLatency(us), 2851.9638989819045
+[READ], MinLatency(us), 696
+[READ], MaxLatency(us), 646655
+[READ], 95thPercentileLatency(us), 6991
+[READ], 99thPercentileLatency(us), 23103
+[READ], Return=OK, 500346
+[CLEANUP], Operations, 10
+[CLEANUP], AverageLatency(us), 3131.0
+[CLEANUP], MinLatency(us), 1
+[CLEANUP], MaxLatency(us), 31295
+[CLEANUP], 95thPercentileLatency(us), 31295
+[CLEANUP], 99thPercentileLatency(us), 31295
+[UPDATE], Operations, 4499654
+[UPDATE], AverageLatency(us), 3534.2083122391186
+[UPDATE], MinLatency(us), 704
+[UPDATE], MaxLatency(us), 1078271
+[UPDATE], 95thPercentileLatency(us), 11647
+[UPDATE], 99thPercentileLatency(us), 27343
+[UPDATE], Return=OK, 4499654</code></pre>
+<h2 id="五、指标观察"><a href="#五、指标观察" class="headerlink" title="五、指标观察"></a>五、指标观察</h2><p>1、服务器指标，主要观察CPU、内存、磁盘IO的利用率和延时，可以通过top、iostat工具查看实时情况<br>2、MongoDB可以通过mongostat 工具查看实时情况</p>
+<p>mongostat的输出说明</p>
+<p>inserts：每秒插入次数<br>query：每秒查询次数<br>update：每秒更新次数<br>delete：每秒删除次数<br>getmore：每秒执行getmore次数<br>command：每秒的命令数，比以上插入、查找、更新、删除的综合还多，还统计了别的命令<br>dirty：WiredTiger存储引擎中dirty 数据占缓存百分比<br>used:WiredTiger存储引擎中引擎使用缓存占百分比<br>flushs：每秒执行fsync将数据写入硬盘的次数。<br>vsize：虚拟内存使用量，单位MB<br>res：物理内存使用量，单位MB<br>qrw:客户端等待读的长度,队列中的长度<br>arw:客户端等待写的队列长度<br>netIn 和 netOut：网络流量，单位是字节 byte<br>conn：当前连接数<br>time：时间戳<br>六、测试结果<br><a target="_blank" rel="noopener" href="https://blog.51cto.com/navyaijm/2421973?source=drh">Mongodb性能压测</a><br><a target="_blank" rel="noopener" href="https://www.yht7.com/news/21478">YCSB  压测</a><br>#　<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhongyuanzhao000/p/12152843.html">使用 JMeter压测工具 对 MySQL、MongoDB、Neo4j 进行性能测试</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/24/48737/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF"><span class="toc-text">一、背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%8E%AF%E5%A2%83%E8%AF%B4%E6%98%8E"><span class="toc-text">二、环境说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-text">三、安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%8E%8B%E6%B5%8B"><span class="toc-text">四、压测</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#YCSB-%E6%B5%8B%E8%AF%95%E9%9C%80%E8%A6%81python2-7%E7%8E%AF%E5%A2%83-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8conda-create-n-venv-python-2-7-%E5%88%9B%E5%BB%BA-link"><span class="toc-text">YCSB  测试需要python2.7环境  可以使用conda create -n venv python&#x3D;2.7 创建  link</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%8C%87%E6%A0%87%E8%A7%82%E5%AF%9F"><span class="toc-text">五、指标观察</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

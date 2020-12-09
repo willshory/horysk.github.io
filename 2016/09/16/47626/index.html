@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>使用 Docker 搭建 MTProxy TG 专用代理 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2016/09/16/47626/" class="shake shake-little" title="使用 Docker 搭建 MTProxy TG 专用代理">
+            
+            使用 Docker 搭建 MTProxy TG 专用代理
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/docker/">docker</a>►<a class="article-category-link" href="/categories/docker/proxy/">proxy</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2016年09月16日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2016年09月16日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MTProxy/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>MTProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>docker</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p>Telegram 是一款开源且跨平台的 IM 工具（类似 Whatsapp、Messenger、微信），是我用过所有同类软件中用户体验最好的一个，同时我也是 Telegram 重度用户和开发者。当然，这么好用的工具在天朝是难以访问的。 —李钊同学</p>
+<p>由于你知道的原因，Telegram 在天朝默认情况下是无法使用的，当然你可以先打开 Shadowsocks 或是 V2Ray 等代理软件正常访问国际互联网，然后才可以正常使用 Telegram 但是这样就让 IM软件失去了一部分使用体验。</p>
+<p>前段时间 俄罗斯🇷🇺当局因 Telegram 公司不提供通讯加密密钥(为了信息审查)为由决定屏蔽 Telegram 服务，但最终没有获得成功为此 俄罗斯当局还屏蔽了 Google Microsoft 等公司的云服务器 IP段 可谓是用心良苦。Telegram 为了对抗封锁开发了 MTProxy Telegram 专用代理；对于处于同样情况的天朝来说也可以通过它正常使用 Telegram 服务</p>
+<p>MTProxy</p>
+<p>MTProxy 是在新版本 Telegram 中内置的代理程序</p>
+<p>MTProxy的命名，大概和MTProto有关<br>Telegram 团队使用自己设计的加密协议 MTProto ，并以 30 万美金的高价奖赏漏洞的提交者。Telegram 使用基于 MTProto 的通讯协议。</p>
+<p>在新版的 Telegram 中 Proxy 设置已经新增了 MTProxy 支持，我们只需要把相应的地址和密钥填入就能愉快的玩耍了</p>
+<p>下面说一下如何使用 Docker 快速部署</p>
+<p>安装 Docker<br>使用官方简化命令安装:</p>
+<h2 id="适用于-Linux"><a href="#适用于-Linux" class="headerlink" title="适用于 Linux"></a>适用于 Linux</h2><p>$ curl -fsSL get.docker.com -o get-docker.sh<br>$ sudo sh get-docker.sh –mirror Aliyun //使用阿里云镜像源加速</p>
+<h2 id="启动-Docker"><a href="#启动-Docker" class="headerlink" title="启动 Docker"></a>启动 Docker</h2><p>$ sudo systemctl enable docker<br>$ sudo systemctl start docker<br>部署 MTProxy 官方 Docker 镜像<br>$ docker pull telegrammessenger/proxy<br>$ docker run -d -p<port>:443 –name=mtproto-proxy –restart=always -v proxy-config:/data telegrammessenger/proxy:latest </port></p>
+<h2 id="修改为你想要的端口"><a href="#修改为你想要的端口" class="headerlink" title=" 修改为你想要的端口"></a><port> 修改为你想要的端口</port></h2><p>$ docker logs mtproto-proxy</p>
+<h2 id="查看你的链接信息"><a href="#查看你的链接信息" class="headerlink" title="查看你的链接信息"></a>查看你的链接信息</h2><h2 id="会输出如下信息"><a href="#会输出如下信息" class="headerlink" title="会输出如下信息"></a>会输出如下信息</h2><p>####</p>
+<h4 id="Telegram-Proxy"><a href="#Telegram-Proxy" class="headerlink" title="Telegram Proxy"></a>Telegram Proxy</h4><p>####</p>
+<p>[+] Using the secret in /data/secret: ‘xxxxxxxxxxxxxxxxxxxxxxxx’.<br>[<em>] Final configuration:<br>[</em>]   Secret 1: xxxxxxxxxxxxxxxxxxxxxxxx<br>[<em>]   tg:// link for secret 1 auto configuration: tg://proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx<br>[</em>]   t.me link for secret 1: <a target="_blank" rel="noopener" href="https://t.me/proxy?server=%E4%BD%A0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%806&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx">https://t.me/proxy?server=你的服务器地址6&amp;port=443&amp;secret=xxxxxxxxxxxxxxxxxxxxxxxx</a><br>[<em>]   Tag: no tag<br>[</em>]   External IP: 你的服务器地址<br>[*]   Make sure to fix the links in case you run the proxy on a different port.<br>PS:<br>使用 docker logs mtproto-proxy 查询到的链接<br>其中的端口是默认的请根据你使用的端口酌情修改</p>
+<p>使用 macOS Telegram 客户端作示例</p>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://yeasy.gitbook.io/docker_practice/install/">Docker 从入门到实践 | 安装 Docker</a><br><a target="_blank" rel="noopener" href="https://hub.docker.com/r/telegrammessenger/proxy/">telegrammessenger/proxy</a><br>本文链接： <a target="_blank" rel="noopener" href="https://cloverkits.github.io/2018/08/18/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA-MTProxy-TG-%E4%B8%93%E7%94%A8%E4%BB%A3%E7%90%86/">https://cloverkits.github.io/2018/08/18/使用-Docker-搭建-MTProxy-TG-专用代理/</a></p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2016/09/16/47626/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E7%94%A8%E4%BA%8E-Linux"><span class="toc-text">适用于 Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-Docker"><span class="toc-text">启动 Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text"> 修改为你想要的端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E4%BD%A0%E7%9A%84%E9%93%BE%E6%8E%A5%E4%BF%A1%E6%81%AF"><span class="toc-text">查看你的链接信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%BE%93%E5%87%BA%E5%A6%82%E4%B8%8B%E4%BF%A1%E6%81%AF"><span class="toc-text">会输出如下信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Telegram-Proxy"><span class="toc-text">Telegram Proxy</span></a></li></ol></li></ol></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

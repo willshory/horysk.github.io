@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>ubuntu20.04 安裝配置vnc  x11vnc server | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/24/41528/" class="shake shake-little" title="ubuntu20.04 安裝配置vnc  x11vnc server">
+            
+            ubuntu20.04 安裝配置vnc  x11vnc server
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/Linux/">Linux</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月24日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月24日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <p>Ubuntu 20.04 VNC 安装与设置</p>
+<p>VNC是一个远程桌面协议。按照本文的说明进行操作可以实现用VNC对Ubuntu 20.04进行远程控制。一般的VNC安装方式在主机没有插显示器的时候是无法使用的。下面的操作可以在主机有显示器和没有显示器时都能够正常工作。</p>
+<p>首先安装x11vnc</p>
+<pre><code class="bash">sudo apt-get install x11vnc -y
+</code></pre>
+<p>设置vnc密码</p>
+<pre><code class="bash">sudo x11vnc -storepasswd /etc/x11vnc.pass 
+</code></pre>
+<p>创建x11vnc自启动服务</p>
+<p>创建 /etc/systemd/system/x11vnc.service，并写入以下内容</p>
+<pre><code class="bash">[Unit]
+Description=Start x11vnc at startup.
+After=multi-user.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/x11vnc -auth /run/user/1000/gdm/Xauthority -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>启动x11vnc服务</p>
+<pre><code class="bash">sudo systemctl enable x11vnc
+sudo service x11vnc start
+</code></pre>
+<p>此时如果远程的主机上接了显示器，那么就可以在局域网通过VNC进行访问了。</p>
+<p>为了能够保证远程主机无论是否有显示器，我们都能通过VNC进行远程访问，我们还要做下面的修改</p>
+<p>创建默认的xorg.conf文件</p>
+<pre><code class="bash">sudo Xorg :1 -configure
+</code></pre>
+<p>此时程序会生成 /root/xorg.conf.new文件<br>我的默认文件内容如下</p>
+<pre><code class="bash">Section &quot;ServerLayout&quot;
+    Identifier     &quot;X.org Configured&quot;
+    Screen      0  &quot;Screen0&quot; 0 0
+    InputDevice    &quot;Mouse0&quot; &quot;CorePointer&quot;
+    InputDevice    &quot;Keyboard0&quot; &quot;CoreKeyboard&quot;
+EndSection
+
+Section &quot;Files&quot;
+    ModulePath   &quot;/usr/lib/xorg/modules&quot;
+    FontPath     &quot;/usr/share/fonts/X11/misc&quot;
+    FontPath     &quot;/usr/share/fonts/X11/cyrillic&quot;
+    FontPath     &quot;/usr/share/fonts/X11/100dpi/:unscaled&quot;
+    FontPath     &quot;/usr/share/fonts/X11/75dpi/:unscaled&quot;
+    FontPath     &quot;/usr/share/fonts/X11/Type1&quot;
+    FontPath     &quot;/usr/share/fonts/X11/100dpi&quot;
+    FontPath     &quot;/usr/share/fonts/X11/75dpi&quot;
+    FontPath     &quot;built-ins&quot;
+EndSection
+
+Section &quot;Module&quot;
+    Load  &quot;glx&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    Identifier  &quot;Keyboard0&quot;
+    Driver      &quot;kbd&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    Identifier  &quot;Mouse0&quot;
+    Driver      &quot;mouse&quot;
+    Option        &quot;Protocol&quot; &quot;auto&quot;
+    Option        &quot;Device&quot; &quot;/dev/input/mice&quot;
+    Option        &quot;ZAxisMapping&quot; &quot;4 5 6 7&quot;
+EndSection
+
+Section &quot;Monitor&quot;
+    Identifier   &quot;Monitor0&quot;
+    VendorName   &quot;Monitor Vendor&quot;
+    ModelName    &quot;Monitor Model&quot;
+EndSection
+
+Section &quot;Device&quot;
+        ### Available Driver options are:-
+        ### Values: &lt;i&gt;: integer, &lt;f&gt;: float, &lt;bool&gt;: &quot;True&quot;/&quot;False&quot;,
+        ### &lt;string&gt;: &quot;String&quot;, &lt;freq&gt;: &quot;&lt;f&gt; Hz/kHz/MHz&quot;,
+        ### &lt;percent&gt;: &quot;&lt;f&gt;%&quot;
+        ### [arg]: arg optional
+        #Option     &quot;Accel&quot;                  # [&lt;bool&gt;]
+        #Option     &quot;AccelMethod&quot;            # &lt;str&gt;
+        #Option     &quot;Backlight&quot;              # &lt;str&gt;
+        #Option     &quot;CustomEDID&quot;             # &lt;str&gt;
+        #Option     &quot;DRI&quot;                    # &lt;str&gt;
+        #Option     &quot;Present&quot;                # [&lt;bool&gt;]
+        #Option     &quot;ColorKey&quot;               # &lt;i&gt;
+        #Option     &quot;VideoKey&quot;               # &lt;i&gt;
+        #Option     &quot;Tiling&quot;                 # [&lt;bool&gt;]
+        #Option     &quot;LinearFramebuffer&quot;      # [&lt;bool&gt;]
+        #Option     &quot;HWRotation&quot;             # [&lt;bool&gt;]
+        #Option     &quot;VSync&quot;                  # [&lt;bool&gt;]
+        #Option     &quot;PageFlip&quot;               # [&lt;bool&gt;]
+        #Option     &quot;SwapbuffersWait&quot;        # [&lt;bool&gt;]
+        #Option     &quot;TripleBuffer&quot;           # [&lt;bool&gt;]
+        #Option     &quot;XvPreferOverlay&quot;        # [&lt;bool&gt;]
+        #Option     &quot;HotPlug&quot;                # [&lt;bool&gt;]
+        #Option     &quot;ReprobeOutputs&quot;         # [&lt;bool&gt;]
+        #Option     &quot;XvMC&quot;                   # [&lt;bool&gt;]
+        #Option     &quot;ZaphodHeads&quot;            # &lt;str&gt;
+        #Option     &quot;VirtualHeads&quot;           # &lt;i&gt;
+        #Option     &quot;TearFree&quot;               # [&lt;bool&gt;]
+        #Option     &quot;PerCrtcPixmaps&quot;         # [&lt;bool&gt;]
+        #Option     &quot;FallbackDebug&quot;          # [&lt;bool&gt;]
+        #Option     &quot;DebugFlushBatches&quot;      # [&lt;bool&gt;]
+        #Option     &quot;DebugFlushCaches&quot;       # [&lt;bool&gt;]
+        #Option     &quot;DebugWait&quot;              # [&lt;bool&gt;]
+        #Option     &quot;BufferCache&quot;            # [&lt;bool&gt;]
+    Identifier  &quot;Card0&quot;
+    Driver      &quot;intel&quot;
+    BusID       &quot;PCI:0:2:0&quot;
+EndSection
+
+Section &quot;Screen&quot;
+    Identifier &quot;Screen0&quot;
+    Device     &quot;Card0&quot;
+    Monitor    &quot;Monitor0&quot;
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     1
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     4
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     8
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     15
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     16
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     24
+    EndSubSection
+EndSection
+</code></pre>
+<p>将此文件复制至 /usr/share/X11/xorg.conf.d/xorg.conf</p>
+<p>这个文件保证在主机上插有显示器的时候，系统界面能在显示器上正常显示。下面我们再给系统添加一个虚拟显示器，当主机没有显示器的时候系统就使用这个虚拟显示器。</p>
+<p>安装虚拟显卡驱动</p>
+<pre><code class="bash">sudo apt install xserver-xorg-video-dummy
+</code></pre>
+<p>在这个文件的最后添加下面的内容</p>
+<pre><code class="bash">Section &quot;Monitor&quot;
+  Identifier &quot;Monitor1&quot;
+  HorizSync   1.0 - 2000.0
+  VertRefresh 1.0 - 200.0
+  # Add 16:9 modes, others are automatically detected.
+  Modeline &quot;1280x720&quot; 74.48 1280 1336 1472 1664 720 721 724 746
+  Modeline &quot;1920x1080&quot; 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+EndSection
+
+
+Section &quot;Device&quot;
+  Identifier &quot;Card1&quot;
+  Driver &quot;dummy&quot;
+  VideoRam 256000
+EndSection
+
+Section &quot;Screen&quot;
+  DefaultDepth 24
+  Identifier &quot;Screen1&quot;
+  Device &quot;Card1&quot;
+  Monitor &quot;Monitor1&quot;
+  SubSection &quot;Display&quot;
+    Depth 24
+    Modes &quot;1920x1080&quot;
+  EndSubSection
+EndSection
+</code></pre>
+<p>这样我们就创建了一个使用虚拟显卡的虚拟显示器。为了让虚拟的显示器和真实显示器都能工作，我们需要把最上面的 ServerLayout 进行更改</p>
+<pre><code class="bash">Section &quot;ServerLayout&quot;
+        Identifier     &quot;X.org Configured&quot;
+        Screen      0  &quot;Screen0&quot; 0 0
+    Screen      1  &quot;Screen1&quot; 0 0
+EndSection
+</code></pre>
+<p>完整的/usr/share/X11/xorg.conf.d/xorg.conf</p>
+<pre><code class="bash">Section &quot;ServerLayout&quot;
+    Identifier     &quot;X.org Configured&quot;
+    Screen      0  &quot;Screen0&quot; 0 0
+    Screen      1  &quot;Screen1&quot; 0 0
+#    InputDevice    &quot;Mouse0&quot; &quot;CorePointer&quot;
+#    InputDevice    &quot;Keyboard0&quot; &quot;CoreKeyboard&quot;
+EndSection
+
+Section &quot;Files&quot;
+    ModulePath   &quot;/usr/lib/xorg/modules&quot;
+    FontPath     &quot;/usr/share/fonts/X11/misc&quot;
+    FontPath     &quot;/usr/share/fonts/X11/cyrillic&quot;
+    FontPath     &quot;/usr/share/fonts/X11/100dpi/:unscaled&quot;
+    FontPath     &quot;/usr/share/fonts/X11/75dpi/:unscaled&quot;
+    FontPath     &quot;/usr/share/fonts/X11/Type1&quot;
+    FontPath     &quot;/usr/share/fonts/X11/100dpi&quot;
+    FontPath     &quot;/usr/share/fonts/X11/75dpi&quot;
+    FontPath     &quot;built-ins&quot;
+EndSection
+
+Section &quot;Module&quot;
+    Load  &quot;glx&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    Identifier  &quot;Keyboard0&quot;
+    Driver      &quot;kbd&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    Identifier  &quot;Mouse0&quot;
+    Driver      &quot;mouse&quot;
+    Option        &quot;Protocol&quot; &quot;auto&quot;
+    Option        &quot;Device&quot; &quot;/dev/input/mice&quot;
+    Option        &quot;ZAxisMapping&quot; &quot;4 5 6 7&quot;
+EndSection
+
+Section &quot;Monitor&quot;
+    Identifier   &quot;Monitor0&quot;
+    VendorName   &quot;Monitor Vendor&quot;
+    ModelName    &quot;Monitor Model&quot;
+EndSection
+
+Section &quot;Device&quot;
+        ### Available Driver options are:-
+        ### Values: &lt;i&gt;: integer, &lt;f&gt;: float, &lt;bool&gt;: &quot;True&quot;/&quot;False&quot;,
+        ### &lt;string&gt;: &quot;String&quot;, &lt;freq&gt;: &quot;&lt;f&gt; Hz/kHz/MHz&quot;,
+        ### &lt;percent&gt;: &quot;&lt;f&gt;%&quot;
+        ### [arg]: arg optional
+        #Option     &quot;Accel&quot;                  # [&lt;bool&gt;]
+        #Option     &quot;AccelMethod&quot;            # &lt;str&gt;
+        #Option     &quot;Backlight&quot;              # &lt;str&gt;
+        #Option     &quot;CustomEDID&quot;             # &lt;str&gt;
+        #Option     &quot;DRI&quot;                    # &lt;str&gt;
+        #Option     &quot;Present&quot;                # [&lt;bool&gt;]
+        #Option     &quot;ColorKey&quot;               # &lt;i&gt;
+        #Option     &quot;VideoKey&quot;               # &lt;i&gt;
+        #Option     &quot;Tiling&quot;                 # [&lt;bool&gt;]
+        #Option     &quot;LinearFramebuffer&quot;      # [&lt;bool&gt;]
+        #Option     &quot;HWRotation&quot;             # [&lt;bool&gt;]
+        #Option     &quot;VSync&quot;                  # [&lt;bool&gt;]
+        #Option     &quot;PageFlip&quot;               # [&lt;bool&gt;]
+        #Option     &quot;SwapbuffersWait&quot;        # [&lt;bool&gt;]
+        #Option     &quot;TripleBuffer&quot;           # [&lt;bool&gt;]
+        #Option     &quot;XvPreferOverlay&quot;        # [&lt;bool&gt;]
+        #Option     &quot;HotPlug&quot;                # [&lt;bool&gt;]
+        #Option     &quot;ReprobeOutputs&quot;         # [&lt;bool&gt;]
+        #Option     &quot;XvMC&quot;                   # [&lt;bool&gt;]
+        #Option     &quot;ZaphodHeads&quot;            # &lt;str&gt;
+        #Option     &quot;VirtualHeads&quot;           # &lt;i&gt;
+        #Option     &quot;TearFree&quot;               # [&lt;bool&gt;]
+        #Option     &quot;PerCrtcPixmaps&quot;         # [&lt;bool&gt;]
+        #Option     &quot;FallbackDebug&quot;          # [&lt;bool&gt;]
+        #Option     &quot;DebugFlushBatches&quot;      # [&lt;bool&gt;]
+        #Option     &quot;DebugFlushCaches&quot;       # [&lt;bool&gt;]
+        #Option     &quot;DebugWait&quot;              # [&lt;bool&gt;]
+        #Option     &quot;BufferCache&quot;            # [&lt;bool&gt;]
+    Identifier  &quot;Card0&quot;
+    Driver      &quot;intel&quot;
+    BusID       &quot;PCI:0:2:0&quot;
+EndSection
+
+Section &quot;Screen&quot;
+    Identifier &quot;Screen0&quot;
+    Device     &quot;Card0&quot;
+    Monitor    &quot;Monitor0&quot;
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     1
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     4
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     8
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     15
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     16
+    EndSubSection
+    SubSection &quot;Display&quot;
+        Viewport   0 0
+        Depth     24
+    EndSubSection
+EndSection
+
+
+
+Section &quot;Monitor&quot;
+
+  Identifier &quot;Monitor1&quot;
+
+  HorizSync   1.0 - 2000.0
+
+  VertRefresh 1.0 - 200.0
+
+  # Add 16:9 modes, others are automatically detected.
+
+  Modeline &quot;1280x720&quot; 74.48 1280 1336 1472 1664 720 721 724 746
+
+  Modeline &quot;1920x1080&quot; 172.80 1920 2040 2248 2576 1080 1081 1084 1118
+
+EndSection
+
+
+
+
+
+Section &quot;Device&quot;
+
+  Identifier &quot;Card1&quot;
+
+  Driver &quot;dummy&quot;
+
+  VideoRam 256000
+
+EndSection
+
+
+
+Section &quot;Screen&quot;
+
+  DefaultDepth 24
+
+  Identifier &quot;Screen1&quot;
+
+  Device &quot;Card1&quot;
+
+  Monitor &quot;Monitor1&quot;
+
+  SubSection &quot;Display&quot;
+
+    Depth 24
+
+    Modes &quot;1920x1080&quot;
+
+  EndSubSection
+
+EndSection
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/frozennet/article/details/105211375?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-2.channel_param">设置X11VNC后就可以使用了</a><br>现在重新启动远程电脑，就可以在没有显示器的情况下远程了。</p>
+<p>以上的方法还有一个问题。就是在用户没有登录的其情况下是没办法远程的。所以需要把用户设置成自动登录。</p>
+
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/24/41528/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>

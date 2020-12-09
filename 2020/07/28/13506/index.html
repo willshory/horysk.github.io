@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>pyppeteer 在debugging状态下驱动chrome浏览器 | Horysk 宏睿时空</title>
+    
+    
+        <meta property="og:site_name" content="Horysk 宏睿时空">
+    
+    
+        <meta property="article:author" content="Hory Skone">
+    
+    
+        <link rel="icon" href="/img/favicon.ico">
+    
+    
+<link rel="stylesheet" href="/css/minireset.min.css">
+
+    
+<link rel="stylesheet" href="/css/all.min.css">
+
+    
+<link rel="stylesheet" href="/css/csshake.min.css">
+
+    
+<link rel="stylesheet" href="/css/hljs/lioshi.css">
+
+    
+<link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+
+    
+<link rel="stylesheet" href="/styl/main.css">
+
+    
+<script src="/js/jquery.min.js"></script>
+
+    
+<script src="/js/highlight.min.js"></script>
+
+    
+<script src="/js/jquery.fancybox.min.js"></script>
+
+    
+<script src="/js/clipboard.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+<body>
+    <header>
+  <div class="outer">
+    <div class="inner">
+      <h1 class="logo-wrap">
+        <a>Horysk 宏睿时空<b><sup>8.8.8</sup></b></a>
+      </h1>
+    </div>
+    <div class="inner">
+      <nav class="main-nav">
+        
+          <a href="/">首页</a>
+        
+          <a href="/archives">归档</a>
+        
+          <a href="/categories">分类</a>
+        
+          <a href="/tags">标签</a>
+        
+          <a href="/friends">友链</a>
+        
+          <a href="/about">关于</a>
+        
+          <a href="https://www.hory-ai.com">HORYAI</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="content">
+        <section class="outer">
+    <article>
+        <div class="article-title">
+    <h2>
+        <a href="/2020/07/28/13506/" class="shake shake-little" title="pyppeteer 在debugging状态下驱动chrome浏览器">
+            
+            pyppeteer 在debugging状态下驱动chrome浏览器
+        </a>
+    </h2>
+    <div class="meta_box">
+    
+        
+        
+            
+                
+        
+        <div class="meta meta_auth">
+            <img src="/img/default.png" alt="head" />
+            <p>anonymous</p>
+        </div>
+    
+        
+            <div class="meta meta_cate">
+                <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+                <p><a class="article-category-link" href="/categories/pyppeteer/">pyppeteer</a></p>
+            </div>
+        
+        
+        <div class="meta meta_date">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            <p>发布于：2020年07月28日</p>
+        </div>
+    
+        <div class="meta meta_update">
+            <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+            <p>更新于：2020年07月28日</p>
+        </div>
+    </div>
+    
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyppeteer/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>pyppeteer</a></li></ul>
+  </div>
+
+
+</div>
+
+        <hr>
+        <div class="article-entry">
+            
+            
+            
+            <h2 id="1-以命令窗口启动chrome浏览器，选择远程连接的端口为9222"><a href="#1-以命令窗口启动chrome浏览器，选择远程连接的端口为9222" class="headerlink" title="1.以命令窗口启动chrome浏览器，选择远程连接的端口为9222"></a>1.以命令窗口启动chrome浏览器，选择远程连接的端口为9222</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chrome.exe --disable-infobars --remote-debugging-port=<span class="number">9222</span> --user-data-<span class="built_in">dir</span>=<span class="string">&quot;设置路径&quot;</span></span><br><span class="line"> --disable-infobars 表示关闭提示</span><br></pre></td></tr></table></figure>
+<h2 id="2-启动之后chromium通过http-localhost-9222-json得到调试信息，chrome通过http-127-0-0-1-9222-json-version-得到调试信息，"><a href="#2-启动之后chromium通过http-localhost-9222-json得到调试信息，chrome通过http-127-0-0-1-9222-json-version-得到调试信息，" class="headerlink" title="2. 启动之后chromium通过http://localhost:9222/json得到调试信息，chrome通过http://127.0.0.1:9222/json/version  得到调试信息，"></a>2. 启动之后chromium通过<a target="_blank" rel="noopener" href="http://localhost:9222/json%E5%BE%97%E5%88%B0%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF%EF%BC%8Cchrome%E9%80%9A%E8%BF%87http://127.0.0.1:9222/json/version">http://localhost:9222/json得到调试信息，chrome通过http://127.0.0.1:9222/json/version</a>  得到调试信息，</h2><p>其中webSocketDebuggerUrl为pyppeteer连接的ws地址。</p>
+<p>页面显示为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   <span class="string">&quot;Browser&quot;</span>: <span class="string">&quot;Chrome/78.0.3904.70&quot;</span>,</span><br><span class="line">   <span class="string">&quot;Protocol-Version&quot;</span>: <span class="string">&quot;1.3&quot;</span>,</span><br><span class="line">   <span class="string">&quot;User-Agent&quot;</span>: <span class="string">&quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36&quot;</span>,</span><br><span class="line">   <span class="string">&quot;V8-Version&quot;</span>: <span class="string">&quot;7.8.279.17&quot;</span>,</span><br><span class="line">   <span class="string">&quot;WebKit-Version&quot;</span>: <span class="string">&quot;537.36 (@edb9c9f3de0247fd912a77b7f6cae7447f6d3ad5)&quot;</span>,</span><br><span class="line">   <span class="string">&quot;webSocketDebuggerUrl&quot;</span>: <span class="string">&quot;ws://127.0.0.1:9222/devtools/browser/8fc97fd6-a7dd-4ff2-b760-3f6b25b7419b&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-案例"><a href="#3-案例" class="headerlink" title="3.案例"></a>3.案例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> pyppeteer.launcher <span class="keyword">import</span> connect</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">useragents=[<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&#x27;</span>,<span class="string">&#x27;Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36&#x27;</span>]</span><br><span class="line"> </span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">url</span>):</span></span><br><span class="line">    connect_params=&#123;</span><br><span class="line">        <span class="string">&#x27;browserWSEndpoint&#x27;</span>: <span class="string">&#x27;ws://127.0.0.1:9222/devtools/browser/8fc97fd6-a7dd-4ff2-b760-3f6b25b7419b&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;logLevel&#x27;</span>:<span class="number">3</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    browser = <span class="keyword">await</span> connect(connect_params)</span><br><span class="line">    page = <span class="keyword">await</span> browser.newPage()   <span class="comment"># 启动个新的浏览器页面</span></span><br><span class="line">    <span class="keyword">await</span> page.setUserAgent(random.choice(useragents))</span><br><span class="line">    <span class="comment">#设置页面超时时间</span></span><br><span class="line">    page.setDefaultNavigationTimeout(<span class="number">1000</span>*<span class="number">60</span>) <span class="comment">#60s</span></span><br><span class="line">    <span class="comment">#启用js</span></span><br><span class="line">    <span class="keyword">await</span> page.setJavaScriptEnabled(<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">await</span> page.setViewport(&#123;<span class="string">&#x27;width&#x27;</span>:<span class="number">1300</span>,<span class="string">&#x27;height&#x27;</span>:<span class="number">750</span>&#125;) <span class="comment">#设置界面</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">await</span> page.goto(url)    <span class="comment"># 访问登录页面</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e1:</span><br><span class="line">        print(<span class="string">&#x27;e1:&#x27;</span>,e1)</span><br><span class="line">        <span class="keyword">await</span> page.close()</span><br><span class="line">        <span class="keyword">await</span> browser.close()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">  </span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    url = <span class="string">&#x27;https://www.baidu.com&#x27;</span></span><br><span class="line">    m = main(url)</span><br><span class="line">    loop.run_until_complete(m)</span><br></pre></td></tr></table></figure>
+        </div>
+        <div class="article-copyright">
+            
+    <blockquote>
+        <p>
+            版权声明：本文为「宏睿时空」的原创文章，博客内容遵循 署名-非商业性使用-相同方式共享 协议。<br>本文永久链接是:http://www.hory-ai.com/2020/07/28/13506/
+        </p>
+    </blockquote>
+
+
+        </div>
+    </article>
+    
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%A5%E5%91%BD%E4%BB%A4%E7%AA%97%E5%8F%A3%E5%90%AF%E5%8A%A8chrome%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%8C%E9%80%89%E6%8B%A9%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%AB%AF%E5%8F%A3%E4%B8%BA9222"><span class="toc-text">1.以命令窗口启动chrome浏览器，选择远程连接的端口为9222</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8Echromium%E9%80%9A%E8%BF%87http-localhost-9222-json%E5%BE%97%E5%88%B0%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF%EF%BC%8Cchrome%E9%80%9A%E8%BF%87http-127-0-0-1-9222-json-version-%E5%BE%97%E5%88%B0%E8%B0%83%E8%AF%95%E4%BF%A1%E6%81%AF%EF%BC%8C"><span class="toc-text">2. 启动之后chromium通过http:&#x2F;&#x2F;localhost:9222&#x2F;json得到调试信息，chrome通过http:&#x2F;&#x2F;127.0.0.1:9222&#x2F;json&#x2F;version  得到调试信息，</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%A1%88%E4%BE%8B"><span class="toc-text">3.案例</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
+
+    <script>
+        function get_top_by_link(link){
+            var hnid = "#" + $(link).attr("data");
+            if ($(hnid).length > 0){
+                return $(hnid).offset().top;
+            }else{
+                return 0;
+            }
+        }
+        //go to hn
+        function gotohn(link){
+            $("html,body").animate({scrollTop: get_top_by_link(link) }, 300);
+        }
+        //页面滚动
+        function update(){
+            var scrollH = $(window).scrollTop();
+            if($(".toc-link")){
+                $(".toc-link").each(function(i,link){
+                    var mdHeight = get_top_by_link(link);
+                    if(mdHeight <= scrollH + 40){
+                        //高亮导航菜单
+                        $('.toc-link').removeClass('on');
+                        $(link).addClass('on');
+                    }
+                });
+            }
+            //返回顶部显隐
+            if(scrollH < 200){
+                $("#gohome").css("display","none");
+            }else{
+                $("#gohome").css("display","block");
+            }
+        }
+        $(function(){
+            //修复部分锚点从属关系
+            if($("#toc-div >li").length > 0){
+                $("#toc-div >li").appendTo($("#toc-div >ol:first"));
+            }
+            //返回顶部
+            $('#gohome').click(function(){
+                $("html,body").animate({scrollTop: 0}, 300);
+                return false;
+            })
+            //遍历锚点
+            $(".toc-link").each(function(i,link){
+                $(link).attr("data",$(link).attr('href').substring(1));
+                $(link).attr("href","javascript:void(0);");
+                $(link).attr("onclick","gotohn(this);");
+            })
+            //绑定滚动事件
+            $(window).bind('scroll', update);
+            //初始化toc
+            var first_toc = $(".toc-link")[0];
+            var first_scroll = get_top_by_link(first_toc);
+            var window_scroll = $(window).scrollTop();
+            if(window_scroll <= first_scroll){
+                $(first_toc).addClass('on');
+            }
+        })
+    </script>
+
+</section>
+    </div>
+    <footer>
+    <div class="outer">
+        <div class="inner">
+            Powered by <a href="http://prowiki.demopage.icu/" target="_blank">ProWiki</a>
+            &copy;2020 HORYSK<br>
+            <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">粤ICP备6896438749号</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/custom.js"></script>
+
+
+    <script>onload_content();</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":true}});</script></body>
+</html>
