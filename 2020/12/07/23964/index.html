@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>在Hexo博客中插入图片的各种方式 | Horysk 宏睿时空</title>
+    <title>基于日本翻倍股的研究：老龄化加速下的投资机会【52页】 | Horysk 宏睿时空</title>
     
     
         <meta property="og:site_name" content="Horysk 宏睿时空">
@@ -79,9 +79,9 @@
     <article>
         <div class="article-title">
     <h2>
-        <a href="/2020/12/07/23964/" class="shake shake-little" title="在Hexo博客中插入图片的各种方式">
+        <a href="/2020/12/07/23964/" class="shake shake-little" title="基于日本翻倍股的研究：老龄化加速下的投资机会【52页】">
             
-            在Hexo博客中插入图片的各种方式
+            基于日本翻倍股的研究：老龄化加速下的投资机会【52页】
         </a>
     </h2>
     <div class="meta_box">
@@ -89,17 +89,19 @@
         
         
             
-                
+        
+            
+        
         
         <div class="meta meta_auth">
-            <img src="/img/default.png" alt="head" />
-            <p>anonymous</p>
+            <img src="/" alt="head" />
+            <p>horysk</p>
         </div>
     
         
             <div class="meta meta_cate">
                 <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-                <p><a class="article-category-link" href="/categories/Hexo/">Hexo</a></p>
+                <p><a class="article-category-link" href="/categories/Investment/">Investment</a></p>
             </div>
         
         
@@ -115,7 +117,7 @@
     </div>
     
   <div class="post_tags">
-    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Hexo</a></li></ul>
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Investment/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Investment</a></li></ul>
   </div>
 
 
@@ -126,19 +128,49 @@
             
             
             
-            <p>在文章中插入图片<br><a target="_blank" rel="noopener" href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/">Hexo博客搭建之在文章中插入图片</a></p>
-<h2 id="绝对路径本地引用"><a href="#绝对路径本地引用" class="headerlink" title="绝对路径本地引用"></a>绝对路径本地引用</h2><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">![](/images/image.jpg)</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">图片既可以在首页内容中访问到，也可以在文章正文中访问到。</span><br><span class="line"><span class="comment">## 相对路径本地引用</span></span><br><span class="line">图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过站点配置文件_config.yml来生成。</span><br><span class="line">``` bash</span><br><span class="line">post_asset_folder: <span class="literal">true</span></span><br><span class="line">``` </span><br><span class="line">将_config.yml文件中的配置项post_asset_folder设为<span class="literal">true</span>后，执行命令$ hexo new post_name，在<span class="built_in">source</span>/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</span><br><span class="line">``` bash</span><br><span class="line">![](image.jpg)</span><br><span class="line">``` </span><br><span class="line">[vi-vim-cheat-sheet.gif](vi-vim-cheat-sheet.gif)</span><br><span class="line"><span class="comment">## 标签插件语法引用</span></span><br><span class="line">这种相对路径的图片显示方法在博文详情页面显示没有问题，但是在首页预览页面图片将显示不出来。如果希望图片在文章和首页中同时显示，可以使用标签插件语法。</span><br><span class="line">``` bash</span><br><span class="line"><span class="comment"># 本地图片资源，不限制图片尺寸</span></span><br><span class="line">&#123;% asset_img image.jpg This is an image %&#125;</span><br><span class="line"><span class="comment"># 网络图片资源，限制图片显示尺寸</span></span><br><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 200 400 vi-vim-cheat-sheet %&#125;</span><br><span class="line">HTML语法引用</span><br><span class="line">&lt;img src=<span class="string">&quot;SpellCheck.png&quot;</span> width=<span class="string">&quot;50%&quot;</span> height=<span class="string">&quot;50%&quot;</span> title=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span> alt=<span class="string">&quot;拼写检查工具Grammarly.&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>直接将<img src="/.com//image.jpg">替换上面的语法即可。</p>
-<p>启用fancybox：点击查看图片大图<br>我这里使用的是Hexo的NexT主题，NexT主题中提供了fancybox的方便接口。</p>
-<p>Usage：<a target="_blank" rel="noopener" href="https://github.com/theme-next/theme-next-fancybox3">https://github.com/theme-next/theme-next-fancybox3</a><br>markdown用法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 600 600 <span class="string">&quot;点击查看大图:vi/vim-cheat-sheet&quot;</span> %&#125;</span><br></pre></td></tr></table></figure>
-<p>Hexo部分图片禁用fancybox</p>
-<p>hexo在使用fancybox插件时，图片的效果还是很可观的，但是我们往往是不需要所有的图片都用fancybox；<br>例如：hexo next主题下，添加某些图片的时候，有些事不需要可点击的<br>修改theme\next\source\js\src\utils.js 红色字体部分；</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">diff --git a/<span class="built_in">source</span>/js/src/utils.js b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">index 0f3704e..8516665 100644</span><br><span class="line">--- a/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">+++ b/<span class="built_in">source</span>/js/src/utils.js</span><br><span class="line">@@ -11,6 +11,7 @@ NexT.utils = NexT.<span class="variable">$u</span> = &#123;</span><br><span class="line">       .not(<span class="string">&#x27;.group-picture img, .post-gallery img&#x27;</span>)</span><br><span class="line">       .each(<span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">         var <span class="variable">$image</span> = $(this);</span><br><span class="line">+        <span class="keyword">if</span> ($(this).hasClass(<span class="string">&#x27;nofancybox&#x27;</span>)) <span class="built_in">return</span>;</span><br><span class="line">         var imageTitle = <span class="variable">$image</span>.attr(<span class="string">&#x27;title&#x27;</span>);</span><br><span class="line">         var <span class="variable">$imageWrapLink</span> = <span class="variable">$image</span>.parent(<span class="string">&#x27;a&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>在img标签使用的时候加上class=”nofancybox”即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">&quot;http://www.viemu.com/vi-vim-cheat-sheet.gif&quot;</span> class=<span class="string">&quot;nofancybox&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
-<img src="http://www.viemu.com/vi-vim-cheat-sheet.gif" class width="600" height="600" title="点击查看大图:vi&#x2F;vim-cheat-sheet">
+            <p><a target="_blank" rel="noopener" href="https://www.valuelist.cn/227015.html">来自价值目录的雪球原创专栏</a></p>
+<h2 id="1、中国老龄化的趋势接近日本"><a href="#1、中国老龄化的趋势接近日本" class="headerlink" title="1、中国老龄化的趋势接近日本"></a>1、中国老龄化的趋势接近日本</h2><p>日本自 20 世纪 70 年代进入老龄化阶段，目前已经是人口 3000 万以上 国家中老龄化程度最严重的的国家。从人口结构看，日本 1970-1990 年老龄 化上升趋势较为缓慢，64 岁以上人口占比从 7.1%上升至 11.9%，而 1990 年后，日本老龄化进程加快，到 2020 年这一比例已经上升至 28.4%。1997 年日本首次出现了少年人口低于老年人口的现象，2005 年日本总人口首次 出现了负增长。</p>
+<a id="more"></a>
+<p>老龄化背景下日本经济增速逐渐放缓。日本 70 年代基本完成城镇化， 家庭收入快速增长，国民生活水平明显提高；70-90 年代日本经济在石油危 机中完成了经济结构的转型，经济增速呈现中速增长，日本这一期间虽然 GDP 增速持续下台阶，但人均 GDP 快速增长，并成功步入发达国家行列； 90 年代后，日本人口经历了从高生育率向低生育率再到超低生育率的转变， 经济进入了长期的超低增长阶段。</p>
+<p>日本人口出生率从 1920 年前后就开始下降，但在当时其下降的速度比 较缓慢，下降速度加快是在第二次世界大战之后和 1970 年之后。二战后女 性地位的提升、女性学历升高及工作机会的增多，使得晚婚晚育及少子的倾 向加强。而 1990 年之后，日本经济不景气，社会收入差距较大，越来越多 的年轻人倾向“不婚不育”或“婚而不育”，根据日本厚生劳动省的统计，1990 年日本女性在就业人口中所占的比例为37.9%，2000年增加到40%，到2018 年达到了 44%，日本女性的就业率逐年提升。</p>
+<p>中国老龄化的趋势接近日本。根据联合国人口署数据，中国 2002 年的 64 岁以上老年人口占总人口的比重达到 7.08%，超过 7%的临界点，中国进 入老龄化阶段。从老龄化程度来看，截至 2019 年，我国 64 岁及以上老年人 口占比为 11.5%，虽然仍大幅低于日本、德国和法国等发达国家，大概相当 于日本 90 年代、德国 60 年代水平，处于老龄化初期阶段。但令人担忧的是， 无论是我国 64 岁以上人口占比的上升速度，还是劳动年龄人口占比的下降 速度，我国都明显快于美国和德国，基本与日本的速度相当。</p>
+<p>亚洲国家老龄化速度较快可能有三方面的原因：①近五十年来现代医学的快速发展，人均寿命大幅延长；②亚洲国家在移民政策上普遍相对保守，加速了国内人口的老龄化过程；此外，③亚洲国家受教育程度高，但在全球化分工中主要参与劳动密集型产业，在资本回报更高的背景下贫富分化加大，叠加文化的因素，生育率的下降速度相对较快。</p>
+<p>除了老龄化速度与日本接近外，我国特殊的“计划生育”政策带来了老龄 化的不同特点。在 20 世纪 80 年代，中国的总和生育率还保持在 2.6 左右， 但是 1992 年以后总和生育率降至 1.8 左右，已经低于人口置换水平1。与日 本及其他发达国家相比，中国作为发展中国家提前进入了人口老龄化社会， 并呈现出高龄劳动人口占比高，以及“未富先老”和“未备先老”等特征。但另一 方面，国内生育率的快速下降受到政策的影响较大，虽然也有教育程度提高 后的自发因素，但可能仍存在一定可逆性，生育政策放松后，国内生育率有 可能出现小幅提升。</p>
+<h2 id="2、日本老龄化社会的特征"><a href="#2、日本老龄化社会的特征" class="headerlink" title="2、日本老龄化社会的特征"></a>2、日本老龄化社会的特征</h2><p>人口变化不是一个单独的过程3，老龄化对日本社会的方方面面也产生了 深远的影响，包括社会消费、储蓄、投资行为，及生活方式的改变。</p>
+<p>宏观层面，最直接的影响是日本的人均产出在 90 年代后停滞不前。在 总人口和劳动年龄人口逐渐减少背景下，日本面临着劳动力不足、社会保障 费用膨胀、经济发展缓慢等问题，出现了“失去的三十年”。随之出现了低增 长、低通胀的经济环境，以房价和十年期国债利率为表征的资产回报下降。</p>
+<p>90 年代以后，日本企业投资意愿下降，消费对 GDP 的贡献提升，1991 年至 2013 年，消费占 GDP 的比重逐步从 53%提高到 59%。但从结构上看， 70-80 年代是日本人均 GDP 提升带动的消费升级，但 90 年代后，人均 GDP 规模并没有太大增长，但消费比例增加，其中食品、服装等必选消费整体占 比下降，医疗、教育娱乐、房租等服务性消费整体占比明显提升，进行了以 服务业为导向的二次消费升级。</p>
+<p>一国的储蓄水平反映了该国的资本供给能力，日本的储蓄率自 1990 年 起便不断下降。至 2013 年时日本总储蓄占 GDP 的比重降至 20%，比起 1990 年时的 35%下跌了 15 个百分点。日本的低储蓄率或许与日本 90 年代以后 的失业率偏高有关。</p>
+<p>失业率提升，叠加房地产泡沫破裂后居民资产负债表被破坏，负债率大 幅上升，对日本居民的储蓄率产生不利影响。根据经济学理论，家庭可以分 为流量受限（ unconstrained life cycle household ） 和 不 受 限 的 家庭 (liquidity-constrained household)。流量受限消费者只能消耗储蓄，原因是他 们没有其他可变现的财产，或是没办法借到钱来维持最优化其效益的消费水 平。日本政府 2004 年的家庭调查数据显示，1988 年以后，日本流动性受限 消费者的数量占比明显增加。</p>
+<p>经济增长停滞的后果在微观上表现为居民收入长期得不到提升。由于经 济长期面临“通缩”压力，日本员工工资长期没有增长。1998-2003 年期间， 上班族的平均薪资是下滑的，这一时期贫富差距也有所扩大，中低收入阶层 （收入600万日元以下）占比上升至78.9%，中上收入阶层占比下降至21.1%， 且中产阶级加速向两头分化，“M 型”社会初现雏形。</p>
+<p>2013-2017 年，日本经济复苏推动企业盈利增长 74%，雇员工资上升 9%，企业盈利增长幅度仍高于工资幅度。而日本企业也更多地通过雇佣兼 职员工，而非全职员工，或者给现有员工增加奖金而非加薪，来延缓劳动力 成本对企业盈利的压力4，因为兼职员工的工资水平低于具有合同保护的全职 员工水平。全职劳动者在劳动力中所占比例从 2000 年的 84%下降至 69%， 2013-2016 年，全职员工的数量仅增加 1%，而兼职员工增加了 11%。</p>
+<p>社会组成方面，“低薪”导致年轻人的“供给”减少，表现为降低生育率， 从而使得日本的独居家庭增加，核心消费人群是“单身贵族”。据日本 2016 年国情调查结果显示，日本一共有 5184 万户家庭，其中独自成家的户数有 1679 万，占比 32.4%，而夫妇与孩子共同组建家庭的户数是 1444 万，占比 27.9%，独自成家的家庭已经占了大部分。独居家庭的增多增加了对小分量 商品的需求，百货商场逐渐衰落，并发展出了便利店这样的零售业态。</p>
+<p>为解决日本经济的长期通缩，90 年代后日本政府采取增加公共支出、扩 大基建投资的措施刺激经济，并通过大量发行国债融资来弥补税收收入的不 足。特别在 2012 年之后，大力推行以“安倍经济学”为代表的新政，结合了灵 活的扩张性的财政政策与宽松的货币政策、刺激民间投资为中心的经济产业 增长战略，试图重振日本疲弱的经济、终结长期通缩和缩减公共债务。截至 2017 年，日本政府杠杆率超过 200%，但在低增长环境中，并未产生明显通 胀。</p>
+<p>尽管努力提升全要素生产率是老龄化社会持续转型升级的方向，但日本 的经验告诉我们，老龄化对资源的消耗也提升了转型的难度。2019 年日本 央行原行长白川方明在第九届中日金融圆桌闭门研讨会上，曾对依靠全要素 生产率保持高增长发表了另一个角度的看法。他认为，在老龄化情况下，社 会整体就变得更多地关注如何维持目前的生活水平，并将经济资源大量配置 到与老龄化有关的领域后，使得资源配置到对经济增长有用的领域变得越来 越困难。即便从个体企业的角度，应对老龄化时的 AI 技术和机器人的应用 创新可以改善个别企业的生产率，但从宏观整体生产率的角度来看，想要提 升生产率是很困难的。老龄化急速发展，社会对创新的接受程度也在降低， 部分人认为的“即使人口减少了，但靠创新可以改善生产率”的观点可能过于 乐观。但另一方面，这也意味着转型升级“早做早好”，需为老龄化社会尽早 进行资源储备。</p>
+<h2 id="3、日本老龄化影响下的股市行业及个股表现"><a href="#3、日本老龄化影响下的股市行业及个股表现" class="headerlink" title="3、日本老龄化影响下的股市行业及个股表现"></a>3、日本老龄化影响下的股市行业及个股表现</h2><p>考虑到对国内的参考意义，目前中国的老龄化程度与日本 90 年代初接 近，我们重点研究 90 年代以后日本老龄化程度加速上行阶段对各行业的影 响。首先在股市方面，我们选择 1995 年 7 月以后的时间段作为股价表现的 统计区间，主要原因是 90 年代初日本股市波幅过大，影响对行业的判断， 而 1995 年 7 月市场基本调整到位。根据统计，1995-2019 年期间，日本股 市中的科技、消费行业股价涨幅在市场中居于前列，而以银行、证券为代表 的金融股和以有色、钢铁、交运为代表的周期股表现不佳。</p>
+<p>从个股涨幅的角度来看，我们从“翻倍股”的角度进行了筛选。我们将“十 年十倍”的概念放宽，即取股价从低点到高点的区间，只要在这一区间内增长 超过 5 倍的均计算在内，共 74 家公司，同时，考虑到“十年十倍”股对应的年 化增速为 26%，我们将涨幅虽不足 5 倍，但持续时间超过 3 年，复合增速超 过 26%的公司也纳入其中。经过筛选，剔除当前市值仍小于 100 亿美元5的 公司，共得到 86 只个股，约占全部上市公司市值的 2%。“翻倍股”的行业分 布如下：</p>
+<p>这些公司涨幅最大的时期并非同一时期，但越到后期，新兴 产业表现更好、胜率更高。例如银行、地产、批发零售、交运等行业的“翻倍 股”公司增长最快的阶段主要在2000-2007年，医疗健康股的增长区间较长， 但大部分涨幅也多发生在 2008 年后。科技股在 2000 年前后及 2008 年之后 都有“翻倍股”出现，其中，电子元器件、晶圆制造领域的“翻倍股”多出现在 2000 年附近，而 2008 年之后，电气设备、半导体设备等行业也涌现了许多 增长较好的公司。消费品行业主要在 2003 年后增长较好，复合增速虽然不 快，但稳定性高。从市值最大的 20 家公司的行业分布来看，2019 年前 20 大公司中消费类的公司也明显增多，包括瑞可利集团（人力资源巨头）、迅销（优衣库母公司）、制药企业（中外、第一三共）、东方迪士尼乐园等。</p>
+<p>中国目前的老龄化程度与日本 90 年代接近，但这并不意味着中国会简 单重复日本老龄化进程中的行业表现。2000 年左右的互联网牛市及2003-2007 年金融地产的牛市都有一些国际背景，前者背后是信息技术革命 的兴起和泡沫破裂，2003-2007 年全球则受益于中国加入 WTO 的红利，而 终结于发达国家在牛市中过度加杠杆导致的信贷危机。2009 年之后，全球 市场的上涨缺乏强有力的经济动能，新兴市场经济体增长减速，原有的依靠 大规模投资和人口红利的经济增长动力正在枯竭，全球股市上涨几乎完全是 量化宽松政策刺激的结果。在这样的低增长、低利率环境下，国内的经济增 长的动力也在发生变化，将更加受到消费升级和制造业升级的催化，预计也 将出现消费和新兴产业的表现持续好于传统行业的现象。</p>
+<p>从复合增速来看，所有行业“翻倍股”平均的复合增速均超过 20%，而通 信服务、金融、信息技术行业“翻倍股”的复合增速高于 30%，增长更快；但 通信服务和金融的持有时间相对较短，波动较大。从持股时间来看，医疗保 健、可选消费、必需消费及行业股票上涨的年限相对较长，分别为 19.3 年、 17.5 年和 16.8 年，更具有长期投资的特性。</p>
+<p>老龄化背景下医疗服务最为受益</p>
+<p>日本在 1957 年通过立法建立全民医保制度，国民年金、厚生年金和非 公共养老保险组成了养老体系三支柱。老龄化程度的提升首先体现的是日本 国民医疗费用占 GDP 的比重长期提升，从1955年的2.8%、1975年的 4.25% 逐步提升至 2017 年的 7.87%，1975-2017 年复合增速 4.6%。2019 年日本 中央财政支出中 34%用于社会保障，而从整体的社会保障支出费用上来看， 养老金支出占比由 80 年的 40%左右升至 19 年的近 50%。</p>
+<p>但 1990 年后日本整体的用药规模增长十分有限，受到医药政策的调整 和医保控费的影响，降低了药占比，家庭平均的药物消费支出在 2000 年后 呈现负增长。但家庭对医疗服务的支出持续提升，显示老龄化社会下最直接 受益的是对老龄人群的服务类行业。</p>
+<p>日本也统计了针对老年人的医疗卫生费用，2015 年为 15 万亿日元，较 1983 年的 3.3 万亿日元增加了 3.5 倍。从细分项目的期间复合增速来看，药 房配药支出在 1983-2015 年复合年增长 18.5%，在 1990-2015 年复合年增 长 21.4%，居各项目之首。1994 年后新增了对家访护理的统计，1994-2015 年的年复合增速也达到了 19.6%的较高水平。药房配药增加给医药流通行业 带来较大的利润增长空间，家访护理增加则提升对服务性行业的需求，这与 日本的介护保险制度6有关。</p>
+<p>基础设施如医疗机构，特别是养老机构数量也有一定增加，2017 年相 对 1990 年医疗机构数量增加了 25%。2000 年前后日本政府推行《护理保 险制度》，吸引大量养老企业进入市场。《介护保险制度》的颁布具有里程 碑性质的意义，开发商通过在房屋内配备符合该法律要求的设施和看护人员后，提供的相应服务最终可以由介护保险买单。该法律推出后的 6 年间，收 费养老设施等护理服务机构从 257 家急速增加到 1732 家，年平均增长率为 37%；2000 年时的养老服务业市场规模只有 3.6 万亿日元，2013 年，市场 规模扩大到了 9.6 万亿日元。从床位数量来看，日本整体的医疗机构床位数 量在 90 年代后小幅下降，但疗养用的床位数占比从 1993 年的 0.2%快速提 升至 2003 年的 20%。</p>
+<p>制药公司：医保下的繁荣和阵痛，研发构建创新药竞争壁垒</p>
+<p>在日本 12 只医药行业“翻倍股”中，有 6 家创新药企业，5 家医疗器械类 企业，1 家偏计算机行业的医疗服务公司；这些公司也恰好是制药、医疗器 械行业的行业龙头。</p>
+<p>由于 1950s 之后日本采用全民医保和全药医保制度，制药企业的收入整 体由政府的医保支出。虽然 1980 年以前，受益于医保全面覆盖，且药品价 格相对高昂，日本药品制药业总产值年复合增长超过 10%，家庭平均医药支 出复合增长超过 8%，药企经营情况较为宽松。但 70 年代开始，日本开始实 行一致性评价，为降价奠定基础，1980-90 年日本药品累计降幅超过 60%； 1992 年日本厚生省开始针对每一款药品制定新的政府基准价，并设定一个 浮动百分比(药品进销差价)，市场公定价的误差不得超过政府基准价的浮动 百分比限制。1992 年的浮动百分比设定为 15%，此后逐年递减，2000 年之 后稳定在 2%左右。而随着政府费用管控的加强，1992 年后医保开支逐年下 降，老龄化带来的用药需求并不能解释制药行业的超额收益。</p>
+<p>但在医保降费下，日本医药行业的竞争格局得到改善，大公司间接受益。 目前制药企业集中度较高，截至 2020Q1，日本前四家制药企业武田、第一 三共、安斯泰来和中外制药的权重即占到日本东京交易所医药指数的 49%， 前 9 家大中型医药公司市值权重之和占比达到 87%。其中，武田、中外、第 一三共制药也是日本东京交易所市值排名前二十的公司。而在医保政策改革 的背景下，1980-90 年代大型公司多数增加了对研发的投入，日本本土新药 占比提升。2000 年后，医保降费幅度趋缓，医药指数相对东证交易所指数 超额收益显现。</p>
+<p>90 年后日本药品制造业整体收入增速放缓，其中，武田、安斯泰来、日 本卫材等创新药企业于 20 世纪 90 年代陆续上市创新药，基本维持企业的营 收增长（龙头创新药公司平均增速约 2.5%），仿制药企业受持续降价和竞 争影响较大，营收端同比下滑（龙头仿制药公司平均下滑 2.2%）。</p>
+<p>创新药公司通过高研发投入和高盈利空间驱动资产回报率提升，创新药 资产回报率整体高于仿制药。原研药企业整体毛利率远高于仿制药企业，在 营收端增速放缓的背景下，原研药企业通过提升企业整体毛利率驱动上市公 司资产回报率提升。</p>
+<p>从研发投入来看，2019 年武田药品、安斯泰来、第一三共、中外制药 在研发上投入分别达到 4924 亿、2242 亿、1975 亿和 1079 亿日元，远高于 仿制药沢井制药、日医工 167 亿和 108 亿日元的规模。同时，因新药收入规 模体量较大，创新药公司往往更有能力开展并购，2000 年后武田、安斯泰 来等公司都进行了大量并购，扩大在研管线。原研药龙头企业的先发优势是 相对稳固的。</p>
+<p>创新药企在金融危机后增长也主要来自公司利润的增长，特别是海外收 入的增长。头部标的药品出口额占药品销售收入的比例在 35%到 85%。如 武田制药海外销售占比约 80%。在美国市场销售增速达到 15.7%，在欧洲、 加拿大市场处方药销售增速达到 13.7%，国内市场呈现负增长。中外制药目 前海外收入占比仅 35%，但近 3 年复合增速达到 30%以上。而仿制药沢井、 日医工最近 2 年海外出口占比刚刚起步，目前海外收入占比在 20%附近。</p>
+<p>另一方面，与日本药品降价趋势相比，欧美市场药品价格持续上升。以 阿柏西普为例，目前日本价格约折合 1200 美元，而美国价格在 2000 美元 附近，要高出近 50%。2019 财年武田药品、安斯泰来、第一三共、中外制 药、沢井制药、日医工的毛利率分别为 69%、78%、61%、61%、41%和 20%，布局海外业务的武田药品、安斯泰来制药等整体毛利率领先同行。</p>
+<p>整体来看，日本药价持续下降压缩大部分药企利润空间，加速行业集中 度提升。所谓“成也萧何败萧何”，当深度老龄化下全民医保制度成为财政负 担，药企的控费也将限制国内药企的收入增长。在这种背景下，医药企业的 营收放缓，而龙头企业更能够通过深厚的创新管线积累及并购获取新药溢价， 拓展海外出口规模成为更重要的销售额增长方式。</p>
+<p>中国老龄人口用药基数大，增长空间或大于日本。从人口年龄角度分析， 中国和日本都面临人口老龄化问题，2019 年中国 65 岁及以上人口 1.64 亿 人，日本为 3552.4 万人，中国老龄化带来的用药需求远远超过日本。而 2019 年 A 股医药龙头企业恒瑞医药出口额占收入比重还不到 3%，国内药企出口 市场可拓展空间大。</p>
+<p>此处为报告节选，完整报告免费下载： <a target="_blank" rel="noopener" href="https://www.valuelist.cn/227015.html">网页链接</a></p>
+<p>寻找更多公司、行业免费报告下载，请访问： <a target="_blank" rel="noopener" href="https://www.valuelist.cn/">https://www.valuelist.cn</a></p>
+<p>请关注我们的公众号“价值目录”</p>
+
         </div>
         <div class="article-copyright">
             
@@ -154,7 +186,7 @@
     
 
     <section id="toc-div" >
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E6%9C%AC%E5%9C%B0%E5%BC%95%E7%94%A8"><span class="toc-text">绝对路径本地引用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E4%B8%AD%E5%9B%BD%E8%80%81%E9%BE%84%E5%8C%96%E7%9A%84%E8%B6%8B%E5%8A%BF%E6%8E%A5%E8%BF%91%E6%97%A5%E6%9C%AC"><span class="toc-text">1、中国老龄化的趋势接近日本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E6%97%A5%E6%9C%AC%E8%80%81%E9%BE%84%E5%8C%96%E7%A4%BE%E4%BC%9A%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-text">2、日本老龄化社会的特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%97%A5%E6%9C%AC%E8%80%81%E9%BE%84%E5%8C%96%E5%BD%B1%E5%93%8D%E4%B8%8B%E7%9A%84%E8%82%A1%E5%B8%82%E8%A1%8C%E4%B8%9A%E5%8F%8A%E4%B8%AA%E8%82%A1%E8%A1%A8%E7%8E%B0"><span class="toc-text">3、日本老龄化影响下的股市行业及个股表现</span></a></li></ol>
     </section>
     <section id="gohome" style="display: none;"><a>顶</a></section>
 

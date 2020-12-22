@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     
-    <title>1956409564654 | Horysk 宏睿时空</title>
+    <title>u盘安装ubuntu20.04时黑屏三种解决办法 | Horysk 宏睿时空</title>
     
     
         <meta property="og:site_name" content="Horysk 宏睿时空">
@@ -79,9 +79,9 @@
     <article>
         <div class="article-title">
     <h2>
-        <a href="/2017/11/02/53224/" class="shake shake-little" title="1956409564654">
+        <a href="/2017/11/02/53224/" class="shake shake-little" title="u盘安装ubuntu20.04时黑屏三种解决办法">
             
-            1956409564654
+            u盘安装ubuntu20.04时黑屏三种解决办法
         </a>
     </h2>
     <div class="meta_box">
@@ -89,11 +89,13 @@
         
         
             
-                
+        
+            
+        
         
         <div class="meta meta_auth">
-            <img src="/img/default.png" alt="head" />
-            <p>anonymous</p>
+            <img src="/" alt="head" />
+            <p>horysk</p>
         </div>
     
         
@@ -109,6 +111,10 @@
         </div>
     </div>
     
+  <div class="post_tags">
+    <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>Linux</a></li></ul>
+  </div>
+
 
 </div>
 
@@ -117,7 +123,19 @@
             
             
             
-            
+            <p>我电脑显卡是Nvidia显卡～</p>
+<p>重启之后屏幕显示“输入不支持”，这是因为ubuntu对显卡的支持有关，需要手动添加显卡选项:nomodeset，使其支持Nvidia系列显卡 </p>
+<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>进入安装时，光标移动到”install ubuntu”，按”e”进入编辑模式，进入命令行模式,找到’’quite splash’’然后去掉”–”后，添加“nomodeset”（依照不同显卡进行不同显卡驱动选项的添加，我们使用的是Nvidia显卡，添加nomodeset）F10安装</p>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>当安装结束后，启动系统出现黑屏</p>
+<p>开机时按住shift不放，出现grub画面，按’’’e’’’ 进入编辑开机指令的模式（或者开机直接按“e”）, 同样找到’’’quitesplash’’’ 并在后面加上“nomodeset”，按’’F10’’启动系统 </p>
+<h2 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h2><p>开机按shift，选择“recovery model”，进入系统之后打开终端</p>
+<p>sudo vi /etc/default/grub<br>按‘ℹ’进入vim的编辑模式</p>
+<p>GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash”<br>#修改为：<br>GRUB_CMDLINE_LINUX_DEFAULT=”quiet splash nomodeset”</p>
+<p>按“esc”，输入“    :wq!    ” (有冒号) 保存退出，更新grub</p>
+<p>sudo update-grub<br>在重启之前，我们发现电脑屏幕分辨率不是最佳（如果分辨率正常，则不用）</p>
+<p>点击右上角“系统设置—&gt;软件和更新—&gt;附加驱动”选择使用Nvidia驱动</p>
+<p>重启电脑。</p>
+
         </div>
         <div class="article-copyright">
             
@@ -131,6 +149,11 @@
         </div>
     </article>
     
+
+    <section id="toc-div" >
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-text">方法二</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89"><span class="toc-text">方法三</span></a></li></ol>
+    </section>
+    <section id="gohome" style="display: none;"><a>顶</a></section>
 
     <script>
         function get_top_by_link(link){
